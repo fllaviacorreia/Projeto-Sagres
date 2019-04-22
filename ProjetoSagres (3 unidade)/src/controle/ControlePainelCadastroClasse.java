@@ -223,7 +223,7 @@ public class ControlePainelCadastroClasse implements ActionListener{
 				}
 				if(contador == 5) {
 					Main.classe.add(dados);
-					new ControleArquivo(2);
+				//	new ControleArquivo(2);
 					JOptionPane.showMessageDialog(telaCadClasse, "Cadastro realizado com sucesso.");
 					LimpaDados();
 				}else {

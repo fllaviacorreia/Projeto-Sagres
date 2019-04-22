@@ -45,7 +45,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	private JButton btnGerarHorrio;
 	public VisaoPainelCadastroClasse() {
 		this.setLayout(null);
-		this.setBackground(new Color(66, 179, 165));
+		this.setBackground(new Color(120, 205, 194));
 		this.setMinimumSize(new Dimension(1200, 720));
 		this.setMaximumSize(new Dimension(1200, 720));
 		this.setVisible(true);

@@ -150,7 +150,7 @@ public class ControlePainelCadastroCurso implements ActionListener{
 				}
 				if(contador == 5) {
 					Main.curso.add(dados);
-					new ControleArquivo(3);
+				//	new ControleArquivo(3);
 					JOptionPane.showMessageDialog(telaCadCurso, "Cadastro realizado com sucesso.");
 					LimpaDados();
 				}else {

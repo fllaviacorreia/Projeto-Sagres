@@ -24,12 +24,12 @@ import visao.VisaoPainelTelaInicial;
 public class ControlePainelCadastros implements ActionListener{
 	static VisaoFramePrincipal framePrincipal;
 	static VisaoPainelCadastros painelCadastros;
-	VisaoPainelCadastroAluno telaCadAluno;
-	VisaoPainelCadastroDisciplina telaCadDisciplina;
-	VisaoPainelCadastroClasse telaCadClasse;
-	VisaoPainelCadastroCurso telaCadCurso;
-	VisaoPainelCadastroProfessor telaCadProfessor;
-	VisaoPainelTelaInicial telaInicial;
+	static VisaoPainelCadastroAluno telaCadAluno;
+	static VisaoPainelCadastroDisciplina telaCadDisciplina;
+	static VisaoPainelCadastroClasse telaCadClasse;
+	static VisaoPainelCadastroCurso telaCadCurso;
+	static VisaoPainelCadastroProfessor telaCadProfessor;
+	static VisaoPainelTelaInicial telaInicial;
 	
 	public ControlePainelCadastros(VisaoFramePrincipal framePrincipal, VisaoPainelCadastros painelCadastros) {
 		ControlePainelCadastros.framePrincipal = framePrincipal;
@@ -42,6 +42,11 @@ public class ControlePainelCadastros implements ActionListener{
 	//Voltar a exibir o Painel Principal Quando necessário
 	public static void troca() {
 		framePrincipal.trocarPainel(painelCadastros, "Página de Cadastros");
+		telaCadAluno = null;
+		telaCadDisciplina = null;
+		telaCadClasse = null;
+		telaCadCurso = null;
+		telaCadProfessor = null;
 //		verifica();
 	}
 //	public static void verifica() {
@@ -93,6 +98,7 @@ public class ControlePainelCadastros implements ActionListener{
 				
 				framePrincipal.trocarPainel(telaCadAluno, "Cadastro Aluno");
 				new ControlePainelCadastroAluno(telaCadAluno, 2);
+				
 				//aluno.troca();
 			}catch(Exception e1) {
 				System.out.println(e1.getMessage());

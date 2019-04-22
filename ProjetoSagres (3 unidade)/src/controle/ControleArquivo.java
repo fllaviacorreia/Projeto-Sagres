@@ -72,12 +72,23 @@ public class ControleArquivo{
 			BufferedWriter escreveArquivoAluno = new BufferedWriter(new FileWriter(arquivoAluno));
 			for(int i=0; i< Main.aluno.size(); i++)
 			{
-				//NOME;RG;CPF;MATRICULA;CURSO;DISCIPLINAS_CURSADAS;
-				dado = TiraEspaços(Main.aluno.get(i).getNome());
-				escreveArquivoAluno.write(dado+";");
-				escreveArquivoAluno.write(Main.aluno.get(i).getRgUf()+";");
-				escreveArquivoAluno.write(Main.aluno.get(i).getCpf()+";");
+				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
+				//NOME;MATRICULA;CPF;RG;UF;DATA_EXP;ORGO_EXP;CURSO;DISCIPLINAS_CURSADAS
+				
+				escreveArquivoAluno.write(Main.aluno.get(i).getId());
+				escreveArquivoAluno.write(Main.aluno.get(i).getRua());
+				escreveArquivoAluno.write(Main.aluno.get(i).getNumero());
+				escreveArquivoAluno.write(Main.aluno.get(i).getComplemento());
+				escreveArquivoAluno.write(Main.aluno.get(i).getBairro());
+				escreveArquivoAluno.write(Main.aluno.get(i).getCidade());
+				escreveArquivoAluno.write(Main.aluno.get(i).getEstado());
+				escreveArquivoAluno.write(TiraEspaços(Main.aluno.get(i).getNome())+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getMatricula()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getCpf()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getRg()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getUf()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getDataExpedicao()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getOrgaoExp()+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getCurso()+";");
 				
 				if(Main.aluno.get(i).getHistoricoDisciplinas().equals(null)) {
@@ -86,8 +97,6 @@ public class ControleArquivo{
 				}else {
 					for(int j = 0; j < Main.aluno.get(i).getHistoricoDisciplinas().size(); j++)
 						escreveArquivoAluno.write(Main.aluno.get(i).getHistoricoDisciplinas().get(j).toString()+",");
-					
-					escreveArquivoAluno.write(";");
 				}
 				
 				escreveArquivoAluno.newLine();
@@ -105,7 +114,7 @@ public class ControleArquivo{
 			BufferedWriter escreveArquivoClasse = new BufferedWriter(new FileWriter(arquivoClasse));
 			for(int i=0; i< Main.classe.size(); i++)
 			{
-				//NOME_DISCIPLINA;PROFESSOR;ALUNO;ANO_SEMESTRE;DIA_HORA;
+				//NOME_DISCIPLINA;PROFESSOR;ALUNO;ANO_SEMESTRE;DIA_HORA
 				dado = TiraEspaços(Main.classe.get(i).getDisciplina());
 				escreveArquivoClasse.write(dado+";");
 				for(int j = 0; j < Main.classe.get(i).getProfessor().size(); j++) {
@@ -117,7 +126,7 @@ public class ControleArquivo{
 				}
 				escreveArquivoClasse.write(";");
 				escreveArquivoClasse.write(Main.classe.get(i).getAnoSemestre()+";");
-				escreveArquivoClasse.write(Main.classe.get(i).getDiaHora()+";");
+				escreveArquivoClasse.write(Main.classe.get(i).getDiaHora());
 				escreveArquivoClasse.newLine();
 			}
 			escreveArquivoClasse.close();
@@ -141,7 +150,7 @@ public class ControleArquivo{
 					escreveArquivoCurso.write(Main.curso.get(i).getDisciplinas().get(j).toString()+",");
 				}
 				escreveArquivoCurso.write(";");
-				escreveArquivoCurso.write(Main.curso.get(i).getTipoCurso()+";");
+				escreveArquivoCurso.write(Main.curso.get(i).getTipoCurso());
 				escreveArquivoCurso.newLine();
 			}
 			escreveArquivoCurso.close();
@@ -157,7 +166,7 @@ public class ControleArquivo{
 			BufferedWriter escreveArquivoDisciplina = new BufferedWriter(new FileWriter(arquivoDisciplina));
 			for(int i=0; i< Main.disciplina.size(); i++)
 			{
-	//CURSO;NOME;CARGA;AREA;PRE-REQUISITOS;SEMESTRE;É_PRÉ-REQUISITO;É_OPTATIVA;TIPO_DISCIPLINA;TEORICA;PRATICA;ESTAGIO;
+	//CURSO;NOME;CARGA;AREA;PRE-REQUISITOS;SEMESTRE;É_PRÉ-REQUISITO;É_OPTATIVA;TIPO_DISCIPLINA;TEORICA;PRATICA;ESTAGIO
 
 				escreveArquivoDisciplina.write(Main.disciplina.get(i).getCurso()+";");
 				dado = TiraEspaços(Main.disciplina.get(i).getNome_Disciplina());
@@ -179,7 +188,7 @@ public class ControleArquivo{
 				escreveArquivoDisciplina.write(Main.disciplina.get(i).getTipoDisciplina()+";");
 				escreveArquivoDisciplina.write(Main.disciplina.get(i).getTeorica()+";");
 				escreveArquivoDisciplina.write(Main.disciplina.get(i).getPratica()+";");
-				escreveArquivoDisciplina.write(Main.disciplina.get(i).getEstagio()+";");
+				escreveArquivoDisciplina.write(Main.disciplina.get(i).getEstagio()+"");
 				escreveArquivoDisciplina.newLine();
 			}
 			escreveArquivoDisciplina.close();
@@ -195,12 +204,24 @@ public class ControleArquivo{
 			BufferedWriter escreveArquivoProfessor = new BufferedWriter(new FileWriter(arquivoProfessor));
 			for(int i=0; i< Main.professor.size(); i++)
 			{
-				//NOME;MATRICULA;CARGA;AREA
-				dado = TiraEspaços(Main.professor.get(i).getNome());
-				escreveArquivoProfessor.write(dado+";");
+				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
+				//NOME;MATRICULA;AREA;CARGA;CPF;RG;UF;DATA_EXP;ORGO_EXP
+				escreveArquivoProfessor.write(Main.professor.get(i).getId());
+				escreveArquivoProfessor.write(Main.professor.get(i).getRua());
+				escreveArquivoProfessor.write(Main.professor.get(i).getNumero());
+				escreveArquivoProfessor.write(Main.professor.get(i).getComplemento());
+				escreveArquivoProfessor.write(Main.professor.get(i).getBairro());
+				escreveArquivoProfessor.write(Main.professor.get(i).getCidade());
+				escreveArquivoProfessor.write(Main.professor.get(i).getEstado());
+				escreveArquivoProfessor.write(TiraEspaços(Main.professor.get(i).getNome())+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getMatricula()+";");
-				escreveArquivoProfessor.write(Main.professor.get(i).getCarga_Horaria()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getArea()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getCarga_Horaria()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getCpf()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getRg()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getUf()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getDataExpedicao()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getOrgaoExp());
 				escreveArquivoProfessor.newLine();
 			}
 			escreveArquivoProfessor.close();
@@ -217,18 +238,13 @@ public class ControleArquivo{
 				FileReader arquivoAluno = new FileReader("relatorios\\listaAlunos.txt");
 				BufferedReader lerArquivoAluno = new BufferedReader(arquivoAluno);
 				
-				//NOME;RG;CPF;MATRICULA;CURSO;DISCIPLINAS_CURSADAS;
+				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
+				//NOME;MATRICULA;CPF;RG;UF;DATA_EXP;ORGO_EXP;CURSO;DISCIPLINAS_CURSADAS;
 				String linha = lerArquivoAluno.readLine();
 				while (linha != null) {
 					String [] dados = linha.split(";");
-					Aluno dado = new Aluno();
-					dado.setNome(dados[0]);
-					dado.setRgUf(dados[1]);
-					dado.setCpf(dados[2]);
-					dado.setMatricula(dados[3]);
-					dado.setCurso(dados[4]);
-					dado.setHistoricoDisciplinas(Dados(dados[5]));
-					Main.aluno.add(dado);
+					new Aluno(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], dados[7],dados[8],
+							dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],  Dados(dados[15]));
 					linha = lerArquivoAluno.readLine(); // lê da segunda até a última linha
 				}
 				arquivoAluno.close();
@@ -348,17 +364,15 @@ public class ControleArquivo{
 				FileReader arquivoProfessor = new FileReader("relatorios\\listaProfessores.txt");
 				BufferedReader lerArquivoProfessor = new BufferedReader(arquivoProfessor);
 
-				//NOME;MATRICULA;CARGA;AREA
+				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
+				//NOME;MATRICULA;AREA;CARGA;CPF;RG;UF;DATA_EXP;ORGO_EXP
 				String linha = lerArquivoProfessor.readLine();
 
 				while (linha != null) {
-					Professor dado = new Professor();
 					String [] dados = linha.split(";");
-					dado.setNome(dados[0]);
-					dado.setMatricula(dados[1]);
-					dado.setCarga_Horaria(dados[2]);
-					dado.setArea(dados[3]);
-					Main.professor.add(dado);
+					new Professor(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], 
+							dados[7],dados[8], dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],dados[15]);
+					
 					linha = lerArquivoProfessor.readLine(); // lê da segunda até a última linha
 				}
 				arquivoProfessor.close();

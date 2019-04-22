@@ -1,4 +1,4 @@
-package controle;
+package modelo.validacao;
 /**
  * 
  * @author Murilo Silva Santana
@@ -24,7 +24,7 @@ public class FormataMascaras {
 			}
 		}else if(opcao == 2){
 			try{
-				mascara = new MaskFormatter("*******************************************************************");
+				mascara = new MaskFormatter("*******************************************************");
 				mascara.setValidCharacters(" ‡·‚„ÈÍÌÛÙ˙abcÁdefghijklmnopqrstuvwxyz¿¡¬√… Õ”‘⁄ABC«DEFGHIJKLMNOPQRSTUVWXYZ");
 			}catch(ParseException exc){
 				System.out.println(exc.getMessage());
@@ -33,8 +33,8 @@ public class FormataMascaras {
 			
 		}else if(opcao == 3){
 			try{
-				mascara = new MaskFormatter("**");
-				mascara.setValidCharacters("0123456789");
+				mascara = new MaskFormatter("******************************");
+				mascara.setValidCharacters(" 0123456789‡·‚„ÈÍÌÛÙ˙abcÁdefghijklmnopqrstuvwxyz¿¡¬√… Õ”‘⁄ABC«DEFGHIJKLMNOPQRSTUVWXYZ");
 			}catch(ParseException exc){
 				System.out.println(exc.getMessage());
 				exc.printStackTrace();
@@ -55,16 +55,16 @@ public class FormataMascaras {
 		return new DefaultFormatterFactory(mascara);
 	}
 	
-	// retorna m·scara RG
-	public DefaultFormatterFactory getRG() {
-		Formata("##.###.###-##", 1);
-		return new DefaultFormatterFactory(mascara);
-	}
-	
-	public DefaultFormatterFactory getNumero() {
-		Formata("", 3);
-		return new DefaultFormatterFactory(mascara);
-	}
+//	// retorna m·scara RG
+//	public DefaultFormatterFactory getRG() {
+//		Formata("##.###.###-##", 1);
+//		return new DefaultFormatterFactory(mascara);
+//	}
+//	
+//	public DefaultFormatterFactory getNumero() {
+//		Formata("", 3);
+//		return new DefaultFormatterFactory(mascara);
+//	}
 	
 	//retorna mascara para matricula
 	public DefaultFormatterFactory getMatricula() {
@@ -83,11 +83,11 @@ public class FormataMascaras {
 //		return new DefaultFormatterFactory(mascara);
 //	}
 //	
-//	// retorna m·scara Data
-//	public DefaultFormatterFactory getData() {
-//		Formata("##/##/####", 1);
-//		return new DefaultFormatterFactory(mascara);
-//	}
+	// retorna m·scara Data
+	public DefaultFormatterFactory getData() {
+		Formata("##/##/####", 1);
+		return new DefaultFormatterFactory(mascara);
+	}
 //	
 //	//retorna m·scara AgÍncia Banc·ria
 //	public DefaultFormatterFactory getAgencia() {
@@ -114,7 +114,7 @@ public class FormataMascaras {
 	
 	//retorna m·scara para qualquer campo de endereÁo
 	public DefaultFormatterFactory getEndereco() {
-		Formata("", 2);
+		Formata("", 3);
 		return new DefaultFormatterFactory(mascara);
 	}
 		

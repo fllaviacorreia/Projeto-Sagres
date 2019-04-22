@@ -17,7 +17,7 @@ public class Main {
 	public static ArrayList<Professor> 		professor 		= new ArrayList<Professor>();
 	
 	public static void main(String[] args) {
-		new ControleArquivo(6);
+	//	new ControleArquivo(6);
 		new ControlePainelTelaLogin();
 		System.out.println("Main");
 	}

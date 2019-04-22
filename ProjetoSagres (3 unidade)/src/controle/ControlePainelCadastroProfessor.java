@@ -111,7 +111,6 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 		if(e.getSource() == telaCadProfessor.getButtonConfirmar()) {
 			try {
 				contador = 0;
-				dados = new Professor();
 				if(!telaCadProfessor.getTextFieldNomeProfessor().getText().isEmpty()) {
 					dados.setNome(telaCadProfessor.getTextFieldNomeProfessor().getText().toUpperCase());
 					contador++;
@@ -130,7 +129,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 				}
 				if(contador == 4) {
 					Main.professor.add(dados);
-					new ControleArquivo(5);
+			//		new ControleArquivo(5);
 					JOptionPane.showMessageDialog(telaCadProfessor, "Cadastro realizado com sucesso.");
 					LimpaDados();
 				}else {

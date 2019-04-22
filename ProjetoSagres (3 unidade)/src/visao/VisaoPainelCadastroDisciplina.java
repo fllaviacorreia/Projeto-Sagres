@@ -8,7 +8,7 @@ package visao;
 import java.awt.*;
 import javax.swing.*;
 
-import controle.FormataMascaras;
+import modelo.validacao.FormataMascaras;
 
 
 public class VisaoPainelCadastroDisciplina extends JPanel{
@@ -47,7 +47,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 	
 	public VisaoPainelCadastroDisciplina() {
 		setLayout(null);
-		this.setBackground(new Color(66, 179, 165));
+		this.setBackground(new Color(120, 205, 194));
 		this.setMinimumSize(new Dimension(1000, 730));
 		this.setMaximumSize(new Dimension(1000, 730));
 		this.setVisible(true);

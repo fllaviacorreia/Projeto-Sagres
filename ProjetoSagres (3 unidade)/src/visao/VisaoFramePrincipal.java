@@ -22,6 +22,7 @@ public class VisaoFramePrincipal extends JFrame{
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setResizable(false);
         
     }
 
@@ -44,8 +45,8 @@ public class VisaoFramePrincipal extends JFrame{
 //					(display.height - this.getSize().height)/2);
 //		}
 //		else {
-			this.setMinimumSize(display);
-			this.setMaximumSize(display);
+			this.setMinimumSize(new Dimension(1010, 720));
+			this.setMaximumSize(new Dimension(1010, 720));
 			this.setLocation(0,0);
 //		}
 			

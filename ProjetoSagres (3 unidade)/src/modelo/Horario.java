@@ -15,10 +15,6 @@ public class Horario {
 	private String tipoAula;
 	private ArrayList<Object> horario;
 	
-	public Horario() {
-		
-	}
-
 	public String getCurso() {
 		return curso;
 	}

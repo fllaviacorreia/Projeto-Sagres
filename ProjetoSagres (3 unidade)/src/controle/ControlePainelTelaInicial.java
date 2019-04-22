@@ -23,11 +23,11 @@ public class ControlePainelTelaInicial implements ActionListener{
 	static VisaoPainelTelaInicial telaInicial;
 	static VisaoPainelCadastros telaCadastros;
 	static VisaoFramePrincipal framePrincipal;
-	VisaoPainelCadastroAluno telaCadAluno;
-	VisaoPainelCadastroDisciplina telaCadDisciplina;
-	VisaoPainelCadastroClasse telaCadClasse;
-	VisaoPainelCadastroCurso telaCadCurso;
-	VisaoPainelCadastroProfessor telaCadProfessor;
+	static VisaoPainelCadastroAluno telaCadAluno;
+	static VisaoPainelCadastroDisciplina telaCadDisciplina;
+	static VisaoPainelCadastroClasse telaCadClasse;
+	static VisaoPainelCadastroCurso telaCadCurso;
+	static VisaoPainelCadastroProfessor telaCadProfessor;
 	
 	public ControlePainelTelaInicial(VisaoFramePrincipal framePrincipal, VisaoPainelTelaInicial telaInicial) {
 		//	inicializa();
@@ -64,6 +64,11 @@ public class ControlePainelTelaInicial implements ActionListener{
 
 	public static void troca() {
 		framePrincipal.trocarPainel(telaInicial, "Página Inicial");
+		telaCadAluno = null;
+		telaCadDisciplina = null;
+		telaCadClasse = null;
+		telaCadCurso = null;
+		telaCadProfessor = null;
 //		verifica();
 	}
 	

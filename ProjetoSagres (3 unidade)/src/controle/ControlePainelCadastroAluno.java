@@ -16,17 +16,37 @@ import javax.swing.JOptionPane;
 import visao.VisaoPainelCadastroAluno;
 import controle.ControlePainelCadastros;
 import modelo.Aluno;
+import modelo.validacao.Lists;
 
 public class ControlePainelCadastroAluno implements ActionListener{
 	VisaoPainelCadastroAluno telaCadAluno;
 	Aluno dados;
+	ControleArquivo arquivo = new ControleArquivo(0);
+	Calendar calendario = Calendar.getInstance();
 	private int contador;
 	private int saida;
 	private int volta;
+	private int erros;
 	private String disciplina = "";
+	private String id;
+	private String rua;
+	private String numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	private String nome;
+	private String matricula;
+	private String cpf;
+	private String rg;
+	private String uf;
+	private String dataExpedicao;
+	private String orgaoExp;
+	private String curso;
 	private ArrayList<String> disciplinas  = new ArrayList<String>();
 	private int numMatriculaAluno;
-	Calendar calendario = Calendar.getInstance();
+	
+	
 	
 	public ControlePainelCadastroAluno(VisaoPainelCadastroAluno telaCadAluno, int volta) {
 		this.telaCadAluno = telaCadAluno;
@@ -56,8 +76,6 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		telaCadAluno.getFormattedTextFieldNomeAluno().addActionListener(this);
 		telaCadAluno.getComboBoxCurso().addActionListener(this);
 		telaCadAluno.getComboBoxHistoricoDisciplinas().addActionListener(this);
-		telaCadAluno.getComboBoxEstado().addActionListener(this);
-		telaCadAluno.getComboBoxOrgaoExpeditor().addActionListener(this);
 		telaCadAluno.getButtonAdicionarDisciplina().addActionListener(this);
 	}
 
@@ -127,41 +145,44 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		}
 		if(e.getSource() == telaCadAluno.getButtonConfirmar()) {
 			try {
-				int erros = 0;
+				numMatriculaAluno = (calendario.get(Calendar.YEAR)*10000) + Main.aluno.size();
+				erros = 0;
 				contador = 0;
-				dados = new Aluno();
-				System.out.println(numMatriculaAluno);
+			//	System.out.println(numMatriculaAluno);
 //				System.out.println(calendario.getInstance());
 //				System.out.println(calendario.get(Calendar.YEAR));
 //				System.out.println(Calendar.YEAR);
 //				System.out.println(Calendar.MONTH);
 //				System.out.println(calendario.get(Calendar.MONTH));
 				
-				
 				if(!telaCadAluno.getFormattedTextFieldNomeAluno().getText().equals("")) {
-					dados.setNome(telaCadAluno.getFormattedTextFieldNomeAluno().getText().toUpperCase());
+					nome = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldNomeAluno().getText().toString());
+				//	System.out.println(nome);
 					contador++;
 				}
 				if(!telaCadAluno.getFormattedTextFieldMatriculaAluno().getText().equals("")) {
-					dados.setMatricula(String.valueOf(numMatriculaAluno));
+					matricula = String.valueOf(numMatriculaAluno);
 					contador++;
 				}
 				if(!telaCadAluno.getFormattedTextFieldCpf().getText().equals("")) {
-					if(Validacoes(telaCadAluno.getFormattedTextFieldCpf().getText(), 2) > 0) {
-						JOptionPane.showMessageDialog(telaCadAluno, "CPF já cadastrado!", "Aviso", JOptionPane.ERROR_MESSAGE);
-						erros ++;
+					if(Lists.isCPF(telaCadAluno.getFormattedTextFieldCpf().getText())) {
+						if(Validacoes(telaCadAluno.getFormattedTextFieldCpf().getText(), 2) > 0) {
+							JOptionPane.showMessageDialog(telaCadAluno, "CPF já cadastrado!", "Aviso", JOptionPane.ERROR_MESSAGE);
+							erros ++;
+					}
+					
 					}else {
 						dados.setCpf(telaCadAluno.getFormattedTextFieldCpf().getText());
 						contador++;
 					}
 				}
 				if(!(telaCadAluno.getFormattedTextFieldRg().getText().isEmpty())
-					& !(telaCadAluno.getComboBoxOrgaoExpeditor().getSelectedItem().equals("SELECIONE"))
-					& !(telaCadAluno.getComboBoxEstado().getSelectedItem().equals("SELECIONE"))
+					& !(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText().isEmpty())
+					& !(telaCadAluno.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))
 				//	& !(telaCadAluno.getDateChooserData().getMinSelectableDate().toString().equals(""))) {
 					) {
 					String RG = telaCadAluno.getFormattedTextFieldRg().getText()+"/"
-								+telaCadAluno.getComboBoxEstado().getSelectedItem().toString();
+								+telaCadAluno.getComboBoxEstadoRg().getSelectedItem().toString();
 							
 							
 				//	String dataOrgao =telaCadAluno.getDateChooserData().getMinSelectableDate().toString()+"/"
@@ -170,7 +191,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 						JOptionPane.showMessageDialog(telaCadAluno, "RG e UF já cadastrados!", "Aviso", JOptionPane.ERROR_MESSAGE);
 						erros ++;
 					}else {
-						dados.setRgUf(RG);
+				//		dados.setRg(RG);
 	//					dados.setDataExpedicaoOrgaoExp(dataOrgao);
 						contador++; //entrada do orgao expeditor e do estado ao RG são considerados, ao todo, como um
 					}
@@ -187,8 +208,8 @@ public class ControlePainelCadastroAluno implements ActionListener{
 					contador++;
 				}
 				if(contador == 6){
-					Main.aluno.add(dados);
-					new ControleArquivo(1);
+					
+				//	new ControleArquivo(1);
 					JOptionPane.showMessageDialog(telaCadAluno, "Cadastro realizado com sucesso.");
 					LimpaDados();
 				}else{
@@ -212,22 +233,26 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		telaCadAluno.getComboBoxCurso().addItem("SELECIONE");
 		ArrayList<String> disc = new ArrayList<String>();
 		String dis = null;
-		
-		dis = Main.disciplina.get(0).getCurso().toString();
-		disc.add(dis);
-		int cont;
-		for(int i = 1; i < Main.disciplina.size(); i++) {
-			cont = 0;
-			dis = Main.disciplina.get(i).getCurso().toString();
-			if(disc.get(i-1).equals(dis)) {
-				cont ++;
+		try {
+			dis = Main.disciplina.get(0).getCurso().toString();
+			disc.add(dis);
+			int cont;
+			for(int i = 1; i < Main.disciplina.size(); i++) {
+				cont = 0;
+				dis = Main.disciplina.get(i).getCurso().toString();
+				if(disc.get(i-1).equals(dis)) {
+					cont ++;
+				}
+				if(cont == 0)
+					disc.add(dis);
 			}
-			if(cont == 0)
-				disc.add(dis);
+			for(int i = 0; i<disc.size(); i++) {
+				telaCadAluno.getComboBoxCurso().addItem(disc.get(i).toString());
+			}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
 		}
-		for(int i = 0; i<disc.size(); i++) {
-			telaCadAluno.getComboBoxCurso().addItem(disc.get(i).toString());
-		}
+		
 	}
 	
 	public int Validacoes(String dado, int tipo) {
@@ -236,28 +261,32 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		// 1 - busca disciplina
 		// 2 - busca CPF
 		// 3 - busca RG
-		
-		if(tipo == 1) {
-			for(int i = 0; i < disciplinas.size(); i++) {
-			//	System.out.println(disciplinas.get(i).toString());
-				if(disciplinas.get(i).toString().equals(dado)) {
-					contador++;
-					System.out.println(contador);
+		try {
+			if(tipo == 1) {
+				for(int i = 0; i < disciplinas.size(); i++) {
+					//	System.out.println(disciplinas.get(i).toString());
+					if(disciplinas.get(i).toString().equals(dado)) {
+						contador++;
+						System.out.println(contador);
+					}
+				}
+			}else if(tipo == 2) {
+				for(int i = 0; i < Main.aluno.size(); i++) {
+					if(Main.aluno.get(i).getCpf().equals(dado)) {
+						contador++;
+					}
+				}
+			}else if(tipo == 3) {
+				for(int i = 0; i < Main.aluno.size(); i++) {
+					if(Main.aluno.get(i).getRg().equals(dado)) {
+						contador++;
+					}
 				}
 			}
-		}else if(tipo == 2) {
-			for(int i = 0; i < Main.aluno.size(); i++) {
-				if(Main.aluno.get(i).getCpf().equals(dado)) {
-					contador++;
-				}
-			}
-		}else if(tipo == 3) {
-			for(int i = 0; i < Main.aluno.size(); i++) {
-				if(Main.aluno.get(i).getRgUf().equals(dado)) {
-					contador++;
-				}
-			}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
 		}
+		
 		
 		return contador;
 	}
@@ -270,8 +299,8 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		telaCadAluno.getFormattedTextFieldMatriculaAluno().setText(null);
 		telaCadAluno.getFormattedTextFieldRg().setText(null);
 		telaCadAluno.getComboBoxCurso().removeAllItems();
-		telaCadAluno.getComboBoxEstado().setSelectedIndex(0);
-		telaCadAluno.getComboBoxOrgaoExpeditor().setSelectedIndex(0);
+		telaCadAluno.getComboBoxEstadoRg().setSelectedIndex(0);
+		telaCadAluno.getFormattedTextFieldOrgaoExpeditor().setText(null);
 		telaCadAluno.getComboBoxHistoricoDisciplinas().removeAllItems();
 //		telaCadAluno.getDateChooserData().setDate(null);
 		disciplinas.clear();

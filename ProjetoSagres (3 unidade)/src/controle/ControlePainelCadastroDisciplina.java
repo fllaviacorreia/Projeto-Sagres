@@ -251,25 +251,25 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					contador++;
 				}
 				if(!telaCadDisciplina.getTextFieldNomeDisciplina().getText().equals("")) {
-					ControleArquivo dado = new ControleArquivo(0); 
+				//	ControleArquivo dado = new ControleArquivo(0); 
 					if(!telaCadDisciplina.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
-						String disciplina = dado.TiraEspaços(telaCadDisciplina.getTextFieldNomeDisciplina().getText().toString());
-						String curso = dado.TiraEspaços(telaCadDisciplina.getComboBoxCurso().getSelectedItem().toString());
-						disciplina = disciplina.toUpperCase();
-						curso = curso.toUpperCase();
-						
-						System.out.println(disciplina);
-						System.out.println(curso);
-						
-						if(ValidaNomeDisciplina(disciplina, curso) == 0) {
-							dados.setNome_Disciplina(telaCadDisciplina.getTextFieldNomeDisciplina().getText().toUpperCase());
-							contador++;
-						}
-						else {
-							JOptionPane.showMessageDialog(telaCadDisciplina, "Disciplina com mesmo nome e curso já cadastrado.", 
-															"Aviso", JOptionPane.ERROR_MESSAGE);
-							erros = 0;
-						}
+//						String disciplina = dado.TiraEspaços(telaCadDisciplina.getTextFieldNomeDisciplina().getText().toString());
+//						String curso = dado.TiraEspaços(telaCadDisciplina.getComboBoxCurso().getSelectedItem().toString());
+//						disciplina = disciplina.toUpperCase();
+//						curso = curso.toUpperCase();
+//						
+//						System.out.println(disciplina);
+//						System.out.println(curso);
+//						
+//						if(ValidaNomeDisciplina(disciplina, curso) == 0) {
+//							dados.setNome_Disciplina(telaCadDisciplina.getTextFieldNomeDisciplina().getText().toUpperCase());
+//							contador++;
+//						}
+//						else {
+//							JOptionPane.showMessageDialog(telaCadDisciplina, "Disciplina com mesmo nome e curso já cadastrado.", 
+//															"Aviso", JOptionPane.ERROR_MESSAGE);
+//							erros = 0;
+//						}
 					}else {
 						
 							JOptionPane.showMessageDialog(telaCadDisciplina, "Selecione o curso.", 
@@ -298,7 +298,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 				
 				if(contador == 6) {
 					Main.disciplina.add(dados);
-					new ControleArquivo(4);
+				//	new ControleArquivo(4);
 					JOptionPane.showMessageDialog(telaCadDisciplina, "Cadastro realizado com sucesso.");
 					LimpaDados();
 					preenche();
