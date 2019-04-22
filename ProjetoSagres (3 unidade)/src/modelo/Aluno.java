@@ -30,12 +30,13 @@ public class Aluno extends Endereco{
 	private String curso;
 	private ArrayList<String> historicoDisciplinas;
 	
-	public Aluno(String id, String rua, String numero, String complemento, String bairro, String cidade, String estado,
-			String nome, String matricula, String cpf, String rg, String uf, String dataExpedicao, String orgaoExp,
+	public Aluno(String rua, String numero, String complemento, String bairro, String cidade, String estado,
+			String nome, String matricula, String dataNascimento, String cpf, String rg, String uf, String dataExpedicao, String orgaoExp,
 			String curso, ArrayList<String> historicoDisciplinas) {
-		super(id, rua, numero, complemento, bairro, cidade, estado);
+		super(rua, numero, complemento, bairro, cidade, estado);
 		this.nome = nome;
 		this.matricula = matricula;
+		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.uf = uf;
@@ -44,6 +45,7 @@ public class Aluno extends Endereco{
 		this.historicoDisciplinas = historicoDisciplinas;
 		this.curso = curso;
 		Main.aluno.add(this);
+		
 	}
 
 	public String getNome() {

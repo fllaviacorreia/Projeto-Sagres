@@ -25,7 +25,7 @@ public class Professor extends Endereco{
 	public Professor(String id, String rua, String numero, String complemento, String bairro, String cidade,
 			String estado, String nome, String matricula, String area, String carga_Horaria, String cpf, String rg,
 			String uf, String dataExpedicao, String orgaoExp) {
-		super(id, rua, numero, complemento, bairro, cidade, estado);
+		super(rua, numero, complemento, bairro, cidade, estado);
 		this.nome = nome;
 		this.matricula = matricula;
 		this.area = area;

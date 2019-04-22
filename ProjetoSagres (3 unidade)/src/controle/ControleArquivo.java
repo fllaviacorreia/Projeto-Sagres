@@ -72,10 +72,10 @@ public class ControleArquivo{
 			BufferedWriter escreveArquivoAluno = new BufferedWriter(new FileWriter(arquivoAluno));
 			for(int i=0; i< Main.aluno.size(); i++)
 			{
-				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
+				//RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
 				//NOME;MATRICULA;CPF;RG;UF;DATA_EXP;ORGO_EXP;CURSO;DISCIPLINAS_CURSADAS
 				
-				escreveArquivoAluno.write(Main.aluno.get(i).getId());
+				
 				escreveArquivoAluno.write(Main.aluno.get(i).getRua());
 				escreveArquivoAluno.write(Main.aluno.get(i).getNumero());
 				escreveArquivoAluno.write(Main.aluno.get(i).getComplemento());
@@ -206,7 +206,6 @@ public class ControleArquivo{
 			{
 				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
 				//NOME;MATRICULA;AREA;CARGA;CPF;RG;UF;DATA_EXP;ORGO_EXP
-				escreveArquivoProfessor.write(Main.professor.get(i).getId());
 				escreveArquivoProfessor.write(Main.professor.get(i).getRua());
 				escreveArquivoProfessor.write(Main.professor.get(i).getNumero());
 				escreveArquivoProfessor.write(Main.professor.get(i).getComplemento());

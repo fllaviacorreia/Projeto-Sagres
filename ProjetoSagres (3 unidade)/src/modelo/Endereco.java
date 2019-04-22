@@ -1,7 +1,7 @@
 package modelo;
 
 public abstract class Endereco {
-	String id;
+//	String id;
 	String rua;
 	String numero;
 	String complemento;
@@ -10,9 +10,9 @@ public abstract class Endereco {
 	String estado;
 	
 	
-	public Endereco(String id,String rua, String numero, String complemento, String bairro, String cidade, String estado) {
+	public Endereco(String id,String rua, String numero, String complemento, String bairro, String cidade) {
 		super();
-		this.id = id;
+//		this.id = id;
 		this.rua = rua;
 		this.numero = numero;
 		this.complemento = complemento;
@@ -21,13 +21,13 @@ public abstract class Endereco {
 		this.estado = estado;
 	}
 	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+//	public String getId() {
+//		return id;
+//	}
+//
+//	public void setId(String id) {
+//		this.id = id;
+//	}
 
 	public String getRua() {
 		return rua;
