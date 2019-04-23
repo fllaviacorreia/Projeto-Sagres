@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import modelo.Aluno;
 
-public class BancoAlunoInserir{
+public class BancoAlunoGerenciar{
 	
 	Connection conexao = null;
 	PreparedStatement preparetedStatement = null;
@@ -17,8 +17,8 @@ public class BancoAlunoInserir{
 	public boolean BancoAlunoInserir(Aluno aluno, int endereco, int curso) {
 		
 	//aqui é o comando em sqlque é necessário para inserir no banco de dados
-		String sql1 = "insert into Aluno (nomeAluno, numMatricula, cpf, rg, ufRg, OrgaoExpeditorRg, dataExpedicaoRg, "
-				+ "dataNascimento, Endereco_idEndereco, Curso_idCurso) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql1 = "INSERT INTO Aluno(nomeAluno, numMatricula, cpf, rg, ufRg, OrgaoExpeditorRg, dataExpedicaoRg, "
+				+ "dataNascimento, Endereco_idEndereco, Curso_idCurso) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 	//fazendo a conexão com o banco de dados	
 		conexao = BancoConexao.conector();
@@ -41,6 +41,7 @@ public class BancoAlunoInserir{
 		// o mesmo acontece com curso, a diferença é que vai buscar o curso no banco
 			preparetedStatement.setInt(9, endereco);
 			preparetedStatement.setInt(10, curso);
+			
 			System.out.println(preparetedStatement);
 			int teste = preparetedStatement.executeUpdate();
 
