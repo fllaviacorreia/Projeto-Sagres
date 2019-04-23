@@ -84,6 +84,7 @@ public class ControleArquivo{
 				escreveArquivoAluno.write(Main.aluno.get(i).getEstado());
 				escreveArquivoAluno.write(TiraEspaços(Main.aluno.get(i).getNome())+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getMatricula()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getEmail());
 				escreveArquivoAluno.write(Main.aluno.get(i).getCpf()+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getRg()+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getUf()+";");
@@ -243,7 +244,7 @@ public class ControleArquivo{
 				while (linha != null) {
 					String [] dados = linha.split(";");
 					new Aluno(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], dados[7],dados[8],
-							dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],  Dados(dados[15]));
+							dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],  dados[15], Dados(dados[16]));
 					linha = lerArquivoAluno.readLine(); // lê da segunda até a última linha
 				}
 				arquivoAluno.close();

@@ -61,6 +61,8 @@ public class VisaoPainelCadastroAluno extends JPanel{
 	private JButton 			buttonAdicionarDisciplina  		= null;
 	
 	FormataMascaras formatacao = new FormataMascaras();
+	private JLabel lblEmail;
+	private JTextField textFieldEmail;
 	
 	
 	public VisaoPainelCadastroAluno() {
@@ -107,6 +109,8 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
 		this.add(getButtonAdicionarDisciplina());
+		add(getLblEmail());
+		add(getTextFieldEmail());
 		
 	}
 	
@@ -339,17 +343,17 @@ public class VisaoPainelCadastroAluno extends JPanel{
 //	}
 	public JLabel getLabelDataDeExpedicao() {
 		if (labelDataDeExpedicao == null) {
-			labelDataDeExpedicao = new JLabel("Data de Expedi\u00E7\u00E3o:");
+			labelDataDeExpedicao = new JLabel("Data de Expedi\u00E7\u00E3o: (DD/MM/AAAA)");
 			labelDataDeExpedicao.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelDataDeExpedicao.setBounds(679, 112, 123, 25);
+			labelDataDeExpedicao.setBounds(679, 112, 244, 25);
 		}
 		return labelDataDeExpedicao;
 	}
 	public JLabel getLabelDataDeNascimento() {
 		if (labelDataDeNascimento == null) {
-			labelDataDeNascimento = new JLabel("Data de Nascimento:");
+			labelDataDeNascimento = new JLabel("Data de Nascimento: \r\n(DD/MM/AAAA)");
 			labelDataDeNascimento.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelDataDeNascimento.setBounds(532, 38, 196, 25);
+			labelDataDeNascimento.setBounds(532, 38, 309, 25);
 		}
 		return labelDataDeNascimento;
 	}
@@ -372,7 +376,7 @@ public class VisaoPainelCadastroAluno extends JPanel{
 			labelDadosPessoais = new JLabel("  Dados Pessoais");
 			labelDadosPessoais.setBorder(new LineBorder(Color.BLACK, 2));
 			labelDadosPessoais.setFont(new Font("Arial", Font.PLAIN, 19));
-			labelDadosPessoais.setBounds(0, 0, 1026, 30);
+			labelDadosPessoais.setBounds(0, 0, 1009, 30);
 		}
 		return labelDadosPessoais;
 	}
@@ -381,7 +385,7 @@ public class VisaoPainelCadastroAluno extends JPanel{
 			labelEndereco = new JLabel("  Endere\u00E7o");
 			labelEndereco.setBorder(new LineBorder(Color.BLACK, 2));
 			labelEndereco.setFont(new Font("Arial", Font.PLAIN, 19));
-			labelEndereco.setBounds(0, 355, 1026, 30);
+			labelEndereco.setBounds(0, 355, 1009, 30);
 		}
 		return labelEndereco;
 	}
@@ -497,5 +501,22 @@ public class VisaoPainelCadastroAluno extends JPanel{
 			comboBoxEstadoEndereco.setBounds(571, 504, 115, 22);
 		}
 		return comboBoxEstadoEndereco;
+	}
+	public JLabel getLblEmail() {
+		if (lblEmail == null) {
+			lblEmail = new JLabel("E-mail:");
+			lblEmail.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblEmail.setBounds(532, 190, 46, 25);
+		}
+		return lblEmail;
+	}
+	public JTextField getTextFieldEmail() {
+		if (textFieldEmail == null) {
+			textFieldEmail = new JTextField();
+			textFieldEmail.setFont(new Font("Arial", Font.PLAIN, 14));
+			textFieldEmail.setBounds(532, 217, 309, 22);
+			textFieldEmail.setColumns(10);
+		}
+		return textFieldEmail;
 	}
 }

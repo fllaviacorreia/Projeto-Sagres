@@ -1,8 +1,13 @@
 package controle;
 
+import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.PropertyChangeListener;
 
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 
 import visao.VisaoFramePrincipal;
@@ -13,6 +18,42 @@ public class ControlePainelTelaLogin implements ActionListener{
 	static VisaoPainelTelaLogin telaLogin;
 	static VisaoFramePrincipal framePrincipal;
 	static VisaoPainelTelaInicial telaInicial;
+	KeyListener acao = new KeyListener() {
+		
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (telaLogin.getTextFieldLogin().getText().equals("admin") && (String.valueOf(telaLogin.getPassWordFieldSenha().getPassword()).equals("admin"))) {
+					if(telaInicial == null) {
+						telaInicial = new VisaoPainelTelaInicial();
+					}
+					telaLogin.getTextFieldLogin().setText("");
+					telaLogin.getPassWordFieldSenha().setText("");
+					framePrincipal.trocarPainel(telaInicial, "Página Inicial");
+					new ControlePainelTelaInicial(framePrincipal, telaInicial);
+					
+				}
+				else if(telaLogin.getTextFieldLogin().getText().equals("") || (String.valueOf(telaLogin.getPassWordFieldSenha().getPassword()).equals(""))){
+					JOptionPane.showMessageDialog(telaLogin, "Campos de login e senha devem ser preenchidos.", "Aviso", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(telaLogin, "Login e/ou senha não coincidem com o banco de dados.", "Aviso", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+		}
+	};
 	
 	public ControlePainelTelaLogin(){
 		inicializa();
@@ -28,12 +69,17 @@ public class ControlePainelTelaLogin implements ActionListener{
 	public static void troca() {
 		telaLogin.setVisible(true);
 		framePrincipal.trocarPainel(telaLogin, "Login");
+		telaInicial = null;
 		
 	}
 	
 	public void AdcEventos() {
 		telaLogin.getButtonEntrar().addActionListener(this);
+		telaLogin.getPassWordFieldSenha().addKeyListener(acao);
+		telaLogin.getTextFieldLogin().addKeyListener(acao);
 	}
+	
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -54,7 +100,7 @@ public class ControlePainelTelaLogin implements ActionListener{
 				JOptionPane.showMessageDialog(telaLogin, "Login e/ou senha não coincidem com o banco de dados.", "Aviso", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-
 	}
 
+	
 }

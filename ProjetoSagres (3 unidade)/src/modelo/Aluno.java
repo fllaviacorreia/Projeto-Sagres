@@ -22,6 +22,7 @@ public class Aluno extends Endereco{
 	private String nome;
 	private String matricula;
 	private String dataNascimento;
+	private String email;
 	private String cpf;
 	private String rg;
 	private String uf;
@@ -31,12 +32,13 @@ public class Aluno extends Endereco{
 	private ArrayList<String> historicoDisciplinas;
 	
 	public Aluno(String rua, String numero, String complemento, String bairro, String cidade, String estado,
-			String nome, String matricula, String dataNascimento, String cpf, String rg, String uf, String dataExpedicao, String orgaoExp,
+			String nome, String matricula, String dataNascimento, String email, String cpf, String rg, String uf, String dataExpedicao, String orgaoExp,
 			String curso, ArrayList<String> historicoDisciplinas) {
 		super(rua, numero, complemento, bairro, cidade, estado);
 		this.nome = nome;
 		this.matricula = matricula;
 		this.dataNascimento = dataNascimento;
+		this.setEmail(email);
 		this.cpf = cpf;
 		this.rg = rg;
 		this.uf = uf;
@@ -70,6 +72,14 @@ public class Aluno extends Endereco{
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}

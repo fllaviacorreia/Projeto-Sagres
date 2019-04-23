@@ -51,7 +51,7 @@ public class FormataMascaras {
 	
 	// retorna máscara CPF
 	public DefaultFormatterFactory getCPF() {
-		Formata("###.###.###-##", 1);
+		Formata("###########", 1);
 		return new DefaultFormatterFactory(mascara);
 	}
 	

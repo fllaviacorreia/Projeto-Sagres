@@ -37,17 +37,18 @@ public class ControlePainelCadastroAluno implements ActionListener{
 	private String estado;
 	private String nome;
 	private String matricula;
+	private String email;
 	private String cpf;
 	private String rg;
 	private String uf;
 	private String dataExpedicao;
 	private String orgaoExp;
 	private String curso;
-	private ArrayList<String> disciplinas  = new ArrayList<String>();
+	private ArrayList<String> disciplinas;
 	private int numMatriculaAluno;
-	
-	
-	
+
+
+
 	public ControlePainelCadastroAluno(VisaoPainelCadastroAluno telaCadAluno, int volta) {
 		this.telaCadAluno = telaCadAluno;
 		this.volta = volta;
@@ -57,7 +58,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		preecheComboBox();
 		numMatriculaAluno = (calendario.get(Calendar.YEAR)*10000) + Main.aluno.size();
 		telaCadAluno.getFormattedTextFieldMatriculaAluno().setText(String.valueOf(numMatriculaAluno));
-		
+
 	}
 
 	public void troca() {
@@ -84,9 +85,9 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		if(e.getSource() == telaCadAluno.getButtonVoltar()) {
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadAluno, 
-														"Deseja realmente voltar?",
-														"Confirmação de saída", 
-														JOptionPane.YES_NO_OPTION);
+						"Deseja realmente voltar?",
+						"Confirmação de saída", 
+						JOptionPane.YES_NO_OPTION);
 				if(saida == 0) {
 					LimpaDados();
 					if(volta == 1)
@@ -94,37 +95,40 @@ public class ControlePainelCadastroAluno implements ActionListener{
 					else
 						ControlePainelCadastros.troca();
 				}
-				
+
 			}catch(Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
 			}
 		}
-		
-		
+
+
 		if(e.getSource() == telaCadAluno.getButtonCancelar()){
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadAluno, 
-														"Deseja realmente cancelar o cadastro?",
-														"Confirmação de saída", 
-														JOptionPane.YES_NO_OPTION);
+						"Deseja realmente cancelar o cadastro?",
+						"Confirmação de saída", 
+						JOptionPane.YES_NO_OPTION);
 				if(saida == 0) {
 					LimpaDados();
 					ControlePainelCadastros.troca();
 				}
-				
+
 			}catch(Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
 			}
 		}
 		if(e.getSource() == telaCadAluno.getButtonAdicionarDisciplina()) {
+			if(disciplinas == null) {
+				disciplinas = new ArrayList<String>();
+			}
 			try {
 				System.out.println("button Add Disc");
 				disciplina = JOptionPane.showInputDialog(telaCadAluno,  "Insira o nome da disciplina:", 
-														 "Inserir", JOptionPane.OK_CANCEL_OPTION);
+						"Inserir", JOptionPane.OK_CANCEL_OPTION);
 				System.out.println("la0");
-			
+
 				if(!disciplina.equals("")){
 					disciplina = disciplina.toUpperCase();
 					System.out.println("la1");
@@ -135,7 +139,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 					}else {
 						System.out.println("la3");
 						JOptionPane.showMessageDialog(telaCadAluno, "Nome já incluso.", 
-													  "Erro", JOptionPane.ERROR_MESSAGE);
+								"Erro", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}catch(Exception e1) {
@@ -145,80 +149,119 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		}
 		if(e.getSource() == telaCadAluno.getButtonConfirmar()) {
 			try {
-				numMatriculaAluno = (calendario.get(Calendar.YEAR)*10000) + Main.aluno.size();
+				numMatriculaAluno = (calendario.get(Calendar.YEAR)*10000) + Main.aluno.size(); //mudar depois
 				erros = 0;
 				contador = 0;
-			//	System.out.println(numMatriculaAluno);
-//				System.out.println(calendario.getInstance());
-//				System.out.println(calendario.get(Calendar.YEAR));
-//				System.out.println(Calendar.YEAR);
-//				System.out.println(Calendar.MONTH);
-//				System.out.println(calendario.get(Calendar.MONTH));
-				
-				if(!telaCadAluno.getFormattedTextFieldNomeAluno().getText().equals("")) {
+
+				// tem essa quantidade de espaços por conta da máscara
+				if(!(telaCadAluno.getFormattedTextFieldNomeAluno().getText().equals("                                                       ") || 
+						telaCadAluno.getFormattedTextFieldNomeAluno().getText().isEmpty())) { 
 					nome = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldNomeAluno().getText().toString());
-				//	System.out.println(nome);
 					contador++;
+				}else {
+					erros++;
 				}
-				if(!telaCadAluno.getFormattedTextFieldMatriculaAluno().getText().equals("")) {
-					matricula = String.valueOf(numMatriculaAluno);
-					contador++;
-				}
-				if(!telaCadAluno.getFormattedTextFieldCpf().getText().equals("")) {
-					if(Lists.isCPF(telaCadAluno.getFormattedTextFieldCpf().getText())) {
-						if(Validacoes(telaCadAluno.getFormattedTextFieldCpf().getText(), 2) > 0) {
-							JOptionPane.showMessageDialog(telaCadAluno, "CPF já cadastrado!", "Aviso", JOptionPane.ERROR_MESSAGE);
-							erros ++;
+				
+				if(!(telaCadAluno.getFormattedTextFieldCpf().getText().equals("           ") 
+						|| telaCadAluno.getFormattedTextFieldCpf().getText().isEmpty())) {
+					if(!Lists.isCPF(telaCadAluno.getFormattedTextFieldCpf().getText())){
+						JOptionPane.showMessageDialog(telaCadAluno, "CPF inválido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						erros ++;
 					}
-					
-					}else {
-						dados.setCpf(telaCadAluno.getFormattedTextFieldCpf().getText());
+					if(Validacoes(telaCadAluno.getFormattedTextFieldCpf().getText(), 2) > 0) { //mudar depois
+						JOptionPane.showMessageDialog(telaCadAluno, "CPF já cadastrado!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						erros ++;
+					}
+					else{
+						cpf = telaCadAluno.getFormattedTextFieldCpf().getText().toString();
 						contador++;
 					}
 				}
-				if(!(telaCadAluno.getFormattedTextFieldRg().getText().isEmpty())
-					& !(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText().isEmpty())
-					& !(telaCadAluno.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))
-				//	& !(telaCadAluno.getDateChooserData().getMinSelectableDate().toString().equals(""))) {
-					) {
-					String RG = telaCadAluno.getFormattedTextFieldRg().getText()+"/"
-								+telaCadAluno.getComboBoxEstadoRg().getSelectedItem().toString();
+				// tem essa quantidade de espaços por conta da máscara
+				if(!(telaCadAluno.getFormattedTextFieldRg().getText().equals(""))
+						& !(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText().equals("                                                       "))
+						& !(telaCadAluno.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))
+						& !(telaCadAluno.getFormattedTextFieldDataRg().getText().equals("  /  /    "))){
+
+							rg = telaCadAluno.getFormattedTextFieldRg().getText();
 							
-							
-				//	String dataOrgao =telaCadAluno.getDateChooserData().getMinSelectableDate().toString()+"/"
-				//					+ telaCadAluno.getComboBoxOrgaoExpeditor().getSelectedItem().toString();
-					if(Validacoes(RG, 3) > 0) {
-						JOptionPane.showMessageDialog(telaCadAluno, "RG e UF já cadastrados!", "Aviso", JOptionPane.ERROR_MESSAGE);
-						erros ++;
-					}else {
-				//		dados.setRg(RG);
-	//					dados.setDataExpedicaoOrgaoExp(dataOrgao);
-						contador++; //entrada do orgao expeditor e do estado ao RG são considerados, ao todo, como um
-					}
-	//				System.out.println(telaCadAluno.getDateChooserData().getMinSelectableDate().toString());
-	//				System.out.println(telaCadAluno.getDateChooserData().getMinSelectableDate());
-					
+							if(Lists.validaData(telaCadAluno.getFormattedTextFieldDataRg().getText().split("/"))) {
+								dataExpedicao = telaCadAluno.getFormattedTextFieldDataRg().getText();
+							}else {
+								JOptionPane.showMessageDialog(telaCadAluno, "Data de expedição inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
+								erros ++;
+							}
+							if(Validacoes(rg, 3) > 0) { // mudar depois
+								JOptionPane.showMessageDialog(telaCadAluno, "RG e UF já cadastrados!", "Aviso", JOptionPane.ERROR_MESSAGE);
+								erros ++;
+							}else {
+								uf = telaCadAluno.getComboBoxEstadoRg().getSelectedItem().toString();
+								orgaoExp = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText());
+								contador= contador+4;
+							}
 				}
 				if(!(telaCadAluno.getComboBoxCurso().getSelectedItem().equals("SELECIONE"))) {
-					dados.setCurso(telaCadAluno.getComboBoxCurso().getSelectedItem().toString().toUpperCase());
+					curso =telaCadAluno.getComboBoxCurso().getSelectedItem().toString();
 					contador++;
+				}else {
+					erros++;
 				}
-				if(disciplinas != null) {
-					dados.setHistoricoDisciplinas(disciplinas);
+				if(!(telaCadAluno.getFormattedTextFieldRua().getText().equals("                              ") 
+						|| telaCadAluno.getFormattedTextFieldRua().getText().isEmpty())) {
+					rua = telaCadAluno.getFormattedTextFieldRua().getText();
 					contador++;
+				}else {
+					erros++;
 				}
-				if(contador == 6){
+				if(!(telaCadAluno.getFormattedTextFieldComplemento().getText().equals("                              ")
+						|| telaCadAluno.getFormattedTextFieldComplemento().getText().isEmpty())) {
+					complemento = telaCadAluno.getFormattedTextFieldComplemento().getText();
 					
-				//	new ControleArquivo(1);
+				}else {
+					erros++;
+				}
+				if(!(telaCadAluno.getFormattedTextFieldNumero().getText().equals("                              ")
+						|| telaCadAluno.getFormattedTextFieldNumero().getText().isEmpty())) {
+					numero = telaCadAluno.getFormattedTextFieldNumero().getText();
+					contador++;
+				}else {
+					erros++;
+				}
+				if(!(telaCadAluno.getFormattedTextFieldBairro().getText().equals("                              ")
+						|| telaCadAluno.getFormattedTextFieldBairro().getText().isEmpty())) {
+					bairro = telaCadAluno.getFormattedTextFieldBairro().getText();
+					contador++;
+				}else {
+					erros++;
+				}
+				if(!(telaCadAluno.getFormattedTextFieldCidade().getText().equals("                              ")
+						|| telaCadAluno.getFormattedTextFieldCidade().getText().isEmpty())) {
+					cidade = telaCadAluno.getFormattedTextFieldCidade().getText();
+					contador++;
+				}else {
+					erros++;
+				}
+				if(!telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().equals("SELECIONE")) {
+					estado = telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().toString();
+					contador++;
+				}else {
+					erros++;
+				}
+				if(!telaCadAluno.getTextFieldEmail().getText().equals("")) {
+					if(Lists.isEmail(telaCadAluno.getTextFieldEmail().getText())) {
+						email = telaCadAluno.getTextFieldEmail().getText();
+						contador++;
+					}
+				}else {
+					erros++;
+				}
+				if(contador == 13){
+					//	new ControleArquivo(1);
 					JOptionPane.showMessageDialog(telaCadAluno, "Cadastro realizado com sucesso.");
 					LimpaDados();
 				}else{
-					if(erros == 0)
 						JOptionPane.showMessageDialog(telaCadAluno, "Todos os campos devem ser preenchidos.", "Aviso",
 								JOptionPane.WARNING_MESSAGE);
-					else
-						JOptionPane.showMessageDialog(telaCadAluno, "ERRO DURANTE O ARMAZENAME.", "Aviso",
-							JOptionPane.WARNING_MESSAGE);
 				}
 
 			}catch(Exception e1) {
@@ -228,7 +271,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		}
 
 	}
-	
+
 	public void preecheComboBox() {
 		telaCadAluno.getComboBoxCurso().addItem("SELECIONE");
 		ArrayList<String> disc = new ArrayList<String>();
@@ -252,12 +295,11 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		
+
 	}
-	
+
 	public int Validacoes(String dado, int tipo) {
 		int contador = 0;
-		System.out.println("la4");
 		// 1 - busca disciplina
 		// 2 - busca CPF
 		// 3 - busca RG
@@ -286,11 +328,11 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		
-		
+
+
 		return contador;
 	}
-	
+
 	public void LimpaDados() {
 		numMatriculaAluno = (calendario.get(Calendar.YEAR)*10000) + Main.aluno.size();
 		telaCadAluno.getFormattedTextFieldMatriculaAluno().setText(String.valueOf(numMatriculaAluno));
@@ -302,7 +344,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		telaCadAluno.getComboBoxEstadoRg().setSelectedIndex(0);
 		telaCadAluno.getFormattedTextFieldOrgaoExpeditor().setText(null);
 		telaCadAluno.getComboBoxHistoricoDisciplinas().removeAllItems();
-//		telaCadAluno.getDateChooserData().setDate(null);
+		//		telaCadAluno.getDateChooserData().setDate(null);
 		disciplinas.clear();
 	}
 }
