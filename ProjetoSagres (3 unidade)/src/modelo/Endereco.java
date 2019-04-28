@@ -1,33 +1,36 @@
 package modelo;
 
-public abstract class Endereco {
-//	String id;
+public class Endereco {
+	String cep;
 	String rua;
 	String numero;
 	String complemento;
 	String bairro;
 	String cidade;
 	String estado;
+	String tipo;
 	
-	
-	public Endereco(String id,String rua, String numero, String complemento, String bairro, String cidade) {
+	public Endereco(String cep, String rua, String numero, String complemento, String bairro, String cidade, String estado, String tipo) {
 		super();
-//		this.id = id;
+		this.cep = cep;
 		this.rua = rua;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;
+		this.tipo = tipo;
+		
+		System.out.println(cep +"  " + rua +"  " + numero +"  " + complemento +"  " + bairro +"  " + cidade +"  " + estado +"  " + tipo);
 	}
 	
-//	public String getId() {
-//		return id;
-//	}
-//
-//	public void setId(String id) {
-//		this.id = id;
-//	}
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 
 	public String getRua() {
 		return rua;
@@ -64,6 +67,14 @@ public abstract class Endereco {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 

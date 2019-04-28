@@ -23,6 +23,8 @@ public class Aluno extends Endereco{
 	private String matricula;
 	private String dataNascimento;
 	private String email;
+	private String telefone;
+	private String celular;
 	private String cpf;
 	private String rg;
 	private String uf;
@@ -31,14 +33,17 @@ public class Aluno extends Endereco{
 	private String curso;
 	private ArrayList<String> historicoDisciplinas;
 	
-	public Aluno(String rua, String numero, String complemento, String bairro, String cidade, String estado,
-			String nome, String matricula, String dataNascimento, String email, String cpf, String rg, String uf, String dataExpedicao, String orgaoExp,
-			String curso, ArrayList<String> historicoDisciplinas) {
-		super(rua, numero, complemento, bairro, cidade, estado);
+	public Aluno(String cep, String rua, String numero, String complemento, String bairro, String cidade, String estado, String tipo,
+			String nome, String matricula, String dataNascimento, String email, String telefone, String celular, String cpf, String rg, String uf, 
+			String dataExpedicao, String orgaoExp, String curso, ArrayList<String> historicoDisciplinas) {
+		
+		super(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
 		this.nome = nome;
 		this.matricula = matricula;
 		this.dataNascimento = dataNascimento;
-		this.setEmail(email);
+		this.email = email;
+		this.telefone = telefone;
+		this.celular = celular;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.uf = uf;
@@ -47,7 +52,6 @@ public class Aluno extends Endereco{
 		this.historicoDisciplinas = historicoDisciplinas;
 		this.curso = curso;
 		Main.aluno.add(this);
-		
 	}
 
 	public String getNome() {
@@ -78,6 +82,22 @@ public class Aluno extends Endereco{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 	public String getCpf() {

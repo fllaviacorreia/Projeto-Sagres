@@ -73,16 +73,19 @@ public class FormataMascaras {
 	}
 	// retorna máscara telefone
 	public DefaultFormatterFactory getTelefone() {
+		Formata("(##) ####-####", 1);
+		return new DefaultFormatterFactory(mascara);
+	}
+	public DefaultFormatterFactory getTelefoneCelular() {
 		Formata("(##) #####-####", 1);
 		return new DefaultFormatterFactory(mascara);
 	}
+	// retorna máscara CEP
+	public DefaultFormatterFactory getCEP() {
+		Formata("##.###-###", 1);
+		return new DefaultFormatterFactory(mascara);
+	}
 	
-//	// retorna máscara CEP
-//	public DefaultFormatterFactory getCEP() {
-//		Formata("##.###-###", 1);
-//		return new DefaultFormatterFactory(mascara);
-//	}
-//	
 	// retorna máscara Data
 	public DefaultFormatterFactory getData() {
 		Formata("##/##/####", 1);

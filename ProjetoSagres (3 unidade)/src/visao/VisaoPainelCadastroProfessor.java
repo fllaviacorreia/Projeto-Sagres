@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -25,6 +26,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	private JLabel 				labelRg 	 					= null;
 	private JLabel 				labelOrgaoExpeditor				= null;
 	private JLabel 				labelDataDeExpedicao			= null;
+	private JLabel 				labelDataDeNascimento			= null;
 	private JLabel   			labelEstadoRg  					= null;
 	private JLabel   			labelDadosPessoais				= null;
 	private JLabel    			labelEndereco					= null;
@@ -43,6 +45,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	private JFormattedTextField textFieldCpf					= null;
 	private JFormattedTextField textFieldRg						= null;
 	private JFormattedTextField formattedTextFieldDataRg		= null;
+	private JFormattedTextField formattedTextFieldDataNascimento= null;
 	private JFormattedTextField textFieldOrgaoExpeditor			= null;
 	private JFormattedTextField formattedTextFieldRua			= null;
 	private JFormattedTextField formattedTextFieldNumero		= null;
@@ -53,7 +56,14 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	private JButton 			botaoCancelar 	 				= null;
 	private JButton 			botaoConfirmar   				= null;
 	private JButton 			buttonAdicionarAreaAtuacao 		= null;
-	
+	private JLabel lblEmail;
+	private JTextField textFieldEmail;
+	private JLabel lblCep;
+	private JFormattedTextField formattedTextFieldCep;
+	private JLabel lblTelefone;
+	private JFormattedTextField formattedTextFieldTelefone;
+	private JLabel labelCelular;
+	private JFormattedTextField formattedTextFieldCelular;
 	FormataMascaras formatacao = new FormataMascaras();
 	
 //construtor que inicia o painel e coloca todas as coisas nele	
@@ -72,6 +82,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		this.add(getLabelOrgaoExpeditor());
 		this.add(getLabelEstadoRg());
 		this.add(getLabelDataDeExpedicao());
+		this.add(getLabelDataDeNascimento());
 		this.add(getLabelDadosPessoais());
 		this.add(getLabelEndereco());
 		this.add(getLabelRua());
@@ -89,6 +100,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		this.add(getFormattedTextFieldCpf());
 		this.add(getFormattedTextFieldRg());
 		this.add(getFormattedTextFieldDataRg());
+		this.add(getFormattedTextFieldDataNascimento());
 		this.add(getFormattedTextFieldOrgaoExpeditor());
 		this.add(getFormattedTextFieldRua());
 		this.add(getFormattedTextFieldNumero());
@@ -99,6 +111,14 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		this.add(getButtonConfirmar());
 		this.add(getButtonVoltar());
 		this.add(getButtonAdicionarAreaAtuacao());
+		add(getLblEmail());
+		add(getTextFieldEmail());
+		add(getLblCep());
+		add(getFormattedTextFieldCep());
+		add(getLblTelefone());
+		add(getFormattedTextFieldTelefone());
+		add(getLabelCelular());
+		add(getFormattedTextFieldCelular());
 	}
 	
 	public JLabel getLabelMatriculaProfessor() {
@@ -136,7 +156,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	public JLabel getLabelCpf() {
 		if(labelCpf == null) {
 			labelCpf = new JLabel("CPF:");
-			labelCpf.setBounds(491, 41, 38, 25);
+			labelCpf.setBounds(480, 41, 38, 25);
 			labelCpf.setForeground(Color.BLACK);
 			labelCpf.setFont(new Font("Arial", Font.PLAIN, 14));
 			labelCpf.setVisible(true);
@@ -191,6 +211,14 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 			labelDataDeExpedicao.setBounds(523, 265, 123, 25);
 		}
 		return labelDataDeExpedicao;
+	}
+	public JLabel getLabelDataDeNascimento() {
+		if (labelDataDeNascimento == null) {
+			labelDataDeNascimento = new JLabel("Data de Nascimento:");
+			labelDataDeNascimento.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelDataDeNascimento.setBounds(666, 41, 219, 25);
+		}
+		return labelDataDeNascimento;
 	}
 	
 	public JLabel getLabelDadosPessoais() {
@@ -266,7 +294,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 			comboBoxCargaHorariaProfessor.addItem("[D.E.]/SEMANA");
 			comboBoxCargaHorariaProfessor.addItem("[20]/SEMANA");
 			comboBoxCargaHorariaProfessor.addItem("[40]/SEMANA");
-			comboBoxCargaHorariaProfessor.setFont(new Font("Arial", Font.PLAIN, 13));
+			comboBoxCargaHorariaProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxCargaHorariaProfessor.setBounds(233, 143, 161, 22);
 			comboBoxCargaHorariaProfessor.setBackground(Color.WHITE);
 			comboBoxCargaHorariaProfessor.setVisible(true);
@@ -278,7 +306,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		if(comboBoxAreaAtuacaoProfessor == null) {
 			comboBoxAreaAtuacaoProfessor = new JComboBox<String>();
 			comboBoxAreaAtuacaoProfessor.addItem("SELECIONE");
-			comboBoxAreaAtuacaoProfessor.setFont(new Font("Arial", Font.PLAIN, 13));
+			comboBoxAreaAtuacaoProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxAreaAtuacaoProfessor.setBounds(22, 219, 252, 22);
 			comboBoxAreaAtuacaoProfessor.setBackground(Color.WHITE);
 			comboBoxAreaAtuacaoProfessor.setVisible(true);
@@ -316,7 +344,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 			textFieldCpf.setBackground(Color.WHITE);
 			textFieldCpf.setFormatterFactory(formatacao.getCPF());
 			textFieldCpf.setFont(new Font("Arial", Font.PLAIN, 14));
-			textFieldCpf.setBounds(491, 66, 144, 22);
+			textFieldCpf.setBounds(480, 66, 144, 22);
 			textFieldCpf.setVisible(true);
 		}
 		return textFieldCpf;
@@ -325,7 +353,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		if(textFieldMatriculaProfessor == null) {
 			textFieldMatriculaProfessor = new JFormattedTextField();
 			textFieldMatriculaProfessor.setFormatterFactory(formatacao.getMatricula());
-			textFieldMatriculaProfessor.setFont(new Font("Arial", Font.PLAIN, 13));
+			textFieldMatriculaProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
 			textFieldMatriculaProfessor.setBounds(22, 143, 150, 22);
 			textFieldMatriculaProfessor.setBackground(Color.WHITE);
 			textFieldMatriculaProfessor.setVisible(true);
@@ -337,9 +365,18 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	public JFormattedTextField getFormattedTextFieldDataRg() {
 		if (formattedTextFieldDataRg == null) {
 			formattedTextFieldDataRg = new JFormattedTextField(formatacao.getData());
-			formattedTextFieldDataRg.setBounds(519, 289, 123, 22);
+			formattedTextFieldDataRg.setFont(new Font("Arial", Font.PLAIN, 14));
+			formattedTextFieldDataRg.setBounds(519, 289, 147, 22);
 		}
 		return formattedTextFieldDataRg;
+	}
+	public JFormattedTextField getFormattedTextFieldDataNascimento() {
+		if (formattedTextFieldDataNascimento == null) {
+			formattedTextFieldDataNascimento = new JFormattedTextField(formatacao.getData());
+			formattedTextFieldDataNascimento.setFont(new Font("Arial", Font.PLAIN, 14));
+			formattedTextFieldDataNascimento.setBounds(666, 67, 147, 22);
+		}
+		return formattedTextFieldDataNascimento;
 	}
 	public JFormattedTextField getFormattedTextFieldRg() {
 		if(textFieldRg == null) {
@@ -357,7 +394,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		if(textFieldNomeProfessor == null) {
 			textFieldNomeProfessor = new JFormattedTextField();
 			textFieldNomeProfessor.setFormatterFactory(formatacao.getNome());
-			textFieldNomeProfessor.setFont(new Font("Arial", Font.PLAIN, 13));
+			textFieldNomeProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
 			textFieldNomeProfessor.setBounds(22, 67, 396, 22);
 			textFieldNomeProfessor.setBackground(Color.WHITE);
 			textFieldNomeProfessor.setVisible(true);
@@ -368,6 +405,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	public JFormattedTextField getFormattedTextFieldOrgaoExpeditor() {
 		if (textFieldOrgaoExpeditor == null) {
 			textFieldOrgaoExpeditor = new JFormattedTextField();
+			textFieldOrgaoExpeditor.setFont(new Font("Arial", Font.PLAIN, 14));
 			textFieldOrgaoExpeditor.setFormatterFactory(formatacao.getNome());
 			textFieldOrgaoExpeditor.setBounds(184, 289, 210, 22);
 			textFieldOrgaoExpeditor.setColumns(10);
@@ -461,5 +499,81 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 			buttonAdicionarAreaAtuacao.setVisible(true);
 		}
 		return buttonAdicionarAreaAtuacao;
+	}
+	public JLabel getLblEmail() {
+		if (lblEmail == null) {
+			lblEmail = new JLabel("E-mail:");
+			lblEmail.setForeground(Color.BLACK);
+			lblEmail.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblEmail.setBounds(480, 116, 46, 25);
+		}
+		return lblEmail;
+	}
+	public JTextField getTextFieldEmail() {
+		if (textFieldEmail == null) {
+			textFieldEmail = new JTextField();
+			textFieldEmail.setForeground(Color.BLACK);
+			textFieldEmail.setFont(new Font("Arial", Font.PLAIN, 14));
+			textFieldEmail.setBounds(480, 143, 309, 22);
+			textFieldEmail.setColumns(10);
+		}
+		return textFieldEmail;
+	}
+	public JLabel getLblCep() {
+		if (lblCep == null) {
+			lblCep = new JLabel("CEP:");
+			lblCep.setForeground(Color.BLACK);
+			lblCep.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblCep.setBounds(710, 479, 46, 25);
+		}
+		return lblCep;
+	}
+	public JFormattedTextField getFormattedTextFieldCep() {
+		if (formattedTextFieldCep == null) {
+			formattedTextFieldCep = new JFormattedTextField();
+			formattedTextFieldCep.setForeground(Color.BLACK);
+			formattedTextFieldCep.setFormatterFactory(formatacao.getCEP());
+			formattedTextFieldCep.setFont(new Font("Arial", Font.PLAIN, 14));
+			formattedTextFieldCep.setBounds(707, 506, 134, 22);
+		}
+		return formattedTextFieldCep;
+	}
+	public JLabel getLblTelefone() {
+		if (lblTelefone == null) {
+			lblTelefone = new JLabel("Telefone:");
+			lblTelefone.setForeground(Color.BLACK);
+			lblTelefone.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblTelefone.setBounds(483, 193, 128, 25);
+		}
+		return lblTelefone;
+	}
+	public JFormattedTextField getFormattedTextFieldTelefone() {
+		if (formattedTextFieldTelefone == null) {
+			formattedTextFieldTelefone = new JFormattedTextField();
+			formattedTextFieldTelefone.setForeground(Color.BLACK);
+			formattedTextFieldTelefone.setFormatterFactory(formatacao.getTelefone());
+			formattedTextFieldTelefone.setFont(new Font("Arial", Font.PLAIN, 14));
+			formattedTextFieldTelefone.setBounds(483, 216, 183, 22);
+		}
+		return formattedTextFieldTelefone;
+	}
+	public JLabel getLabelCelular() {
+		if (labelCelular == null) {
+			labelCelular = new JLabel("Celular:");
+			labelCelular.setForeground(Color.BLACK);
+			labelCelular.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelCelular.setBounds(702, 190, 128, 25);
+		}
+		return labelCelular;
+	}
+	public JFormattedTextField getFormattedTextFieldCelular() {
+		if (formattedTextFieldCelular == null) {
+			formattedTextFieldCelular = new JFormattedTextField();
+			formattedTextFieldCelular.setForeground(Color.BLACK);
+			formattedTextFieldCelular.setFormatterFactory(formatacao.getTelefoneCelular());
+			formattedTextFieldCelular.setFont(new Font("Arial", Font.PLAIN, 14));
+			formattedTextFieldCelular.setBounds(702, 217, 183, 22);
+		}
+		return formattedTextFieldCelular;
 	}
 }

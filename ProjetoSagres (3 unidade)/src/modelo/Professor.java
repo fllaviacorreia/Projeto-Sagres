@@ -1,5 +1,7 @@
 package modelo;
 
+import controle.Main;
+
 /**
  *  @author Flávia de Jesus Correia
  * 
@@ -13,28 +15,37 @@ public class Professor extends Endereco{
 	 * não colocar ítens repetidos no combobox
 	 */
 	private String nome;
+	private String dataNascimento;
 	private String matricula;
     private String area;
     private String carga_Horaria;
+    private String email;
+	private String telefone;
+	private String celular;
     private String cpf;
 	private String rg;
 	private String uf;
 	private String dataExpedicao;
 	private String orgaoExp;
 	
-	public Professor(String id, String rua, String numero, String complemento, String bairro, String cidade,
-			String estado, String nome, String matricula, String area, String carga_Horaria, String cpf, String rg,
-			String uf, String dataExpedicao, String orgaoExp) {
-		super(rua, numero, complemento, bairro, cidade, estado);
+	public Professor(String cep, String rua, String numero, String complemento, String bairro, String cidade,
+			String estado, String tipo, String nome, String dataNascimento, String matricula, String area, String carga_Horaria, String email, 
+			String telefone, String celular,String cpf, String rg, String uf, String dataExpedicao, String orgaoExp) {
+		super(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
 		this.nome = nome;
+		this.dataNascimento = dataNascimento;
 		this.matricula = matricula;
 		this.area = area;
 		this.carga_Horaria = carga_Horaria;
+		this.email = email;
+		this.telefone = telefone;
+		this.celular = celular;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.uf = uf;
 		this.dataExpedicao = dataExpedicao;
 		this.orgaoExp = orgaoExp;
+		Main.professor.add(this);
 	}
 	
 	 public String getNome() {
@@ -44,7 +55,15 @@ public class Professor extends Endereco{
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getMatricula() {
+    public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getMatricula() {
         return matricula;
     }
 
@@ -68,6 +87,30 @@ public class Professor extends Endereco{
         this.carga_Horaria = dados;
     }
    
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+	
     public String getCpf() {
 		return cpf;
 	}

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import banco.BancoCursoGerenciar;
 import modelo.Curso;
 import visao.VisaoFramePrincipal;
 import visao.VisaoPainelCadastroCurso;
@@ -26,8 +27,8 @@ public class ControlePainelCadastroCurso implements ActionListener{
 	private int saida;
 	private int volta;
 	private int cargaHoraria;
-	private String disciplina = "";
-	private ArrayList<String> disciplinas = new ArrayList<String>();
+//	private String disciplina = "";
+//	private ArrayList<String> disciplinas = new ArrayList<String>();
 
 	
 	public ControlePainelCadastroCurso(VisaoFramePrincipal framePrincipal, VisaoPainelCadastroCurso telaCadCurso, int volta) {
@@ -36,7 +37,7 @@ public class ControlePainelCadastroCurso implements ActionListener{
 		this.volta = volta;
 		telaCadCurso.setVisible(true);
 		AddEventos();
-		preecheComboBox();
+	//	preecheComboBox();
 	}
 	
 	public static void troca() {
@@ -46,7 +47,6 @@ public class ControlePainelCadastroCurso implements ActionListener{
 	
 	public void AddEventos(){
 		telaCadCurso.getButtonAdicionarCargaHoraria().addActionListener(this);
-		telaCadCurso.getButtonAdicionarDisciplina().addActionListener(this);
 		telaCadCurso.getButtonCancelar().addActionListener(this);
 		telaCadCurso.getButtonConfirmar().addActionListener(this);
 		telaCadCurso.getButtonVoltar().addActionListener(this);
@@ -104,32 +104,12 @@ public class ControlePainelCadastroCurso implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		if(e.getSource() == telaCadCurso.getButtonAdicionarDisciplina()){
-			if(!telaCadCurso.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
-				try {
-					disciplina = JOptionPane.showInputDialog(telaCadCurso,  "Insira o nome da disciplina:", 
-							  								"Inserir", JOptionPane.OK_CANCEL_OPTION);
-					
-					if(!disciplina.equals("")) {
-						disciplina = disciplina.toUpperCase();
-						telaCadCurso.getComboBoxDisciplinas().addItem(disciplina);
-					}
-				}catch(Exception e1) {
-					System.out.println(e1.getMessage());
-					e1.printStackTrace();
-				}
-			}else {
-				JOptionPane.showMessageDialog(telaCadCurso,  "Insira o nome do curso.", 
-						  "Aviso", JOptionPane.INFORMATION_MESSAGE);
-			}
-			
-		}
 		if(e.getSource() == telaCadCurso.getButtonConfirmar()){
 			try {
 				dados = new Curso();
 				contador = 0;
-				if(!telaCadCurso.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
-					dados.setNome(telaCadCurso.getComboBoxCurso().getSelectedItem().toString());
+				if(!telaCadCurso.getFormattedTextFieldNomeCurso().getText().equals("SELECIONE")) {
+					dados.setNome(telaCadCurso.getFormattedTextFieldNomeCurso().getText().toString());
 					contador++;
 				}
 				if(!telaCadCurso.getComboBoxSemestresTotais().getSelectedItem().equals("SELECIONE")) {
@@ -140,18 +120,19 @@ public class ControlePainelCadastroCurso implements ActionListener{
 					dados.setCargaHorariaTotal(telaCadCurso.getComboBoxCargaHorariaTotal().getSelectedItem().toString());
 					contador++;
 				}
-				if(telaCadCurso.getComboBoxDisciplinas().getSelectedItem() != null) {
-					dados.setDisciplinas(disciplinas);
-					contador++;
-				}
 				if(!telaCadCurso.getComboBoxHorario().getSelectedItem().equals("SELECIONE")) {
 					dados.setTipoCurso(telaCadCurso.getComboBoxHorario().getSelectedItem().toString());
 					contador++;
 				}
-				if(contador == 5) {
+				if(contador == 4) {
 					Main.curso.add(dados);
 				//	new ControleArquivo(3);
-					JOptionPane.showMessageDialog(telaCadCurso, "Cadastro realizado com sucesso.");
+					BancoCursoGerenciar bancoCurso = new BancoCursoGerenciar();
+					boolean retorno1 = bancoCurso.BancoCursoInserir(dados);
+					
+					if(retorno1)
+						JOptionPane.showMessageDialog(telaCadCurso, "Cadastro realizado com sucesso.");
+					
 					LimpaDados();
 				}else {
 					JOptionPane.showMessageDialog(telaCadCurso, "TODOS OS CAMPOS DEVEM SER PREENCHIDOS!", 
@@ -170,7 +151,7 @@ public class ControlePainelCadastroCurso implements ActionListener{
 //			else {
 //				
 				if(telaFluxograma == null) {
-					telaFluxograma = new VisaoPainelFluxograma(telaCadCurso.getComboBoxCurso().getSelectedItem().toString(), 
+					telaFluxograma = new VisaoPainelFluxograma(telaCadCurso.getFormattedTextFieldNomeCurso().getText().toString(), 
 							telaCadCurso.getComboBoxHorario().getSelectedItem().toString(), 
 							telaCadCurso.getComboBoxCargaHorariaTotal().getSelectedItem().toString());
 				}
@@ -182,34 +163,35 @@ public class ControlePainelCadastroCurso implements ActionListener{
 	
 	// método que preenche o comboBox curso com os adicionados e cadastrados ta telaDisciplina
 	
-	public void preecheComboBox() {
-		telaCadCurso.getComboBoxCurso().addItem("SELECIONE");
-		ArrayList<String> disc = new ArrayList<String>();
-		String dis;
-		dis = Main.disciplina.get(0).getCurso();
-		disc.add(dis);
-		int cont;
-		for(int i = 1; i < Main.disciplina.size(); i++) {
-			cont = 0;
-			dis = Main.disciplina.get(i).getCurso().toString();
-			
-			if(disc.get(i).equals(dis)) {
-				cont ++;
-			}
-			if(cont == 0)
-				disc.add(dis);
-		}
-		
-		for(int i = 0; i<disc.size(); i++) {
-			telaCadCurso.getComboBoxCurso().addItem(disc.get(i).toString());
-		}
-	}
+//	public void preecheComboBox() {
+//		telaCadCurso.getComboBoxCurso().addItem("SELECIONE");
+//		ArrayList<String> disc = new ArrayList<String>();
+//		String dis;
+//		dis = Main.disciplina.get(0).getCurso();
+//		disc.add(dis);
+//		int cont;
+//		for(int i = 1; i < Main.disciplina.size(); i++) {
+//			cont = 0;
+//			dis = Main.disciplina.get(i).getCurso().toString();
+//			
+//			if(disc.get(i).equals(dis)) {
+//				cont ++;
+//			}
+//			if(cont == 0)
+//				disc.add(dis);
+//		}
+//		
+//		for(int i = 0; i<disc.size(); i++) {
+//			telaCadCurso.getComboBoxCurso().addItem(disc.get(i).toString());
+//		}
+//	}
 	
 	public void LimpaDados() {
+		telaCadCurso.getFormattedTextFieldNomeCurso().setText(null);
 		telaCadCurso.getComboBoxCargaHorariaTotal().setSelectedIndex(0);
 		telaCadCurso.getComboBoxHorario().setSelectedIndex(0);
-		telaCadCurso.getComboBoxDisciplinas().removeAllItems();
-		telaCadCurso.getComboBoxCurso().removeAllItems();
+//		telaCadCurso.getComboBoxDisciplinas().removeAllItems();
+//		telaCadCurso.getComboBoxCurso().removeAllItems();
 		telaCadCurso.getComboBoxSemestresTotais().setSelectedIndex(0);
 	}
 

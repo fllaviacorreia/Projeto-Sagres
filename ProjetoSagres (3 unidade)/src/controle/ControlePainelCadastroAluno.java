@@ -13,9 +13,12 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
+import banco.BancoAlunoGerenciar;
+import banco.BancoEnderecoGerenciar;
 import visao.VisaoPainelCadastroAluno;
 import controle.ControlePainelCadastros;
 import modelo.Aluno;
+import modelo.Endereco;
 import modelo.validacao.Lists;
 
 public class ControlePainelCadastroAluno implements ActionListener{
@@ -28,23 +31,27 @@ public class ControlePainelCadastroAluno implements ActionListener{
 	private int volta;
 	private int erros;
 	private String disciplina = "";
-	private String id;
+	private String cep;
 	private String rua;
 	private String numero;
 	private String complemento;
 	private String bairro;
 	private String cidade;
 	private String estado;
+	private String tipo;
 	private String nome;
 	private String matricula;
+	private String dataNascimento;
 	private String email;
+	private String telefone;
+	private String celular;
 	private String cpf;
 	private String rg;
 	private String uf;
 	private String dataExpedicao;
 	private String orgaoExp;
 	private String curso;
-	private ArrayList<String> disciplinas;
+	private ArrayList<String> disciplinas = new ArrayList<String>();
 	private int numMatriculaAluno;
 
 
@@ -152,18 +159,29 @@ public class ControlePainelCadastroAluno implements ActionListener{
 				numMatriculaAluno = (calendario.get(Calendar.YEAR)*10000) + Main.aluno.size(); //mudar depois
 				erros = 0;
 				contador = 0;
-
+				
 				// tem essa quantidade de espaços por conta da máscara
-				if(!(telaCadAluno.getFormattedTextFieldNomeAluno().getText().equals("                                                       ") || 
-						telaCadAluno.getFormattedTextFieldNomeAluno().getText().isEmpty())) { 
+				if(!telaCadAluno.getFormattedTextFieldNomeAluno().getText().equals("                                                       ")) { 
 					nome = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldNomeAluno().getText().toString());
 					contador++;
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Nome não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
-				
+				if(!(telaCadAluno.getFormattedTextFieldDataNascimento().getText().equals("  /  /    "))) {	
+					if(Lists.validaData(telaCadAluno.getFormattedTextFieldDataNascimento().getText().split("/"))) {
+							dataNascimento = telaCadAluno.getFormattedTextFieldDataNascimento().getText();
+							contador++;
+					}else {
+						JOptionPane.showMessageDialog(telaCadAluno, "Data de nascimento inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						erros ++;
+					}		
+				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Data de nascimento não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					erros++;
+				}
 				if(!(telaCadAluno.getFormattedTextFieldCpf().getText().equals("           ") 
-						|| telaCadAluno.getFormattedTextFieldCpf().getText().isEmpty())) {
+						|| !(telaCadAluno.getFormattedTextFieldCpf().getText().isEmpty()))) {
 					if(!Lists.isCPF(telaCadAluno.getFormattedTextFieldCpf().getText())){
 						JOptionPane.showMessageDialog(telaCadAluno, "CPF inválido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 						erros ++;
@@ -178,87 +196,146 @@ public class ControlePainelCadastroAluno implements ActionListener{
 					}
 				}
 				// tem essa quantidade de espaços por conta da máscara
-				if(!(telaCadAluno.getFormattedTextFieldRg().getText().equals(""))
-						& !(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText().equals("                                                       "))
-						& !(telaCadAluno.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))
-						& !(telaCadAluno.getFormattedTextFieldDataRg().getText().equals("  /  /    "))){
-
-							rg = telaCadAluno.getFormattedTextFieldRg().getText();
-							
-							if(Lists.validaData(telaCadAluno.getFormattedTextFieldDataRg().getText().split("/"))) {
-								dataExpedicao = telaCadAluno.getFormattedTextFieldDataRg().getText();
-							}else {
-								JOptionPane.showMessageDialog(telaCadAluno, "Data de expedição inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
-								erros ++;
-							}
-							if(Validacoes(rg, 3) > 0) { // mudar depois
-								JOptionPane.showMessageDialog(telaCadAluno, "RG e UF já cadastrados!", "Aviso", JOptionPane.ERROR_MESSAGE);
-								erros ++;
-							}else {
-								uf = telaCadAluno.getComboBoxEstadoRg().getSelectedItem().toString();
-								orgaoExp = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText());
-								contador= contador+4;
-							}
+				if(!telaCadAluno.getFormattedTextFieldRg().getText().equals("")
+					& !(telaCadAluno.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))) {
+					
+					rg = telaCadAluno.getFormattedTextFieldRg().getText();
+					uf = telaCadAluno.getComboBoxEstadoRg().getSelectedItem().toString();
+					if(Validacoes(rg, 3) > 0) { // mudar depois
+						JOptionPane.showMessageDialog(telaCadAluno, "RG e UF já cadastrados!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						erros ++;
+					}else {
+						contador+=2;
+					}
+				}else {
+						JOptionPane.showMessageDialog(telaCadAluno, "Campos RG e UF não preenchidos!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						erros++;
+					}
+				
+				if(!(telaCadAluno.getFormattedTextFieldDataRg().getText().equals("  /  /    "))) {	
+					if(Lists.validaData(telaCadAluno.getFormattedTextFieldDataRg().getText().split("/"))) {
+							dataExpedicao = telaCadAluno.getFormattedTextFieldDataRg().getText();
+							contador++;
+					}else {
+						JOptionPane.showMessageDialog(telaCadAluno, "Data de expedição inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						erros ++;
+					}		
+				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Data de Expedição não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					erros++;
 				}
+				if(!(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText().equals("                                                       "))) {
+					orgaoExp = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText());
+					contador++;
+				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Órgão Expeditor não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					erros++;
+				}
+				
 				if(!(telaCadAluno.getComboBoxCurso().getSelectedItem().equals("SELECIONE"))) {
 					curso =telaCadAluno.getComboBoxCurso().getSelectedItem().toString();
 					contador++;
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Curso não selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
-				if(!(telaCadAluno.getFormattedTextFieldRua().getText().equals("                              ") 
-						|| telaCadAluno.getFormattedTextFieldRua().getText().isEmpty())) {
-					rua = telaCadAluno.getFormattedTextFieldRua().getText();
+				
+				
+				if(!(telaCadAluno.getFormattedTextFieldCep().getText().equals("  .   -   "))) {
+					cep = telaCadAluno.getFormattedTextFieldCep().getText();
 					contador++;
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo CEP não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
-				if(!(telaCadAluno.getFormattedTextFieldComplemento().getText().equals("                              ")
-						|| telaCadAluno.getFormattedTextFieldComplemento().getText().isEmpty())) {
-					complemento = telaCadAluno.getFormattedTextFieldComplemento().getText();
+				if(!(telaCadAluno.getFormattedTextFieldRua().getText().equals("                              "))) {
+					rua = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldRua().getText());
+					contador++;
+				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Rua não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					erros++;
+				}
+				if(!(telaCadAluno.getFormattedTextFieldComplemento().getText().equals("                              "))) {
+					complemento = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldComplemento().getText());
 					
-				}else {
-					erros++;
 				}
-				if(!(telaCadAluno.getFormattedTextFieldNumero().getText().equals("                              ")
-						|| telaCadAluno.getFormattedTextFieldNumero().getText().isEmpty())) {
-					numero = telaCadAluno.getFormattedTextFieldNumero().getText();
+				if(!(telaCadAluno.getFormattedTextFieldNumero().getText().equals("                              "))) {
+					numero = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldNumero().getText());
 					contador++;
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Número não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
-				if(!(telaCadAluno.getFormattedTextFieldBairro().getText().equals("                              ")
-						|| telaCadAluno.getFormattedTextFieldBairro().getText().isEmpty())) {
-					bairro = telaCadAluno.getFormattedTextFieldBairro().getText();
+				if(!(telaCadAluno.getFormattedTextFieldBairro().getText().equals("                              "))) {
+					bairro = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldBairro().getText());
 					contador++;
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Bairro não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
-				if(!(telaCadAluno.getFormattedTextFieldCidade().getText().equals("                              ")
-						|| telaCadAluno.getFormattedTextFieldCidade().getText().isEmpty())) {
-					cidade = telaCadAluno.getFormattedTextFieldCidade().getText();
+				if(!(telaCadAluno.getFormattedTextFieldCidade().getText().equals("                              "))) {
+					cidade = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldCidade().getText());
 					contador++;
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Cidade não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
 				if(!telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().equals("SELECIONE")) {
 					estado = telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().toString();
 					contador++;
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Estado não selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
 				if(!telaCadAluno.getTextFieldEmail().getText().equals("")) {
 					if(Lists.isEmail(telaCadAluno.getTextFieldEmail().getText())) {
 						email = telaCadAluno.getTextFieldEmail().getText();
 						contador++;
+					}else {
+						JOptionPane.showMessageDialog(telaCadAluno, "E-mail inválido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						erros++;
 					}
 				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo E-mail não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
-				if(contador == 13){
-					//	new ControleArquivo(1);
-					JOptionPane.showMessageDialog(telaCadAluno, "Cadastro realizado com sucesso.");
+				if(!(telaCadAluno.getFormattedTextFieldTelefone().getText().equals("(  )     -    "))
+						|| !(telaCadAluno.getFormattedTextFieldTelefone().getText().isEmpty())) {
+					telefone = telaCadAluno.getFormattedTextFieldTelefone().getText();
+					contador++;
+				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo telefone ou celular deve ser preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					erros++;
+				}
+				if(!(telaCadAluno.getFormattedTextFieldCelular().getText().equals("(  )      -    "))
+						|| !(telaCadAluno.getFormattedTextFieldCelular().getText().isEmpty())) {
+					celular = telaCadAluno.getFormattedTextFieldCelular().getText();
+					contador++;
+				}else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo telefone ou celular deve ser preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					erros++;
+				}
+				if((contador == 16 || contador == 17) &&  erros == 0){
+						new ControleArquivo(1);
+						tipo = "aluno";
+					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo);	
+					Aluno aluno = new Aluno(cep, rua, numero, complemento, bairro, cidade, estado, "aluno", nome, matricula, 
+							dataNascimento, email, telefone, celular, cpf, rg, uf, dataExpedicao, orgaoExp, 
+							curso, disciplinas);
+					
+					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
+					boolean rotorno2 = new BancoAlunoGerenciar().BancoAlunoInserir(aluno);
+					
+					if(retorno1 && rotorno2)
+						JOptionPane.showMessageDialog(telaCadAluno, "Cadastro realizado com sucesso.");
+					else {
+						JOptionPane.showMessageDialog(telaCadAluno, "Cadastro realizado sem sucesso.");
+					}
 					LimpaDados();
+					
+					System.out.println(endereco.getCep());
+					
+					
 				}else{
 						JOptionPane.showMessageDialog(telaCadAluno, "Todos os campos devem ser preenchidos.", "Aviso",
 								JOptionPane.WARNING_MESSAGE);
@@ -277,17 +354,13 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		ArrayList<String> disc = new ArrayList<String>();
 		String dis = null;
 		try {
-			dis = Main.disciplina.get(0).getCurso().toString();
+			dis = Main.curso.get(0).getNome().toString();
 			disc.add(dis);
 			int cont;
-			for(int i = 1; i < Main.disciplina.size(); i++) {
+			for(int i = 1; i < Main.curso.size(); i++) {
 				cont = 0;
-				dis = Main.disciplina.get(i).getCurso().toString();
-				if(disc.get(i-1).equals(dis)) {
-					cont ++;
-				}
-				if(cont == 0)
-					disc.add(dis);
+				dis = Main.curso.get(i).getNome().toString();
+				disc.add(dis);
 			}
 			for(int i = 0; i<disc.size(); i++) {
 				telaCadAluno.getComboBoxCurso().addItem(disc.get(i).toString());
@@ -344,7 +417,14 @@ public class ControlePainelCadastroAluno implements ActionListener{
 		telaCadAluno.getComboBoxEstadoRg().setSelectedIndex(0);
 		telaCadAluno.getFormattedTextFieldOrgaoExpeditor().setText(null);
 		telaCadAluno.getComboBoxHistoricoDisciplinas().removeAllItems();
-		//		telaCadAluno.getDateChooserData().setDate(null);
-		disciplinas.clear();
+		telaCadAluno.getFormattedTextFieldRua().setText(null);
+		telaCadAluno.getFormattedTextFieldNumero().setText(null);
+		telaCadAluno.getFormattedTextFieldComplemento().setText(null);
+		telaCadAluno.getFormattedTextFieldBairro().setText(null);
+		telaCadAluno.getFormattedTextFieldCidade().setText(null);
+		telaCadAluno.getFormattedTextFieldCep().setText(null);
+		telaCadAluno.getComboBoxEstadoEndereco().setSelectedIndex(0);
+		if(disciplinas.size() > 0)
+			disciplinas.clear();
 	}
 }

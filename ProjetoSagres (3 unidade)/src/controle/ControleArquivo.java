@@ -72,24 +72,29 @@ public class ControleArquivo{
 			BufferedWriter escreveArquivoAluno = new BufferedWriter(new FileWriter(arquivoAluno));
 			for(int i=0; i< Main.aluno.size(); i++)
 			{
-				//RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
-				//NOME;MATRICULA;CPF;RG;UF;DATA_EXP;ORGO_EXP;CURSO;DISCIPLINAS_CURSADAS
+				//CEP;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;TIPO;
+				//NOME;MATRICULA;DATA_NASCIMENTO;EMAIL;TELEFONE;CELULAR;CPF;RG;UF;DATA_EXP;ORGO_EXP;CURSO;DISCIPLINAS_CURSADAS;
+
 				
-				
+				escreveArquivoAluno.write(Main.aluno.get(i).getCep());
 				escreveArquivoAluno.write(Main.aluno.get(i).getRua());
 				escreveArquivoAluno.write(Main.aluno.get(i).getNumero());
 				escreveArquivoAluno.write(Main.aluno.get(i).getComplemento());
 				escreveArquivoAluno.write(Main.aluno.get(i).getBairro());
 				escreveArquivoAluno.write(Main.aluno.get(i).getCidade());
 				escreveArquivoAluno.write(Main.aluno.get(i).getEstado());
+				escreveArquivoAluno.write(Main.aluno.get(i).getTipo());
 				escreveArquivoAluno.write(TiraEspaços(Main.aluno.get(i).getNome())+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getMatricula()+";");
-				escreveArquivoAluno.write(Main.aluno.get(i).getEmail());
+				escreveArquivoAluno.write(Main.aluno.get(i).getDataNascimento()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getEmail()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getTelefone()+";");
+				escreveArquivoAluno.write(Main.aluno.get(i).getCelular()+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getCpf()+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getRg()+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getUf()+";");
 				escreveArquivoAluno.write(Main.aluno.get(i).getDataExpedicao()+";");
-				escreveArquivoAluno.write(Main.aluno.get(i).getOrgaoExp()+";");
+				escreveArquivoAluno.write(TiraEspaços(Main.aluno.get(i).getOrgaoExp()+";"));
 				escreveArquivoAluno.write(Main.aluno.get(i).getCurso()+";");
 				
 				if(Main.aluno.get(i).getHistoricoDisciplinas().equals(null)) {
@@ -205,23 +210,29 @@ public class ControleArquivo{
 			BufferedWriter escreveArquivoProfessor = new BufferedWriter(new FileWriter(arquivoProfessor));
 			for(int i=0; i< Main.professor.size(); i++)
 			{
-				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
+				//CEP;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;TIPO;
 				//NOME;MATRICULA;AREA;CARGA;CPF;RG;UF;DATA_EXP;ORGO_EXP
+				escreveArquivoProfessor.write(Main.professor.get(i).getCep());
 				escreveArquivoProfessor.write(Main.professor.get(i).getRua());
 				escreveArquivoProfessor.write(Main.professor.get(i).getNumero());
 				escreveArquivoProfessor.write(Main.professor.get(i).getComplemento());
 				escreveArquivoProfessor.write(Main.professor.get(i).getBairro());
 				escreveArquivoProfessor.write(Main.professor.get(i).getCidade());
 				escreveArquivoProfessor.write(Main.professor.get(i).getEstado());
+				escreveArquivoProfessor.write(Main.professor.get(i).getTipo());
 				escreveArquivoProfessor.write(TiraEspaços(Main.professor.get(i).getNome())+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getDataNascimento()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getMatricula()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getArea()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getCarga_Horaria()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getEmail()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getTelefone()+";");
+				escreveArquivoProfessor.write(Main.professor.get(i).getCelular()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getCpf()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getRg()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getUf()+";");
 				escreveArquivoProfessor.write(Main.professor.get(i).getDataExpedicao()+";");
-				escreveArquivoProfessor.write(Main.professor.get(i).getOrgaoExp());
+				escreveArquivoProfessor.write(TiraEspaços(Main.professor.get(i).getOrgaoExp()));
 				escreveArquivoProfessor.newLine();
 			}
 			escreveArquivoProfessor.close();
@@ -238,13 +249,15 @@ public class ControleArquivo{
 				FileReader arquivoAluno = new FileReader("relatorios\\listaAlunos.txt");
 				BufferedReader lerArquivoAluno = new BufferedReader(arquivoAluno);
 				
-				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
-				//NOME;MATRICULA;CPF;RG;UF;DATA_EXP;ORGO_EXP;CURSO;DISCIPLINAS_CURSADAS;
+				//CEP;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;TIPO;
+				//NOME;MATRICULA;DATA_NASCIMENTO;EMAIL;TELEFONE;CELULAR;CPF;RG;UF;DATA_EXP;ORGO_EXP;CURSO;DISCIPLINAS_CURSADAS;
 				String linha = lerArquivoAluno.readLine();
 				while (linha != null) {
 					String [] dados = linha.split(";");
 					new Aluno(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], dados[7],dados[8],
-							dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],  dados[15], Dados(dados[16]));
+							dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],  dados[15], dados[16], 
+							dados[17], dados[18], dados[19],Dados(dados[20]));
+					
 					linha = lerArquivoAluno.readLine(); // lê da segunda até a última linha
 				}
 				arquivoAluno.close();
@@ -364,14 +377,15 @@ public class ControleArquivo{
 				FileReader arquivoProfessor = new FileReader("relatorios\\listaProfessores.txt");
 				BufferedReader lerArquivoProfessor = new BufferedReader(arquivoProfessor);
 
-				//ID;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;
+				//CEP;RUA;NUMERO;COMPLEMENTO;BAIRRO;CIDADE;ESTADO;TIPO;
 				//NOME;MATRICULA;AREA;CARGA;CPF;RG;UF;DATA_EXP;ORGO_EXP
 				String linha = lerArquivoProfessor.readLine();
 
 				while (linha != null) {
 					String [] dados = linha.split(";");
 					new Professor(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5], dados[6], 
-							dados[7],dados[8], dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],dados[15]);
+							dados[7],dados[8], dados[9], dados[10], dados[11], dados[12], dados[13], 
+							dados[14], dados[15], dados[16], dados[17],dados[18],dados[19],dados[20]);
 					
 					linha = lerArquivoProfessor.readLine(); // lê da segunda até a última linha
 				}

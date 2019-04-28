@@ -8,9 +8,10 @@ import java.util.ArrayList;
  * */
 
 public class Disciplina {
-    private String  area_Disciplina;
+   
     private String  nome_Disciplina;
     private String  semestre;
+    private String  area_Disciplina;
     private String  curso;
     private String tipoDisciplina;
     private ArrayList<String>  preRequisitos;
