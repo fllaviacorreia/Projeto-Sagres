@@ -12,36 +12,31 @@ import modelo.Endereco;
 
 public class BancoEnderecoGerenciar {
 	Connection conexao = null;
-	PreparedStatement preparetedStatement = null;
+	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
-	
-//	boolean retorno = false;
-	
-	public BancoEnderecoGerenciar() {
-		
-	}
 	
 	public boolean inserirEndereco(Endereco endereco) {
 		String sqlEndereco = "INSERT INTO Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		conexao = BancoConexao.open();
 		try {
-				preparetedStatement = conexao.prepareStatement(sqlEndereco);
-				preparetedStatement.setString(1, endereco.getCep());
-				preparetedStatement.setString(2, endereco.getRua());
-				preparetedStatement.setString(3, endereco.getNumero());
-				preparetedStatement.setString(4, endereco.getComplemento());
-				preparetedStatement.setString(5, endereco.getBairro());
-				preparetedStatement.setString(6, endereco.getCidade());
-				preparetedStatement.setString(7, endereco.getEstado());
-				preparetedStatement.setString(8, endereco.getTipo());
+			preparedStatement = conexao.prepareStatement(sqlEndereco);
+			preparedStatement.setString(1, endereco.getCep());
+			preparedStatement.setString(2, endereco.getRua());
+			preparedStatement.setString(3, endereco.getNumero());
+			preparedStatement.setString(4, endereco.getComplemento());
+			preparedStatement.setString(5, endereco.getBairro());
+			preparedStatement.setString(6, endereco.getCidade());
+			preparedStatement.setString(7, endereco.getEstado());
+			preparedStatement.setString(8, endereco.getTipo());
 				
 			//	System.out.println(preparetedStatement);
-				int teste = preparetedStatement.executeUpdate();
+				int teste = preparedStatement.executeUpdate();
 
 				if(teste > 0) {
+					conexao.close();
 					return true;
 				}
-				conexao.close();
+				
 			
 		}catch (Exception e) {
 			System.err.println("Erro inserir endereço "+e);	
@@ -56,10 +51,10 @@ public class BancoEnderecoGerenciar {
 			conexao = BancoConexao.open();
 			if (op <= 0) {
 				String sql = "SELECT MIN(" + campo + ") AS resultado FROM Endereco";
-				resultSet = preparetedStatement.executeQuery(sql);
+				resultSet = preparedStatement.executeQuery(sql);
 			} else {
 				String sql = "SELECT MAX(" + campo + ") AS resultado FROM Endereco";
-				resultSet = preparetedStatement.executeQuery(sql);
+				resultSet = preparedStatement.executeQuery(sql);
 			}
 			if (resultSet.next()) {
 				valor = this.resultSet.getInt(1);
@@ -76,7 +71,7 @@ public class BancoEnderecoGerenciar {
 		sql = "SELECT " + campo + " FROM Endereco WHERE " + chave + " LIKE '%" + valorChave + "%'";
 		try {
 			conexao = BancoConexao.open();
-			resultSet = preparetedStatement.executeQuery(sql);
+			resultSet = preparedStatement.executeQuery(sql);
 			if (resultSet.next()) {
 				retorno = (String) resultSet.getString(campo);
 			}
@@ -92,7 +87,7 @@ public class BancoEnderecoGerenciar {
 			conexao = BancoConexao.open();
 			
 			String sql = "UPDATE Endereco SET " + query + " WHERE " + chave + " = '" + valor + "'";
-			resultSet = preparetedStatement.executeQuery(sql);
+			resultSet = preparedStatement.executeQuery(sql);
 			
 //			System.out.println(sql);
 //			JOptionPane.showMessageDialog(null, "Alterado com sucesso!", "Atualização",

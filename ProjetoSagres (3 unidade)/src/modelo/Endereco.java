@@ -1,5 +1,7 @@
 package modelo;
 
+import controle.Main;
+
 public class Endereco {
 	String cep;
 	String rua;
@@ -9,6 +11,8 @@ public class Endereco {
 	String cidade;
 	String estado;
 	String tipo;
+	
+	
 	
 	public Endereco(String cep, String rua, String numero, String complemento, String bairro, String cidade, String estado, String tipo) {
 		super();
@@ -20,10 +24,15 @@ public class Endereco {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.tipo = tipo;
-		
+		Main.endereco.add(this);
 		System.out.println(cep +"  " + rua +"  " + numero +"  " + complemento +"  " + bairro +"  " + cidade +"  " + estado +"  " + tipo);
+	
 	}
 	
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getCep() {
 		return cep;
 	}

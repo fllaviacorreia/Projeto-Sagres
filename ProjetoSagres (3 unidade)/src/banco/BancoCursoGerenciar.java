@@ -34,9 +34,12 @@ public class BancoCursoGerenciar {
 
 				if(teste > 0) {
 //						System.out.println("Inserir1");
+					preparedStatement.close();
+					conexao.close();
 					return true;
 				}
-				conexao.close();
+				
+				
 			} catch (Exception e) {
 				
 				System.err.println("Erro inserir curso "+e);	

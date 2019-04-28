@@ -28,8 +28,8 @@ public class BancoAlunoGerenciar{
 	//fazendo a conexão com o banco de dados	
 		conexao = BancoConexao.open();
 		try {
-			endereco = Integer.parseInt(banco.primeiroEultimo("Endereco", "id", 1));
-			curso = Integer.parseInt(banco.consultar("Curso", "nomeCurso", aluno.getCurso(), "id")); 
+			endereco = primeiroEultimo("Endereco", "id", 1);
+			curso = Integer.parseInt(consultar("Curso", "nomeCurso", aluno.getCurso(), "id")); 
 		//aqui é lincando o comando com o banco	em aluno
 			preparetedStatement = conexao.prepareStatement(sqlAluno);
 			
@@ -125,6 +125,39 @@ public class BancoAlunoGerenciar{
 		return retorno;
 	}
 	
+	public String consultar(String tabela, String chave, String valorChave, String campo) {
+		String sql, retorno = "";
+		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " LIKE '%" + valorChave + "%'";
+		try {
+			conexao = BancoConexao.open();
+			resultSet = preparetedStatement.executeQuery(sql);
+			if (resultSet.next()) {
+				retorno = (String) resultSet.getString(campo);
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println("Erro: Não foi possível consultar!\n" + e.getMessage());
+		}
+		return retorno;
+	}
+	
+	public ArrayList<String> consultarUmaColuna(String tabela, String coluna) {
+		ArrayList<String> lista = new ArrayList<String>();
+		String sql = "SELECT * FROM " + tabela;
+		conexao = BancoConexao.open();
+		try {
+			preparetedStatement = conexao.prepareStatement(sql);
+			resultSet = preparetedStatement.executeQuery(sql);
+			while (resultSet.next()) {
+				lista.add(resultSet.getString(coluna));
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
 	public boolean atualizar(String tabela, String chave, String valor, String query) {//sugestão mudar para boolean
 		try {
 			conexao = BancoConexao.open();

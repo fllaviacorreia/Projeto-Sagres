@@ -316,12 +316,17 @@ public class ControlePainelCadastroAluno implements ActionListener{
 					erros++;
 				}
 				if((contador == 16 || contador == 17) &&  erros == 0){
-						new ControleArquivo(1);
-						tipo = "aluno";
+					tipo = "aluno";
 					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo);	
-					Aluno aluno = new Aluno(cep, rua, numero, complemento, bairro, cidade, estado, "aluno", nome, matricula, 
-							dataNascimento, email, telefone, celular, cpf, rg, uf, dataExpedicao, orgaoExp, 
-							curso, disciplinas);
+					Aluno aluno = new Aluno( nome, matricula, dataNascimento, email, telefone, celular, cpf, rg, uf, 
+							dataExpedicao, orgaoExp, curso, disciplinas);
+					System.out.println("cep construtor vazio " + endereco.getCep());
+					for(int i = 0; i< Main.endereco.size(); i++) {
+						System.out.println(Main.endereco.get(i).getCep());
+					}
+					new ControleArquivo(1);
+						
+					
 					
 					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
 					boolean rotorno2 = new BancoAlunoGerenciar().BancoAlunoInserir(aluno);

@@ -10,9 +10,10 @@ import com.mysql.*;
 
 
 public class BancoConexao {
-	static java.sql.Connection conexao = null;
+	
 	
 	public static Connection open() {
+		java.sql.Connection conexao = null;
 		try {
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -33,16 +34,5 @@ public class BancoConexao {
 		return conexao;
 	}
 	
-	public static Connection close(int op) {
-		try {
-			conexao.close();
-			if (op == 1) {
-				JOptionPane.showMessageDialog(null, "Conexão encerrada com sucesso!");
-			}
-		} catch (HeadlessException | SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro: Conexão não pode ser encerrada!\n" + e.getMessage());
-			e.printStackTrace();
-		}
-		return null;
-	}
+	
 }

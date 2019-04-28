@@ -33,11 +33,10 @@ public class Aluno extends Endereco{
 	private String curso;
 	private ArrayList<String> historicoDisciplinas;
 	
-	public Aluno(String cep, String rua, String numero, String complemento, String bairro, String cidade, String estado, String tipo,
-			String nome, String matricula, String dataNascimento, String email, String telefone, String celular, String cpf, String rg, String uf, 
-			String dataExpedicao, String orgaoExp, String curso, ArrayList<String> historicoDisciplinas) {
+	public Aluno(String nome, String matricula, String dataNascimento, String email, String telefone, String celular, 
+			String cpf, String rg, String uf, String dataExpedicao, String orgaoExp, String curso, 
+			ArrayList<String> historicoDisciplinas) {
 		
-		super(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
 		this.nome = nome;
 		this.matricula = matricula;
 		this.dataNascimento = dataNascimento;
