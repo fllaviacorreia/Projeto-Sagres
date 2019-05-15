@@ -16,7 +16,7 @@ public class BancoEnderecoGerenciar {
 	ResultSet resultSet = null;
 	
 	public boolean inserirEndereco(Endereco endereco) {
-		String sqlEndereco = "INSERT INTO Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sqlEndereco = "INSERT INTO Endereco(cep, rua, numero, complemento, bairro, cidade, uf, tipo) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		conexao = BancoConexao.open();
 		try {
 			preparedStatement = conexao.prepareStatement(sqlEndereco);

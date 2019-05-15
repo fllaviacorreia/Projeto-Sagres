@@ -1,5 +1,6 @@
 package modelo.validacao;
 
+import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +12,7 @@ import modelo.Professor;
 
 public class Lists {
 	private static Lists lista;
-	
+	static Calendar calendario = Calendar.getInstance();
 	synchronized public static Lists getInstance() {
 		if (lista == null) {
 			lista = new Lists();
@@ -91,6 +92,8 @@ public class Lists {
 		int mes = Integer.parseInt(data[1]);
 		int ano = Integer.parseInt(data[2]);
 		
+		int limiteAno = calendario.get(Calendar.YEAR) - 70;
+		System.out.println("calendario.get(Calendar.YEAR) - 70 = " + (calendario.get(Calendar.YEAR) - 70));
 		if(dia <= 31 && dia>0 && mes>0 && mes<13){
 			
 			if(dia>29 && mes == 2) //verifica se o dia é maior que 29 e o mês é fevereiro
@@ -105,6 +108,9 @@ public class Lists {
 			else if(mes==4 || mes==6 ||  mes==9 || mes==11 && dia<=30) //verifica os meses com 30 dias
 				return true;
 
+			else if(ano < limiteAno) {
+				return false;
+			}
 			else
 				return false;
 		}

@@ -8,18 +8,18 @@ import java.util.ArrayList;
  * */
 
 public class Curso {
-	private ArrayList<String> disciplinas;
+//	private ArrayList<String> disciplinas;
 	private String cargaHorariaTotal;
 	private String nome;
 	private String tipoCurso;
 	private String semestres;
 	
-	public ArrayList<String> getDisciplinas() {
-		return disciplinas;
-	}
-	public void setDisciplinas(ArrayList<String> disciplinas2) {
-		this.disciplinas = disciplinas2;
-	}
+//	public ArrayList<String> getDisciplinas() {
+//		return disciplinas;
+//	}
+//	public void setDisciplinas(ArrayList<String> disciplinas2) {
+//		this.disciplinas = disciplinas2;
+//	}
 	public String getCargaHorariaTotal() {
 		return cargaHorariaTotal;
 	}

@@ -1,6 +1,7 @@
 package banco;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,6 +47,24 @@ public class BancoCursoGerenciar {
 			}								
 		
 			return false;
+	}
+	
+	public ArrayList<String> consultarUmaColuna(String tabela, String coluna) {
+		ArrayList<String> lista = new ArrayList<String>();
+		String sql = "SELECT * FROM " + tabela;
+		conexao = BancoConexao.open();
+		try {
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
+			while (resultSet.next()) {
+				lista.add(resultSet.getString(coluna));
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
 	}
 }
 	

@@ -27,6 +27,11 @@ public class ControlePainelCadastroCurso implements ActionListener{
 	private int saida;
 	private int volta;
 	private int cargaHoraria;
+	private String nome;
+	private String semestres;
+	private String tipoCurso;
+	private String cargaHorariaTotal;
+
 //	private String disciplina = "";
 //	private ArrayList<String> disciplinas = new ArrayList<String>();
 
@@ -98,6 +103,7 @@ public class ControlePainelCadastroCurso implements ActionListener{
 				
 				if(!String.valueOf(cargaHoraria).isEmpty()) {
 					telaCadCurso.getComboBoxCargaHorariaTotal().addItem(String.valueOf(cargaHoraria));
+					telaCadCurso.getComboBoxCargaHorariaTotal().setSelectedIndex(telaCadCurso.getComboBoxCargaHorariaTotal().getItemCount()-1);
 				}
 			}catch(Exception e1) {
 				System.out.println(e1.getMessage());
@@ -108,9 +114,16 @@ public class ControlePainelCadastroCurso implements ActionListener{
 			try {
 				dados = new Curso();
 				contador = 0;
-				if(!telaCadCurso.getFormattedTextFieldNomeCurso().getText().equals("SELECIONE")) {
-					dados.setNome(telaCadCurso.getFormattedTextFieldNomeCurso().getText().toString());
-					contador++;
+				if(!telaCadCurso.getFormattedTextFieldNomeCurso().getText().equals("                                                       ")) {
+					nome = telaCadCurso.getFormattedTextFieldNomeCurso().getText().toString().toUpperCase();
+					if(verificaNomes(nome)) {
+						JOptionPane.showMessageDialog(telaCadCurso, "Nome já cadastrado!", 
+								"Aviso", JOptionPane.WARNING_MESSAGE);
+					}else {
+						dados.setNome(telaCadCurso.getFormattedTextFieldNomeCurso().getText().toString());
+						contador++;
+					}
+					
 				}
 				if(!telaCadCurso.getComboBoxSemestresTotais().getSelectedItem().equals("SELECIONE")) {
 					dados.setSemestres(telaCadCurso.getComboBoxSemestresTotais().getSelectedItem().toString());
@@ -186,6 +199,14 @@ public class ControlePainelCadastroCurso implements ActionListener{
 //		}
 //	}
 	
+	public boolean verificaNomes(String nome) {
+		for(int i = 0; i < Main.curso.size(); i++) {
+			if(Main.curso.get(i).getNome().equals(nome)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public void LimpaDados() {
 		telaCadCurso.getFormattedTextFieldNomeCurso().setText(null);
 		telaCadCurso.getComboBoxCargaHorariaTotal().setSelectedIndex(0);

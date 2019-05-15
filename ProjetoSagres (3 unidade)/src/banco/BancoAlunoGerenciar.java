@@ -18,19 +18,32 @@ public class BancoAlunoGerenciar{
 	ResultSet resultSet = null;
 	
 	public boolean BancoAlunoInserir(Aluno aluno) {
-		int endereco;
-		int curso;
-	//aqui é o comando em sql que é necessário para inserir no banco de dados
-		String sqlAluno = "INSERT INTO Aluno(nomeAluno, numMatricula, dataNascimento, email, telefone, celular"
-				+ "cpf, rg, ufRg, OrgaoExpeditorRg, dataExpedicaoRg, Endereco_idEndereco, Curso_idCurso) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		int endereco = 0;
+		int curso = 0;
+		System.out.println("endereco id "+endereco);
+		System.out.println("curso id "+curso);
+		System.out.println("aluno curso "+ aluno.getCurso());
 		
+	//aqui é o comando em sql que é necessário para inserir no banco de dados
+		String sqlAluno = "INSERT INTO Aluno(nomeAluno, numMatricula, dataNascimento, email, telefone, celular,"
+				+ "cpf, rg, ufRg, orgaoExpeditorRg, dataExpedicaoRg, Endereco_idEndereco, Curso_idCurso) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			endereco = Integer.parseInt(banco.primeiroEultimo("Endereco", "idEndereco", 2));
+			curso = Integer.parseInt(banco.consultar("Curso", "nomeCurso", aluno.getCurso(), "idCurso")); 
+		
+			System.out.println("endereco id "+endereco);
+			System.out.println("curso id "+curso);
+			System.out.println("aluno curso "+ aluno.getCurso());
+		}catch(Exception e) {
+			System.err.println("Não foi possível buscar endereço e/ou curso: "+e);
+		}
 	//fazendo a conexão com o banco de dados	
 		conexao = BancoConexao.open();
+		
 		try {
-			endereco = primeiroEultimo("Endereco", "id", 1);
-			curso = Integer.parseInt(consultar("Curso", "nomeCurso", aluno.getCurso(), "id")); 
-		//aqui é lincando o comando com o banco	em aluno
+			
+		//lincando o comando com o banco em aluno
 			preparetedStatement = conexao.prepareStatement(sqlAluno);
 			
 		//salvando na table os dados	
@@ -38,25 +51,27 @@ public class BancoAlunoGerenciar{
 			preparetedStatement.setString(2, aluno.getMatricula());
 			preparetedStatement.setString(3, aluno.getDataNascimento());
 			preparetedStatement.setString(4, aluno.getEmail());
-			preparetedStatement.setString(5, aluno.getCpf());
-			preparetedStatement.setString(6, aluno.getRg());
-			preparetedStatement.setString(7, aluno.getUf());
-			preparetedStatement.setString(8, aluno.getOrgaoExp());
-			preparetedStatement.setString(9, aluno.getDataExpedicao());
+			preparetedStatement.setString(5, aluno.getTelefone());
+			preparetedStatement.setString(6, aluno.getCelular());
+			preparetedStatement.setString(7, aluno.getCpf());
+			preparetedStatement.setString(8, aluno.getRg());
+			preparetedStatement.setString(9, aluno.getUf());
+			preparetedStatement.setString(10, aluno.getOrgaoExp());
+			preparetedStatement.setString(11, aluno.getDataExpedicao());
 			
 		//primeiro o endereço é salvo e depois o id gerado de endereço é jogado aqui
 		// o mesmo acontece com curso, a diferença é que vai buscar o curso no banco
-			preparetedStatement.setInt(9, endereco);
-			preparetedStatement.setInt(10, curso);
+			preparetedStatement.setInt(12, endereco);
+			preparetedStatement.setInt(13, curso);
 			
 			System.out.println(preparetedStatement);
 			int teste = preparetedStatement.executeUpdate();
 
 			if(teste > 0) {
-					//System.out.println("Inserir1");
+				preparetedStatement.close();
+				conexao.close();
 				return true;
 			}
-			conexao.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 				System.err.println("Erro inserir aluno "+e);	
@@ -94,9 +109,11 @@ public class BancoAlunoGerenciar{
 			conexao = BancoConexao.open();
 			if (op <= 0) {
 				String sql = "SELECT MIN(" + campo + ") AS resultado FROM " + tabela;
+				preparetedStatement = conexao.prepareStatement(sql);
 				resultSet = preparetedStatement.executeQuery(sql);
 			} else {
 				String sql = "SELECT MAX(" + campo + ") AS resultado FROM " + tabela;
+				preparetedStatement = conexao.prepareStatement(sql);
 				resultSet = preparetedStatement.executeQuery(sql);
 			}
 			if (resultSet.next()) {
@@ -114,6 +131,7 @@ public class BancoAlunoGerenciar{
 		sql = "SELECT " + campo + " FROM Aluno WHERE " + chave + " LIKE '%" + valorChave + "%'";
 		try {
 			conexao = BancoConexao.open();
+			preparetedStatement = conexao.prepareStatement(sql);
 			resultSet = preparetedStatement.executeQuery(sql);
 			if (resultSet.next()) {
 				retorno = (String) resultSet.getString(campo);
@@ -127,9 +145,10 @@ public class BancoAlunoGerenciar{
 	
 	public String consultar(String tabela, String chave, String valorChave, String campo) {
 		String sql, retorno = "";
-		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " LIKE '%" + valorChave + "%'";
+		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " = " + valorChave;
 		try {
 			conexao = BancoConexao.open();
+			preparetedStatement = conexao.prepareStatement(sql);
 			resultSet = preparetedStatement.executeQuery(sql);
 			if (resultSet.next()) {
 				retorno = (String) resultSet.getString(campo);
@@ -158,11 +177,12 @@ public class BancoAlunoGerenciar{
 		}
 		return lista;
 	}
-	public boolean atualizar(String tabela, String chave, String valor, String query) {//sugestão mudar para boolean
+	public boolean atualizar(String tabela, String chave, String valor, String query) {
 		try {
 			conexao = BancoConexao.open();
 			
 			String sql = "UPDATE Aluno SET " + query + " WHERE " + chave + " = '" + valor + "'";
+			preparetedStatement = conexao.prepareStatement(sql);
 			resultSet = preparetedStatement.executeQuery(sql);
 			
 //			System.out.println(sql);

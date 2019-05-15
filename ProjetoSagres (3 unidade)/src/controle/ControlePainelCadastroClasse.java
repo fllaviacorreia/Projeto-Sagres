@@ -360,14 +360,11 @@ public class ControlePainelCadastroClasse implements ActionListener{
 		}else if(tipo == 2) {
 			telaCadClasse.getComboBoxDisciplina().addItem("SELECIONE");
 			try {
-				for(int i = 0; i < Main.curso.size(); i++) {
-					if(telaCadClasse.getComboBoxCurso().getSelectedItem().equals(Main.curso.get(i).getNome().toString())) {
-						for(int j = 0; j < Main.curso.get(i).getDisciplinas().size(); j++) {
-							telaCadClasse.getComboBoxDisciplina().addItem(Main.curso.get(i).getDisciplinas().get(j).toString());
+				for(int i = 0; i < Main.disciplina.size(); i++) {
+					if(telaCadClasse.getComboBoxCurso().getSelectedItem().equals(Main.disciplina.get(i).getCurso().toString())) {
+							telaCadClasse.getComboBoxDisciplina().addItem(Main.disciplina.get(i).getNome_Disciplina().toString());
 						}
 					}
-				}
-				
 			}catch (Exception e) {
 				e.getMessage();
 				e.printStackTrace();
