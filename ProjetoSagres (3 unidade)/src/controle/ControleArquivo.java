@@ -399,17 +399,17 @@ public class ControleArquivo{
 //		}
 //	}
 
-	public ArrayList<String> Dados(String dados){
-		String [] valores = dados.split(",");
-		ArrayList<String> dadosArray = new ArrayList<String>();
-
-		if(!dados.equals(null)) {
-			for(int i = 0; i < valores.length; i++) {
-				dadosArray.add(valores[i]);
-			}
-		}
-		return dadosArray;
-	}
+//	public ArrayList<String> Dados(String dados){
+//		String [] valores = dados.split(",");
+//		ArrayList<String> dadosArray = new ArrayList<String>();
+//
+//		if(!dados.equals(null)) {
+//			for(int i = 0; i < valores.length; i++) {
+//				dadosArray.add(valores[i]);
+//			}
+//		}
+//		return dadosArray;
+//	}
 
 	public String TiraEspaços(String dado) {
 		entrada = dado;

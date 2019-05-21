@@ -200,8 +200,9 @@ public class ControlePainelCadastroCurso implements ActionListener{
 //	}
 	
 	public boolean verificaNomes(String nome) {
-		for(int i = 0; i < Main.curso.size(); i++) {
-			if(Main.curso.get(i).getNome().equals(nome)) {
+		ArrayList<String> cursoNomes = new BancoCursoGerenciar().consultarUmaColuna("Curso", "nomeCurso");
+		for(int i = 0; i < cursoNomes.size(); i++) {
+			if(cursoNomes.get(i).equals(nome)) {
 				return true;
 			}
 		}

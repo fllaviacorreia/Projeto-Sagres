@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import controle.Main;
+
 /**
  *  @author Flávia de Jesus Correia
  * 
@@ -22,8 +24,30 @@ public class Disciplina {
     private boolean teorica;
     private boolean pratica;
     private boolean estagio;
+    
+    
 
-    public String getArea_Disciplina() {
+    public Disciplina(String nome_Disciplina, String semestre, String area_Disciplina, String curso,
+			String tipoDisciplina, ArrayList<String> preRequisitos, String carga_Horaria, boolean ePreRequisito,
+			boolean optativa, boolean obrigatoria, boolean teorica, boolean pratica, boolean estagio) {
+		super();
+		this.nome_Disciplina = nome_Disciplina;
+		this.semestre = semestre;
+		this.area_Disciplina = area_Disciplina;
+		this.curso = curso;
+		this.tipoDisciplina = tipoDisciplina;
+		this.preRequisitos = preRequisitos;
+		this.carga_Horaria = carga_Horaria;
+		this.ePreRequisito = ePreRequisito;
+		this.optativa = optativa;
+		this.obrigatoria = obrigatoria;
+		this.teorica = teorica;
+		this.pratica = pratica;
+		this.estagio = estagio;
+		Main.disciplina.add(this);
+	}
+
+	public String getArea_Disciplina() {
         return area_Disciplina;
     }
 
@@ -119,7 +143,7 @@ public class Disciplina {
 		this.optativa = optativa;
 	}
 
-	public boolean isObrigatoria() {
+	public boolean getObrigatoria() {
 		return obrigatoria;
 	}
 

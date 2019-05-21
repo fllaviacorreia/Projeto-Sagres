@@ -35,9 +35,9 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 	private JButton 	 		buttonVoltar 	 		  		= null;
 	private JButton 	 		buttonCancelar 	 		  		= null;
 	private JButton 			buttonConfirmar   		  		= null;
-	private JButton 			buttonAdicionarSemestre		  	= null;
+//	private JButton 			buttonAdicionarSemestre		  	= null;
 	private JButton 			buttonAdicionarAreaDisciplina	= null;
-	private JButton 			buttonAdicionarCurso		  	= null;
+//	private JButton 			buttonAdicionarCurso		  	= null;
 	private JButton 			buttonAdicionarPreRequisitos	= null;
 	
 	VisaoFramePrincipal frame;
@@ -71,9 +71,9 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		this.add(getButtonVoltar());
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
-		this.add(getButtonAdicionarSemestre());
+//		this.add(getButtonAdicionarSemestre());
 		this.add(getButtonAdicionarAreaDisciplina());
-		this.add(getButtonAdicionarCurso());
+//		this.add(getButtonAdicionarCurso());
 		this.add(getButtonAdicionarPreRequisitos());
 		this.add(getRadioButtonEPreRequisito());
 		this.add(getRadioButtonOptativa());
@@ -148,7 +148,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			comboBoxAreaDisciplina = new JComboBox<String>();
 			comboBoxAreaDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxAreaDisciplina.setBackground(new Color(255, 255, 255));
-			comboBoxAreaDisciplina.setBounds(430, 147, 310, 20);
+			comboBoxAreaDisciplina.setBounds(430, 147, 310, 25);
 			comboBoxAreaDisciplina.setVisible(true);
 			comboBoxAreaDisciplina.setVisible(true);
 		}
@@ -160,13 +160,17 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			comboBoxCargaHorariaDisciplina = new JComboBox<String>();
 			comboBoxCargaHorariaDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxCargaHorariaDisciplina.setBackground(new Color(255, 255, 255));
-			comboBoxCargaHorariaDisciplina.setBounds(506, 231, 170, 20);
+			comboBoxCargaHorariaDisciplina.setBounds(506, 231, 170, 25);
 			comboBoxCargaHorariaDisciplina.addItem("SELECIONE");
 			comboBoxCargaHorariaDisciplina.addItem("30");
 			comboBoxCargaHorariaDisciplina.addItem("45");
 			comboBoxCargaHorariaDisciplina.addItem("60");
 			comboBoxCargaHorariaDisciplina.addItem("75");
 			comboBoxCargaHorariaDisciplina.addItem("90");
+			comboBoxCargaHorariaDisciplina.addItem("105");
+			comboBoxCargaHorariaDisciplina.addItem("120");
+			comboBoxCargaHorariaDisciplina.addItem("135");
+			comboBoxCargaHorariaDisciplina.addItem("150");
 			comboBoxCargaHorariaDisciplina.setVisible(true);
 		}
 		
@@ -178,7 +182,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			comboBoxPreRequisitos = new JComboBox<String>();
 			comboBoxPreRequisitos.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxPreRequisitos.setBackground(new Color(255, 255, 255));
-			comboBoxPreRequisitos.setBounds(47, 231, 170, 20);
+			comboBoxPreRequisitos.setBounds(47, 231, 170, 25);
 			comboBoxPreRequisitos.setEnabled(false);
 			comboBoxPreRequisitos.addItem("SELECIONE");
 		}
@@ -191,7 +195,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			comboBoxSemestre = new JComboBox<String>();
 			comboBoxSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxSemestre.setBackground(new Color(255, 255, 255));
-			comboBoxSemestre.setBounds(563, 63, 130, 20);
+			comboBoxSemestre.setBounds(563, 63, 130, 25);
 			comboBoxSemestre.addItem("SELECIONE");
 			comboBoxSemestre.addItem("1");
 			comboBoxSemestre.addItem("2");
@@ -206,7 +210,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			comboBoxCurso = new JComboBox<String>();
 			comboBoxCurso.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxCurso.setBackground(new Color(255, 255, 255));
-			comboBoxCurso.setBounds(47, 63, 289, 20);
+			comboBoxCurso.setBounds(47, 63, 289, 25);
 			comboBoxCurso.setVisible(true);
 		}
 		return comboBoxCurso;
@@ -217,7 +221,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			textFieldNomeDisciplina = new JFormattedTextField();
 			textFieldNomeDisciplina.setFormatterFactory(fm.getNome());
 			textFieldNomeDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
-			textFieldNomeDisciplina.setBounds(47, 147, 310, 20);
+			textFieldNomeDisciplina.setBounds(47, 147, 310, 25);
 			textFieldNomeDisciplina.setVisible(true);
 			textFieldNomeDisciplina.setVisible(true);
 		}
@@ -305,17 +309,17 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		}
 		return buttonConfirmar;
 	}
-	public JButton getButtonAdicionarSemestre() {
-		if(buttonAdicionarSemestre == null) {
-			buttonAdicionarSemestre = new JButton("Adicionar semestre");
-			buttonAdicionarSemestre.setHorizontalAlignment(SwingConstants.LEFT);
-			buttonAdicionarSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonAdicionarSemestre.setBounds(703, 63, 162, 20);
-			buttonAdicionarSemestre.setBackground(Color.WHITE);
-			buttonAdicionarSemestre.setVisible(true);
-		}
-		return buttonAdicionarSemestre;
-	}
+//	public JButton getButtonAdicionarSemestre() {
+//		if(buttonAdicionarSemestre == null) {
+//			buttonAdicionarSemestre = new JButton("Adicionar semestre");
+//			buttonAdicionarSemestre.setHorizontalAlignment(SwingConstants.LEFT);
+//			buttonAdicionarSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
+//			buttonAdicionarSemestre.setBounds(703, 63, 162, 20);
+//			buttonAdicionarSemestre.setBackground(Color.WHITE);
+//			buttonAdicionarSemestre.setVisible(true);
+//		}
+//		return buttonAdicionarSemestre;
+//	}
 	
 	public JButton getButtonAdicionarAreaDisciplina() {
 		if(buttonAdicionarAreaDisciplina == null) {
@@ -328,17 +332,17 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		}
 		return buttonAdicionarAreaDisciplina;
 	}
-	public JButton getButtonAdicionarCurso() {
-		if(buttonAdicionarCurso == null) {
-			buttonAdicionarCurso = new JButton("Adicionar curso");
-			buttonAdicionarCurso.setHorizontalAlignment(SwingConstants.LEFT);
-			buttonAdicionarCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonAdicionarCurso.setBounds(363, 63, 141, 20);
-			buttonAdicionarCurso.setBackground(Color.WHITE);
-			buttonAdicionarCurso.setVisible(true);
-		}
-		return buttonAdicionarCurso;
-	}
+//	public JButton getButtonAdicionarCurso() {
+//		if(buttonAdicionarCurso == null) {
+//			buttonAdicionarCurso = new JButton("Adicionar curso");
+//			buttonAdicionarCurso.setHorizontalAlignment(SwingConstants.LEFT);
+//			buttonAdicionarCurso.setFont(new Font("Arial", Font.PLAIN, 14));
+//			buttonAdicionarCurso.setBounds(363, 63, 141, 20);
+//			buttonAdicionarCurso.setBackground(Color.WHITE);
+//			buttonAdicionarCurso.setVisible(true);
+//		}
+//		return buttonAdicionarCurso;
+//	}
 	public JButton getButtonAdicionarPreRequisitos() {
 		if(buttonAdicionarPreRequisitos == null) {
 			buttonAdicionarPreRequisitos = new JButton("Adicionar pré-requisito");

@@ -49,6 +49,23 @@ public class BancoCursoGerenciar {
 			return false;
 	}
 	
+	public String consultar(String tabela, String chave, String valorChave, String campo) {
+		String sql, retorno = "";
+		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " = " + valorChave;
+		try {
+			conexao = BancoConexao.open();
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
+			if (resultSet.next()) {
+				retorno = (String) resultSet.getString(campo);
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println("Erro: Não foi possível consultar!\n" + e.getMessage());
+		}
+		return retorno;
+	}
+	
 	public ArrayList<String> consultarUmaColuna(String tabela, String coluna) {
 		ArrayList<String> lista = new ArrayList<String>();
 		String sql = "SELECT * FROM " + tabela;

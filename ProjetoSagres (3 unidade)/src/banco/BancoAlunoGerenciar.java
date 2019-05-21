@@ -20,6 +20,7 @@ public class BancoAlunoGerenciar{
 	public boolean BancoAlunoInserir(Aluno aluno) {
 		int endereco = 0;
 		int curso = 0;
+		
 		System.out.println("endereco id "+endereco);
 		System.out.println("curso id "+curso);
 		System.out.println("aluno curso "+ aluno.getCurso());
@@ -66,7 +67,7 @@ public class BancoAlunoGerenciar{
 			
 			System.out.println(preparetedStatement);
 			int teste = preparetedStatement.executeUpdate();
-
+			
 			if(teste > 0) {
 				preparetedStatement.close();
 				conexao.close();
@@ -203,6 +204,33 @@ public class BancoAlunoGerenciar{
 			return false;
 		}
 		return true;
+	}
+	
+	
+	public boolean inserirHistoricoDisciplinas(String disciplinas, int idAluno, int idDisciplina, String media) {
+		String sqlTableDisciplinasCursadas = "INSERT INTO aluno_cursou_disciplina(Aluno_idAluno, "
+				+ "Disciplina_idDisciplina, mediaFinal) VALUES(?, ?, ?)";
+
+
+		try {
+			conexao = BancoConexao.open();
+			preparetedStatement = conexao.prepareStatement(sqlTableDisciplinasCursadas);
+			preparetedStatement.setInt(1, idAluno);
+			preparetedStatement.setInt(2, idDisciplina);		
+			preparetedStatement.setString(3, media);
+			System.out.println(preparetedStatement);
+			int teste = preparetedStatement.executeUpdate();
+			if(teste > 0) {
+				preparetedStatement.close();
+				conexao.close();
+				return true;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("Erro inserir disciplina cursada por aluno "+e);	
+		}
+		return false;
 	}
 
 }

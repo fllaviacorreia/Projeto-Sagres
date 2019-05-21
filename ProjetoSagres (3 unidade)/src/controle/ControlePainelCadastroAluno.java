@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import banco.BancoAlunoGerenciar;
 import banco.BancoCursoGerenciar;
+import banco.BancoDisciplinaGerenciar;
 import banco.BancoEnderecoGerenciar;
 import visao.VisaoPainelCadastroAluno;
 import controle.ControlePainelCadastros;
@@ -109,8 +110,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-
-
+		
 		if(e.getSource() == telaCadAluno.getButtonCancelar()){
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadAluno, 
@@ -139,8 +139,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 
 				if(!disciplina.equals("")){
 					disciplina = disciplina.toUpperCase();
-					System.out.println("la1");
-					System.out.println(disciplinas.size());
+					System.out.println("size array disciplinas = "  + disciplinas.size());
 					if(Validacoes(disciplina, 1) == 0) {
 						telaCadAluno.getComboBoxHistoricoDisciplinas().addItem(disciplina);
 						disciplinas.add(disciplina);
@@ -327,18 +326,42 @@ public class ControlePainelCadastroAluno implements ActionListener{
 				if((contador == 16 || contador == 17)){
 					tipo = "ALUNO";
 					matricula = String.valueOf(numMatriculaAluno);
-					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo);	
-					
+					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
 					Aluno aluno = new Aluno( nome, matricula, dataNascimento, email, telefone, celular, cpf, rg, uf, 
 							dataExpedicao, orgaoExp, curso, disciplinas);
 					new ControleArquivo(1);
 						
 					
-					
+					int count = 0;
 					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
 					boolean rotorno2 = new BancoAlunoGerenciar().BancoAlunoInserir(aluno);
-					
-					if(retorno1 && rotorno2) {
+					boolean retorno3 = false;
+					if(disciplinas.size() > 0) {
+						int idAluno = new BancoAlunoGerenciar().primeiroEultimo("Aluno", "idAluno", 1);
+						for(int i = 0; i < disciplinas.size(); i++) {
+							
+							try {
+								int idDisciplina = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("Disciplina", "nomeDisciplina", 
+										disciplinas.get(i).toString(), "idDisciplina"));
+								double media = Double.parseDouble(JOptionPane.showInputDialog(telaCadAluno, 
+										"Insira a média na disciplina " + disciplinas.get(i).toString(), 
+										"Solicitação", JOptionPane.OK_CANCEL_OPTION));
+								
+								retorno3 = new BancoAlunoGerenciar().inserirHistoricoDisciplinas(disciplinas.get(i).toString(), 
+										idAluno, idDisciplina, String.valueOf(media));
+								if(retorno3)
+									count++;
+								
+							}catch(Exception e1) {
+								JOptionPane.showMessageDialog(telaCadAluno, "Valor inserido não aceito.", 
+										"Erro", JOptionPane.ERROR_MESSAGE);
+								i--;
+							}
+							
+						}
+						
+					}
+					if((retorno1 && rotorno2) && count == disciplinas.size()) {
 						JOptionPane.showMessageDialog(telaCadAluno, "Cadastro realizado com sucesso.");
 						LimpaDados();
 					}
