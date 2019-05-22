@@ -13,13 +13,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import banco.Banco;
-import banco.BancoAlunoGerenciar;
 import banco.BancoCursoGerenciar;
 import banco.BancoDisciplinaGerenciar;
 import modelo.Disciplina;
-import visao.VisaoPainelCadastroAluno;
-import visao.VisaoPainelCadastroClasse;
-import visao.VisaoPainelCadastroCurso;
 import visao.VisaoPainelCadastroDisciplina;
 
 public class ControlePainelCadastroDisciplina implements ActionListener{
@@ -32,14 +28,13 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	private ArrayList<String> areasDisciplina = new ArrayList<String>();
 	private ArrayList<String>  nomesCurso = new ArrayList<String>();
 	private ArrayList<String>  preRequisitos = new ArrayList<String>();
-	private int semestreInserido;
+//	private int semestreInserido;
 	private int contador;
 	private int saida;
 	private int volta;
 	private String  nome_Disciplina;
 	private String  semestre;
 	private String  area_Disciplina;
-	private String  curso;
 	private String tipoDisciplina;
 	private String 	carga_Horaria;
 	private boolean ePreRequisito;
@@ -48,15 +43,27 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	private boolean teorica;
 	private boolean pratica;
 	private boolean estagio;
+	
 	public ControlePainelCadastroDisciplina(VisaoPainelCadastroDisciplina telaCadDisciplina, int volta) {
 		this.telaCadDisciplina = telaCadDisciplina;
-		telaCadDisciplina.setVisible(true);
+		this.telaCadDisciplina.setVisible(true);
 		this.volta = volta;
 		preenche();
 		AddEventos();
 	}
 
 	public void AddEventos() {
+		telaCadDisciplina.getComboBoxAreaDisciplina().setEnabled(false);
+		telaCadDisciplina.getComboBoxCargaHoraria().setEnabled(false);
+		telaCadDisciplina.getComboBoxSemestre().setEnabled(false);
+		telaCadDisciplina.getRadioButtonEPreRequisito().setEnabled(false);
+		telaCadDisciplina.getRadioButtonEstagio().setEnabled(false);
+		telaCadDisciplina.getRadioButtonObrigatoria().setEnabled(false);
+		telaCadDisciplina.getRadioButtonOptativa().setEnabled(false);
+		telaCadDisciplina.getRadioButtonPratica().setEnabled(false);
+		telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(false);
+		telaCadDisciplina.getButtonAdicionarAreaDisciplina().setEnabled(false);
+		telaCadDisciplina.getTextFieldNomeDisciplina().setEnabled(false);
 		telaCadDisciplina.getRadioButtonPreRequisitos().addActionListener(this);
 		telaCadDisciplina.getRadioButtonTeorica().addActionListener(this);
 		telaCadDisciplina.getRadioButtonPratica().addActionListener(this);
@@ -78,7 +85,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	public void troca() {
 		telaCadDisciplina.setVisible(true);
 	}
-	
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == telaCadDisciplina.getButtonVoltar()) {
@@ -178,8 +184,8 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 						areasDisciplina.add(areaDisciplina);
 						System.out.println(areasDisciplina);
 						telaCadDisciplina.getComboBoxAreaDisciplina().addItem(areaDisciplina);
+						telaCadDisciplina.getComboBoxAreaDisciplina().setSelectedItem(areaDisciplina);
 					}else {
-						System.out.println("la3");
 						JOptionPane.showMessageDialog(telaCadDisciplina, "Nome já incluso.", 
 								"Erro", JOptionPane.ERROR_MESSAGE);
 					}
@@ -219,6 +225,18 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					for(int i = 1; i <= semestres; i++) {
 						telaCadDisciplina.getComboBoxSemestre().addItem(String.valueOf(i));
 					}
+					telaCadDisciplina.getComboBoxCurso().setEnabled(false);
+					telaCadDisciplina.getComboBoxAreaDisciplina().setEnabled(true);
+					telaCadDisciplina.getComboBoxCargaHoraria().setEnabled(true);
+					telaCadDisciplina.getComboBoxSemestre().setEnabled(true);
+					telaCadDisciplina.getRadioButtonEPreRequisito().setEnabled(true);
+					telaCadDisciplina.getRadioButtonEstagio().setEnabled(true);
+					telaCadDisciplina.getRadioButtonObrigatoria().setEnabled(true);
+					telaCadDisciplina.getRadioButtonOptativa().setEnabled(true);
+					telaCadDisciplina.getRadioButtonPratica().setEnabled(true);
+					telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(true);
+					telaCadDisciplina.getButtonAdicionarAreaDisciplina().setEnabled(true);
+					telaCadDisciplina.getTextFieldNomeDisciplina().setEnabled(true);
 				}
 			}catch (Exception e1) {
 				System.out.println(e1.getMessage());
@@ -231,14 +249,22 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 																	"Inserir", JOptionPane.OK_CANCEL_OPTION);
 					if(!preRequisito.isEmpty()) {
 						preRequisito = preRequisito.toUpperCase();
-						if(Validacoes(preRequisito, preRequisitos) == 0) {	
-							preRequisitos.add(preRequisito);
-							telaCadDisciplina.getComboBoxPreRequisitos().addItem(preRequisito);
+						int consulta = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("Disciplina", "nomeDisciplina", preRequisito, "Curso_idCurso"));
+						String consulta1 = new BancoCursoGerenciar().consultar("Curso", "idCurso", String.valueOf(consulta), "nomeCurso");
+						if(consulta1.equals(telaCadDisciplina.getComboBoxCurso().getSelectedItem())) {
+							if(Validacoes(preRequisito, preRequisitos) == 0) {	
+								preRequisitos.add(preRequisito);
+								telaCadDisciplina.getComboBoxPreRequisitos().addItem(preRequisito);
+							}else {
+								JOptionPane.showMessageDialog(telaCadDisciplina, "Nome já incluso.", 
+										"Erro", JOptionPane.ERROR_MESSAGE);
+							}
 						}else {
-							System.out.println("la3");
-							JOptionPane.showMessageDialog(telaCadDisciplina, "Nome já incluso.", 
+							JOptionPane.showMessageDialog(telaCadDisciplina, "Disciplina cadastrada em outro curso, não no curso escolhido. "
+									+ "\nInsira somente disciplinas do curso escolhido.", 
 									"Erro", JOptionPane.ERROR_MESSAGE);
 						}
+						
 					}
 				}catch (Exception e1) {
 					System.out.println(e1.getMessage());
@@ -300,7 +326,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					if(!telaCadDisciplina.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
 						nome_Disciplina = dado.TiraEspaços(telaCadDisciplina.getTextFieldNomeDisciplina().getText().toString());
 						nome_Disciplina = nome_Disciplina.toUpperCase();
-						if(ValidaNomeDisciplina(nome_Disciplina,  curso) == 0) {
+						if(ValidaNomeDisciplina(nome_Disciplina,  nomeCurso) == 0) {
 							contador++;
 						}else {
 							JOptionPane.showMessageDialog(telaCadDisciplina, "Disciplina com mesmo nome e curso já cadastrados.", 
@@ -350,7 +376,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 				}
 				
 				if(contador == 6) {
-					dados = new Disciplina(nome_Disciplina, semestre, area_Disciplina, curso, tipoDisciplina, 
+					dados = new Disciplina(nome_Disciplina, semestre, area_Disciplina, nomeCurso, tipoDisciplina, 
 							preRequisitos, carga_Horaria, ePreRequisito, optativa, obrigatoria, teorica, pratica, estagio);
 					
 					boolean retorno = new BancoDisciplinaGerenciar().BancoDisciplinaInserir(dados);
@@ -410,7 +436,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 				int idCurso = Integer.parseInt(new BancoCursoGerenciar().consultar("Curso", "nomeCurso", curso, "idCurso"));
 				if(idCursoDisciplina == idCurso)
 					contador++;
-				System.out.println(contador);
+				
 			}
 		}
 		return contador;
@@ -421,7 +447,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 		for(int i = 0; i < dados.size(); i++) {
 			if(dados.get(i).toString().equals(nome)) {
 				contador += 1;
-				System.out.println(contador);
 			}
 		}
 		return contador;
@@ -431,8 +456,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 		int i;
 		telaCadDisciplina.getComboBoxAreaDisciplina().addItem("SELECIONE");
 		telaCadDisciplina.getComboBoxCurso().addItem("SELECIONE");
-		
-		
 	//preenchendo o combobox com os nomes de cursos	e as areas
 		try {
 			ArrayList<String> cursosNome = new BancoCursoGerenciar().consultarUmaColuna("Curso", "nomeCurso");
@@ -456,6 +479,18 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	}
 	
 	public void LimpaDados() {
+		telaCadDisciplina.getComboBoxAreaDisciplina().setEnabled(false);
+		telaCadDisciplina.getComboBoxCargaHoraria().setEnabled(false);
+		telaCadDisciplina.getComboBoxSemestre().setEnabled(false);
+		telaCadDisciplina.getRadioButtonEPreRequisito().setEnabled(false);
+		telaCadDisciplina.getRadioButtonEstagio().setEnabled(false);
+		telaCadDisciplina.getRadioButtonObrigatoria().setEnabled(false);
+		telaCadDisciplina.getRadioButtonOptativa().setEnabled(false);
+		telaCadDisciplina.getRadioButtonPratica().setEnabled(false);
+		telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(false);
+		telaCadDisciplina.getButtonAdicionarAreaDisciplina().setEnabled(false);
+		telaCadDisciplina.getTextFieldNomeDisciplina().setEnabled(false);
+		telaCadDisciplina.getComboBoxCurso().setEditable(true);
 		telaCadDisciplina.getComboBoxAreaDisciplina().removeAllItems();
 		telaCadDisciplina.getComboBoxCargaHoraria().setSelectedIndex(0);
 		telaCadDisciplina.getComboBoxCurso().removeAllItems();

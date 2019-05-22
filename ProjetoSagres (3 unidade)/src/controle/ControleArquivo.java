@@ -30,7 +30,7 @@ public class ControleArquivo{
 	 * 3 - curso
 	 * 4 - disciplina
 	 * 5 - professor
-	 * 6 - realiza a verificação de todos os arquivos e preenche o arraylist
+	 * 6 - realiza a verificação de todos os arquivos e preenche os arraylist's
 	 * 
 	 */
 

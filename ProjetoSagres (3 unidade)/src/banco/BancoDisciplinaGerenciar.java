@@ -100,7 +100,26 @@ public class BancoDisciplinaGerenciar {
 	
 	public boolean inserirPreRequisitos(int idDisciplina, int idPreRequisito){
 		
+		String sqlDisciplina = "INSERT INTO disciplina_tem_prerequisito(idDisciplina, idPreRequisito) VALUES(?, ?)";
+		conexao = BancoConexao.open();
 		
+		try {
+			preparedStatement = conexao.prepareStatement(sqlDisciplina);
+			preparedStatement.setInt(1, idDisciplina);
+			preparedStatement.setInt(2, idPreRequisito);
+			int teste = preparedStatement.executeUpdate();
+			if(teste > 0) {
+//					System.out.println("Inserir1");
+				preparedStatement.close();
+				conexao.close();
+				return true;
+			}
+			
+			
+		} catch (Exception e) {
+			
+			System.err.println("Erro inserir curso "+e);	
+		}								
 		return false;
 	}
 }

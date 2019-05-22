@@ -61,8 +61,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 	public ControlePainelCadastroAluno(VisaoPainelCadastroAluno telaCadAluno, int volta) {
 		this.telaCadAluno = telaCadAluno;
 		this.volta = volta;
-		telaCadAluno.setVisible(true);
-		System.out.println("Cad Aluno");
+		this.telaCadAluno.setVisible(true);
 		AddEventos();
 		preecheComboBox();
 		numMatriculaAluno = (calendario.get(Calendar.YEAR)*10000) + Main.aluno.size();
@@ -76,19 +75,13 @@ public class ControlePainelCadastroAluno implements ActionListener{
 	}
 
 	public void AddEventos(){
-		System.out.println("evt Aluno");
 		telaCadAluno.getButtonCancelar().addActionListener(this);
 		telaCadAluno.getButtonConfirmar().addActionListener(this);
 		telaCadAluno.getButtonVoltar().addActionListener(this);
-		telaCadAluno.getFormattedTextFieldMatriculaAluno().addActionListener(this);
-		telaCadAluno.getFormattedTextFieldCpf().addActionListener(this);
-		telaCadAluno.getFormattedTextFieldRg().addActionListener(this);
-		telaCadAluno.getFormattedTextFieldNomeAluno().addActionListener(this);
 		telaCadAluno.getComboBoxCurso().addActionListener(this);
 		telaCadAluno.getComboBoxHistoricoDisciplinas().addActionListener(this);
 		telaCadAluno.getButtonAdicionarDisciplina().addActionListener(this);
 	}
-
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == telaCadAluno.getButtonVoltar()) {

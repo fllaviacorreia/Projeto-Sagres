@@ -114,7 +114,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 	public JLabel getLabelSemestre() {
 		if(labelSemestre == null) {
 			labelSemestre = new JLabel("Semestre:");
-			labelSemestre.setBounds(563, 32, 105, 20);
+			labelSemestre.setBounds(430, 32, 105, 20);
 			labelSemestre.setForeground(Color.BLACK);
 			labelSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
 			labelSemestre.setVisible(true);
@@ -195,7 +195,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			comboBoxSemestre = new JComboBox<String>();
 			comboBoxSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxSemestre.setBackground(new Color(255, 255, 255));
-			comboBoxSemestre.setBounds(563, 63, 130, 25);
+			comboBoxSemestre.setBounds(430, 63, 130, 25);
 			comboBoxSemestre.addItem("SELECIONE");
 			comboBoxSemestre.addItem("1");
 			comboBoxSemestre.addItem("2");
