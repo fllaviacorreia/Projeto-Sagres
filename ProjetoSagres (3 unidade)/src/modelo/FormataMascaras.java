@@ -1,4 +1,4 @@
-package modelo.validacao;
+package modelo;
 /**
  * 
  * @author Murilo Silva Santana

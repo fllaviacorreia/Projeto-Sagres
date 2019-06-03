@@ -8,7 +8,6 @@ package modelo;
 import java.util.ArrayList;
 
 public class Horario {
-
 	private String curso;
 	private String disciplina;
 	private String professor;

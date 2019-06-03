@@ -8,7 +8,7 @@ package visao;
 import java.awt.*;
 import javax.swing.*;
 
-import modelo.validacao.FormataMascaras;
+import modelo.FormataMascaras;
 
 
 public class VisaoPainelCadastroDisciplina extends JPanel{
@@ -197,9 +197,6 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			comboBoxSemestre.setBackground(new Color(255, 255, 255));
 			comboBoxSemestre.setBounds(430, 63, 130, 25);
 			comboBoxSemestre.addItem("SELECIONE");
-			comboBoxSemestre.addItem("1");
-			comboBoxSemestre.addItem("2");
-			comboBoxSemestre.addItem("3");
 			comboBoxSemestre.setVisible(true);
 		}
 		return comboBoxSemestre;
@@ -245,7 +242,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			radioButtonTeorica = new JRadioButton("Teórica");
 			radioButtonTeorica.setForeground(Color.BLACK);
 			radioButtonTeorica.setFont(new Font("Arial", Font.PLAIN, 14));
-			radioButtonTeorica.setBackground(new Color(66, 179, 165));
+			radioButtonTeorica.setBackground(new Color(120, 205, 194));
 			radioButtonTeorica.setSelected(true);
 			radioButtonTeorica.setEnabled(false);
 			radioButtonTeorica.setVisible(true);
@@ -259,7 +256,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			radioButtonPratica = new JRadioButton("Prática");
 			radioButtonPratica.setForeground(Color.BLACK);
 			radioButtonPratica.setFont(new Font("Arial", Font.PLAIN, 14));
-			radioButtonPratica.setBackground(new Color(66, 179, 165));
+			radioButtonPratica.setBackground(new Color(120, 205, 194));
 			radioButtonPratica.setVisible(true);
 			radioButtonPratica.setBounds(249, 324, 87, 20);
 		}
@@ -270,7 +267,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			radioButtonEstagio = new JRadioButton("Estágio");
 			radioButtonEstagio.setForeground(Color.BLACK);
 			radioButtonEstagio.setFont(new Font("Arial", Font.PLAIN, 14));
-			radioButtonEstagio.setBackground(new Color(66, 179, 165));
+			radioButtonEstagio.setBackground(new Color(120, 205, 194));
 			radioButtonEstagio.setVisible(true);
 			radioButtonEstagio.setBounds(249, 347, 87, 20);
 		}
@@ -361,7 +358,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			radioButtonEPreRequisito.setForeground(Color.BLACK);
 			radioButtonEPreRequisito.setFont(new Font("Arial", Font.PLAIN, 14));
 			radioButtonEPreRequisito.setBounds(47, 298, 141, 23);
-			radioButtonEPreRequisito.setBackground(new Color(66, 179, 165));
+			radioButtonEPreRequisito.setBackground(new Color(120, 205, 194));
 		}
 		return radioButtonEPreRequisito;
 	}
@@ -383,7 +380,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			radioButtonOptativa.setSize(94, 20);
 			radioButtonOptativa.setLocation(47, 347);
 			radioButtonOptativa.setFont(new Font("Arial", Font.PLAIN, 14));
-			radioButtonOptativa.setBackground(new Color(66, 179, 165));
+			radioButtonOptativa.setBackground(new Color(120, 205, 194));
 			radioButtonOptativa.setVisible(true);
 		}
 		return radioButtonOptativa;
@@ -395,7 +392,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 			radioButtonObrigatoria.setSize(109, 20);
 			radioButtonObrigatoria.setLocation(47, 324);
 			radioButtonObrigatoria.setFont(new Font("Arial", Font.PLAIN, 14));
-			radioButtonObrigatoria.setBackground(new Color(66, 179, 165));
+			radioButtonObrigatoria.setBackground(new Color(120, 205, 194));
 			radioButtonObrigatoria.setVisible(true);
 		}
 		return radioButtonObrigatoria;

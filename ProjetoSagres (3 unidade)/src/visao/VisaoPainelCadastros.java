@@ -16,6 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class VisaoPainelCadastros extends JPanel {
 
@@ -30,29 +33,61 @@ public class VisaoPainelCadastros extends JPanel {
 	private JMenu     menuOpcoes		 		= null;
 	private JMenu     menuConsultas		 		= null;
 	private JMenu     menuSobre			 		= null;
-	private JMenuItem menuItemAluno 	 		= null;
-	private JMenuItem menuItemClasse 	 		= null;
-	private JMenuItem menuItemCurso 	 		= null;
-	private JMenuItem menuItemDisciplina 		= null;
-	private JMenuItem menuItemProfessor	 		= null;
+	private JMenuItem menuItemCadastroAluno 	 = null;
+	private JMenuItem menuItemCadastroClasse 	 = null;
+	private JMenuItem menuItemCadastroCurso 	 = null;
+	private JMenuItem menuItemCadastroDisciplina = null;
+	private JMenuItem menuItemCadastroProfessor	 = null;
 //	private JButton buttonCancelar 	 			= null;
 //	private JButton buttonFechar   				= null;
 //	VisaoPainelTelaInicial menu = new VisaoPainelTelaInicial();
     
     public VisaoPainelCadastros(){
-    	setLayout(null);
     	this.setBackground(new Color(66, 179, 165));
     	this.setMinimumSize(new Dimension(1000, 730));
 		this.setMaximumSize(new Dimension(1000, 730));
 		this.setVisible(true);
-        this.add(getButtonCadastroAluno());
-        this.add(getButtonCadastroClasse());
-        this.add(getButtonCadastroCurso());
-        this.add(getButtonCadastroDisciplina());
-        this.add(getButtonCadastroProfessor());
-		this.add(getButtonVoltar());
-
-		this.add(getMenuBarMenu());
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(1)
+					.addComponent(getMenuBarMenu(), GroupLayout.PREFERRED_SIZE, 1435, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(getButtonVoltar(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(getButtonCadastroAluno(), GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+								.addComponent(getButtonCadastroClasse(), GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+								.addComponent(getButtonCadastroCurso(), GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+								.addComponent(getButtonCadastroDisciplina(), GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+								.addComponent(getButtonCadastroProfessor(), GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+							.addGap(1191))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(2)
+					.addComponent(getMenuBarMenu(), GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+					.addGap(46)
+					.addComponent(getButtonCadastroAluno(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(48)
+					.addComponent(getButtonCadastroClasse(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(53)
+					.addComponent(getButtonCadastroCurso(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(60)
+					.addComponent(getButtonCadastroDisciplina(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(51)
+					.addComponent(getButtonCadastroProfessor(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(113)
+					.addComponent(getButtonVoltar(), GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(21))
+		);
+		setLayout(groupLayout);
 		
 	//	this.add(menu.getMenuBarMenu());
 	//	this.add(getButtonCancelar());
@@ -64,7 +99,6 @@ public class VisaoPainelCadastros extends JPanel {
         if(buttonCadastroProfessor == null){
             buttonCadastroProfessor = new JButton("CADASTRAR PROFESSOR");
             buttonCadastroProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
-            buttonCadastroProfessor.setBounds(41, 454, 219, 40);
             buttonCadastroProfessor.setBackground(new Color(255, 255, 255));
             buttonCadastroProfessor.setVisible(true);
      
@@ -76,7 +110,6 @@ public class VisaoPainelCadastros extends JPanel {
         if(buttonCadastroAluno == null){
             buttonCadastroAluno = new JButton("CADASTRAR ALUNO");
             buttonCadastroAluno.setFont(new Font("Arial", Font.PLAIN, 14));
-            buttonCadastroAluno.setBounds(41, 82, 219, 40);
             buttonCadastroAluno.setBackground(new Color(255, 255, 255));
             buttonCadastroAluno.setVisible(true);
         }
@@ -87,7 +120,6 @@ public class VisaoPainelCadastros extends JPanel {
         if(buttonCadastroClasse == null){
             buttonCadastroClasse = new JButton("CADASTRAR CLASSE");
             buttonCadastroClasse.setFont(new Font("Arial", Font.PLAIN, 14));
-            buttonCadastroClasse.setBounds(41, 170, 219, 40);
             buttonCadastroClasse.setBackground(new Color(255, 255, 255));
             buttonCadastroClasse.setVisible(true);
         }
@@ -98,7 +130,6 @@ public class VisaoPainelCadastros extends JPanel {
     	if(buttonCadastroCurso == null){
     		buttonCadastroCurso = new JButton("CADASTRAR CURSO");
     		buttonCadastroCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-    		buttonCadastroCurso.setBounds(41, 263, 219, 40);
     		buttonCadastroCurso.setBackground(new Color(255, 255, 255));
     		buttonCadastroCurso.setVisible(true);
         }
@@ -109,7 +140,6 @@ public class VisaoPainelCadastros extends JPanel {
         if(buttonCadastroDisciplina == null){
             buttonCadastroDisciplina = new JButton("CADASTRAR DISCIPLINA");
             buttonCadastroDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
-            buttonCadastroDisciplina.setBounds(41, 363, 219, 40);
             buttonCadastroDisciplina.setBackground(new Color(255, 255, 255));
             buttonCadastroDisciplina.setVisible(true); 
         }
@@ -120,7 +150,6 @@ public class VisaoPainelCadastros extends JPanel {
 		if(buttonVoltar == null) {
 			buttonVoltar = new JButton("VOLTAR");
 			buttonVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonVoltar.setBounds(54, 631, 130, 33);
 			buttonVoltar.setBackground(new Color(255, 255, 255));
 			buttonVoltar.setVisible(true);
 		}
@@ -153,7 +182,6 @@ public class VisaoPainelCadastros extends JPanel {
 		if(menuBarMenu == null) {
 			menuBarMenu = new JMenuBar();
 			menuBarMenu.setLayout(null);
-			menuBarMenu.setBounds(1, 1, 1400, 40);
 			menuBarMenu.add(getMenuCadastros());
 			menuBarMenu.add(getMenuConsultas());
 			menuBarMenu.add(getMenuOpcoes());
@@ -171,11 +199,11 @@ public class VisaoPainelCadastros extends JPanel {
 			menuCadastros.setBackground(Color.LIGHT_GRAY);
 			menuCadastros.setForeground(Color.BLACK);
 			menuCadastros.setBounds(1, 2, 90, 48);
-			menuCadastros.add(getMenuItemAluno());
-			menuCadastros.add(getMenuItemClasse());
-			menuCadastros.add(getMenuItemCurso());
-			menuCadastros.add(getMenuItemDisciplina());
-			menuCadastros.add(getMenuItemProfessor());
+			menuCadastros.add(getMenuItemCadastroAluno());
+			menuCadastros.add(getMenuItemCadastroClasse());
+			menuCadastros.add(getMenuItemCadastroCurso());
+			menuCadastros.add(getMenuItemCadastroDisciplina());
+			menuCadastros.add(getMenuItemCadastroProfessor());
 		}
 		return menuCadastros;
 	}
@@ -216,43 +244,43 @@ public class VisaoPainelCadastros extends JPanel {
 		return menuSobre;
 	}
 
-	public JMenuItem getMenuItemAluno() {
-		if(menuItemAluno == null) {
-			menuItemAluno = new JMenuItem("Aluno");
-			menuItemAluno.setBounds(1, 2, 40, 30);
+	public JMenuItem getMenuItemCadastroAluno() {
+		if(menuItemCadastroAluno == null) {
+			menuItemCadastroAluno = new JMenuItem("Aluno");
+		//	menuItemAluno.setBounds(1, 1, 40, 30);
 		}
-		return menuItemAluno;
+		return menuItemCadastroAluno;
 	}
 
-	public JMenuItem getMenuItemClasse() {
-		if(menuItemClasse == null) {
-			menuItemClasse = new JMenuItem("Classe");
-			menuItemClasse.setBounds(1, 80, 40, 30);
+	public JMenuItem getMenuItemCadastroClasse() {
+		if(menuItemCadastroClasse == null) {
+			menuItemCadastroClasse = new JMenuItem("Classe");
+		//	menuItemClasse.setBounds(1, 80, 40, 30);
 		}
-		return menuItemClasse;
+		return menuItemCadastroClasse;
 	}
 
-	public JMenuItem getMenuItemCurso() {
-		if(menuItemCurso == null) {
-			menuItemCurso = new JMenuItem("Curso");
-			menuItemCurso.setBounds(1, 112, 40, 30);
+	public JMenuItem getMenuItemCadastroCurso() {
+		if(menuItemCadastroCurso == null) {
+			menuItemCadastroCurso = new JMenuItem("Curso");
+		//	menuItemCurso.setBounds(1, 112, 40, 30);
 		}
-		return menuItemCurso;
+		return menuItemCadastroCurso;
 	}
 
-	public JMenuItem getMenuItemDisciplina() {
-		if(menuItemDisciplina == null) {
-			menuItemDisciplina = new JMenuItem("Disciplina");
-			menuItemDisciplina.setBounds(1, 144, 40, 30);
+	public JMenuItem getMenuItemCadastroDisciplina() {
+		if(menuItemCadastroDisciplina == null) {
+			menuItemCadastroDisciplina = new JMenuItem("Disciplina");
+		//	menuItemDisciplina.setBounds(1, 144, 40, 30);
 		}
-		return menuItemDisciplina;
+		return menuItemCadastroDisciplina;
 	}
 
-	public JMenuItem getMenuItemProfessor() {
-		if(menuItemProfessor == null) {
-			menuItemProfessor = new JMenuItem("Professor");
-			menuItemProfessor.setBounds(1, 176, 40, 30);
+	public JMenuItem getMenuItemCadastroProfessor() {
+		if(menuItemCadastroProfessor == null) {
+			menuItemCadastroProfessor = new JMenuItem("Professor");
+		//	menuItemProfessor.setBounds(1, 176, 40, 30);
 		}
-		return menuItemProfessor;
+		return menuItemCadastroProfessor;
 	}
 }

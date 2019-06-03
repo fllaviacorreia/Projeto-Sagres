@@ -22,7 +22,7 @@ public class VisaoFramePrincipal extends JFrame{
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setResizable(false);
+ //       this.setResizable(false);
         
     }
 
@@ -37,18 +37,17 @@ public class VisaoFramePrincipal extends JFrame{
 	public void trocarPainel(JPanel painel, String titulo) {
 		this.setContentPane(painel);
 		this.setTitle(titulo);
+		setContentPane(painel);
+		setTitle(titulo);
+//		setMinimumSize(new Dimension(display.width, display.height - 2));
+//		setMaximumSize(new Dimension(display));
+		setLocation(0,0);
+		repaint();
+		setSize( 1011, 730 );
+		validate();
+		setLocation((display.width - this.getSize().width)/2 , 0);
 		
-//		if(titulo == "Login") {
-//			this.setSize(500, 500);
-//			this.setResizable(false);
-//			this.setLocation((display.width - this.getSize().width)/2 , 
-//					(display.height - this.getSize().height)/2);
-//		}
-//		else {
-			this.setMinimumSize(new Dimension(1010, 720));
-			this.setMaximumSize(new Dimension(1010, 720));
-			this.setLocation(0,0);
-//		}
+
 			
 		repaint();
 		validate();

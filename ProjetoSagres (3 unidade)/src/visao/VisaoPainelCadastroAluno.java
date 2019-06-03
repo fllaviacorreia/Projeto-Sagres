@@ -12,9 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
-
-import modelo.validacao.FormataMascaras;
 import javax.swing.border.LineBorder;
+
+import modelo.FormataMascaras;
+
 import javax.swing.JTextField;
 
 //import com.toedter.calendar.JDateChooser;

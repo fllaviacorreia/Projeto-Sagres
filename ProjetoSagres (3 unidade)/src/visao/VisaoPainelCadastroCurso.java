@@ -11,7 +11,7 @@ import java.awt.Font;
 
 import javax.swing.*;
 
-import modelo.validacao.FormataMascaras;
+import modelo.FormataMascaras;
 
 public class VisaoPainelCadastroCurso extends JPanel{
 	
@@ -25,7 +25,7 @@ public class VisaoPainelCadastroCurso extends JPanel{
 	private JButton 			buttonAdicionarCargaHoraria  	= null;
 	
 	FormataMascaras formatacao = new FormataMascaras();
-	private JButton buttonGerarFluxograma;
+//	private JButton buttonGerarFluxograma;
 	private JComboBox<String> comboBoxHorario;
 	private JLabel labelHorario;
 	private JComboBox<String> comboBoxSemestresTotais;
@@ -45,7 +45,7 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
 		this.add(getButtonAdicionarCargaHoraria());
-		add(getButtonGerarFluxograma());
+//		add(getButtonGerarFluxograma());
 		add(getComboBoxHorario());
 		add(getLabelHorario());
 		add(getComboBoxSemestresTotais());
@@ -144,16 +144,16 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		}
 		return buttonAdicionarCargaHoraria;
 	}
-	public JButton getButtonGerarFluxograma() {
-		if (buttonGerarFluxograma == null) {
-			buttonGerarFluxograma = new JButton("Gerar Fluxograma");
-			buttonGerarFluxograma.setBackground(Color.WHITE);
-			buttonGerarFluxograma.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonGerarFluxograma.setForeground(Color.BLACK);
-			buttonGerarFluxograma.setBounds(23, 251, 154, 23);
-		}
-		return buttonGerarFluxograma;
-	}
+//	public JButton getButtonGerarFluxograma() {
+//		if (buttonGerarFluxograma == null) {
+//			buttonGerarFluxograma = new JButton("Gerar Fluxograma");
+//			buttonGerarFluxograma.setBackground(Color.WHITE);
+//			buttonGerarFluxograma.setFont(new Font("Arial", Font.PLAIN, 14));
+//			buttonGerarFluxograma.setForeground(Color.BLACK);
+//			buttonGerarFluxograma.setBounds(23, 251, 154, 23);
+//		}
+//		return buttonGerarFluxograma;
+//	}
 	public JComboBox<String> getComboBoxHorario() {
 		if (comboBoxHorario == null) {
 			comboBoxHorario = new JComboBox();

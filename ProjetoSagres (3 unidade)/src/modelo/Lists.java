@@ -1,4 +1,4 @@
-package modelo.validacao;
+package modelo;
 
 import java.util.Calendar;
 import java.util.InputMismatchException;
@@ -6,8 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import controle.Main;
-import modelo.Aluno;
-import modelo.Professor;
 
 
 public class Lists {

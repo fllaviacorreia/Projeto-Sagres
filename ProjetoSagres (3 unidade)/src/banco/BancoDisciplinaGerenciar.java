@@ -6,26 +6,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import modelo.Curso;
 import modelo.Disciplina;
 
 public class BancoDisciplinaGerenciar {
 	private Connection conexao;
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
-	private int curso;
 
 	public boolean BancoDisciplinaInserir(Disciplina disciplina) {
 		//aqui é o comando em sql que é necessário para inserir no banco de dados
 		String sqlDisciplina = "INSERT INTO Disciplina(nomeDisciplina, areaDisciplina, semestre, cargaHoraria," + 
-				"tipoDisciplina, optativaObrigatoria, teorica, estagio, pratica, preRequisito, Curso_idCurso ) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				" optativaObrigatoria, teorica, estagio, pratica, preRequisito, Curso_idCurso ) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		/*
 		 * String nome_Disciplina, String semestre, String area_Disciplina, String curso,
 		 *	String tipoDisciplina, ArrayList<String> preRequisitos, String carga_Horaria, boolean ePreRequisito,
 		 *	boolean optativa, boolean obrigatoria, boolean teorica, boolean pratica, boolean estagio
 		 */
-		curso = Integer.parseInt(new Banco().consultar("Curso", "nomeCurso", disciplina.getCurso(), "idCurso"));
+		int curso = Integer.parseInt(new Banco().consultar("Curso", "nomeCurso", disciplina.getCurso(), "idCurso"));
+	//	System.out.println("id curso selecionado = " + curso);
 		conexao = BancoConexao.open();
 		
 		try {
@@ -34,22 +33,20 @@ public class BancoDisciplinaGerenciar {
 			preparedStatement.setString(2, disciplina.getArea_Disciplina());
 			preparedStatement.setString(3, disciplina.getSemestre());
 			preparedStatement.setString(4, disciplina.getCarga_Horaria());
-			preparedStatement.setString(5, disciplina.getTipoDisciplina());
-			if(disciplina.getOptativa() == true)
-				preparedStatement.setString(6, "OPTATIVA");
-			else if(disciplina.getObrigatoria() == true)
-				preparedStatement.setString(6, "OBRIGATORIA");
+			if(disciplina.getOptativa())
+				preparedStatement.setString(5, "OPTATIVA");
+			else
+				preparedStatement.setString(5, "OBRIGATORIA");
 
-			preparedStatement.setBoolean(7, disciplina.getTeorica());
-			preparedStatement.setBoolean(8, disciplina.getEstagio());
-			preparedStatement.setBoolean(9, disciplina.getPratica());
-			preparedStatement.setBoolean(10, disciplina.getEPreRequisito());
-			preparedStatement.setInt(11, curso);
+			preparedStatement.setBoolean(6, disciplina.getTeorica());
+			preparedStatement.setBoolean(7, disciplina.getEstagio());
+			preparedStatement.setBoolean(8, disciplina.getPratica());
+			preparedStatement.setBoolean(9, disciplina.getEPreRequisito());
+			preparedStatement.setInt(10, curso);
 			
 			int teste = preparedStatement.executeUpdate();
 
 			if(teste > 0) {
-//					System.out.println("Inserir1");
 				preparedStatement.close();
 				conexao.close();
 				return true;
@@ -58,7 +55,7 @@ public class BancoDisciplinaGerenciar {
 			
 		} catch (Exception e) {
 			
-			System.err.println("Erro inserir curso "+e);	
+			System.err.println("Erro inserir disciplina "+e);	
 		}								
 	
 		return false;

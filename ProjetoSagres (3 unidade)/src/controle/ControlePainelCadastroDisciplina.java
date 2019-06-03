@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import banco.Banco;
 import banco.BancoCursoGerenciar;
 import banco.BancoDisciplinaGerenciar;
+import modelo.Arquivo;
 import modelo.Disciplina;
 import visao.VisaoPainelCadastroDisciplina;
 
@@ -26,7 +27,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	private String nomeCurso = "";
 	private String preRequisito = "";
 	private ArrayList<String> areasDisciplina = new ArrayList<String>();
-	private ArrayList<String>  nomesCurso = new ArrayList<String>();
+ 	private ArrayList<String>  nomesCurso = new ArrayList<String>();
 	private ArrayList<String>  preRequisitos = new ArrayList<String>();
 //	private int semestreInserido;
 	private int contador;
@@ -34,8 +35,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	private int volta;
 	private String  nome_Disciplina;
 	private String  semestre;
-	private String  area_Disciplina;
-	private String tipoDisciplina;
 	private String 	carga_Horaria;
 	private boolean ePreRequisito;
 	private boolean optativa;
@@ -182,7 +181,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					areaDisciplina = areaDisciplina.toUpperCase();
 					if(Validacoes(areaDisciplina, areasDisciplina) == 0) {	
 						areasDisciplina.add(areaDisciplina);
-						System.out.println(areasDisciplina);
 						telaCadDisciplina.getComboBoxAreaDisciplina().addItem(areaDisciplina);
 						telaCadDisciplina.getComboBoxAreaDisciplina().setSelectedItem(areaDisciplina);
 					}else {
@@ -196,32 +194,11 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 			}
 			
 		}
-		if(e.getSource() == telaCadDisciplina.getComboBoxSemestre()){
-			try {
-				if(!telaCadDisciplina.getComboBoxSemestre().getSelectedItem().equals("SELECIONE")) {
-					if(telaCadDisciplina.getComboBoxSemestre().getSelectedItem().equals("1")) {
-						telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(false);
-						telaCadDisciplina.getButtonAdicionarPreRequisitos().setEnabled(false);
-						telaCadDisciplina.getComboBoxPreRequisitos().setEnabled(false);
-						telaCadDisciplina.getComboBoxPreRequisitos().removeAllItems();
-						preRequisitos.clear();
-					}else {
-						telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(true);
-					}
-				}
-			}catch (Exception e1) {
-				System.out.println(e1.getMessage());
-				e1.printStackTrace();
-			}
-		}
-		
 		if(e.getSource() == telaCadDisciplina.getComboBoxCurso()){
 			try {
 				if(!telaCadDisciplina.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
 					int semestres = Integer.parseInt(new Banco().consultar("curso", "nomeCurso", 
 							telaCadDisciplina.getComboBoxCurso().getSelectedItem().toString(), "quantidadeSemestres"));
-					telaCadDisciplina.getComboBoxSemestre().removeAllItems();
-					telaCadDisciplina.getComboBoxSemestre().addItem("SELECIONE");
 					for(int i = 1; i <= semestres; i++) {
 						telaCadDisciplina.getComboBoxSemestre().addItem(String.valueOf(i));
 					}
@@ -243,6 +220,26 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
+		if(e.getSource() == telaCadDisciplina.getComboBoxSemestre()){
+			try {
+				if(!(telaCadDisciplina.getComboBoxSemestre().getSelectedItem().equals("SELECIONE"))) {
+					if(telaCadDisciplina.getComboBoxSemestre().getSelectedItem().equals("1")) {
+						telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(false);
+						telaCadDisciplina.getButtonAdicionarPreRequisitos().setEnabled(false);
+						telaCadDisciplina.getComboBoxPreRequisitos().setEnabled(false);
+						telaCadDisciplina.getComboBoxPreRequisitos().removeAllItems();
+						preRequisitos.clear();
+					}else {
+						telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(true);
+					}
+				}
+			}catch (Exception e1) {
+				System.out.println(e1.getMessage());
+				e1.printStackTrace();
+			}
+		}
+		
+		
 		if(e.getSource() == telaCadDisciplina.getButtonAdicionarPreRequisitos()){
 				try {
 					preRequisito = JOptionPane.showInputDialog(telaCadDisciplina, "Insira o pré-requisito:", 
@@ -322,7 +319,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					erros ++;
 				}	
 				if(!telaCadDisciplina.getTextFieldNomeDisciplina().getText().equals("")) {
-					ControleArquivo dado = new ControleArquivo(0); 
+					Arquivo dado = new Arquivo(0); 
 					if(!telaCadDisciplina.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
 						nome_Disciplina = dado.TiraEspaços(telaCadDisciplina.getTextFieldNomeDisciplina().getText().toString());
 						nome_Disciplina = nome_Disciplina.toUpperCase();
@@ -376,14 +373,14 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 				}
 				
 				if(contador == 6) {
-					dados = new Disciplina(nome_Disciplina, semestre, area_Disciplina, nomeCurso, tipoDisciplina, 
-							preRequisitos, carga_Horaria, ePreRequisito, optativa, obrigatoria, teorica, pratica, estagio);
+					dados = new Disciplina(nome_Disciplina, semestre, areaDisciplina, nomeCurso, preRequisitos, 
+							carga_Horaria, ePreRequisito, optativa, obrigatoria, teorica, pratica, estagio);
 					
 					boolean retorno = new BancoDisciplinaGerenciar().BancoDisciplinaInserir(dados);
 					boolean retorno1 = false;
 					int count = 0;
-					int idDisciplina = Integer.parseInt(new Banco().primeiroEultimo("Disciplina", "idDisciplina", 2));
 					if(preRequisitos.size() > 0) {
+						int idDisciplina = Integer.parseInt(new Banco().primeiroEultimo("Disciplina", "idDisciplina", 2));
 						for(int i = 0; i < preRequisitos.size(); i++) {
 							
 							try {
@@ -454,7 +451,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	
 	public void preenche() {
 		int i;
-		telaCadDisciplina.getComboBoxAreaDisciplina().addItem("SELECIONE");
 		telaCadDisciplina.getComboBoxCurso().addItem("SELECIONE");
 	//preenchendo o combobox com os nomes de cursos	e as areas
 		try {
@@ -474,11 +470,26 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 			
 		}catch (Exception e) {
 			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}
 	
 	public void LimpaDados() {
+		telaCadDisciplina.getComboBoxAreaDisciplina().setSelectedIndex(0);
+		telaCadDisciplina.getComboBoxCargaHoraria().setSelectedIndex(0);
+		telaCadDisciplina.getComboBoxCurso().setSelectedIndex(0);
+		telaCadDisciplina.getComboBoxPreRequisitos().removeAllItems();
+		telaCadDisciplina.getComboBoxSemestre().removeAllItems();
+		telaCadDisciplina.getComboBoxSemestre().addItem("SELECIONE");
+		telaCadDisciplina.getComboBoxSemestre().setSelectedIndex(0);
+		telaCadDisciplina.getTextFieldNomeDisciplina().setText(null);
+		telaCadDisciplina.getRadioButtonPratica().setSelected(false);
+		telaCadDisciplina.getRadioButtonEstagio().setSelected(false);
+		telaCadDisciplina.getRadioButtonEPreRequisito().setSelected(false);
+		telaCadDisciplina.getRadioButtonObrigatoria().setSelected(false);
+		telaCadDisciplina.getRadioButtonOptativa().setSelected(false);
+		preRequisitos.clear();
 		telaCadDisciplina.getComboBoxAreaDisciplina().setEnabled(false);
 		telaCadDisciplina.getComboBoxCargaHoraria().setEnabled(false);
 		telaCadDisciplina.getComboBoxSemestre().setEnabled(false);
@@ -490,18 +501,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 		telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(false);
 		telaCadDisciplina.getButtonAdicionarAreaDisciplina().setEnabled(false);
 		telaCadDisciplina.getTextFieldNomeDisciplina().setEnabled(false);
-		telaCadDisciplina.getComboBoxCurso().setEditable(true);
-		telaCadDisciplina.getComboBoxAreaDisciplina().removeAllItems();
-		telaCadDisciplina.getComboBoxCargaHoraria().setSelectedIndex(0);
-		telaCadDisciplina.getComboBoxCurso().removeAllItems();
-		telaCadDisciplina.getComboBoxPreRequisitos().removeAllItems();
-		telaCadDisciplina.getComboBoxSemestre().setSelectedIndex(0);
-		telaCadDisciplina.getTextFieldNomeDisciplina().setText(null);
-		telaCadDisciplina.getRadioButtonPratica().setSelected(false);
-		telaCadDisciplina.getRadioButtonEstagio().setSelected(false);
-		telaCadDisciplina.getRadioButtonEPreRequisito().setSelected(false);
-		telaCadDisciplina.getRadioButtonObrigatoria().setSelected(false);
-		telaCadDisciplina.getRadioButtonOptativa().setSelected(false);
-		preRequisitos.clear();
+		telaCadDisciplina.getComboBoxCurso().setEnabled(true);
 	}
 }

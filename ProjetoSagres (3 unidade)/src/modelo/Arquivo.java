@@ -1,4 +1,4 @@
-package controle;
+package modelo;
 
 import java.io.BufferedReader;
 
@@ -9,17 +9,13 @@ import java.io.BufferedReader;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import modelo.Aluno;
-import modelo.Classe;
-import modelo.Curso;
-import modelo.Disciplina;
-import modelo.Professor;
-
-public class ControleArquivo{
+public class Arquivo{
 	
 	/***
 	 * 
@@ -39,7 +35,7 @@ public class ControleArquivo{
 	String junta;
 	String dado;
 	
-	public ControleArquivo(int value) {
+	public Arquivo(int value) {
 
 //		if(value == 1) {
 //			ControleArquivoEscreveAluno();
@@ -63,6 +59,10 @@ public class ControleArquivo{
 //			ControleArquivoLeDisciplina();
 //			ControleArquivoLeProfessor();
 //		}
+		
+		if(value == 7) {
+			
+		}
 
 	}
 //	
@@ -410,7 +410,46 @@ public class ControleArquivo{
 //		}
 //		return dadosArray;
 //	}
+	
+	public void LeCidades(String [] cidades, String estado){
+		File arquivoCidade = new File("relatorios\\cidades\\listaCidades" + estado +".txt");
+		try {
+			BufferedWriter escreveArquivoCidades = new BufferedWriter(new FileWriter(arquivoCidade));
+			for(int i = 0; i<cidades.length; i++) {
+				escreveArquivoCidades.write(cidades[i].toString());
+				escreveArquivoCidades.newLine();
+			}
+			escreveArquivoCidades.close();
+		} catch (IOException e) {
+			System.err.println("Erro ao escrever cidades: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
 
+	public ArrayList<String> EscreveCidades(String estado) throws IOException{
+		ArrayList<String> cidades = new ArrayList<String>();
+		File arquivo = new File("relatorios\\cidades\\listaCidades" + estado +".txt"); 
+		if(arquivo.exists()) {
+			try {
+				FileReader arquivoCidade = new FileReader("relatorios\\listaCidades" + estado +".txt");
+				BufferedReader lerArquivoCidade = new BufferedReader(arquivoCidade);
+				String linha = lerArquivoCidade.readLine();
+				while(linha != null) {
+					cidades.add(linha);
+					linha = lerArquivoCidade.readLine();
+				}
+				lerArquivoCidade.close();
+			} catch (FileNotFoundException e) {
+				System.err.println("Erro ao ler cidades: " + e.getMessage());
+				e.printStackTrace();
+			}
+			
+		}else {
+			System.out.println("Arquivo das cidades do estado de" + estado + "não encontrado.");
+		}
+		
+		return cidades;
+	}
 	public String TiraEspaços(String dado) {
 		entrada = dado;
 		pedacos = entrada.split(" ");

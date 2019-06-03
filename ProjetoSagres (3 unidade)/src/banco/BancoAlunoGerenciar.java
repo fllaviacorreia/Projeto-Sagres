@@ -64,8 +64,6 @@ public class BancoAlunoGerenciar{
 		// o mesmo acontece com curso, a diferença é que vai buscar o curso no banco
 			preparetedStatement.setInt(12, endereco);
 			preparetedStatement.setInt(13, curso);
-			
-			System.out.println(preparetedStatement);
 			int teste = preparetedStatement.executeUpdate();
 			
 			if(teste > 0) {
@@ -84,7 +82,7 @@ public class BancoAlunoGerenciar{
 	public boolean BancoAlunoExcluir(String numMatricula) {//sugestão mudar para boolean
 		try {
 			conexao = BancoConexao.open();
-			String sql = "DELETE FROM Aluno  WHERE( numMatricula = " + numMatricula + "')";
+			String sql = "DELETE FROM Aluno  WHERE( numMatricula = '" + numMatricula + "')";
 			preparetedStatement = conexao.prepareStatement(sql);
 			int teste = preparetedStatement.executeUpdate(sql);
 			if(teste > 0) {
@@ -154,6 +152,8 @@ public class BancoAlunoGerenciar{
 			if (resultSet.next()) {
 				retorno = (String) resultSet.getString(campo);
 			}
+			preparetedStatement.close();
+			resultSet.close();
 			conexao.close();
 		} catch (SQLException e) {
 			System.out.println("Erro: Não foi possível consultar!\n" + e.getMessage());

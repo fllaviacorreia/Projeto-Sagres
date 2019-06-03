@@ -20,13 +20,14 @@ import banco.BancoEnderecoGerenciar;
 import visao.VisaoPainelCadastroAluno;
 import controle.ControlePainelCadastros;
 import modelo.Aluno;
+import modelo.Arquivo;
 import modelo.Endereco;
-import modelo.validacao.Lists;
+import modelo.Lists;
 
 public class ControlePainelCadastroAluno implements ActionListener{
 	VisaoPainelCadastroAluno telaCadAluno;
 	Aluno dados;
-	ControleArquivo arquivo = new ControleArquivo(0);
+	Arquivo arquivo = new Arquivo(0);
 	Calendar calendario = Calendar.getInstance();
 	private int contador;
 	private int saida;
@@ -128,7 +129,6 @@ public class ControlePainelCadastroAluno implements ActionListener{
 				System.out.println("button Add Disc");
 				disciplina = JOptionPane.showInputDialog(telaCadAluno,  "Insira o nome da disciplina:", 
 						"Inserir", JOptionPane.OK_CANCEL_OPTION);
-				System.out.println("la0");
 
 				if(!disciplina.equals("")){
 					disciplina = disciplina.toUpperCase();
@@ -137,7 +137,6 @@ public class ControlePainelCadastroAluno implements ActionListener{
 						telaCadAluno.getComboBoxHistoricoDisciplinas().addItem(disciplina);
 						disciplinas.add(disciplina);
 					}else {
-						System.out.println("la3");
 						JOptionPane.showMessageDialog(telaCadAluno, "Nome já incluso.", 
 								"Erro", JOptionPane.ERROR_MESSAGE);
 					}
@@ -322,12 +321,12 @@ public class ControlePainelCadastroAluno implements ActionListener{
 					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
 					Aluno aluno = new Aluno( nome, matricula, dataNascimento, email, telefone, celular, cpf, rg, uf, 
 							dataExpedicao, orgaoExp, curso, disciplinas);
-					new ControleArquivo(1);
+					new Arquivo(1);
 						
 					
 					int count = 0;
 					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
-					boolean rotorno2 = new BancoAlunoGerenciar().BancoAlunoInserir(aluno);
+					boolean retorno2 = new BancoAlunoGerenciar().BancoAlunoInserir(aluno);
 					boolean retorno3 = false;
 					if(disciplinas.size() > 0) {
 						int idAluno = new BancoAlunoGerenciar().primeiroEultimo("Aluno", "idAluno", 1);
@@ -354,7 +353,7 @@ public class ControlePainelCadastroAluno implements ActionListener{
 						}
 						
 					}
-					if((retorno1 && rotorno2) && count == disciplinas.size()) {
+					if((retorno1 && retorno2) && count == disciplinas.size()) {
 						JOptionPane.showMessageDialog(telaCadAluno, "Cadastro realizado com sucesso.");
 						LimpaDados();
 					}

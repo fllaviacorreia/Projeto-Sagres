@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -49,7 +50,8 @@ public class BancoProfessorGerenciar {
 			int teste = preparetedStatement.executeUpdate();
 
 			if(teste > 0) {
-					//System.out.println("Inserir1");
+				preparetedStatement.close();
+				conexao.close();
 				return true;
 			}
 			conexao.close();
@@ -60,5 +62,88 @@ public class BancoProfessorGerenciar {
 		
 		return false;		
 	}
-
+	
+	public boolean BancoProfessorExcluir(String numMatricula) {//sugestão mudar para boolean
+		try {
+			conexao = BancoConexao.open();
+			String sql = "DELETE FROM Professor  WHERE( numMatricula = '" + numMatricula + "')";
+			preparetedStatement = conexao.prepareStatement(sql);
+			int teste = preparetedStatement.executeUpdate(sql);
+			if(teste > 0) {
+				return true;
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			try {
+				conexao.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "Erro: Não foi possível excluir!\n" + e.getMessage());
+			return false;
+		}
+		return true;
+	}
+	
+	public int primeiroEultimo(String tabela, String campo, int op) {
+		int valor = 0;
+		try {
+			conexao = BancoConexao.open();
+			if (op <= 0) {
+				String sql = "SELECT MIN(" + campo + ") AS resultado FROM " + tabela;
+				preparetedStatement = conexao.prepareStatement(sql);
+				resultSet = preparetedStatement.executeQuery(sql);
+			} else {
+				String sql = "SELECT MAX(" + campo + ") AS resultado FROM " + tabela;
+				preparetedStatement = conexao.prepareStatement(sql);
+				resultSet = preparetedStatement.executeQuery(sql);
+			}
+			if (resultSet.next()) {
+				valor = this.resultSet.getInt(1);
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println("Não foi possivel realizar a pesquisar Firts/Last!\n" + e.getMessage());
+		}
+		return valor;
+	}
+	
+	public String consultar(String tabela, String chave, String valorChave, String campo) {
+		String sql, retorno = "";
+		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " LIKE '%" + valorChave + "%'";
+		try {
+			conexao = BancoConexao.open();
+			preparetedStatement = conexao.prepareStatement(sql);
+			resultSet = preparetedStatement.executeQuery(sql);
+			if (resultSet.next()) {
+				retorno = (String) resultSet.getString(campo);
+			}
+			preparetedStatement.close();
+			resultSet.close();
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println("Erro: Não foi possível consultar!\n" + e.getMessage());
+		}
+		return retorno;
+	}
+	
+	public ArrayList<String> consultarUmaColuna(String tabela, String coluna) {
+		ArrayList<String> lista = new ArrayList<String>();
+		String sql = "SELECT * FROM " + tabela;
+		
+		try {
+			conexao = BancoConexao.open();
+			preparetedStatement = conexao.prepareStatement(sql);
+			resultSet = preparetedStatement.executeQuery(sql);
+			while (resultSet.next()) {
+				lista.add(resultSet.getString(coluna));
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
 }

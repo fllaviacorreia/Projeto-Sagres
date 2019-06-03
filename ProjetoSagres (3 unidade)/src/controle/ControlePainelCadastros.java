@@ -78,11 +78,11 @@ public class ControlePainelCadastros implements ActionListener{
 	//	painelCadastros.getButtonFechar().addActionListener(this);
 		painelCadastros.getButtonVoltar().addActionListener(this);
 		painelCadastros.getMenuCadastros().addActionListener(this);
-		painelCadastros.getMenuItemAluno().addActionListener(this);
-		painelCadastros.getMenuItemClasse().addActionListener(this);
-		painelCadastros.getMenuItemCurso().addActionListener(this);
-		painelCadastros.getMenuItemDisciplina().addActionListener(this);
-		painelCadastros.getMenuItemProfessor().addActionListener(this);
+		painelCadastros.getMenuItemCadastroAluno().addActionListener(this);
+		painelCadastros.getMenuItemCadastroClasse().addActionListener(this);
+		painelCadastros.getMenuItemCadastroCurso().addActionListener(this);
+		painelCadastros.getMenuItemCadastroDisciplina().addActionListener(this);
+		painelCadastros.getMenuItemCadastroProfessor().addActionListener(this);
 		
 	}
 
@@ -90,7 +90,7 @@ public class ControlePainelCadastros implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if((e.getSource() == painelCadastros.getButtonCadastroAluno()) || 
-				(e.getSource() == painelCadastros.getMenuItemAluno())){
+				(e.getSource() == painelCadastros.getMenuItemCadastroAluno())){
 			try {
 				if(telaCadAluno == null) {
 					telaCadAluno = new VisaoPainelCadastroAluno();
@@ -107,7 +107,7 @@ public class ControlePainelCadastros implements ActionListener{
 		}
 
 		if((e.getSource() == painelCadastros.getButtonCadastroClasse()) || 
-				(e.getSource() == painelCadastros.getMenuItemClasse())){
+				(e.getSource() == painelCadastros.getMenuItemCadastroClasse())){
 			try {
 				if(telaCadClasse == null) {
 					telaCadClasse = new VisaoPainelCadastroClasse();
@@ -122,7 +122,7 @@ public class ControlePainelCadastros implements ActionListener{
 		}
 
 		if((e.getSource() == painelCadastros.getButtonCadastroDisciplina()) || 
-			(e.getSource() == painelCadastros.getMenuItemDisciplina())){
+			(e.getSource() == painelCadastros.getMenuItemCadastroDisciplina())){
 			try {
 				if(telaCadDisciplina == null) {
 					telaCadDisciplina = new VisaoPainelCadastroDisciplina();
@@ -137,7 +137,7 @@ public class ControlePainelCadastros implements ActionListener{
 			}
 		}
 		if((e.getSource() == painelCadastros.getButtonCadastroProfessor()) || 
-				(e.getSource() == painelCadastros.getMenuItemProfessor())){
+				(e.getSource() == painelCadastros.getMenuItemCadastroProfessor())){
 			try {
 				if(telaCadProfessor == null) {
 					telaCadProfessor = new VisaoPainelCadastroProfessor();
@@ -151,7 +151,7 @@ public class ControlePainelCadastros implements ActionListener{
 			}
 		}
 		if((e.getSource() == painelCadastros.getButtonCadastroCurso()) ||
-				(e.getSource() == painelCadastros.getMenuItemCurso())) {
+				(e.getSource() == painelCadastros.getMenuItemCadastroCurso())) {
 			try {
 				if(telaCadCurso == null) {
 					telaCadCurso = new VisaoPainelCadastroCurso();

@@ -17,6 +17,7 @@ import visao.VisaoPainelCadastroCurso;
 import visao.VisaoPainelCadastroDisciplina;
 import visao.VisaoPainelCadastroProfessor;
 import visao.VisaoPainelCadastros;
+import visao.VisaoPainelConsultas;
 import visao.VisaoPainelTelaInicial;
 
 public class ControlePainelTelaInicial implements ActionListener{
@@ -28,7 +29,7 @@ public class ControlePainelTelaInicial implements ActionListener{
 	static VisaoPainelCadastroClasse telaCadClasse;
 	static VisaoPainelCadastroCurso telaCadCurso;
 	static VisaoPainelCadastroProfessor telaCadProfessor;
-	
+	static VisaoPainelConsultas telaCadConsulta;
 	public ControlePainelTelaInicial(VisaoFramePrincipal framePrincipal, VisaoPainelTelaInicial telaInicial) {
 		//	inicializa();
 		this.framePrincipal  = framePrincipal;
@@ -55,11 +56,17 @@ public class ControlePainelTelaInicial implements ActionListener{
 		telaInicial.getMenuConsultas().addActionListener(this);
 		telaInicial.getMenuOpcoes().addActionListener(this);	
 		telaInicial.getMenuSobre().addActionListener(this);
-		telaInicial.getMenuItemAluno().addActionListener(this);
-		telaInicial.getMenuItemClasse().addActionListener(this);
-		telaInicial.getMenuItemCurso().addActionListener(this);
-		telaInicial.getMenuItemDisciplina().addActionListener(this);
-		telaInicial.getMenuItemProfessor().addActionListener(this);
+		telaInicial.getMenuItemCadastroAluno().addActionListener(this);
+		telaInicial.getMenuItemCadastroClasse().addActionListener(this);
+		telaInicial.getMenuItemCadastroCurso().addActionListener(this);
+		telaInicial.getMenuItemCadastroDisciplina().addActionListener(this);
+		telaInicial.getMenuItemCadastroProfessor().addActionListener(this);
+		telaInicial.getMenuItemConsultaAluno().addActionListener(this);
+		telaInicial.getMenuItemConsultaClasse().addActionListener(this);
+		telaInicial.getMenuItemConsultaCurso().addActionListener(this);
+		telaInicial.getMenuItemConsultaDisciplina().addActionListener(this);
+		telaInicial.getMenuItemConsultaProfessor().addActionListener(this);
+	
 	}
 
 	public static void troca() {
@@ -69,6 +76,7 @@ public class ControlePainelTelaInicial implements ActionListener{
 		telaCadClasse = null;
 		telaCadCurso = null;
 		telaCadProfessor = null;
+		telaCadConsulta = null;
 //		verifica();
 	}
 	
@@ -105,7 +113,11 @@ public class ControlePainelTelaInicial implements ActionListener{
 			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 		}
 		if(e.getSource() == telaInicial.getButtonConsultas()) {
-			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+			if(telaCadConsulta == null) {
+				telaCadConsulta = new VisaoPainelConsultas();
+			}
+			new ControlePainelConsultas(framePrincipal, telaCadConsulta);
+			framePrincipal.trocarPainel(telaCadConsulta, "Página de Consultas");
 		}
 		if(e.getSource() == telaInicial.getButtonOpcoes()) {
 			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -149,7 +161,7 @@ public class ControlePainelTelaInicial implements ActionListener{
 		if(e.getSource() == telaInicial.getMenuSobre()) {
 			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 		}
-		if(e.getSource() == telaInicial.getMenuItemAluno()) {
+		if(e.getSource() == telaInicial.getMenuItemCadastroAluno()) {
 				try {
 					if(telaCadAluno == null) {
 						telaCadAluno = new VisaoPainelCadastroAluno();
@@ -164,9 +176,9 @@ public class ControlePainelTelaInicial implements ActionListener{
 				}
 			
 		}
-		if(e.getSource() == telaInicial.getMenuItemClasse()) {
+		if(e.getSource() == telaInicial.getMenuItemCadastroClasse()) {
 			
-				telaInicial.getMenuItemClasse().setEnabled(true);	
+				telaInicial.getMenuItemCadastroClasse().setEnabled(true);	
 				try {
 					if(telaCadClasse == null) {
 						telaCadClasse = new VisaoPainelCadastroClasse();
@@ -180,7 +192,7 @@ public class ControlePainelTelaInicial implements ActionListener{
 				}
 			
 		}
-		if(e.getSource() == telaInicial.getMenuItemCurso()) {
+		if(e.getSource() == telaInicial.getMenuItemCadastroCurso()) {
 			try {
 				if(telaCadCurso == null) {
 					telaCadCurso = new VisaoPainelCadastroCurso();
@@ -194,7 +206,7 @@ public class ControlePainelTelaInicial implements ActionListener{
 			}
 
 		}
-		if(e.getSource() == telaInicial.getMenuItemDisciplina()) {
+		if(e.getSource() == telaInicial.getMenuItemCadastroDisciplina()) {
 			try {
 				if(telaCadDisciplina == null) {
 					telaCadDisciplina = new VisaoPainelCadastroDisciplina();
@@ -207,7 +219,7 @@ public class ControlePainelTelaInicial implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		if(e.getSource() == telaInicial.getMenuItemProfessor()) {
+		if(e.getSource() == telaInicial.getMenuItemConsultaProfessor()) {
 				try {
 					if(telaCadProfessor == null) {
 						telaCadProfessor = new VisaoPainelCadastroProfessor();

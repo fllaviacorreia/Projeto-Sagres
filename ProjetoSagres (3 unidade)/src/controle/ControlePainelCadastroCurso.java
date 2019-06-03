@@ -55,7 +55,7 @@ public class ControlePainelCadastroCurso implements ActionListener{
 		telaCadCurso.getButtonCancelar().addActionListener(this);
 		telaCadCurso.getButtonConfirmar().addActionListener(this);
 		telaCadCurso.getButtonVoltar().addActionListener(this);
-		telaCadCurso.getButtonGerarFluxograma().addActionListener(this);
+//		telaCadCurso.getButtonGerarFluxograma().addActionListener(this);
 	}
 	
 	@Override
@@ -156,22 +156,22 @@ public class ControlePainelCadastroCurso implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		if(e.getSource() == telaCadCurso.getButtonGerarFluxograma()) {
+//		if(e.getSource() == telaCadCurso.getButtonGerarFluxograma()) {
 //			if(contador != 5)
 //				JOptionPane.showMessageDialog(telaCadCurso, "Necessário salvar os dados primeiro", 
 //						"Aviso",JOptionPane.INFORMATION_MESSAGE);
 //			
 //			else {
 //				
-				if(telaFluxograma == null) {
-					telaFluxograma = new VisaoPainelFluxograma(telaCadCurso.getFormattedTextFieldNomeCurso().getText().toString(), 
-							telaCadCurso.getComboBoxHorario().getSelectedItem().toString(), 
-							telaCadCurso.getComboBoxCargaHorariaTotal().getSelectedItem().toString());
-				}
-				framePrincipal.trocarPainel(telaFluxograma, "Fluxograma");
-				new ControlePainelFluxograma(framePrincipal, telaFluxograma);
+//				if(telaFluxograma == null) {
+//					telaFluxograma = new VisaoPainelFluxograma(telaCadCurso.getFormattedTextFieldNomeCurso().getText().toString(), 
+//							telaCadCurso.getComboBoxHorario().getSelectedItem().toString(), 
+//							telaCadCurso.getComboBoxCargaHorariaTotal().getSelectedItem().toString());
+//				}
+//				framePrincipal.trocarPainel(telaFluxograma, "Fluxograma");
+//				new ControlePainelFluxograma(framePrincipal, telaFluxograma);
 //			}
-		}
+//		}
 	}
 	
 	// método que preenche o comboBox curso com os adicionados e cadastrados ta telaDisciplina

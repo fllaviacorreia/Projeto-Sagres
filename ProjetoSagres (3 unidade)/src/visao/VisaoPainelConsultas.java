@@ -1,40 +1,33 @@
 package visao;
 
-/**
- *  @author Flávia de Jesus Correia
- * 
- * */
-
-import java.awt.LayoutManager;
-
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
+
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
-public class VisaoPainelTelaInicial extends JPanel {
+import java.awt.Font;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Component;
 
-	private JButton   buttonCadastros 	 = null;
-	private JButton   buttonOpcoes 		 = null;
-	private JButton   buttonSobre 		 = null;
-	private JButton   buttonConsultas 	 = null;
-	private JButton   buttonSair 		 = null;
-//	private JButton   buttonCancelar 	 = null;
-	private JButton   buttonFechar	 = null;
-	private JMenuBar  menuBarMenu        = null;
-	private JMenu     menuCadastros		 = null;
-	private JMenu     menuOpcoes		 = null;
-	private JMenu     menuConsultas		 = null;
-	private JMenu     menuSobre			 = null;
+public class VisaoPainelConsultas extends JPanel {
+	private JButton btnConsultarAlunos;
+	private JButton btnConsultarProfessores;
+	private JButton btnConsultarCursos;
+	private JButton btnConsultarDisciplinas;
+	private JButton btnConsultarClasses;
+	private JButton btnVoltar;
+	private JMenuBar  menuBarMenu        		= null;
+	private JMenu     menuCadastros		 		= null;
+	private JMenu     menuOpcoes		 		= null;
+	private JMenu     menuConsultas		 		= null;
+	private JMenu     menuSobre			 		= null;
 	private JMenuItem menuItemCadastroAluno 	 = null;
 	private JMenuItem menuItemCadastroClasse 	 = null;
 	private JMenuItem menuItemCadastroCurso 	 = null;
@@ -46,32 +39,29 @@ public class VisaoPainelTelaInicial extends JPanel {
 	private JMenuItem menuItemConsultaDisciplina = null;
 	private JMenuItem menuItemConsultaProfessor	 = null;
 	
-	public VisaoPainelTelaInicial() {
+	public VisaoPainelConsultas() {
 		this.setBackground(new Color(66, 179, 165));
 		this.setMinimumSize(new Dimension(1000, 730));
 		this.setMaximumSize(new Dimension(1000, 730));
-		this.setVisible(true);
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(54)
-							.addComponent(getButtonSair(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-							.addGap(31)
-							.addComponent(getButtonFechar(), GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(1)
-							.addComponent(getMenuBarMenu(), GroupLayout.PREFERRED_SIZE, 1435, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(41)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(getButtonCadastros(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-								.addComponent(getButtonConsultas(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-								.addComponent(getButtonOpcoes(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-								.addComponent(getButtonSobre(), GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(1)
+					.addComponent(getMenuBarMenu(), GroupLayout.PREFERRED_SIZE, 1435, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(35)
+					.addComponent(getBtnVoltar(), GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(getBtnConsultarProfessores(), Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+						.addComponent(getBtnConsultarDisciplinas(), Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+						.addComponent(getBtnConsultarCursos(), Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+						.addComponent(getBtnConsultarClasses(), Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+						.addComponent(getBtnConsultarAlunos(), Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
+					.addGap(1098))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -79,93 +69,81 @@ public class VisaoPainelTelaInicial extends JPanel {
 					.addGap(2)
 					.addComponent(getMenuBarMenu(), GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 					.addGap(55)
-					.addComponent(getButtonCadastros(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(54)
-					.addComponent(getButtonConsultas(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(63)
-					.addComponent(getButtonOpcoes(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(46)
-					.addComponent(getButtonSobre(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(170)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(getButtonSair(), GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addComponent(getButtonFechar(), GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
+					.addComponent(getBtnConsultarAlunos(), GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(getBtnConsultarClasses(), GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(getBtnConsultarCursos(), GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(getBtnConsultarDisciplinas(), GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(getBtnConsultarProfessores(), GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+					.addComponent(getBtnVoltar(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		setLayout(groupLayout);
+		this.setVisible(true);
 	}
-
-	public JButton getButtonCadastros() {
-		if(buttonCadastros == null) {
-			buttonCadastros = new JButton("CADASTROS");
-			buttonCadastros.setForeground(Color.BLACK);
-			buttonCadastros.setBackground(Color.WHITE);
-			buttonCadastros.setFont(new Font("Arial", Font.PLAIN, 14));;
+	public JButton getBtnConsultarAlunos() {
+		if (btnConsultarAlunos == null) {
+			btnConsultarAlunos = new JButton("Consultar Alunos");
+			btnConsultarAlunos.setAlignmentX(Component.CENTER_ALIGNMENT);
+			btnConsultarAlunos.setBackground(Color.WHITE);
+			btnConsultarAlunos.setFont(new Font("Arial", Font.PLAIN, 14));
 		}
-		return buttonCadastros;
+		return btnConsultarAlunos;
 	}
-	public JButton getButtonOpcoes() {
-		if (buttonOpcoes == null) {
-			buttonOpcoes = new JButton("OP\u00C7\u00D5ES");
-			buttonOpcoes.setForeground(Color.BLACK);
-			buttonOpcoes.setBackground(Color.WHITE);
-			buttonOpcoes.setFont(new Font("Arial", Font.PLAIN, 14));
+	public JButton getBtnConsultarProfessores() {
+		if (btnConsultarProfessores == null) {
+			btnConsultarProfessores = new JButton("Consultar Professores");
+			btnConsultarProfessores.setAlignmentX(Component.CENTER_ALIGNMENT);
+			btnConsultarProfessores.setBackground(Color.WHITE);
+			btnConsultarProfessores.setFont(new Font("Arial", Font.PLAIN, 14));
 		}
-		return buttonOpcoes;
+		return btnConsultarProfessores;
 	}
-	public JButton getButtonSobre() {
-		if (buttonSobre == null) {
-			buttonSobre = new JButton("SOBRE");
-			buttonSobre.setForeground(Color.BLACK);
-			buttonSobre.setBackground(Color.WHITE);
-			buttonSobre.setFont(new Font("Arial", Font.PLAIN, 14));
+	public JButton getBtnConsultarCursos() {
+		if (btnConsultarCursos == null) {
+			btnConsultarCursos = new JButton("Consultar Cursos");
+			btnConsultarCursos.setAlignmentX(Component.CENTER_ALIGNMENT);
+			btnConsultarCursos.setBackground(Color.WHITE);
+			btnConsultarCursos.setFont(new Font("Arial", Font.PLAIN, 14));
 		}
-		return buttonSobre;
+		return btnConsultarCursos;
 	}
-	public JButton getButtonConsultas() {
-		if (buttonConsultas == null) {
-			buttonConsultas = new JButton("CONSULTAS");
-			buttonConsultas.setForeground(Color.BLACK);
-			buttonConsultas.setBackground(Color.WHITE);
-			buttonConsultas.setFont(new Font("Arial", Font.PLAIN, 14));
+	public JButton getBtnConsultarDisciplinas() {
+		if (btnConsultarDisciplinas == null) {
+			btnConsultarDisciplinas = new JButton("Consultar Disciplinas");
+			btnConsultarDisciplinas.setAlignmentX(Component.CENTER_ALIGNMENT);
+			btnConsultarDisciplinas.setBackground(Color.WHITE);
+			btnConsultarDisciplinas.setFont(new Font("Arial", Font.PLAIN, 14));
 		}
-		return buttonConsultas;
+		return btnConsultarDisciplinas;
 	}
-	
-	public JButton getButtonSair() {
-		if(buttonSair == null) {
-			buttonSair = new JButton("SAIR");
-			buttonSair.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonSair.setBackground(Color.WHITE);
-			buttonSair.setVisible(true);
+	public JButton getBtnConsultarClasses() {
+		if (btnConsultarClasses == null) {
+			btnConsultarClasses = new JButton("Consultar Classes");
+			btnConsultarClasses.setAlignmentX(Component.CENTER_ALIGNMENT);
+			btnConsultarClasses.setBackground(Color.WHITE);
+			btnConsultarClasses.setFont(new Font("Arial", Font.PLAIN, 14));
 		}
-		return buttonSair;
+		return btnConsultarClasses;
 	}
-
-//	public JButton getButtonCancelar() {
-//		if(buttonCancelar == null) {
-//			buttonCancelar = new JButton("CANCELAR");
-//			buttonCancelar.setFont(new Font("Arial", Font.PLAIN, 14));
-//			buttonCancelar.setBounds(217, 416, 130, 33);
-//			buttonCancelar.setBackground(Color.WHITE);
-//			buttonCancelar.setVisible(false);
-//		}
-//		return buttonCancelar;
-//	}
-
-	public JButton getButtonFechar() {
-		if(buttonFechar == null) {
-			buttonFechar = new JButton("FECHAR");
-			buttonFechar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonFechar.setBackground(Color.WHITE);
-			buttonFechar.setVisible(true);
+	public JButton getBtnVoltar() {
+		if (btnVoltar == null) {
+			btnVoltar = new JButton("VOLTAR");
+			btnVoltar.setBackground(Color.WHITE);
+			btnVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
 		}
-		return buttonFechar;
+		return btnVoltar;
 	}
 	
 	public JMenuBar getMenuBarMenu() {
 		if(menuBarMenu == null) {
 			menuBarMenu = new JMenuBar();
 			menuBarMenu.setLayout(null);
+			menuBarMenu.setBounds(1, 1, 1400, 40);
 			menuBarMenu.add(getMenuCadastros());
 			menuBarMenu.add(getMenuConsultas());
 			menuBarMenu.add(getMenuOpcoes());
@@ -182,7 +160,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			menuCadastros.setFont(new Font("Arial", Font.PLAIN, 12));
 			menuCadastros.setBackground(Color.LIGHT_GRAY);
 			menuCadastros.setForeground(Color.BLACK);
-			menuCadastros.setBounds(1, 1, 90, 40);
+			menuCadastros.setBounds(1, 2, 90, 40);
 			menuCadastros.add(getMenuItemCadastroAluno());
 			menuCadastros.add(getMenuItemCadastroClasse());
 			menuCadastros.add(getMenuItemCadastroCurso());
@@ -199,7 +177,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			menuOpcoes.setFont(new Font("Arial", Font.PLAIN, 12));
 			menuOpcoes.setBackground(Color.LIGHT_GRAY);
 			menuOpcoes.setForeground(Color.BLACK);
-			menuOpcoes.setBounds(121, 1, 90, 40);
+			menuOpcoes.setBounds(242, 2, 90, 40);
 		}
 		return menuOpcoes;
 	}
@@ -211,7 +189,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			menuConsultas.setFont(new Font("Arial", Font.PLAIN, 12));
 			menuConsultas.setBackground(Color.LIGHT_GRAY);
 			menuConsultas.setForeground(Color.BLACK);
-			menuConsultas.setBounds(242, 1, 90, 40);
+			menuConsultas.setBounds(121, 1, 90, 40);
 			menuConsultas.add(getMenuItemConsultaAluno());
 			menuConsultas.add(getMenuItemConsultaClasse());
 			menuConsultas.add(getMenuItemConsultaCurso());

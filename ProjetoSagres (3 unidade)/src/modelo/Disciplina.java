@@ -15,7 +15,6 @@ public class Disciplina {
     private String  semestre;
     private String  area_Disciplina;
     private String  curso;
-    private String tipoDisciplina;
     private ArrayList<String>  preRequisitos;
     private String 	carga_Horaria;
     private boolean ePreRequisito;
@@ -28,14 +27,13 @@ public class Disciplina {
     
 
     public Disciplina(String nome_Disciplina, String semestre, String area_Disciplina, String curso,
-			String tipoDisciplina, ArrayList<String> preRequisitos, String carga_Horaria, boolean ePreRequisito,
+    		ArrayList<String> preRequisitos, String carga_Horaria, boolean ePreRequisito,
 			boolean optativa, boolean obrigatoria, boolean teorica, boolean pratica, boolean estagio) {
 		super();
 		this.nome_Disciplina = nome_Disciplina;
 		this.semestre = semestre;
 		this.area_Disciplina = area_Disciplina;
 		this.curso = curso;
-		this.tipoDisciplina = tipoDisciplina;
 		this.preRequisitos = preRequisitos;
 		this.carga_Horaria = carga_Horaria;
 		this.ePreRequisito = ePreRequisito;
@@ -85,14 +83,6 @@ public class Disciplina {
 
 	public void setCurso(String curso) {
 		this.curso = curso;
-	}  
-	
-    public String getTipoDisciplina() {
-		return tipoDisciplina;
-	}
-
-	public void setTipoDisciplina(String tipoDisciplina) {
-		this.tipoDisciplina = tipoDisciplina;
 	}
 
 	public ArrayList<String> getPreRequisitos() {
