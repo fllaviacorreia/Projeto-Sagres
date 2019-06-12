@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import modelo.Aluno;
-import modelo.ModeloTabela;
+import modelo.ModeloTabelaAluno;
 import visao.VisaoPainelConsultaAluno;
 
 public class ControlePainelConsultaAluno implements ActionListener {

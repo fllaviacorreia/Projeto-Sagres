@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import controle.Main;
-import modelo.ModeloTabela;
+import modelo.ModeloTabelaAluno;
 
 public class VisaoPainelConsultaProfessor extends JPanel{
 	private JButton 			buttonVoltar 	 				= null;
@@ -54,7 +54,7 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 			jtableDadosProfessor = new JTable();
 			jtableDadosProfessor.setBorder(new LineBorder(new Color(0, 0, 0)));
 			jtableDadosProfessor.setFont(new Font("Arial", Font.BOLD, 18));
-			jtableDadosProfessor.setModel(new ModeloTabela(5, Main.professor.size(), "PROFESSOR", "Nº MATRICULA;CPF;NOME;CONTATO;DATA NASCIMENTO".split(";")));
+			jtableDadosProfessor.setModel(null);
 			jtableDadosProfessor.getColumnModel().getColumn(0).setPreferredWidth(110);
 			jtableDadosProfessor.getColumnModel().getColumn(1).setPreferredWidth(135);
 			jtableDadosProfessor.getColumnModel().getColumn(2).setPreferredWidth(260);

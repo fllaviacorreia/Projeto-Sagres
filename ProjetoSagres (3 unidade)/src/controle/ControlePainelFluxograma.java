@@ -20,7 +20,6 @@ public class ControlePainelFluxograma implements ActionListener {
 	}
 	
 	public void pegaBotoes() {
-	
 		for(int i = 0; i < 10; i++) {
 			int x = i * 70;
 			telaFluxograma.getBotoes().add(telaFluxograma.BotoesFluxograma("LP 1", 70, false, true, x, 10));

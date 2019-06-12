@@ -12,7 +12,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.Main;
-import modelo.ModeloTabela;
+import modelo.ModeloTabelaAluno;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -25,7 +25,7 @@ public class VisaoPainelConsultaAluno extends JPanel{
 	private JComboBox<String> comboBoxTipoBusca;
 	private JTextField textFieldBusca;
 	private JButton btnBuscar;
-	private ModeloTabela tabelaAluno;
+	private ModeloTabelaAluno tabelaAluno;
 	public VisaoPainelConsultaAluno() {
 		this.setLayout(null);
 		this.setBackground(new Color(120, 205, 194));
@@ -107,15 +107,16 @@ public class VisaoPainelConsultaAluno extends JPanel{
 		return btnBuscar;
 	}
 
-	public ModeloTabela getTabela() {
-		String [] colunas = {"Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO"};
+	public ModeloTabelaAluno getTabela() {
 		if(tabelaAluno == null) {
-			tabelaAluno = new ModeloTabela(5, Main.aluno.size(), "ALUNO", colunas);
+			tabelaAluno = new ModeloTabelaAluno();
+			for(int i = 0; i < Main.aluno.size(); i++)
+				tabelaAluno.setValueAt(Main.aluno.get(i), i);
 		}
 		return tabelaAluno;
 	}
 
-	public void setTabela(ModeloTabela tabela) {
+	public void setTabela(ModeloTabelaAluno tabela) {
 		this.tabelaAluno = tabela;
 	}
 }

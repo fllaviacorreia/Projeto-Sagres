@@ -9,7 +9,7 @@ import modelo.Classe;
 import modelo.Curso;
 import modelo.Disciplina;
 import modelo.Endereco;
-import modelo.ModeloTabela;
+import modelo.ModeloTabelaAluno;
 import modelo.Professor;
 
 public class Main {
@@ -19,12 +19,11 @@ public class Main {
 	public static ArrayList<Disciplina> 	disciplina 		= new ArrayList<Disciplina>();
 	public static ArrayList<Professor> 		professor 		= new ArrayList<Professor>();
 	public static ArrayList<Endereco>		endereco		= new ArrayList<Endereco>();
-	public static ArrayList<ModeloTabela>	tabelas			= new ArrayList<ModeloTabela>();
+	public static ArrayList<ModeloTabelaAluno>	tabelas			= new ArrayList<ModeloTabelaAluno>();
 	public static void main(String[] args) {			
 	//	new ControleArquivo(6);
 		new BancoAlunoGerenciar().insereAlunosNoArray();
 		new ControlePainelTelaLogin();
-		
 		System.out.println("Main");
 	}
 

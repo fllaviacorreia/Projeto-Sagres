@@ -26,20 +26,20 @@ import visao.VisaoPainelConsultaProfessor;
 import visao.VisaoPainelTelaInicial;
 
 public class ControlePainelTelaInicial implements ActionListener {
-	static VisaoPainelTelaInicial telaInicial;
-	static VisaoPainelCadastro telaCadastros;
-	static VisaoFramePrincipal framePrincipal;
-	static VisaoPainelCadastroAluno telaCadAluno;
+	static VisaoPainelTelaInicial 		 telaInicial;
+	static VisaoPainelCadastro 			 telaCadastros;
+	static VisaoFramePrincipal 			 framePrincipal;
+	static VisaoPainelCadastroAluno		 telaCadAluno;
 	static VisaoPainelCadastroDisciplina telaCadDisciplina;
-	static VisaoPainelCadastroClasse telaCadClasse;
-	static VisaoPainelCadastroCurso telaCadCurso;
-	static VisaoPainelCadastroProfessor telaCadProfessor;
-	static VisaoPainelConsulta telaCadConsulta;
-	static VisaoPainelConsultaAluno telaConsAluno;
-	static VisaoPainelConsultaClasse telaConsClasse;
-	static VisaoPainelConsultaCurso telaConsCurso;
+	static VisaoPainelCadastroClasse 	 telaCadClasse;
+	static VisaoPainelCadastroCurso		 telaCadCurso;
+	static VisaoPainelCadastroProfessor	 telaCadProfessor;
+	static VisaoPainelConsulta			 telaCadConsulta;
+	static VisaoPainelConsultaAluno		 telaConsAluno;
+	static VisaoPainelConsultaClasse	 telaConsClasse;
+	static VisaoPainelConsultaCurso		 telaConsCurso;
 	static VisaoPainelConsultaDisciplina telaConsDisciplina;
-	static VisaoPainelConsultaProfessor telaConsProfessor;
+	static VisaoPainelConsultaProfessor	 telaConsProfessor;
 
 	public ControlePainelTelaInicial(VisaoFramePrincipal framePrincipal, VisaoPainelTelaInicial telaInicial) {
 		// inicializa();
@@ -64,9 +64,9 @@ public class ControlePainelTelaInicial implements ActionListener {
 		// telaInicial.getButtonCancelar().addActionListener(this);
 		telaInicial.getButtonFechar().addActionListener(this);
 		telaInicial.getButtonSair().addActionListener(this);
-		telaInicial.getMenuConsultas().addActionListener(this);
-		telaInicial.getMenuOpcoes().addActionListener(this);
-		telaInicial.getMenuSobre().addActionListener(this);
+//		telaInicial.getMenuConsultas().addActionListener(this);
+//		telaInicial.getMenuOpcoes().addActionListener(this);
+//		telaInicial.getMenuSobre().addActionListener(this);
 		telaInicial.getMenuItemCadastroAluno().addActionListener(this);
 		telaInicial.getMenuItemCadastroClasse().addActionListener(this);
 		telaInicial.getMenuItemCadastroCurso().addActionListener(this);
@@ -196,7 +196,6 @@ public class ControlePainelTelaInicial implements ActionListener {
 		}
 		if (e.getSource() == telaInicial.getMenuItemCadastroClasse()) {
 
-			telaInicial.getMenuItemCadastroClasse().setEnabled(true);
 			try {
 				if (telaCadClasse == null) {
 					telaCadClasse = new VisaoPainelCadastroClasse();
