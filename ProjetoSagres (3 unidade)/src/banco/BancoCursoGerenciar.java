@@ -7,17 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import modelo.Curso;
-import modelo.Professor;
-import com.mysql.*;
 
 public class BancoCursoGerenciar {
 //	Banco banco = new Banco();
 	Connection conexao = null;
 	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
+	private Statement consulta;
 	
 	public boolean BancoCursoInserir(Curso curso) {
 			//aqui é o comando em sql que é necessário para inserir no banco de dados
@@ -48,10 +45,36 @@ public class BancoCursoGerenciar {
 		
 			return false;
 	}
+	public int contar(String campo, String query) {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(" + campo + ")FROM Curso WHERE " + query);
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(" + campo + ")");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
 	
-	public String consultar(String tabela, String chave, String valorChave, String campo) {
+	public int contar() {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(*)FROM Curso");
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(*)");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
+	public String consultar(String chave, String valorChave, String campo) {
 		String sql, retorno = "";
-		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " = " + valorChave;
+		sql = "SELECT " + campo + " FROM Curso WHERE " + chave + " = " + valorChave;
 		try {
 			conexao = BancoConexao.open();
 			preparedStatement = conexao.prepareStatement(sql);

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Disciplina;
@@ -12,6 +13,7 @@ public class BancoDisciplinaGerenciar {
 	private Connection conexao;
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
+	private Statement consulta;
 
 	public boolean BancoDisciplinaInserir(Disciplina disciplina) {
 		//aqui é o comando em sql que é necessário para inserir no banco de dados
@@ -60,6 +62,34 @@ public class BancoDisciplinaGerenciar {
 	
 		return false;
 }
+	
+	public int contar( String campo, String query) {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(" + campo + ")FROM Disciplina WHERE " + query);
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(" + campo + ")");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
+	
+	public int contar(String tabela) {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(*)FROM " + tabela);
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(*)");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
 	public String consultar(String tabela, String chave, String valorChave, String campo) {
 		String sql, retorno = "";
 		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " = " + valorChave;

@@ -9,37 +9,42 @@ package controle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
 import visao.VisaoPainelCadastroAluno;
 import visao.VisaoPainelCadastroClasse;
 import visao.VisaoPainelCadastroCurso;
 import visao.VisaoPainelCadastroDisciplina;
 import visao.VisaoPainelCadastroProfessor;
+import visao.VisaoPainelConsultaAluno;
+import visao.VisaoPainelConsultaClasse;
+import visao.VisaoPainelConsultaCurso;
+import visao.VisaoPainelConsultaDisciplina;
+import visao.VisaoPainelConsultaProfessor;
 import visao.VisaoFramePrincipal;
-import visao.VisaoPainelCadastros;
-//import javax.swing.JFrame;
-import visao.VisaoPainelTelaInicial;
+import visao.VisaoPainelCadastro;
 
-public class ControlePainelCadastros implements ActionListener{
+public class ControlePainelCadastro implements ActionListener {
 	static VisaoFramePrincipal framePrincipal;
-	static VisaoPainelCadastros painelCadastros;
+	static VisaoPainelCadastro painelCadastros;
 	static VisaoPainelCadastroAluno telaCadAluno;
 	static VisaoPainelCadastroDisciplina telaCadDisciplina;
 	static VisaoPainelCadastroClasse telaCadClasse;
 	static VisaoPainelCadastroCurso telaCadCurso;
 	static VisaoPainelCadastroProfessor telaCadProfessor;
-	static VisaoPainelTelaInicial telaInicial;
-	
-	public ControlePainelCadastros(VisaoFramePrincipal framePrincipal, VisaoPainelCadastros painelCadastros) {
-		ControlePainelCadastros.framePrincipal = framePrincipal;
-		ControlePainelCadastros.painelCadastros = painelCadastros;
+	static VisaoPainelConsultaAluno telaConsAluno;
+	static VisaoPainelConsultaClasse telaConsClasse;
+	static VisaoPainelConsultaCurso telaConsCurso;
+	static VisaoPainelConsultaDisciplina telaConsDisciplina;
+	static VisaoPainelConsultaProfessor telaConsProfessor;
+
+	public ControlePainelCadastro(VisaoFramePrincipal framePrincipal, VisaoPainelCadastro painelCadastros) {
+		ControlePainelCadastro.framePrincipal = framePrincipal;
+		ControlePainelCadastro.painelCadastros = painelCadastros;
 		System.out.println("Cadastros");
 		AddEventos();
 //		verifica();
 	}
-	
-	//Voltar a exibir o Painel Principal Quando necessário
+
+	// Voltar a exibir o Painel Principal Quando necessário
 	public static void troca() {
 		framePrincipal.trocarPainel(painelCadastros, "Página de Cadastros");
 		telaCadAluno = null;
@@ -47,6 +52,11 @@ public class ControlePainelCadastros implements ActionListener{
 		telaCadClasse = null;
 		telaCadCurso = null;
 		telaCadProfessor = null;
+		telaConsAluno = null;
+		telaConsClasse = null;
+		telaConsCurso = null;
+		telaConsDisciplina = null;
+		telaConsProfessor = null;
 //		verifica();
 	}
 //	public static void verifica() {
@@ -68,14 +78,14 @@ public class ControlePainelCadastros implements ActionListener{
 //		}
 //	}
 
-	public void AddEventos(){
+	public void AddEventos() {
 		painelCadastros.getButtonCadastroAluno().addActionListener(this);
 		painelCadastros.getButtonCadastroClasse().addActionListener(this);
 		painelCadastros.getButtonCadastroCurso().addActionListener(this);
 		painelCadastros.getButtonCadastroDisciplina().addActionListener(this);
 		painelCadastros.getButtonCadastroProfessor().addActionListener(this);
-	//	painelCadastros.getButtonCancelar().addActionListener(this);
-	//	painelCadastros.getButtonFechar().addActionListener(this);
+		// painelCadastros.getButtonCancelar().addActionListener(this);
+		// painelCadastros.getButtonFechar().addActionListener(this);
 		painelCadastros.getButtonVoltar().addActionListener(this);
 		painelCadastros.getMenuCadastros().addActionListener(this);
 		painelCadastros.getMenuItemCadastroAluno().addActionListener(this);
@@ -83,91 +93,170 @@ public class ControlePainelCadastros implements ActionListener{
 		painelCadastros.getMenuItemCadastroCurso().addActionListener(this);
 		painelCadastros.getMenuItemCadastroDisciplina().addActionListener(this);
 		painelCadastros.getMenuItemCadastroProfessor().addActionListener(this);
-		
+		painelCadastros.getMenuItemConsultaAluno().addActionListener(this);
+		painelCadastros.getMenuItemConsultaClasse().addActionListener(this);
+		painelCadastros.getMenuItemConsultaCurso().addActionListener(this);
+		painelCadastros.getMenuItemConsultaDisciplina().addActionListener(this);
+		painelCadastros.getMenuItemConsultaProfessor().addActionListener(this);
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if((e.getSource() == painelCadastros.getButtonCadastroAluno()) || 
-				(e.getSource() == painelCadastros.getMenuItemCadastroAluno())){
+
+		if (e.getSource() == painelCadastros.getButtonVoltar()) {
+			ControlePainelTelaInicial.troca();
+		}
+		if ((e.getSource() == painelCadastros.getButtonCadastroAluno())
+				|| (e.getSource() == painelCadastros.getMenuItemCadastroAluno())) {
 			try {
-				if(telaCadAluno == null) {
+				if (telaCadAluno == null) {
 					telaCadAluno = new VisaoPainelCadastroAluno();
-				}	
-				
+				}
+
 				framePrincipal.trocarPainel(telaCadAluno, "Cadastro Aluno");
 				new ControlePainelCadastroAluno(telaCadAluno, 2);
-				
-				//aluno.troca();
-			}catch(Exception e1) {
+
+				// aluno.troca();
+			} catch (Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
 			}
 		}
-
-		if((e.getSource() == painelCadastros.getButtonCadastroClasse()) || 
-				(e.getSource() == painelCadastros.getMenuItemCadastroClasse())){
+		if ((e.getSource() == painelCadastros.getButtonCadastroClasse())
+				|| (e.getSource() == painelCadastros.getMenuItemCadastroClasse())) {
 			try {
-				if(telaCadClasse == null) {
+				if (telaCadClasse == null) {
 					telaCadClasse = new VisaoPainelCadastroClasse();
-				}	
-				
+				}
+
 				framePrincipal.trocarPainel(telaCadClasse, "Cadastro Classe");
-				new ControlePainelCadastroClasse(framePrincipal, telaCadClasse, 2);
-			}catch(Exception e1) {
+				new ControlePainelCadastroClasse(telaCadClasse, 2);
+			} catch (Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
 			}
 		}
 
-		if((e.getSource() == painelCadastros.getButtonCadastroDisciplina()) || 
-			(e.getSource() == painelCadastros.getMenuItemCadastroDisciplina())){
+		if ((e.getSource() == painelCadastros.getButtonCadastroDisciplina())
+				|| (e.getSource() == painelCadastros.getMenuItemCadastroDisciplina())) {
 			try {
-				if(telaCadDisciplina == null) {
+				if (telaCadDisciplina == null) {
 					telaCadDisciplina = new VisaoPainelCadastroDisciplina();
-				}	
-			
-				framePrincipal.trocarPainel(telaCadDisciplina, "Cadastro Disciplina");	
+				}
+
+				framePrincipal.trocarPainel(telaCadDisciplina, "Cadastro Disciplina");
 				new ControlePainelCadastroDisciplina(telaCadDisciplina, 2);
-				
-			}catch(Exception e1) {
+
+			} catch (Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
 			}
 		}
-		if((e.getSource() == painelCadastros.getButtonCadastroProfessor()) || 
-				(e.getSource() == painelCadastros.getMenuItemCadastroProfessor())){
+		if ((e.getSource() == painelCadastros.getButtonCadastroProfessor())
+				|| (e.getSource() == painelCadastros.getMenuItemCadastroProfessor())) {
 			try {
-				if(telaCadProfessor == null) {
+				if (telaCadProfessor == null) {
 					telaCadProfessor = new VisaoPainelCadastroProfessor();
-				}	
-				
+				}
+
 				framePrincipal.trocarPainel(telaCadProfessor, "Cadastro Professor");
 				new ControlePainelCadastroProfessor(telaCadProfessor, 2);
-			}catch(Exception e1) {
+			} catch (Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
 			}
 		}
-		if((e.getSource() == painelCadastros.getButtonCadastroCurso()) ||
-				(e.getSource() == painelCadastros.getMenuItemCadastroCurso())) {
+		if ((e.getSource() == painelCadastros.getButtonCadastroCurso())
+				|| (e.getSource() == painelCadastros.getMenuItemCadastroCurso())) {
 			try {
-				if(telaCadCurso == null) {
+				if (telaCadCurso == null) {
 					telaCadCurso = new VisaoPainelCadastroCurso();
 				}
 				framePrincipal.trocarPainel(telaCadCurso, "Cadastro Curso");
 				new ControlePainelCadastroCurso(framePrincipal, telaCadCurso, 2);
-				
-			}catch(Exception e1) {
+
+			} catch (Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
 			}
 		}
+
+		if (e.getSource() == painelCadastros.getMenuItemConsultaAluno()) {
+			try {
+				if (telaConsAluno == null) {
+					telaConsAluno = new VisaoPainelConsultaAluno();
+				}
+
+				framePrincipal.trocarPainel(telaConsAluno, "Consulta Aluno");
+				new ControlePainelConsultaAluno(telaConsAluno, 2);
+				// aluno.troca();
+			} catch (Exception e1) {
+				System.out.println(e1.getMessage());
+				e1.printStackTrace();
+			}
+
+		}
+		if (e.getSource() == painelCadastros.getMenuItemConsultaClasse()) {
+			try {
+				if (telaCadClasse == null) {
+					telaConsClasse = new VisaoPainelConsultaClasse();
+				}
+
+				framePrincipal.trocarPainel(telaConsClasse, "Consulta Classe");
+				new ControlePainelConsultaClasse(telaConsClasse, 2);
+			} catch (Exception e1) {
+				System.out.println(e1.getMessage());
+				e1.printStackTrace();
+			}
+
+		}
+		if (e.getSource() == painelCadastros.getMenuItemConsultaCurso()) {
+			try {
+				if (telaConsCurso == null) {
+					telaConsCurso = new VisaoPainelConsultaCurso();
+				}
+				framePrincipal.trocarPainel(telaConsCurso, "Consulta Curso");
+				new ControlePainelConsultaCurso(telaConsCurso, 2);
+
+			} catch (Exception e1) {
+				System.out.println(e1.getMessage());
+				e1.printStackTrace();
+			}
+
+		}
+		if (e.getSource() == painelCadastros.getMenuItemConsultaDisciplina()) {
+			try {
+				if (telaConsDisciplina == null) {
+					telaConsDisciplina = new VisaoPainelConsultaDisciplina();
+				}
+				framePrincipal.trocarPainel(telaConsDisciplina, "Consulta Disciplina");
+				new ControlePainelConsultaDisciplina(telaConsDisciplina, 2);
+				// disciplina.troca();
+			} catch (Exception e1) {
+				System.out.println(e1.getMessage());
+				e1.printStackTrace();
+			}
+		}
+
+		if (e.getSource() == painelCadastros.getMenuItemConsultaProfessor()) {
+			try {
+				if (telaConsProfessor == null) {
+					telaConsProfessor = new VisaoPainelConsultaProfessor();
+				}
+
+				framePrincipal.trocarPainel(telaConsProfessor, "Consulta Professor");
+				new ControlePainelConsultaProfessor(telaConsProfessor, 2);
+			} catch (Exception e1) {
+				System.out.println(e1.getMessage());
+				e1.printStackTrace();
+			}
+
+		}
 //		if(e.getSource() == painelCadastros.getButtonCancelar()){
 //			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 //		}
-		
+
 //		if(e.getSource() == painelCadastros.getButtonFechar()){
 //			try {
 //				saida = JOptionPane.showConfirmDialog(painelCadastros, "Deseja realmente fechar o programa?", "Confirmação de saída", JOptionPane.YES_NO_OPTION);
@@ -181,19 +270,16 @@ public class ControlePainelCadastros implements ActionListener{
 //				e1.printStackTrace();
 //			}
 //		}
-		if(e.getSource() == painelCadastros.getButtonVoltar()){
-				ControlePainelTelaInicial.troca();
 
-		}
-		if(e.getSource() == painelCadastros.getMenuConsultas()) {
-			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}
-		if(e.getSource() == painelCadastros.getMenuOpcoes()) {
-			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}
-		if(e.getSource() == painelCadastros.getMenuSobre()) {
-			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}
+//		if(e.getSource() == painelCadastros.getMenuConsultas()) {
+//			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+//		}
+//		if(e.getSource() == painelCadastros.getMenuOpcoes()) {
+//			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+//		}
+//		if(e.getSource() == painelCadastros.getMenuSobre()) {
+//			JOptionPane.showMessageDialog(null, "EM CONSTRUÇÃO", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+//		}
 //		if(e.getSource() == painelCadastros.getMenuItemAluno()) {
 //			try {
 //				if(telaCadAluno == null) {
@@ -268,9 +354,7 @@ public class ControlePainelCadastros implements ActionListener{
 	}
 
 	public static void setFramePrincipal(VisaoFramePrincipal framePrincipal) {
-		ControlePainelCadastros.framePrincipal = framePrincipal;
+		ControlePainelCadastro.framePrincipal = framePrincipal;
 	}
-
-
 
 }

@@ -1,5 +1,7 @@
 package visao;
 
+import java.awt.Color;
+
 /**
  *  @author Flávia de Jesus Correia
  * 
@@ -11,29 +13,23 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-public class VisaoFramePrincipal extends JFrame{
-
+public class VisaoFramePrincipal extends JFrame {
 	Dimension display = Toolkit.getDefaultToolkit().getScreenSize();
-//	private static JFrame frame;
-	
-	public VisaoFramePrincipal(){
+	public VisaoFramePrincipal() {
 		new JFrame();
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
- //       this.setResizable(false);
-        
-    }
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		this.setBackground(new Color(8, 42, 108));
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// this.setResizable(false);
 
-	/*synchronized public static JFrame getInstance() {
-		JFrame frame = null;
-		if(frame == null) {
-			frame = new FramePrincipal();
-		}
-		return frame;
-	}*/
-	
+	}
+
+	/*
+	 * synchronized public static JFrame getInstance() { JFrame frame = null;
+	 * if(frame == null) { frame = new FramePrincipal(); } return frame; }
+	 */
+
 	public void trocarPainel(JPanel painel, String titulo) {
 		this.setContentPane(painel);
 		this.setTitle(titulo);
@@ -41,15 +37,13 @@ public class VisaoFramePrincipal extends JFrame{
 		setTitle(titulo);
 //		setMinimumSize(new Dimension(display.width, display.height - 2));
 //		setMaximumSize(new Dimension(display));
-		setLocation(0,0);
+		setLocation(0, 0);
 		repaint();
-		setSize( 1011, 730 );
+		setSize(1011, 730);
 		validate();
-		setLocation((display.width - this.getSize().width)/2 , 0);
-		
+		setLocation((display.width - this.getSize().width) / 2, 0);
 
-			
 		repaint();
 		validate();
-	} 
+	}
 }

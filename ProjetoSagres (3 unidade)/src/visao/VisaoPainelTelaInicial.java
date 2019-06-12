@@ -199,7 +199,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			menuOpcoes.setFont(new Font("Arial", Font.PLAIN, 12));
 			menuOpcoes.setBackground(Color.LIGHT_GRAY);
 			menuOpcoes.setForeground(Color.BLACK);
-			menuOpcoes.setBounds(121, 1, 90, 40);
+			menuOpcoes.setBounds(242, 1, 90, 40);
 		}
 		return menuOpcoes;
 	}
@@ -211,7 +211,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			menuConsultas.setFont(new Font("Arial", Font.PLAIN, 12));
 			menuConsultas.setBackground(Color.LIGHT_GRAY);
 			menuConsultas.setForeground(Color.BLACK);
-			menuConsultas.setBounds(242, 1, 90, 40);
+			menuConsultas.setBounds(121, 1, 90, 40);
 			menuConsultas.add(getMenuItemConsultaAluno());
 			menuConsultas.add(getMenuItemConsultaClasse());
 			menuConsultas.add(getMenuItemConsultaCurso());

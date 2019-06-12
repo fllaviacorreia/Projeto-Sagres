@@ -81,10 +81,6 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 		telaCadDisciplina.getComboBoxSemestre().addActionListener(this);
 	}
 
-	public void troca() {
-		telaCadDisciplina.setVisible(true);
-	}
-	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == telaCadDisciplina.getButtonVoltar()) {
 			try {
@@ -96,8 +92,10 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					LimpaDados();
 					if(volta == 1)
 						ControlePainelTelaInicial.troca();
+					else if(volta == 2)
+						ControlePainelCadastro.troca();
 					else
-						ControlePainelCadastros.troca();
+						ControlePainelConsulta.troca();
 				}	
 			}catch(Exception e1) {
 				System.out.println(e1.getMessage());
@@ -113,7 +111,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 														JOptionPane.YES_NO_OPTION);
 				if(saida == 0) {
 					LimpaDados();
-					ControlePainelCadastros.troca();
+					ControlePainelCadastro.troca();
 				}
 			}catch(Exception e1) {
 				System.out.println(e1.getMessage());
@@ -247,7 +245,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					if(!preRequisito.isEmpty()) {
 						preRequisito = preRequisito.toUpperCase();
 						int consulta = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("Disciplina", "nomeDisciplina", preRequisito, "Curso_idCurso"));
-						String consulta1 = new BancoCursoGerenciar().consultar("Curso", "idCurso", String.valueOf(consulta), "nomeCurso");
+						String consulta1 = new BancoCursoGerenciar().consultar("idCurso", String.valueOf(consulta), "nomeCurso");
 						if(consulta1.equals(telaCadDisciplina.getComboBoxCurso().getSelectedItem())) {
 							if(Validacoes(preRequisito, preRequisitos) == 0) {	
 								preRequisitos.add(preRequisito);
@@ -430,7 +428,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 			if(disciplinas.get(i).equals(nome)){
 			//selecionando o id do curso em que a disciplina está cadastrada	
 				int idCursoDisciplina = Integer.parseInt(new Banco().consultar("Disciplina", "nomeDisciplina", nome, "Curso_idCurso"));
-				int idCurso = Integer.parseInt(new BancoCursoGerenciar().consultar("Curso", "nomeCurso", curso, "idCurso"));
+				int idCurso = Integer.parseInt(new BancoCursoGerenciar().consultar("nomeCurso", curso, "idCurso"));
 				if(idCursoDisciplina == idCurso)
 					contador++;
 				

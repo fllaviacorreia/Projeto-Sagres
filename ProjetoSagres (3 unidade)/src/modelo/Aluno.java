@@ -9,9 +9,11 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 
+import org.w3c.dom.views.AbstractView;
+
 import controle.Main;
 
-public class Aluno extends Endereco{
+public class Aluno extends Endereco {
 
 /*
  * Em aluno, na parte da visão falta pegar os nomes de cada disciplina e 
@@ -53,6 +55,7 @@ public class Aluno extends Endereco{
 		Main.aluno.add(this);
 	}
 
+	
 	public String getNome() {
 		return nome;
 	}

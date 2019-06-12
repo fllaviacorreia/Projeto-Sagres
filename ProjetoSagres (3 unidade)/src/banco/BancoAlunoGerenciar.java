@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ public class BancoAlunoGerenciar{
 	Connection conexao = null;
 	PreparedStatement preparetedStatement = null;
 	ResultSet resultSet = null;
+	private Statement consulta;
 	
 	public boolean BancoAlunoInserir(Aluno aluno) {
 		int endereco = 0;
@@ -79,6 +81,50 @@ public class BancoAlunoGerenciar{
 		return false;		
 	}
 	
+	public int contar(String campo, String query) {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(" + campo + ")FROM Aluno WHERE " + query);
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(" + campo + ")");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
+	
+	public void insereAlunosNoArray() {
+		String sql = "SELECT * FROM Aluno";
+		conexao = BancoConexao.open();
+		try {
+			preparetedStatement = conexao.prepareStatement(sql);
+			resultSet = preparetedStatement.executeQuery(sql);
+			while (resultSet.next()) {
+				Aluno aluno = new Aluno(resultSet.getString("nomeAluno"), resultSet.getString("numMatricula"), resultSet.getString("dataNascimento"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("celular"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("ufRg"), 
+						resultSet.getString("dataExpedicaoRg"), resultSet.getString("orgaoExpeditorRg"), resultSet.getString("Curso_idCurso"), null);
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public int contar() {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(*)FROM Aluno");
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(*)");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
+	
 	public boolean BancoAlunoExcluir(String numMatricula) {//sugestão mudar para boolean
 		try {
 			conexao = BancoConexao.open();
@@ -102,16 +148,16 @@ public class BancoAlunoGerenciar{
 		return true;
 	}
 	
-	public int primeiroEultimo(String tabela, String campo, int op) {
+	public int primeiroEultimo(String campo, int op) {
 		int valor = 0;
 		try {
 			conexao = BancoConexao.open();
 			if (op <= 0) {
-				String sql = "SELECT MIN(" + campo + ") AS resultado FROM " + tabela;
+				String sql = "SELECT MIN(" + campo + ") AS resultado FROM Aluno";
 				preparetedStatement = conexao.prepareStatement(sql);
 				resultSet = preparetedStatement.executeQuery(sql);
 			} else {
-				String sql = "SELECT MAX(" + campo + ") AS resultado FROM " + tabela;
+				String sql = "SELECT MAX(" + campo + ") AS resultado FROM Aluno";
 				preparetedStatement = conexao.prepareStatement(sql);
 				resultSet = preparetedStatement.executeQuery(sql);
 			}
@@ -135,25 +181,6 @@ public class BancoAlunoGerenciar{
 			if (resultSet.next()) {
 				retorno = (String) resultSet.getString(campo);
 			}
-			conexao.close();
-		} catch (SQLException e) {
-			System.out.println("Erro: Não foi possível consultar!\n" + e.getMessage());
-		}
-		return retorno;
-	}
-	
-	public String consultar(String tabela, String chave, String valorChave, String campo) {
-		String sql, retorno = "";
-		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " = " + valorChave;
-		try {
-			conexao = BancoConexao.open();
-			preparetedStatement = conexao.prepareStatement(sql);
-			resultSet = preparetedStatement.executeQuery(sql);
-			if (resultSet.next()) {
-				retorno = (String) resultSet.getString(campo);
-			}
-			preparetedStatement.close();
-			resultSet.close();
 			conexao.close();
 		} catch (SQLException e) {
 			System.out.println("Erro: Não foi possível consultar!\n" + e.getMessage());

@@ -3,7 +3,6 @@ package visao;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.text.DateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,14 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.JTextField;
 
 import modelo.FormataMascaras;
 
-import javax.swing.JTextField;
-
-//import com.toedter.calendar.JDateChooser;
-
 public class VisaoPainelCadastroAluno extends JPanel{
+	private static final long serialVersionUID = -5703145049536190063L;
 	FormataMascaras formatacao = new FormataMascaras();
 	private JLabel 				labelNomeAluno 	 				= null;
 	private JLabel 				labelMatriculaAluno 			= null;
@@ -43,6 +40,7 @@ public class VisaoPainelCadastroAluno extends JPanel{
 	private JLabel 				labelEmail						= null;
 	private JLabel 				labelCep						= null;
 	private JLabel 				labelTelefone					= null;
+	private JLabel 				labelCelular					= null;
 	private JTextField 			textFieldEmail					= null;
 	private JFormattedTextField formattedTextFieldCep			= null;
 	private JFormattedTextField formattedTextFieldTelefone		= null;
@@ -58,6 +56,7 @@ public class VisaoPainelCadastroAluno extends JPanel{
 	private JFormattedTextField formattedTextFieldComplemento	= null;
 	private JFormattedTextField formattedTextFieldBairro		= null;
 	private JFormattedTextField formattedTextFieldCidade		= null;
+	private JFormattedTextField formattedTextFieldCelular		= null;
 	private JComboBox<String>   comboBoxCurso					= null;
 	private JComboBox<String>   comboBoxHistoricoDisciplinas	= null;
 	private JComboBox<String> 	comboBoxEstadoEndereco			= null;
@@ -66,14 +65,9 @@ public class VisaoPainelCadastroAluno extends JPanel{
 	private JButton 			buttonCancelar 	 				= null;
 	private JButton 			buttonConfirmar   				= null;
 	private JButton 			buttonAdicionarDisciplina  		= null;
-	private JLabel labelCelular;
-	private JFormattedTextField formattedTextFieldCelular;
 
-	
-	
-	
 	public VisaoPainelCadastroAluno() {
-		setLayout(null);
+		this.setLayout(null);
 		this.setBackground(new Color(120, 205, 194));
 		this.setMinimumSize(new Dimension(1200, 720));
 		this.setMaximumSize(new Dimension(1200, 720));
@@ -122,8 +116,8 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
 		this.add(getButtonAdicionarDisciplina());
-		add(getLabelCelular());
-		add(getFormattedTextFieldCelular());
+		this.add(getLabelCelular());
+		this.add(getFormattedTextFieldCelular());
 		
 	}
 	

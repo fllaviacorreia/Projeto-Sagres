@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ public class BancoProfessorGerenciar {
 	Connection conexao = null;
 	PreparedStatement preparetedStatement = null;
 	ResultSet resultSet = null;
+	private Statement consulta;
 	
 	public boolean BancoProfessorInserir(Professor professor) {
 		int endereco;
@@ -62,8 +64,34 @@ public class BancoProfessorGerenciar {
 		
 		return false;		
 	}
+	public int contar(String campo, String query) {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(" + campo + ")FROM Professor WHERE " + query);
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(" + campo + ")");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
 	
-	public boolean BancoProfessorExcluir(String numMatricula) {//sugestão mudar para boolean
+	public int contar() {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(*)FROM Professor");
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(*)");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
+	public boolean BancoProfessorExcluir(String numMatricula) {
 		try {
 			conexao = BancoConexao.open();
 			String sql = "DELETE FROM Professor  WHERE( numMatricula = '" + numMatricula + "')";
@@ -91,11 +119,11 @@ public class BancoProfessorGerenciar {
 		try {
 			conexao = BancoConexao.open();
 			if (op <= 0) {
-				String sql = "SELECT MIN(" + campo + ") AS resultado FROM " + tabela;
+				String sql = "SELECT MIN(" + campo + ") AS resultado FROM Professor";
 				preparetedStatement = conexao.prepareStatement(sql);
 				resultSet = preparetedStatement.executeQuery(sql);
 			} else {
-				String sql = "SELECT MAX(" + campo + ") AS resultado FROM " + tabela;
+				String sql = "SELECT MAX(" + campo + ") AS resultado FROM Professor";
 				preparetedStatement = conexao.prepareStatement(sql);
 				resultSet = preparetedStatement.executeQuery(sql);
 			}
@@ -109,9 +137,9 @@ public class BancoProfessorGerenciar {
 		return valor;
 	}
 	
-	public String consultar(String tabela, String chave, String valorChave, String campo) {
+	public String consultar(String chave, String valorChave, String campo) {
 		String sql, retorno = "";
-		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " LIKE '%" + valorChave + "%'";
+		sql = "SELECT " + campo + " FROM Professor WHERE " + chave + " LIKE '%" + valorChave + "%'";
 		try {
 			conexao = BancoConexao.open();
 			preparetedStatement = conexao.prepareStatement(sql);

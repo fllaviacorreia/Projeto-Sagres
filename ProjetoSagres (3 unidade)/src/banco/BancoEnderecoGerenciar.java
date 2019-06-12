@@ -4,16 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import modelo.Aluno;
 import modelo.Endereco;
 
 public class BancoEnderecoGerenciar {
 	Connection conexao = null;
 	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
+	private Statement consulta;
 	
 	public boolean inserirEndereco(Endereco endereco) {
 		String sqlEndereco = "INSERT INTO Endereco(cep, rua, numero, complemento, bairro, cidade, uf, tipo) "
@@ -67,6 +68,34 @@ public class BancoEnderecoGerenciar {
 		return valor;
 	}
 	
+	public int contar( String campo, String query) {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(" + campo + ")FROM Endereco WHERE " + query);
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(" + campo + ")");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
+	
+	public int contar() {
+		int qtd = 0;
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery("SELECT COUNT(*)FROM Endereco");
+			resultSet.first();
+			qtd = this.resultSet.getInt("COUNT(*)");
+		} catch (SQLException e) {
+			System.out.println("Não foi possível realizar a contagem!\n" + e.getMessage());
+		}
+		return qtd;
+	}
+	
 	public String consultar(String chave, String valorChave, String campo) {
 		String sql, retorno = "";
 		sql = "SELECT " + campo + " FROM Endereco WHERE " + chave + " LIKE '%" + valorChave + "%'";
@@ -86,14 +115,8 @@ public class BancoEnderecoGerenciar {
 	public boolean atualizar(String tabela, String chave, String valor, String query) {//sugestão mudar para boolean
 		try {
 			conexao = BancoConexao.open();
-			
 			String sql = "UPDATE Endereco SET " + query + " WHERE " + chave + " = '" + valor + "'";
 			resultSet = preparedStatement.executeQuery(sql);
-			
-//			System.out.println(sql);
-//			JOptionPane.showMessageDialog(null, "Alterado com sucesso!", "Atualização",
-//	     				JOptionPane.INFORMATION_MESSAGE);
-			
 			resultSet.close();
 			conexao.close();
 		} catch (SQLException e) {

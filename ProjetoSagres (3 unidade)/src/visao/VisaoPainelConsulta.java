@@ -16,7 +16,7 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Component;
 
-public class VisaoPainelConsultas extends JPanel {
+public class VisaoPainelConsulta extends JPanel {
 	private JButton btnConsultarAlunos;
 	private JButton btnConsultarProfessores;
 	private JButton btnConsultarCursos;
@@ -39,7 +39,7 @@ public class VisaoPainelConsultas extends JPanel {
 	private JMenuItem menuItemConsultaDisciplina = null;
 	private JMenuItem menuItemConsultaProfessor	 = null;
 	
-	public VisaoPainelConsultas() {
+	public VisaoPainelConsulta() {
 		this.setBackground(new Color(66, 179, 165));
 		this.setMinimumSize(new Dimension(1000, 730));
 		this.setMaximumSize(new Dimension(1000, 730));

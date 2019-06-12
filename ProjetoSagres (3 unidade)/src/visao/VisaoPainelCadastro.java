@@ -20,7 +20,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class VisaoPainelCadastros extends JPanel {
+public class VisaoPainelCadastro extends JPanel {
 
 	private JButton   buttonCadastroProfessor  	= null;
     private JButton   buttonCadastroAluno 		= null;
@@ -38,11 +38,16 @@ public class VisaoPainelCadastros extends JPanel {
 	private JMenuItem menuItemCadastroCurso 	 = null;
 	private JMenuItem menuItemCadastroDisciplina = null;
 	private JMenuItem menuItemCadastroProfessor	 = null;
+	private JMenuItem menuItemConsultaAluno 	 = null;
+	private JMenuItem menuItemConsultaClasse 	 = null;
+	private JMenuItem menuItemConsultaCurso 	 = null;
+	private JMenuItem menuItemConsultaDisciplina = null;
+	private JMenuItem menuItemConsultaProfessor	 = null;
 //	private JButton buttonCancelar 	 			= null;
 //	private JButton buttonFechar   				= null;
 //	VisaoPainelTelaInicial menu = new VisaoPainelTelaInicial();
     
-    public VisaoPainelCadastros(){
+    public VisaoPainelCadastro(){
     	this.setBackground(new Color(66, 179, 165));
     	this.setMinimumSize(new Dimension(1000, 730));
 		this.setMaximumSize(new Dimension(1000, 730));
@@ -228,6 +233,11 @@ public class VisaoPainelCadastros extends JPanel {
 			menuConsultas.setBackground(Color.LIGHT_GRAY);
 			menuConsultas.setForeground(Color.BLACK);
 			menuConsultas.setBounds(121, 1, 90, 48);
+			menuConsultas.add(getMenuItemConsultaAluno());
+			menuConsultas.add(getMenuItemConsultaClasse());
+			menuConsultas.add(getMenuItemConsultaCurso());
+			menuConsultas.add(getMenuItemConsultaDisciplina());
+			menuConsultas.add(getMenuItemConsultaProfessor());
 		}
 		return menuConsultas;
 	}
@@ -282,5 +292,44 @@ public class VisaoPainelCadastros extends JPanel {
 		//	menuItemProfessor.setBounds(1, 176, 40, 30);
 		}
 		return menuItemCadastroProfessor;
+	}
+	public JMenuItem getMenuItemConsultaAluno() {
+		if(menuItemConsultaAluno == null) {
+			menuItemConsultaAluno = new JMenuItem("Aluno");
+		//	menuItemAluno.setBounds(1, 1, 40, 30);
+		}
+		return menuItemConsultaAluno;
+	}
+
+	public JMenuItem getMenuItemConsultaClasse() {
+		if(menuItemConsultaClasse == null) {
+			menuItemConsultaClasse = new JMenuItem("Classe");
+		//	menuItemClasse.setBounds(1, 80, 40, 30);
+		}
+		return menuItemConsultaClasse;
+	}
+
+	public JMenuItem getMenuItemConsultaCurso() {
+		if(menuItemConsultaCurso == null) {
+			menuItemConsultaCurso = new JMenuItem("Curso");
+		//	menuItemCurso.setBounds(1, 112, 40, 30);
+		}
+		return menuItemConsultaCurso;
+	}
+
+	public JMenuItem getMenuItemConsultaDisciplina() {
+		if(menuItemConsultaDisciplina == null) {
+			menuItemConsultaDisciplina = new JMenuItem("Disciplina");
+		//	menuItemDisciplina.setBounds(1, 144, 40, 30);
+		}
+		return menuItemConsultaDisciplina;
+	}
+
+	public JMenuItem getMenuItemConsultaProfessor() {
+		if(menuItemConsultaProfessor == null) {
+			menuItemConsultaProfessor = new JMenuItem("Professor");
+		//	menuItemProfessor.setBounds(1, 176, 40, 30);
+		}
+		return menuItemConsultaProfessor;
 	}
 }
