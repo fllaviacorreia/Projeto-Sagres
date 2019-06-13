@@ -85,7 +85,7 @@ public class VisaoPainelFluxograma extends JPanel {
 		disciplina.setVerticalAlignment(SwingConstants.BOTTOM);
 		disciplina.setHorizontalAlignment(SwingConstants.LEADING);
 		disciplina.setForeground(Color.BLACK);
-		disciplina.setFont(new Font("Arial", Font.BOLD, 14));
+		disciplina.setFont(new Font("Arial Narrow", Font.BOLD, 16));
 		disciplina.setBounds(x, y, 150, 40);
 		
 		return disciplina;

@@ -401,7 +401,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 				//	new ControleArquivo(4);
 						JOptionPane.showMessageDialog(telaCadDisciplina, "Cadastro realizado com sucesso.");
 						LimpaDados();
-						preenche();
+					//	preenche();
 					}
 				}else {
 					if(contador != 6)
