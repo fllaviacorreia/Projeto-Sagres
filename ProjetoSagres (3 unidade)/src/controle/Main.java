@@ -3,6 +3,8 @@ package controle;
 import java.util.ArrayList;
 
 import banco.BancoAlunoGerenciar;
+import banco.BancoCursoGerenciar;
+import banco.BancoDisciplinaGerenciar;
 import modelo.Aluno;
 //import modelo.Arquivo;
 import modelo.Classe;
@@ -23,6 +25,8 @@ public class Main {
 	public static void main(String[] args) {			
 	//	new ControleArquivo(6);
 		new BancoAlunoGerenciar().insereAlunosNoArray();
+		new BancoCursoGerenciar().insereCursosNoArray();
+		new BancoDisciplinaGerenciar().insereDisciplinasNoArray();
 		new ControlePainelTelaLogin();
 		System.out.println("Main");
 	}

@@ -287,7 +287,7 @@ public class ControlePainelTelaInicial implements ActionListener {
 					telaConsCurso = new VisaoPainelConsultaCurso();
 				}
 				framePrincipal.trocarPainel(telaConsCurso, "Consulta Curso");
-				new ControlePainelConsultaCurso(telaConsCurso, 1);
+				new ControlePainelConsultaCurso(framePrincipal, telaConsCurso, 1);
 
 			} catch (Exception e1) {
 				System.out.println(e1.getMessage());

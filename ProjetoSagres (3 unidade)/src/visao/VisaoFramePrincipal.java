@@ -39,7 +39,7 @@ public class VisaoFramePrincipal extends JFrame {
 //		setMaximumSize(new Dimension(display));
 		setLocation(0, 0);
 		repaint();
-		setSize(1011, 730);
+		setSize(1300, 730);
 		validate();
 		setLocation((display.width - this.getSize().width) / 2, 0);
 

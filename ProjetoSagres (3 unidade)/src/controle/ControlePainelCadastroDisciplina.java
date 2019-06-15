@@ -244,8 +244,11 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 																	"Inserir", JOptionPane.OK_CANCEL_OPTION);
 					if(!preRequisito.isEmpty()) {
 						preRequisito = preRequisito.toUpperCase();
+						System.out.println("pre requisito " + preRequisito);
 						int consulta = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("Disciplina", "nomeDisciplina", preRequisito, "Curso_idCurso"));
+						System.out.println("int consulta "+ consulta);
 						String consulta1 = new BancoCursoGerenciar().consultar("idCurso", String.valueOf(consulta), "nomeCurso");
+						System.out.println("String consulta "+ consulta1);
 						if(consulta1.equals(telaCadDisciplina.getComboBoxCurso().getSelectedItem())) {
 							if(Validacoes(preRequisito, preRequisitos) == 0) {	
 								preRequisitos.add(preRequisito);
@@ -384,7 +387,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 							try {
 								int idPreRequisito = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("Disciplina", "nomeDisciplina", 
 										preRequisitos.get(i).toString(), "idDisciplina"));
-								retorno1 = new BancoDisciplinaGerenciar().inserirPreRequisitos(idDisciplina, idPreRequisito);
+								retorno1 = new BancoDisciplinaGerenciar().inserirPreRequisitos(idDisciplina, idPreRequisito, preRequisitos.get(i));
 								
 								if(retorno1)
 									count++;
@@ -450,6 +453,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 	public void preenche() {
 		int i;
 		telaCadDisciplina.getComboBoxCurso().addItem("SELECIONE");
+		telaCadDisciplina.getComboBoxAreaDisciplina().addItem("SELECIONE");
 	//preenchendo o combobox com os nomes de cursos	e as areas
 		try {
 			ArrayList<String> cursosNome = new BancoCursoGerenciar().consultarUmaColuna("Curso", "nomeCurso");

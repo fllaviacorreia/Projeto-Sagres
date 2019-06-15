@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import modelo.Aluno;
 import modelo.Curso;
 
 public class BancoCursoGerenciar {
@@ -18,7 +19,8 @@ public class BancoCursoGerenciar {
 	
 	public boolean BancoCursoInserir(Curso curso) {
 			//aqui é o comando em sql que é necessário para inserir no banco de dados
-			String sqlCurso = "INSERT INTO Curso(nomeCurso, cargaHorariaTotal, tipoCurso, quantidadeSemestres) VALUES(?, ?, ?, ?)";
+			String sqlCurso = "INSERT INTO Curso(nomeCurso, cargaHorariaTotal, tipoCurso, quantidadeSemestres, licenciatura, bacharelado) "
+					+ "VALUES(?, ?, ?, ?, ?, ?)";
 			
 			conexao = BancoConexao.open();
 			
@@ -28,6 +30,8 @@ public class BancoCursoGerenciar {
 				preparedStatement.setString(2, curso.getCargaHorariaTotal());
 				preparedStatement.setString(3, curso.getTipoCurso());
 				preparedStatement.setString(4, curso.getSemestres());
+				preparedStatement.setBoolean(5, curso.isLicenciatura());
+				preparedStatement.setBoolean(6, curso.isBacharelado());
 				int teste = preparedStatement.executeUpdate();
 
 				if(teste > 0) {
@@ -74,7 +78,7 @@ public class BancoCursoGerenciar {
 	}
 	public String consultar(String chave, String valorChave, String campo) {
 		String sql, retorno = "";
-		sql = "SELECT " + campo + " FROM Curso WHERE " + chave + " = " + valorChave;
+		sql = "SELECT " + campo + " FROM Curso WHERE " + chave + " = '" + valorChave + "'";
 		try {
 			conexao = BancoConexao.open();
 			preparedStatement = conexao.prepareStatement(sql);
@@ -105,6 +109,24 @@ public class BancoCursoGerenciar {
 			e.printStackTrace();
 		}
 		return lista;
+	}
+	
+	public void insereCursosNoArray() {
+		String sql = "SELECT * FROM Curso";
+		conexao = BancoConexao.open();
+		try {
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
+			while (resultSet.next()) {
+				Curso curso = new Curso(resultSet.getString("cargaHorariaTotal"), resultSet.getString("nomeCurso"), 
+						resultSet.getString("tipoCurso"), resultSet.getString("quantidadeSemestres"), 
+						resultSet.getBoolean("licenciatura"), resultSet.getBoolean("bacharelado"));
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 	

@@ -7,12 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import modelo.Curso;
 import modelo.Disciplina;
 
 public class BancoDisciplinaGerenciar {
 	private Connection conexao;
 	private PreparedStatement preparedStatement;
 	private ResultSet resultSet;
+	private ResultSet resultSet1;
 	private Statement consulta;
 
 	public boolean BancoDisciplinaInserir(Disciplina disciplina) {
@@ -92,7 +94,7 @@ public class BancoDisciplinaGerenciar {
 	}
 	public String consultar(String tabela, String chave, String valorChave, String campo) {
 		String sql, retorno = "";
-		sql = "SELECT " + campo + " FROM " + tabela + " WHERE " + chave + " = " + valorChave;
+		sql = "SELECT " + campo + " FROM Curso WHERE " + chave + " = '" + valorChave + "'";
 		try {
 			conexao = BancoConexao.open();
 			preparedStatement = conexao.prepareStatement(sql);
@@ -125,15 +127,34 @@ public class BancoDisciplinaGerenciar {
 		return lista;
 	}
 	
-	public boolean inserirPreRequisitos(int idDisciplina, int idPreRequisito){
+	public ArrayList<String> consultarUmaColuna(String tabela, String coluna, String campo, String valorCampo) {
+		ArrayList<String> lista = new ArrayList<String>();
+		String sql = "SELECT * FROM " + tabela + " WHERE " + campo + " = '" + valorCampo +"'";
+		conexao = BancoConexao.open();
+		try {
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet1 = preparedStatement.executeQuery(sql);
+			while (resultSet1.next()) {
+				lista.add(resultSet1.getString(coluna));
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public boolean inserirPreRequisitos(int idDisciplina, int idPreRequisito, String nomePreRequisito){
 		
-		String sqlDisciplina = "INSERT INTO disciplina_tem_prerequisito(idDisciplina, idPreRequisito) VALUES(?, ?)";
+		String sqlDisciplina = "INSERT INTO disciplina_tem_prerequisito(idDisciplina, idPreRequisito, nomePreRequisito) VALUES(?, ?, ?)";
 		conexao = BancoConexao.open();
 		
 		try {
 			preparedStatement = conexao.prepareStatement(sqlDisciplina);
 			preparedStatement.setInt(1, idDisciplina);
 			preparedStatement.setInt(2, idPreRequisito);
+			preparedStatement.setString(3, nomePreRequisito);
 			int teste = preparedStatement.executeUpdate();
 			if(teste > 0) {
 //					System.out.println("Inserir1");
@@ -148,5 +169,36 @@ public class BancoDisciplinaGerenciar {
 			System.err.println("Erro inserir curso "+e);	
 		}								
 		return false;
+	}
+	
+	public void insereDisciplinasNoArray() {
+		String sql = "SELECT * FROM Disciplina";
+		conexao = BancoConexao.open();
+		try {
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
+			while (resultSet.next()) {
+				String curso = new BancoCursoGerenciar().consultar("idCurso", 
+						String.valueOf(resultSet.getInt("Curso_idCurso")), "nomeCurso");
+				boolean optativa, obrigatoria;
+				if(resultSet.getString("optativaObrigatoria").equals("OPTATIVA")) {
+					optativa = true;
+					obrigatoria = false;
+				}else {
+					optativa = false;
+					obrigatoria = true;
+				}
+				ArrayList<String> preRequisitos = consultarUmaColuna("disciplina_tem_prerequisito", "nomePreRequisito", "idDisciplina", String.valueOf(resultSet.getInt("idDisciplina")));
+				Disciplina disciplina = new Disciplina(resultSet.getString("nomeDisciplina"), resultSet.getString("SEMESTRE"), 
+						resultSet.getString("areaDisciplina"), curso, preRequisitos, resultSet.getString("cargaHoraria"), 
+						resultSet.getBoolean("preRequisito"), optativa, obrigatoria, 
+						resultSet.getBoolean("teorica"), resultSet.getBoolean("pratica"), resultSet.getBoolean("estagio"));
+				
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

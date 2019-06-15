@@ -23,13 +23,15 @@ public class VisaoPainelCadastroCurso extends JPanel{
 	private JButton 			buttonCancelar 	 				= null;
 	private JButton 			buttonConfirmar   				= null;
 	private JButton 			buttonAdicionarCargaHoraria  	= null;
-	
-	FormataMascaras formatacao = new FormataMascaras();
-	private JButton buttonGerarFluxograma;
+//	private JButton buttonGerarFluxograma;
 	private JComboBox<String> comboBoxHorario;
 	private JLabel labelHorario;
 	private JComboBox<String> comboBoxSemestresTotais;
 	private JFormattedTextField formattedTextFieldNomeCurso;
+	FormataMascaras formatacao = new FormataMascaras();
+	private JRadioButton rdbtnLicenciatura;
+	private JRadioButton rdbtnBacharelado;
+	
 	
 	public VisaoPainelCadastroCurso() {
 		this.setLayout(null);
@@ -45,11 +47,13 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
 		this.add(getButtonAdicionarCargaHoraria());
-		add(getButtonGerarFluxograma());
+//		add(getButtonGerarFluxograma());
 		add(getComboBoxHorario());
 		add(getLabelHorario());
 		add(getComboBoxSemestresTotais());
 		add(getFormattedTextFieldNomeCurso());
+		add(getRdbtnLicenciatura());
+		add(getRdbtnBacharelado());
 	}
 	
 	
@@ -144,23 +148,23 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		}
 		return buttonAdicionarCargaHoraria;
 	}
-	public JButton getButtonGerarFluxograma() {
-		if (buttonGerarFluxograma == null) {
-			buttonGerarFluxograma = new JButton("Gerar Fluxograma");
-			buttonGerarFluxograma.setBackground(Color.WHITE);
-			buttonGerarFluxograma.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonGerarFluxograma.setForeground(Color.BLACK);
-			buttonGerarFluxograma.setBounds(23, 251, 154, 23);
-		}
-		return buttonGerarFluxograma;
-	}
+//	public JButton getButtonGerarFluxograma() {
+//		if (buttonGerarFluxograma == null) {
+//			buttonGerarFluxograma = new JButton("Gerar Fluxograma");
+//			buttonGerarFluxograma.setBackground(Color.WHITE);
+//			buttonGerarFluxograma.setFont(new Font("Arial", Font.PLAIN, 14));
+//			buttonGerarFluxograma.setForeground(Color.BLACK);
+//			buttonGerarFluxograma.setBounds(23, 251, 154, 23);
+//		}
+//		return buttonGerarFluxograma;
+//	}
 	public JComboBox<String> getComboBoxHorario() {
 		if (comboBoxHorario == null) {
 			comboBoxHorario = new JComboBox();
 			comboBoxHorario.setBackground(Color.WHITE);
 			comboBoxHorario.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxHorario.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE", "MATUTINO", "VESPERTINO", "NOTURNO", "INTEGRAL"}));
-			comboBoxHorario.setBounds(434, 134, 130, 20);
+			comboBoxHorario.setBounds(23, 218, 130, 20);
 		}
 		return comboBoxHorario;
 	}
@@ -168,7 +172,7 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		if (labelHorario == null) {
 			labelHorario = new JLabel("Hor\u00E1rio do Curso:");
 			labelHorario.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelHorario.setBounds(434, 109, 130, 14);
+			labelHorario.setBounds(23, 193, 130, 14);
 		}
 		return labelHorario;
 	}
@@ -190,5 +194,23 @@ public class VisaoPainelCadastroCurso extends JPanel{
 			formattedTextFieldNomeCurso.setBounds(23, 56, 367, 22);
 		}
 		return formattedTextFieldNomeCurso;
+	}
+	public JRadioButton getRdbtnLicenciatura() {
+		if (rdbtnLicenciatura == null) {
+			rdbtnLicenciatura = new JRadioButton("Licenciatura");
+			rdbtnLicenciatura.setFont(new Font("Arial", Font.PLAIN, 14));
+			rdbtnLicenciatura.setBackground(new Color(120, 205, 194));
+			rdbtnLicenciatura.setBounds(188, 218, 109, 23);
+		}
+		return rdbtnLicenciatura;
+	}
+	public JRadioButton getRdbtnBacharelado() {
+		if (rdbtnBacharelado == null) {
+			rdbtnBacharelado = new JRadioButton("Bacharelado");
+			rdbtnBacharelado.setFont(new Font("Arial", Font.PLAIN, 14));
+			rdbtnBacharelado.setBackground(new Color(120, 205, 194));
+			rdbtnBacharelado.setBounds(326, 218, 109, 23);
+		}
+		return rdbtnBacharelado;
 	}
 }

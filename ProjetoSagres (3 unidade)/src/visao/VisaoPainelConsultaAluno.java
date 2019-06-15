@@ -29,8 +29,8 @@ public class VisaoPainelConsultaAluno extends JPanel{
 	public VisaoPainelConsultaAluno() {
 		this.setLayout(null);
 		this.setBackground(new Color(120, 205, 194));
-		this.setMinimumSize(new Dimension(1200, 720));
-		this.setMaximumSize(new Dimension(1200, 720));
+		this.setMinimumSize(new Dimension(1400, 720));
+		this.setMaximumSize(new Dimension(1400, 720));
 		this.setVisible(true);
 		this.add(getButtonVoltar());
 		this.add(getDadosAlunoJScrollPane());
