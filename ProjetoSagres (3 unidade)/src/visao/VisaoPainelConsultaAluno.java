@@ -4,20 +4,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
 
 import controle.Main;
 import modelo.ModeloTabelaAluno;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.DefaultComboBoxModel;
 
+@SuppressWarnings("serial")
 public class VisaoPainelConsultaAluno extends JPanel{
 	private JButton 			buttonVoltar 	 				= null;
 	private JTable jtableDadosAluno;
@@ -54,14 +52,19 @@ public class VisaoPainelConsultaAluno extends JPanel{
 	public JTable getJTableDadosAluno() {
 		if (jtableDadosAluno == null) {
 			jtableDadosAluno = new JTable();
-			jtableDadosAluno.setBorder(new LineBorder(new Color(0, 0, 0)));
-			jtableDadosAluno.setFont(new Font("Arial", Font.BOLD, 18));
+			jtableDadosAluno.setFont(new Font("Arial Narrow", Font.BOLD, 20));
 			jtableDadosAluno.setModel(getTabela());
-			 //auto ajuste na altura da tabela
-			jtableDadosAluno.setFillsViewportHeight(true);
+			//auto ajuste na altura da tabela
+			//jtableDadosAluno.setFillsViewportHeight(true);
 	        //selecionar somente uma linha
-			jtableDadosAluno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jtableDadosAluno.setBounds(10, 89, 776, 208);
+			//jtableDadosAluno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jtableDadosAluno.setBounds(10, 89, 1200, 400);
+			jtableDadosAluno.getColumnModel().getColumn(0).setPreferredWidth(120);
+			jtableDadosAluno.getColumnModel().getColumn(1).setPreferredWidth(150);
+			jtableDadosAluno.getColumnModel().getColumn(2).setPreferredWidth(400);
+			jtableDadosAluno.getColumnModel().getColumn(3).setPreferredWidth(250);
+			jtableDadosAluno.getColumnModel().getColumn(4).setPreferredWidth(180);
+			jtableDadosAluno.getColumnModel().getColumn(5).setPreferredWidth(400);
 			jtableDadosAluno.setVisible(true);
 		}
 		return jtableDadosAluno;
@@ -70,14 +73,14 @@ public class VisaoPainelConsultaAluno extends JPanel{
 	public JScrollPane getDadosAlunoJScrollPane() {
 		if(dadosAlunoJScrollPane == null) {
 			dadosAlunoJScrollPane = new JScrollPane(getJTableDadosAluno());
-			dadosAlunoJScrollPane.setBounds(48, 116, 905, 357);
+			dadosAlunoJScrollPane.setBounds(48, 116, 1200, 400);
 		}
 		return dadosAlunoJScrollPane;
 	}	
 	public JComboBox<String> getComboBoxTipoBusca() {
 		if (comboBoxTipoBusca == null) {
 			comboBoxTipoBusca = new JComboBox<String>();
-			comboBoxTipoBusca.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE", "Nome", "CPF"}));
+			comboBoxTipoBusca.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "Nome", "CPF"}));
 			comboBoxTipoBusca.setForeground(Color.BLACK);
 			comboBoxTipoBusca.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxTipoBusca.setBackground(Color.WHITE);

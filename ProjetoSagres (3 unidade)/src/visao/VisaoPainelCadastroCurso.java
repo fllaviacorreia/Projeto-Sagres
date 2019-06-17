@@ -13,25 +13,25 @@ import javax.swing.*;
 
 import modelo.FormataMascaras;
 
+@SuppressWarnings("serial")
 public class VisaoPainelCadastroCurso extends JPanel{
 	
 	private JLabel 				labelNomeCurso 					= null;
 	private JLabel 				labelCargaHorariaTotal 			= null;
 	private JLabel 				labelSemestresTotais 			= null;
+	private JLabel 				labelTipoDoCurso				= null;
+	private JLabel 				labelTipoDaGraduacao			= null;
+	private JLabel 				labelHorario					= null;
+	private JFormattedTextField formattedTextFieldNomeCurso		= null;
 	private JComboBox<String> 	comboBoxCargaHorariaTotal 		= null;
+	private JComboBox<String> 	comboBoxHorario					= null;
+	private JComboBox<String> 	comboBoxSemestresTotais			= null;
+	private JComboBox<String> 	comboBoxTipoCurso				= null;
+	private JComboBox<String> 	comboBoxTipoGraduacao			= null;
 	private JButton 			buttonVoltar 					= null;
 	private JButton 			buttonCancelar 	 				= null;
 	private JButton 			buttonConfirmar   				= null;
-	private JButton 			buttonAdicionarCargaHoraria  	= null;
-//	private JButton buttonGerarFluxograma;
-	private JComboBox<String> comboBoxHorario;
-	private JLabel labelHorario;
-	private JComboBox<String> comboBoxSemestresTotais;
-	private JFormattedTextField formattedTextFieldNomeCurso;
 	FormataMascaras formatacao = new FormataMascaras();
-	private JRadioButton rdbtnLicenciatura;
-	private JRadioButton rdbtnBacharelado;
-	
 	
 	public VisaoPainelCadastroCurso() {
 		this.setLayout(null);
@@ -42,26 +42,24 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		this.add(getLabelCargaHorariaTotal());
 		this.add(getLabelNomeCurso());
 		this.add(getLabelSemestresTotais());
+		this.add(getLabelHorario());
+		this.add(getLabelTipoDoCurso());
+		this.add(getLabelTipoDaGraduacao());
+		this.add(getFormattedTextFieldNomeCurso());
 		this.add(getComboBoxCargaHorariaTotal());
+		this.add(getComboBoxHorario());
+		this.add(getComboBoxSemestresTotais());
+		this.add(getComboBoxTipoCurso());
+		this.add(getComboBoxTipoGraduacao());
 		this.add(getButtonVoltar());
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
-		this.add(getButtonAdicionarCargaHoraria());
-//		add(getButtonGerarFluxograma());
-		add(getComboBoxHorario());
-		add(getLabelHorario());
-		add(getComboBoxSemestresTotais());
-		add(getFormattedTextFieldNomeCurso());
-		add(getRdbtnLicenciatura());
-		add(getRdbtnBacharelado());
 	}
-	
-	
 
 	public JLabel getLabelNomeCurso() {
 		if(labelNomeCurso == null) {
 			labelNomeCurso = new JLabel("Nome:");
-			labelNomeCurso.setBounds(22, 28, 154, 15);
+			labelNomeCurso.setBounds(22, 33, 154, 25);
 			labelNomeCurso.setForeground(Color.BLACK);
 			labelNomeCurso.setFont(new Font("Arial", Font.PLAIN, 14));
 			labelNomeCurso.setVisible(true);
@@ -72,7 +70,7 @@ public class VisaoPainelCadastroCurso extends JPanel{
 	public JLabel getLabelCargaHorariaTotal() {
 		if(labelCargaHorariaTotal == null) {
 			labelCargaHorariaTotal = new JLabel("Carga Horaria Total:");
-			labelCargaHorariaTotal.setBounds(23, 108, 154, 15);
+			labelCargaHorariaTotal.setBounds(22, 105, 154, 25);
 			labelCargaHorariaTotal.setForeground(Color.BLACK);
 			labelCargaHorariaTotal.setFont(new Font("Arial", Font.PLAIN, 14));
 			labelCargaHorariaTotal.setVisible(true);
@@ -83,31 +81,112 @@ public class VisaoPainelCadastroCurso extends JPanel{
 	public JLabel getLabelSemestresTotais() {
 		if(labelSemestresTotais == null) {
 			labelSemestresTotais = new JLabel("Semestres Totais:");
-			labelSemestresTotais.setBounds(434, 28, 154, 15);
+			labelSemestresTotais.setBounds(22, 168, 154, 25);
 			labelSemestresTotais.setForeground(Color.BLACK);
 			labelSemestresTotais.setFont(new Font("Arial", Font.PLAIN, 14));
 			labelSemestresTotais.setVisible(true);
 		}
 		return labelSemestresTotais;
 	}
-
+	public JLabel getLabelHorario() {
+		if (labelHorario == null) {
+			labelHorario = new JLabel("Hor\u00E1rio do Curso:");
+			labelHorario.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelHorario.setBounds(22, 237, 130, 25);
+		}
+		return labelHorario;
+	}
+	public JLabel getLabelTipoDoCurso() {
+		if (labelTipoDoCurso == null) {
+			labelTipoDoCurso = new JLabel("Tipo do Curso:");
+			labelTipoDoCurso.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelTipoDoCurso.setBounds(22, 309, 119, 25);
+		}
+		return labelTipoDoCurso;
+	}
+	public JLabel getLabelTipoDaGraduacao() {
+		if (labelTipoDaGraduacao == null) {
+			labelTipoDaGraduacao = new JLabel("Tipo da gradua\u00E7\u00E3o");
+			labelTipoDaGraduacao.setEnabled(false);
+			labelTipoDaGraduacao.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelTipoDaGraduacao.setBounds(22, 374, 168, 25);
+		}
+		return labelTipoDaGraduacao;
+	}
+	public JFormattedTextField getFormattedTextFieldNomeCurso() {
+		if (formattedTextFieldNomeCurso == null) {
+			formattedTextFieldNomeCurso = new JFormattedTextField();
+			formattedTextFieldNomeCurso.setForeground(Color.BLACK);
+			formattedTextFieldNomeCurso.setFont(new Font("Arial", Font.PLAIN, 14));
+			formattedTextFieldNomeCurso.setBounds(23, 56, 425, 25);
+		}
+		return formattedTextFieldNomeCurso;
+	}
 	public JComboBox<String> getComboBoxCargaHorariaTotal() {
 		if(comboBoxCargaHorariaTotal == null) {
 			comboBoxCargaHorariaTotal = new JComboBox<String>();
-			comboBoxCargaHorariaTotal.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE"}));
+			comboBoxCargaHorariaTotal.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE"}));
 			comboBoxCargaHorariaTotal.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxCargaHorariaTotal.setBackground(new Color(255, 255, 255));
-			comboBoxCargaHorariaTotal.setBounds(23, 134, 130, 20);
+			comboBoxCargaHorariaTotal.setBackground(Color.WHITE);
+			comboBoxCargaHorariaTotal.setBounds(22, 131, 202, 25);
 			comboBoxCargaHorariaTotal.setVisible(true);
+			int i = 1500;
+			while(i <= 5000) {
+				comboBoxCargaHorariaTotal.addItem(String.valueOf(i));
+				i = i + 50;
+			}
 		}
 		return comboBoxCargaHorariaTotal;
 	}
-
+	public JComboBox<String> getComboBoxHorario() {
+		if (comboBoxHorario == null) {
+			comboBoxHorario = new JComboBox<String>();
+			comboBoxHorario.setBackground(Color.WHITE);
+			comboBoxHorario.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxHorario.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "MATUTINO", "VESPERTINO", "NOTURNO", "INTEGRAL"}));
+			comboBoxHorario.setBounds(23, 263, 201, 25);
+		}
+		return comboBoxHorario;
+	}
+	
+	public JComboBox<String> getComboBoxSemestresTotais() {
+		if (comboBoxSemestresTotais == null) {
+			comboBoxSemestresTotais = new JComboBox<String>();
+			comboBoxSemestresTotais.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxSemestresTotais.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", 
+					"4", "5","6","7", "8", "9", "10","11", "12"}));
+			comboBoxSemestresTotais.setBounds(22, 195, 202, 25);
+			comboBoxSemestresTotais.setBackground(Color.WHITE);
+		}
+		return comboBoxSemestresTotais;
+	}
+	
+	public JComboBox<String> getComboBoxTipoCurso() {
+		if (comboBoxTipoCurso == null) {
+			comboBoxTipoCurso = new JComboBox<String>();
+			comboBoxTipoCurso.setBackground(Color.WHITE);
+			comboBoxTipoCurso.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxTipoCurso.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "GRADUA\u00C7\u00C3O", "ESPECIALIZA\u00C7\u00C3O", "MESTRADO", "DOUTORADO"}));
+			comboBoxTipoCurso.setBounds(23, 334, 201, 25);
+		}
+		return comboBoxTipoCurso;
+	}
+	public JComboBox<String> getComboBoxTipoGraduacao() {
+		if (comboBoxTipoGraduacao == null) {
+			comboBoxTipoGraduacao = new JComboBox<String>();
+			comboBoxTipoGraduacao.setEnabled(false);
+			comboBoxTipoGraduacao.setBackground(Color.WHITE);
+			comboBoxTipoGraduacao.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxTipoGraduacao.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "LICENCIATURA", "BACHARELADO"}));
+			comboBoxTipoGraduacao.setBounds(22, 399, 202, 25);
+		}
+		return comboBoxTipoGraduacao;
+	}
 	public JButton getButtonVoltar() {
 		if(buttonVoltar == null) {
 			buttonVoltar = new JButton("VOLTAR");
 			buttonVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonVoltar.setBounds(54, 631, 130, 33);
+			buttonVoltar.setBounds(54, 631, 130, 35);
 			buttonVoltar.setBackground(Color.WHITE);
 			buttonVoltar.setVisible(true);
 		}
@@ -118,7 +197,7 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		if(buttonCancelar == null) {
 			buttonCancelar = new JButton("CANCELAR");
 			buttonCancelar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonCancelar.setBounds(211, 631, 130, 33);
+			buttonCancelar.setBounds(211, 631, 130, 35);
 			buttonCancelar.setBackground(Color.WHITE);
 			buttonCancelar.setVisible(true);
 		}
@@ -129,88 +208,11 @@ public class VisaoPainelCadastroCurso extends JPanel{
 		if(buttonConfirmar == null) {
 			buttonConfirmar = new JButton("CONFIRMAR");
 			buttonConfirmar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonConfirmar.setBounds(370, 631, 130, 33);
+			buttonConfirmar.setBounds(370, 631, 130, 35);
 			buttonConfirmar.setBackground(Color.WHITE);
 			buttonConfirmar.setVisible(true);
 		}
 		return buttonConfirmar;
 	}
-
-
-	public JButton getButtonAdicionarCargaHoraria() {
-		if(buttonAdicionarCargaHoraria == null) {
-			buttonAdicionarCargaHoraria = new JButton("Adicionar carga hor\u00E1ria");
-			buttonAdicionarCargaHoraria.setHorizontalAlignment(SwingConstants.LEFT);
-			buttonAdicionarCargaHoraria.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonAdicionarCargaHoraria.setBounds(173, 134, 186, 20);
-			buttonAdicionarCargaHoraria.setBackground(Color.WHITE);
-			buttonAdicionarCargaHoraria.setVisible(true);
-		}
-		return buttonAdicionarCargaHoraria;
-	}
-//	public JButton getButtonGerarFluxograma() {
-//		if (buttonGerarFluxograma == null) {
-//			buttonGerarFluxograma = new JButton("Gerar Fluxograma");
-//			buttonGerarFluxograma.setBackground(Color.WHITE);
-//			buttonGerarFluxograma.setFont(new Font("Arial", Font.PLAIN, 14));
-//			buttonGerarFluxograma.setForeground(Color.BLACK);
-//			buttonGerarFluxograma.setBounds(23, 251, 154, 23);
-//		}
-//		return buttonGerarFluxograma;
-//	}
-	public JComboBox<String> getComboBoxHorario() {
-		if (comboBoxHorario == null) {
-			comboBoxHorario = new JComboBox();
-			comboBoxHorario.setBackground(Color.WHITE);
-			comboBoxHorario.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxHorario.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE", "MATUTINO", "VESPERTINO", "NOTURNO", "INTEGRAL"}));
-			comboBoxHorario.setBounds(23, 218, 130, 20);
-		}
-		return comboBoxHorario;
-	}
-	public JLabel getLabelHorario() {
-		if (labelHorario == null) {
-			labelHorario = new JLabel("Hor\u00E1rio do Curso:");
-			labelHorario.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelHorario.setBounds(23, 193, 130, 14);
-		}
-		return labelHorario;
-	}
-	public JComboBox<String> getComboBoxSemestresTotais() {
-		if (comboBoxSemestresTotais == null) {
-			comboBoxSemestresTotais = new JComboBox();
-			comboBoxSemestresTotais.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxSemestresTotais.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE", "4", "6", "8", "10", "12"}));
-			comboBoxSemestresTotais.setBounds(434, 55, 119, 20);
-			comboBoxSemestresTotais.setBackground(Color.WHITE);
-		}
-		return comboBoxSemestresTotais;
-	}
-	public JFormattedTextField getFormattedTextFieldNomeCurso() {
-		if (formattedTextFieldNomeCurso == null) {
-			formattedTextFieldNomeCurso = new JFormattedTextField();
-			formattedTextFieldNomeCurso.setForeground(Color.BLACK);
-			formattedTextFieldNomeCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-			formattedTextFieldNomeCurso.setBounds(23, 56, 367, 22);
-		}
-		return formattedTextFieldNomeCurso;
-	}
-	public JRadioButton getRdbtnLicenciatura() {
-		if (rdbtnLicenciatura == null) {
-			rdbtnLicenciatura = new JRadioButton("Licenciatura");
-			rdbtnLicenciatura.setFont(new Font("Arial", Font.PLAIN, 14));
-			rdbtnLicenciatura.setBackground(new Color(120, 205, 194));
-			rdbtnLicenciatura.setBounds(188, 218, 109, 23);
-		}
-		return rdbtnLicenciatura;
-	}
-	public JRadioButton getRdbtnBacharelado() {
-		if (rdbtnBacharelado == null) {
-			rdbtnBacharelado = new JRadioButton("Bacharelado");
-			rdbtnBacharelado.setFont(new Font("Arial", Font.PLAIN, 14));
-			rdbtnBacharelado.setBackground(new Color(120, 205, 194));
-			rdbtnBacharelado.setBounds(326, 218, 109, 23);
-		}
-		return rdbtnBacharelado;
-	}
+	
 }

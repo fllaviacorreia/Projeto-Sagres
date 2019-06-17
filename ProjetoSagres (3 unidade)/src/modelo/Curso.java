@@ -12,21 +12,20 @@ import controle.Main;
 public class Curso {
 	private String cargaHorariaTotal;
 	private String nome;
-	private String tipoCurso;
+	private String tipo;
 	private String semestres;
-	private boolean licenciatura;
-	private boolean bacharelado;
+	private String tipoCurso;
+	private String tipoGraduacao;
 	
-
-	public Curso(String cargaHorariaTotal, String nome, String tipoCurso, String semestres, boolean licenciatura,
-			boolean bacharelado) {
+	public Curso(String cargaHorariaTotal, String nome, String tipo, String semestres, String tipoCurso,
+			String tipoGraduacao) {
 		super();
 		this.cargaHorariaTotal = cargaHorariaTotal;
 		this.nome = nome;
-		this.tipoCurso = tipoCurso;
+		this.tipo = tipo;
 		this.semestres = semestres;
-		this.licenciatura = licenciatura;
-		this.bacharelado = bacharelado;
+		this.tipoCurso = tipoCurso;
+		this.tipoGraduacao = tipoGraduacao;
 		Main.curso.add(this);
 	}
 	public String getCargaHorariaTotal() {
@@ -41,11 +40,11 @@ public class Curso {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTipoCurso() {
-		return tipoCurso;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setTipoCurso(String horario) {
-		this.tipoCurso = horario;
+	public void setTipo(String horario) {
+		this.tipo = horario;
 	}
 	public String getSemestres() {
 		return semestres;
@@ -53,17 +52,17 @@ public class Curso {
 	public void setSemestres(String dados) {
 		this.semestres = dados;
 	}
-	public boolean isLicenciatura() {
-		return licenciatura;
+	public String getTipoGraduacao() {
+		return tipoGraduacao;
 	}
-	public void setLicenciatura(boolean licenciatura) {
-		this.licenciatura = licenciatura;
+	public void setTipoGraduacao(String tipoGraduacao) {
+		this.tipoGraduacao = tipoGraduacao;
 	}
-	public boolean isBacharelado() {
-		return bacharelado;
+	public String getTipoCurso() {
+		return tipoCurso;
 	}
-	public void setBacharelado(boolean bacharelado) {
-		this.bacharelado = bacharelado;
+	public void setTipoCurso(String tipoCurso) {
+		this.tipoCurso = tipoCurso;
 	}
 	
 	

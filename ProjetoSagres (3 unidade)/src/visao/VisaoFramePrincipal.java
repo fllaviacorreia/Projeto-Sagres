@@ -21,29 +21,18 @@ public class VisaoFramePrincipal extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setBackground(new Color(8, 42, 108));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		// this.setResizable(false);
+		this.setResizable(false);
 
 	}
-
-	/*
-	 * synchronized public static JFrame getInstance() { JFrame frame = null;
-	 * if(frame == null) { frame = new FramePrincipal(); } return frame; }
-	 */
 
 	public void trocarPainel(JPanel painel, String titulo) {
 		this.setContentPane(painel);
 		this.setTitle(titulo);
-		setContentPane(painel);
-		setTitle(titulo);
-//		setMinimumSize(new Dimension(display.width, display.height - 2));
-//		setMaximumSize(new Dimension(display));
-		setLocation(0, 0);
-		repaint();
-		setSize(1300, 730);
-		validate();
-		setLocation((display.width - this.getSize().width) / 2, 0);
-
-		repaint();
-		validate();
+		this.setContentPane(painel);
+		this.setTitle(titulo);
+		this.setSize(display.width - 50, display.height - 50);
+		this.setLocation((display.width - this.getSize().width) / 2, 0);
+		this.repaint();
+		this.validate();
 	}
 }

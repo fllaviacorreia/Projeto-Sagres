@@ -19,7 +19,7 @@ public class BancoCursoGerenciar {
 	
 	public boolean BancoCursoInserir(Curso curso) {
 			//aqui é o comando em sql que é necessário para inserir no banco de dados
-			String sqlCurso = "INSERT INTO Curso(nomeCurso, cargaHorariaTotal, tipoCurso, quantidadeSemestres, licenciatura, bacharelado) "
+			String sqlCurso = "INSERT INTO Curso(nomeCurso, cargaHorariaTotal, tipo, quantidadeSemestres, tipoCurso, tipoGraduacao) "
 					+ "VALUES(?, ?, ?, ?, ?, ?)";
 			
 			conexao = BancoConexao.open();
@@ -28,10 +28,10 @@ public class BancoCursoGerenciar {
 				preparedStatement = conexao.prepareStatement(sqlCurso);
 				preparedStatement.setString(1, curso.getNome());
 				preparedStatement.setString(2, curso.getCargaHorariaTotal());
-				preparedStatement.setString(3, curso.getTipoCurso());
+				preparedStatement.setString(3, curso.getTipo());
 				preparedStatement.setString(4, curso.getSemestres());
-				preparedStatement.setBoolean(5, curso.isLicenciatura());
-				preparedStatement.setBoolean(6, curso.isBacharelado());
+				preparedStatement.setString(5, curso.getTipoCurso());
+				preparedStatement.setString(6, curso.getTipoGraduacao());
 				int teste = preparedStatement.executeUpdate();
 
 				if(teste > 0) {
@@ -119,8 +119,8 @@ public class BancoCursoGerenciar {
 			resultSet = preparedStatement.executeQuery(sql);
 			while (resultSet.next()) {
 				Curso curso = new Curso(resultSet.getString("cargaHorariaTotal"), resultSet.getString("nomeCurso"), 
-						resultSet.getString("tipoCurso"), resultSet.getString("quantidadeSemestres"), 
-						resultSet.getBoolean("licenciatura"), resultSet.getBoolean("bacharelado"));
+						resultSet.getString("tipo"), resultSet.getString("quantidadeSemestres"), resultSet.getString("tipoCurso"), 
+						resultSet.getString("tipoGraduacao"));
 			}
 			conexao.close();
 		} catch (SQLException e) {

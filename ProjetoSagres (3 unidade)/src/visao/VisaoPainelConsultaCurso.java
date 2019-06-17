@@ -58,7 +58,7 @@ public class VisaoPainelConsultaCurso extends JPanel{
 			buttonGerarFluxograma.setBackground(Color.WHITE);
 			buttonGerarFluxograma.setFont(new Font("Arial", Font.PLAIN, 20));
 			buttonGerarFluxograma.setForeground(Color.BLACK);
-			buttonGerarFluxograma.setBounds(742, 52, 214, 30);
+			buttonGerarFluxograma.setBounds(742, 52, 214, 25);
 		}
 		return buttonGerarFluxograma;
 	}
@@ -67,22 +67,27 @@ public class VisaoPainelConsultaCurso extends JPanel{
 			comboBoxCursos = new JComboBox();
 			comboBoxCursos.setFont(new Font("Arial", Font.PLAIN, 20));
 			comboBoxCursos.setBackground(Color.WHITE);
-			comboBoxCursos.setBounds(43, 52, 675, 30);
+			comboBoxCursos.setBounds(43, 52, 675, 25);
 		}
 		return comboBoxCursos;
 	}
 	
-	public JTable getJTableDadosAluno() {
+	public JTable getJTableDadosCurso() {
 		if (jtableDadosCurso == null) {
 			jtableDadosCurso = new JTable();
 			jtableDadosCurso.setBorder(new LineBorder(new Color(0, 0, 0)));
-			jtableDadosCurso.setFont(new Font("Arial", Font.BOLD, 18));
+			jtableDadosCurso.setFont(new Font("Arial Narrow", Font.BOLD, 20));
 			jtableDadosCurso.setModel(getTabela());
-			 //auto ajuste na altura da tabela
-			jtableDadosCurso.setFillsViewportHeight(true);
+			//auto ajuste na altura da tabela
+			//jtableDadosCurso.setFillsViewportHeight(true);
 	        //selecionar somente uma linha
-			jtableDadosCurso.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jtableDadosCurso.setBounds(10, 89, 776, 208);
+			//jtableDadosCurso.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jtableDadosCurso.getColumnModel().getColumn(0).setPreferredWidth(400);
+			jtableDadosCurso.getColumnModel().getColumn(1).setPreferredWidth(130);
+			jtableDadosCurso.getColumnModel().getColumn(2).setPreferredWidth(150);
+			jtableDadosCurso.getColumnModel().getColumn(3).setPreferredWidth(350);
+			jtableDadosCurso.getColumnModel().getColumn(4).setPreferredWidth(150);
+			jtableDadosCurso.setBounds(10, 89, 1200, 400);
 			jtableDadosCurso.setVisible(true);
 		}
 		return jtableDadosCurso;
@@ -90,8 +95,8 @@ public class VisaoPainelConsultaCurso extends JPanel{
 	
 	public JScrollPane getDadosAlunoJScrollPane() {
 		if(dadosCursoJScrollPane == null) {
-			dadosCursoJScrollPane = new JScrollPane(getJTableDadosAluno());
-			dadosCursoJScrollPane.setBounds(48, 116, 905, 357);
+			dadosCursoJScrollPane = new JScrollPane(getJTableDadosCurso());
+			dadosCursoJScrollPane.setBounds(48, 116, 1200, 400);
 		}
 		return dadosCursoJScrollPane;
 	}

@@ -18,6 +18,7 @@ import javax.swing.Box;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class VisaoPainelFluxograma extends JPanel {
 	private JLabel  labelNomeDoCurso;
 	private JLabel  labelCargaHorariaTotal;
@@ -33,7 +34,7 @@ public class VisaoPainelFluxograma extends JPanel {
 	private JSeparator separator_2;
 	private JButton buttonVoltar;
 	private JButton disciplina;
-	ArrayList<JButton> botoes;
+	ArrayList<JButton> botoes = null;
 	
 	
 	public VisaoPainelFluxograma(String nomeCurso, String tipoCurso, String cargaTotalCurso) {

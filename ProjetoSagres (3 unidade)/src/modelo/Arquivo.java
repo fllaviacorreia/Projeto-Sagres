@@ -25,6 +25,7 @@ public class Arquivo{
 	 * 2 - classe
 	 * 3 - curso
 	 * 4 - disciplina
+	 * 
 	 * 5 - professor
 	 * 6 - realiza a verificação de todos os arquivos e preenche os arraylist's
 	 * 
@@ -431,7 +432,7 @@ public class Arquivo{
 		File arquivo = new File("relatorios\\cidades\\listaCidades" + estado +".txt"); 
 		if(arquivo.exists()) {
 			try {
-				FileReader arquivoCidade = new FileReader("relatorios\\listaCidades" + estado +".txt");
+				FileReader arquivoCidade = new FileReader("relatorios\\cidades\\listaCidades" + estado +".txt");
 				BufferedReader lerArquivoCidade = new BufferedReader(arquivoCidade);
 				String linha = lerArquivoCidade.readLine();
 				while(linha != null) {

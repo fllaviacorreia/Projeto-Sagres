@@ -379,7 +379,7 @@ public class ControlePainelCadastroClasse implements ActionListener {
 		String tipoCurso = "";
 		for (int i = 0; i < Main.curso.size(); i++) {
 			if (telaCadClasse.getComboBoxCurso().getSelectedItem().equals(Main.curso.get(i).getNome())) {
-				tipoCurso = Main.curso.get(i).getTipoCurso();
+				tipoCurso = Main.curso.get(i).getTipo();
 			}
 		}
 		return tipoCurso;

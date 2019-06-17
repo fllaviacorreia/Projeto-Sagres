@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 
 import controle.Main;
 import modelo.ModeloTabelaAluno;
+import modelo.ModeloTabelaProfessor;
 
 public class VisaoPainelConsultaProfessor extends JPanel{
 	private JButton 			buttonVoltar 	 				= null;
@@ -23,7 +24,7 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 	private JComboBox<String> comboBoxTipoBusca;
 	private JTextField textFieldBusca;
 	private JButton btnBuscar;
-	
+	private ModeloTabelaProfessor tabelaProfessor;
 	public VisaoPainelConsultaProfessor() {
 		this.setLayout(null);
 		this.setBackground(new Color(120, 205, 194));
@@ -54,13 +55,13 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 			jtableDadosProfessor = new JTable();
 			jtableDadosProfessor.setBorder(new LineBorder(new Color(0, 0, 0)));
 			jtableDadosProfessor.setFont(new Font("Arial", Font.BOLD, 18));
-			jtableDadosProfessor.setModel(null);
-			jtableDadosProfessor.getColumnModel().getColumn(0).setPreferredWidth(110);
-			jtableDadosProfessor.getColumnModel().getColumn(1).setPreferredWidth(135);
-			jtableDadosProfessor.getColumnModel().getColumn(2).setPreferredWidth(260);
-			jtableDadosProfessor.getColumnModel().getColumn(3).setPreferredWidth(200);
+			jtableDadosProfessor.setModel(getTabelaProfessor());
+			jtableDadosProfessor.getColumnModel().getColumn(0).setPreferredWidth(150);
+			jtableDadosProfessor.getColumnModel().getColumn(1).setPreferredWidth(150);
+			jtableDadosProfessor.getColumnModel().getColumn(2).setPreferredWidth(300);
+			jtableDadosProfessor.getColumnModel().getColumn(3).setPreferredWidth(300);
 			jtableDadosProfessor.getColumnModel().getColumn(4).setPreferredWidth(180);
-			jtableDadosProfessor.setBounds(10, 89, 776, 208);
+			jtableDadosProfessor.setBounds(10, 89, 1200, 400);
 		}
 		return jtableDadosProfessor;
 	}
@@ -68,7 +69,7 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 	public JScrollPane getJScrollPaneDadosProfessor() {
 		if(jScrollPaneDadosProfessor == null) {
 			jScrollPaneDadosProfessor = new JScrollPane(getJTableDadosProfessor());
-			jScrollPaneDadosProfessor.setBounds(48, 89, 905, 208);
+			jScrollPaneDadosProfessor.setBounds(48, 89, 1200, 400);
 		}
 		return jScrollPaneDadosProfessor;
 	}
@@ -104,6 +105,16 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 			btnBuscar.setBounds(837, 47, 89, 23);
 		}
 		return btnBuscar;
+	}
+
+	public ModeloTabelaProfessor getTabelaProfessor() {
+		if(tabelaProfessor == null)
+			tabelaProfessor = new ModeloTabelaProfessor();
+		return tabelaProfessor;
+	}
+
+	public void setTabelaProfessor(ModeloTabelaProfessor tabelaProfessor) {
+		this.tabelaProfessor = tabelaProfessor;
 	}
 
 }

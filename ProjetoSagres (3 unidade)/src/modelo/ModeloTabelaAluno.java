@@ -8,7 +8,7 @@ import controle.Main;
 
 @SuppressWarnings("serial")
 public class ModeloTabelaAluno extends AbstractTableModel{
-	String [] columnName = {"Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO"};		//nome das coluna 
+	String [] columnName = {"Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", "CURSO"};		//nome das coluna 
 	ArrayList<Aluno> arrayAluno = null;
 	
 	public ModeloTabelaAluno() {
@@ -46,15 +46,24 @@ public class ModeloTabelaAluno extends AbstractTableModel{
 			return arrayAluno.get(linha).getCpf();		
 		case 2://coluna nome
 			return arrayAluno.get(linha).getNome();
-		case 3://coluna telefone
-			if(!( arrayAluno.get(linha).getTelefone().equals(null) ) && ( arrayAluno.get(linha).getCelular().equals(null) ) )
-				return arrayAluno.get(linha).getTelefone();
-			else if( (arrayAluno.get(linha).getTelefone().equals(null)) &&  ! (arrayAluno.get(linha).getCelular().equals(null)) )
-				return arrayAluno.get(linha).getCelular();
-			else
-				return arrayAluno.get(linha).getTelefone() + "/" + arrayAluno.get(linha).getCelular();
+		case 3:{//coluna telefone
+			String telefone = arrayAluno.get(linha).getTelefone();
+			String celular = arrayAluno.get(linha).getCelular();
+			if(telefone != null &&  celular != null)
+				return telefone + "/" + celular;
+			if(telefone != null && celular == null)
+				return telefone;
+			if(telefone == null && celular != null)
+				return celular;
+			
+			return telefone + "/" + celular;
+		}
+			
+			
 		case 4: // coluna data de nascimento
 			return arrayAluno.get(linha).getDataNascimento();
+		case 5: // coluna curso
+			return arrayAluno.get(linha).getCurso();
 		default:
 			return arrayAluno.get(linha);
 		} 
@@ -65,7 +74,7 @@ public class ModeloTabelaAluno extends AbstractTableModel{
       return columnName[columnIndex];
     }    
      
-     @Override  
+    @Override  
     public Class<?> getColumnClass(int columnIndex) {  
     	 //retorna a classe da coluna através do seu índice
         return String.class;  
@@ -110,16 +119,15 @@ public class ModeloTabelaAluno extends AbstractTableModel{
 		aluno.setTelefone(aValue.getTelefone());
 		aluno.setCelular(aValue.getCelular());
 		aluno.setDataNascimento(aValue.getDataNascimento());
+		aluno.setCurso(aValue.getCurso());
 		fireTableCellUpdated(rowIndex, 0);  
 		fireTableCellUpdated(rowIndex, 1);  
 		fireTableCellUpdated(rowIndex, 2);  
 		fireTableCellUpdated(rowIndex, 3);  
 		fireTableCellUpdated(rowIndex, 4);   
-		fireTableCellUpdated(rowIndex, 5);  
+		fireTableCellUpdated(rowIndex, 5);   
+		fireTableCellUpdated(rowIndex, 6);  
 
 	}
-     
-  
-
 
 }

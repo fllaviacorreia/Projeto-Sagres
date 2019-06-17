@@ -26,12 +26,13 @@ public class ControlePainelCadastroCurso implements ActionListener {
 	private int contador;
 	private int saida;
 	private int volta;
-	private int cargaHoraria;
 	private String cargaHorariaTotal;
 	private String nome;
-	private String tipoCurso;
+	private String tipoHorario;
 	private String semestres;
-
+	private String tipoCurso;
+	private String tipoGraduacao = "";
+	
 	public ControlePainelCadastroCurso(VisaoFramePrincipal framePrincipal, VisaoPainelCadastroCurso telaCadCurso, int volta) {
 		this.framePrincipal = framePrincipal;
 		ControlePainelCadastroCurso.telaCadCurso = telaCadCurso;
@@ -42,12 +43,12 @@ public class ControlePainelCadastroCurso implements ActionListener {
 	}
 
 	public void AddEventos() {
-		telaCadCurso.getButtonAdicionarCargaHoraria().addActionListener(this);
+//		telaCadCurso.getButtonAdicionarCargaHoraria().addActionListener(this);
 		telaCadCurso.getButtonCancelar().addActionListener(this);
 		telaCadCurso.getButtonConfirmar().addActionListener(this);
 		telaCadCurso.getButtonVoltar().addActionListener(this);
-		telaCadCurso.getRdbtnLicenciatura().addActionListener(this);
-		telaCadCurso.getRdbtnBacharelado().addActionListener(this);
+		telaCadCurso.getComboBoxTipoCurso().addActionListener(this);
+		telaCadCurso.getComboBoxTipoGraduacao().addActionListener(this);
 	}
 
 	@Override
@@ -84,34 +85,14 @@ public class ControlePainelCadastroCurso implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-		if (e.getSource() == telaCadCurso.getButtonAdicionarCargaHoraria()) {
-			try {
-				cargaHoraria = Integer.parseInt(JOptionPane.showInputDialog(telaCadCurso, "Insira a carga horária:",
-						"Inserir", JOptionPane.OK_CANCEL_OPTION));
-
-				if (!String.valueOf(cargaHoraria).isEmpty()) {
-					telaCadCurso.getComboBoxCargaHorariaTotal().addItem(String.valueOf(cargaHoraria));
-					telaCadCurso.getComboBoxCargaHorariaTotal()
-							.setSelectedIndex(telaCadCurso.getComboBoxCargaHorariaTotal().getItemCount() - 1);
-				}
-			} catch (Exception e1) {
-				System.out.println(e1.getMessage());
-				e1.printStackTrace();
-			}
-		}
-		if(e.getSource() == telaCadCurso.getRdbtnLicenciatura()) {
-			if(telaCadCurso.getRdbtnLicenciatura().isSelected()) {
-				telaCadCurso.getRdbtnBacharelado().setSelected(false);
-				telaCadCurso.getRdbtnBacharelado().setEnabled(false);
+		if(e.getSource() == telaCadCurso.getComboBoxTipoCurso()) {
+			if(telaCadCurso.getComboBoxTipoCurso().getSelectedItem().equals("GRADUAÇÃO")) {
+				telaCadCurso.getLabelTipoDaGraduacao().setEnabled(true);
+				telaCadCurso.getComboBoxTipoGraduacao().setEnabled(true);
 			}else {
-				telaCadCurso.getRdbtnBacharelado().setEnabled(true);
-			}
-		}if(e.getSource() ==telaCadCurso.getRdbtnBacharelado()) {
-			if(telaCadCurso.getRdbtnBacharelado().isSelected()) {
-				telaCadCurso.getRdbtnLicenciatura().setSelected(false);
-				telaCadCurso.getRdbtnLicenciatura().setEnabled(false);
-			}else {
-				telaCadCurso.getRdbtnLicenciatura().setEnabled(true);
+				telaCadCurso.getLabelTipoDaGraduacao().setEnabled(false);
+				telaCadCurso.getComboBoxTipoGraduacao().setEnabled(false);
+				telaCadCurso.getComboBoxTipoGraduacao().setSelectedIndex(0);
 			}
 		}
 		if (e.getSource() == telaCadCurso.getButtonConfirmar()) {
@@ -137,15 +118,26 @@ public class ControlePainelCadastroCurso implements ActionListener {
 					contador++;
 				}
 				if (!telaCadCurso.getComboBoxHorario().getSelectedItem().equals("SELECIONE")) {
-					tipoCurso = telaCadCurso.getComboBoxHorario().getSelectedItem().toString();
+					tipoHorario = telaCadCurso.getComboBoxHorario().getSelectedItem().toString();
 					contador++;
 				}
-				if(telaCadCurso.getRdbtnBacharelado().isSelected() || telaCadCurso.getRdbtnLicenciatura().isSelected()) {
-					contador++;
+				if(!telaCadCurso.getComboBoxTipoCurso().getSelectedItem().equals("SELECIONE")) {
+					tipoCurso = telaCadCurso.getComboBoxTipoCurso().getSelectedItem().toString();
+					if(tipoCurso.equals("GRADUAÇÃO")) {
+						if(!telaCadCurso.getComboBoxTipoGraduacao().getSelectedItem().equals("SELECIONE")) {
+							tipoGraduacao = telaCadCurso.getComboBoxTipoGraduacao().getSelectedItem().toString();
+							contador++;
+						}else{
+							JOptionPane.showMessageDialog(telaCadCurso, "Selecione o tipo da graduação.", "Aviso", JOptionPane.ERROR_MESSAGE);
+						}
+							
+					}else {
+						contador++;
+					}
 				}
+				
 				if (contador == 5) {
-					dados = new Curso(cargaHorariaTotal, nome, tipoCurso, semestres, 
-							telaCadCurso.getRdbtnLicenciatura().isSelected(), telaCadCurso.getRdbtnBacharelado().isSelected());
+					dados = new Curso(cargaHorariaTotal, nome, tipoHorario, semestres, tipoCurso, tipoGraduacao);
 					// new ControleArquivo(3);
 					BancoCursoGerenciar bancoCurso = new BancoCursoGerenciar();
 					boolean retorno1 = bancoCurso.BancoCursoInserir(dados);
@@ -203,15 +195,13 @@ public class ControlePainelCadastroCurso implements ActionListener {
 	}
 
 	public void LimpaDados() {
-		telaCadCurso.getRdbtnBacharelado().setSelected(false);
-		telaCadCurso.getRdbtnBacharelado().setEnabled(true);
-		telaCadCurso.getRdbtnLicenciatura().setSelected(false);
-		telaCadCurso.getRdbtnLicenciatura().setEnabled(true);
+		telaCadCurso.getLabelTipoDaGraduacao().setEnabled(false);
+		telaCadCurso.getComboBoxTipoGraduacao().setEnabled(false);
+		telaCadCurso.getComboBoxTipoGraduacao().setSelectedIndex(0);
+		telaCadCurso.getComboBoxTipoCurso().setSelectedIndex(0);
 		telaCadCurso.getFormattedTextFieldNomeCurso().setText(null);
 		telaCadCurso.getComboBoxCargaHorariaTotal().setSelectedIndex(0);
 		telaCadCurso.getComboBoxHorario().setSelectedIndex(0);
-//		telaCadCurso.getComboBoxDisciplinas().removeAllItems();
-//		telaCadCurso.getComboBoxCurso().removeAllItems();
 		telaCadCurso.getComboBoxSemestresTotais().setSelectedIndex(0);
 		
 	}

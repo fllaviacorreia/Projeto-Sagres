@@ -8,6 +8,7 @@ package controle;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -65,7 +66,6 @@ public class ControlePainelCadastroAluno implements ActionListener {
 
 	public void inicializa() {
 		AddEventos();
-		preecheComboBox();
 		quantidadeAlunos = new BancoAlunoGerenciar().contar();
 		numMatriculaAluno = (calendario.get(Calendar.YEAR) * 10000) + quantidadeAlunos;
 		telaCadAluno.getFormattedTextFieldMatriculaAluno().setText(String.valueOf(numMatriculaAluno));
@@ -75,12 +75,41 @@ public class ControlePainelCadastroAluno implements ActionListener {
 		telaCadAluno.getButtonCancelar().addActionListener(this);
 		telaCadAluno.getButtonConfirmar().addActionListener(this);
 		telaCadAluno.getButtonVoltar().addActionListener(this);
-		telaCadAluno.getComboBoxCurso().addActionListener(this);
+		telaCadAluno.getComboBoxEstadoEndereco().addActionListener(this);
+		telaCadAluno.getComboBoxTipoCurso().addActionListener(this);
 		telaCadAluno.getComboBoxHistoricoDisciplinas().addActionListener(this);
 		telaCadAluno.getButtonAdicionarDisciplina().addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == telaCadAluno.getComboBoxTipoCurso()) {
+			if(!telaCadAluno.getComboBoxTipoCurso().getSelectedItem().equals("SELECIONE")) {
+				telaCadAluno.getComboBoxCurso().removeAllItems();
+				preencheComboBox(telaCadAluno.getComboBoxTipoCurso().getSelectedIndex());
+				telaCadAluno.getComboBoxCurso().setEnabled(true);
+				telaCadAluno.getLabelCurso().setEnabled(true);
+			}else {
+				telaCadAluno.getComboBoxCurso().setSelectedIndex(0);
+				telaCadAluno.getComboBoxCurso().setEnabled(false);
+				telaCadAluno.getLabelCurso().setEnabled(false);
+			}
+		}
+		if(e.getSource() == telaCadAluno.getComboBoxEstadoEndereco()) {
+			if(!telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().equals("SELECIONE")) {
+				ArrayList<String> cidade = null;
+				try {
+					cidade = arquivo.EscreveCidades(telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().toString());
+					telaCadAluno.getComboBoxCidades().removeAllItems();
+					telaCadAluno.getComboBoxCidades().addItem("SELECIONE");
+					for(int i = 0; i < cidade.size(); i++) {
+						telaCadAluno.getComboBoxCidades().addItem(cidade.get(i));
+					}
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
 		if (e.getSource() == telaCadAluno.getButtonVoltar()) {
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadAluno, "Deseja realmente voltar?", "Confirmação de saída",
@@ -390,12 +419,29 @@ public class ControlePainelCadastroAluno implements ActionListener {
 
 	}
 
-	public void preecheComboBox() {
-		ArrayList<String> disc = new BancoCursoGerenciar().consultarUmaColuna("Curso", "nomeCurso");
+	public void preencheComboBox(int tipo) {
 		telaCadAluno.getComboBoxCurso().addItem("SELECIONE");
 		try {
-			for (int i = 0; i < disc.size(); i++) {
-				telaCadAluno.getComboBoxCurso().addItem(disc.get(i).toString());
+			if(tipo == 1) {
+				for (int i = 0; i < Main.curso.size(); i++) {
+					if(Main.curso.get(i).getTipoCurso().equals("GRADUAÇÃO"))
+						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
+				}
+			}if(tipo == 2) {
+				for (int i = 0; i < Main.curso.size(); i++) {
+					if(Main.curso.get(i).getTipoCurso().equals("ESPECIALIZAÇÃO"))
+						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
+				}
+			}if(tipo == 3) {
+				for (int i = 0; i < Main.curso.size(); i++) {
+					if(Main.curso.get(i).getTipoCurso().equals("MESTRADO"))
+						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
+				}
+			}if(tipo == 4) {
+				for (int i = 0; i < Main.curso.size(); i++) {
+					if(Main.curso.get(i).getTipoCurso().equals("DOUTORADO"))
+						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
+				}
 			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -444,7 +490,10 @@ public class ControlePainelCadastroAluno implements ActionListener {
 		telaCadAluno.getFormattedTextFieldCpf().setText(null);
 		telaCadAluno.getFormattedTextFieldMatriculaAluno().setText(null);
 		telaCadAluno.getFormattedTextFieldRg().setText(null);
+		telaCadAluno.getComboBoxTipoCurso().setSelectedIndex(0);
 		telaCadAluno.getComboBoxCurso().setSelectedIndex(0);
+		telaCadAluno.getComboBoxCurso().setEnabled(false);
+		telaCadAluno.getLabelCurso().setEnabled(false);
 		telaCadAluno.getComboBoxEstadoRg().setSelectedIndex(0);
 		telaCadAluno.getFormattedTextFieldDataNascimento().setText(null);
 		telaCadAluno.getFormattedTextFieldDataRg().setText(null);

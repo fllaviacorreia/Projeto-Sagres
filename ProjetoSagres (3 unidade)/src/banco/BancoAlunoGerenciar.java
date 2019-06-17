@@ -18,6 +18,7 @@ public class BancoAlunoGerenciar{
 	PreparedStatement preparetedStatement = null;
 	ResultSet resultSet = null;
 	private Statement consulta;
+	private ResultSet resultSet1;
 	
 	public boolean BancoAlunoInserir(Aluno aluno) {
 		int endereco = 0;
@@ -102,8 +103,18 @@ public class BancoAlunoGerenciar{
 			preparetedStatement = conexao.prepareStatement(sql);
 			resultSet = preparetedStatement.executeQuery(sql);
 			while (resultSet.next()) {
-				Aluno aluno = new Aluno(resultSet.getString("nomeAluno"), resultSet.getString("numMatricula"), resultSet.getString("dataNascimento"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("celular"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("ufRg"), 
-						resultSet.getString("dataExpedicaoRg"), resultSet.getString("orgaoExpeditorRg"), resultSet.getString("Curso_idCurso"), null);
+				ArrayList<String> disciplinas = consultarUmaColuna("aluno_cursou_disciplina", "Disciplia_idDisciplina", 
+						"Aluno_idAluno", resultSet.getString("idAluno"));
+				for(int i = 0; i < disciplinas.size(); i++) {
+					String nomeDisciplina = new BancoDisciplinaGerenciar().consultar("Disciplina", "idDisciplina", disciplinas.get(i), "nomeDisciplina");
+					disciplinas.add(i, nomeDisciplina);
+				}
+				Aluno aluno = new Aluno(resultSet.getString("nomeAluno"), resultSet.getString("numMatricula"), 
+						resultSet.getString("dataNascimento"), resultSet.getString("email"), resultSet.getString("telefone"), 
+						resultSet.getString("celular"), resultSet.getString("cpf"), resultSet.getString("rg"), 
+						resultSet.getString("ufRg"), resultSet.getString("dataExpedicaoRg"), 
+						resultSet.getString("orgaoExpeditorRg"), 
+						new BancoCursoGerenciar().consultar("idCurso", resultSet.getString("Curso_idCurso"), "nomeCurso"), disciplinas);
 			}
 			conexao.close();
 		} catch (SQLException e) {
@@ -197,6 +208,23 @@ public class BancoAlunoGerenciar{
 			resultSet = preparetedStatement.executeQuery(sql);
 			while (resultSet.next()) {
 				lista.add(resultSet.getString(coluna));
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	public ArrayList<String> consultarUmaColuna(String tabela, String coluna, String campo, String valorCampo) {
+		ArrayList<String> lista = new ArrayList<String>();
+		String sql = "SELECT * FROM " + tabela + " WHERE " + campo + " = '" + valorCampo +"'";
+		conexao = BancoConexao.open();
+		try {
+			preparetedStatement = conexao.prepareStatement(sql);
+			resultSet1 = preparetedStatement.executeQuery(sql);
+			while (resultSet1.next()) {
+				lista.add(resultSet1.getString(coluna));
 			}
 			conexao.close();
 		} catch (SQLException e) {
