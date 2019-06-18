@@ -436,7 +436,7 @@ public class Arquivo{
 				BufferedReader lerArquivoCidade = new BufferedReader(arquivoCidade);
 				String linha = lerArquivoCidade.readLine();
 				while(linha != null) {
-					cidades.add(linha);
+					cidades.add(linha.toUpperCase());
 					linha = lerArquivoCidade.readLine();
 				}
 				lerArquivoCidade.close();

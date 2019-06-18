@@ -15,7 +15,6 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 import banco.BancoAlunoGerenciar;
-import banco.BancoCursoGerenciar;
 import banco.BancoDisciplinaGerenciar;
 import banco.BancoEnderecoGerenciar;
 import visao.VisaoPainelCadastroAluno;
@@ -305,11 +304,11 @@ public class ControlePainelCadastroAluno implements ActionListener {
 							JOptionPane.ERROR_MESSAGE);
 
 				}
-				if (!(telaCadAluno.getFormattedTextFieldCidade().getText().equals("                              "))) {
-					cidade = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldCidade().getText().toUpperCase());
+				if (!(telaCadAluno.getComboBoxCidades().getSelectedItem().equals("SELECIONE"))) {
+					cidade = telaCadAluno.getComboBoxCidades().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Cidade não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Cidade não selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -379,7 +378,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 
 							try {
 								int idDisciplina = Integer.parseInt(new BancoDisciplinaGerenciar().consultar(
-										"Disciplina", "nomeDisciplina", disciplinas.get(i).toString(), "idDisciplina"));
+										 "nomeDisciplina", disciplinas.get(i).toString(), "idDisciplina"));
 								double media = Double.parseDouble(JOptionPane.showInputDialog(telaCadAluno,
 										"Insira a média na disciplina " + disciplinas.get(i).toString(), "Solicitação",
 										JOptionPane.OK_CANCEL_OPTION));
@@ -506,7 +505,9 @@ public class ControlePainelCadastroAluno implements ActionListener {
 		telaCadAluno.getFormattedTextFieldNumero().setText(null);
 		telaCadAluno.getFormattedTextFieldComplemento().setText(null);
 		telaCadAluno.getFormattedTextFieldBairro().setText(null);
-		telaCadAluno.getFormattedTextFieldCidade().setText(null);
+		telaCadAluno.getComboBoxCidades().removeAllItems();
+		telaCadAluno.getComboBoxCidades().addItem("SELECIONE");
+		telaCadAluno.getComboBoxCidades().setSelectedIndex(0);
 		telaCadAluno.getFormattedTextFieldCep().setText(null);
 		telaCadAluno.getComboBoxEstadoEndereco().setSelectedIndex(0);
 		if (disciplinas.size() > 0)

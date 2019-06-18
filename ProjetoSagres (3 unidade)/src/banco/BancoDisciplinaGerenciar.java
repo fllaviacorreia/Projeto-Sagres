@@ -92,9 +92,9 @@ public class BancoDisciplinaGerenciar {
 		}
 		return qtd;
 	}
-	public String consultar(String tabela, String chave, String valorChave, String campo) {
+	public String consultar(String chave, String valorChave, String campo) {
 		String sql, retorno = "";
-		sql = "SELECT " + campo + " FROM Curso WHERE " + chave + " = '" + valorChave + "'";
+		sql = "SELECT " + campo + " FROM Disciplina WHERE " + chave + " = '" + valorChave + "'";
 		try {
 			conexao = BancoConexao.open();
 			preparedStatement = conexao.prepareStatement(sql);

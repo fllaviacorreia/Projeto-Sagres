@@ -244,13 +244,10 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 																	"Inserir", JOptionPane.OK_CANCEL_OPTION);
 					if(!preRequisito.isEmpty()) {
 						preRequisito = preRequisito.toUpperCase();
-						System.out.println("pre requisito " + preRequisito);
-						int consulta = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("Disciplina", "nomeDisciplina", preRequisito, "Curso_idCurso"));
-						System.out.println("int consulta "+ consulta);
+						int consulta = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("nomeDisciplina", preRequisito, "Curso_idCurso"));
 						String consulta1 = new BancoCursoGerenciar().consultar("idCurso", String.valueOf(consulta), "nomeCurso");
-						System.out.println("String consulta "+ consulta1);
-						if(consulta1.equals(telaCadDisciplina.getComboBoxCurso().getSelectedItem())) {
-							if(Validacoes(preRequisito, preRequisitos) == 0) {	
+						if(consulta1.equals(telaCadDisciplina.getComboBoxCurso().getSelectedItem().toString())) {
+							if(ValidaPreRequisito(preRequisito, telaCadDisciplina.getComboBoxCurso().getSelectedItem().toString()) == 1) {	
 								preRequisitos.add(preRequisito);
 								telaCadDisciplina.getComboBoxPreRequisitos().addItem(preRequisito);
 							}else {
@@ -385,7 +382,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 						for(int i = 0; i < preRequisitos.size(); i++) {
 							
 							try {
-								int idPreRequisito = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("Disciplina", "nomeDisciplina", 
+								int idPreRequisito = Integer.parseInt(new BancoDisciplinaGerenciar().consultar("nomeDisciplina", 
 										preRequisitos.get(i).toString(), "idDisciplina"));
 								retorno1 = new BancoDisciplinaGerenciar().inserirPreRequisitos(idDisciplina, idPreRequisito, preRequisitos.get(i));
 								
@@ -422,6 +419,20 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 			}
 		}
 		
+	}
+	public int ValidaPreRequisito(String nome, String curso) {
+		int contador = 0;
+		for(int i = 0; i < Main.disciplina.size(); i++) {
+			if(Main.disciplina.get(i).getNome_Disciplina().equals(nome)){
+				if(Main.disciplina.get(i).getEPreRequisito()){
+					int idCursoDisciplina = Integer.parseInt(new Banco().consultar("Disciplina", "nomeDisciplina", nome, "Curso_idCurso"));
+					int idCurso = Integer.parseInt(new BancoCursoGerenciar().consultar("nomeCurso", curso, "idCurso"));
+					if(idCursoDisciplina == idCurso)
+						contador++;
+				}
+			}
+		}
+		return contador;
 	}
 	
 	public int ValidaNomeDisciplina(String nome, String curso) {

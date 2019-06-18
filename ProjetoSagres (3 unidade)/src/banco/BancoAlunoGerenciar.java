@@ -106,7 +106,7 @@ public class BancoAlunoGerenciar{
 				ArrayList<String> disciplinas = consultarUmaColuna("aluno_cursou_disciplina", "Disciplia_idDisciplina", 
 						"Aluno_idAluno", resultSet.getString("idAluno"));
 				for(int i = 0; i < disciplinas.size(); i++) {
-					String nomeDisciplina = new BancoDisciplinaGerenciar().consultar("Disciplina", "idDisciplina", disciplinas.get(i), "nomeDisciplina");
+					String nomeDisciplina = new BancoDisciplinaGerenciar().consultar("idDisciplina", disciplinas.get(i), "nomeDisciplina");
 					disciplinas.add(i, nomeDisciplina);
 				}
 				Aluno aluno = new Aluno(resultSet.getString("nomeAluno"), resultSet.getString("numMatricula"), 

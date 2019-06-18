@@ -51,7 +51,6 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	private JFormattedTextField formattedTextFieldNumero		= null;
 	private JFormattedTextField formattedTextFieldComplemento	= null;
 	private JFormattedTextField formattedTextFieldBairro		= null;
-	private JFormattedTextField formattedTextFieldCidade		= null;
 	private JButton 			botaoVoltar 	 				= null;
 	private JButton 			botaoCancelar 	 				= null;
 	private JButton 			botaoConfirmar   				= null;
@@ -65,6 +64,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	private JLabel labelCelular;
 	private JFormattedTextField formattedTextFieldCelular;
 	FormataMascaras formatacao = new FormataMascaras();
+	private JComboBox<String> comboBoxCidades;
 	
 //construtor que inicia o painel e coloca todas as coisas nele	
 	public VisaoPainelCadastroProfessor() {
@@ -106,7 +106,6 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		this.add(getFormattedTextFieldNumero());
 		this.add(getFormattedTextFieldComplemento());
 		this.add(getFormattedTextFieldBairro());
-		this.add(getFormattedTextFieldCidade());
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
 		this.add(getButtonVoltar());
@@ -119,6 +118,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		add(getFormattedTextFieldTelefone());
 		add(getLabelCelular());
 		add(getFormattedTextFieldCelular());
+		add(getComboBoxCidades());
 	}
 	
 	public JLabel getLabelMatriculaProfessor() {
@@ -275,7 +275,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		if (labelCidade == null) {
 			labelCidade = new JLabel("Cidade:");
 			labelCidade.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelCidade.setBounds(285, 479, 130, 25);
+			labelCidade.setBounds(418, 479, 130, 25);
 		}
 		return labelCidade;
 	}
@@ -283,7 +283,7 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 		if (labelEstadoEndereco == null) {
 			labelEstadoEndereco = new JLabel("Estado:");
 			labelEstadoEndereco.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelEstadoEndereco.setBounds(571, 479, 123, 25);
+			labelEstadoEndereco.setBounds(270, 479, 123, 25);
 		}
 		return labelEstadoEndereco;
 	}
@@ -315,15 +315,26 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 	}
 	public JComboBox<String> getComboBoxEstadoEndereco() {
 		if (comboBoxEstadoEndereco == null) {
-			comboBoxEstadoEndereco = new JComboBox();
+			comboBoxEstadoEndereco = new JComboBox<String>();
+			comboBoxEstadoEndereco.setForeground(Color.BLACK);
 			comboBoxEstadoEndereco.setBackground(Color.WHITE);
 			comboBoxEstadoEndereco.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxEstadoEndereco.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE", "AC", "AL", "AM", "AP", 
+			comboBoxEstadoEndereco.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "AC", "AL", "AM", "AP", 
 					"BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", 
 					"RO", "RR", "RS", "SC", "SE", "SP", "TO"}));
-			comboBoxEstadoEndereco.setBounds(571, 504, 115, 22);
+			comboBoxEstadoEndereco.setBounds(270, 504, 115, 22);
 		}
 		return comboBoxEstadoEndereco;
+	}
+	public JComboBox<String> getComboBoxCidades() {
+		if (comboBoxCidades == null) {
+			comboBoxCidades = new JComboBox<String>();
+			comboBoxCidades.setBackground(Color.WHITE);
+			comboBoxCidades.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE"}));
+			comboBoxCidades.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxCidades.setBounds(415, 505, 269, 20);
+		}
+		return comboBoxCidades;
 	}
 	public JComboBox<String> getComboBoxEstadoRg() {
 		if(comboBoxEstadoRg == null) {
@@ -448,14 +459,6 @@ public class VisaoPainelCadastroProfessor extends JPanel{
 			formattedTextFieldBairro.setBounds(22, 504, 237, 22);
 		}
 		return formattedTextFieldBairro;
-	}
-	public JFormattedTextField getFormattedTextFieldCidade() {
-		if (formattedTextFieldCidade == null) {
-			formattedTextFieldCidade = new JFormattedTextField();
-			formattedTextFieldCidade.setFont(new Font("Arial", Font.PLAIN, 14));
-			formattedTextFieldCidade.setBounds(285, 504, 257, 22);
-		}
-		return formattedTextFieldCidade;
 	}
 	public JButton getButtonVoltar() {
 		if(botaoVoltar == null) {

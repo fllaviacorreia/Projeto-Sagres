@@ -203,7 +203,6 @@ public class VisaoPainelFluxograma extends JPanel {
 		if (lblDisciplinasQueSo_1 == null) {
 			lblDisciplinasQueSo_1 = new JLabel("Disciplinas que s\u00E3o e t\u00EAm pr\u00E9-requisito(s)");
 			lblDisciplinasQueSo_1.setForeground(new Color(255, 0, 51));
-			lblDisciplinasQueSo_1.setBackground(new Color(255, 0, 51));
 			lblDisciplinasQueSo_1.setFont(new Font("Arial", Font.BOLD, 16));
 			lblDisciplinasQueSo_1.setBounds(914, 0, 319, 30);
 		}

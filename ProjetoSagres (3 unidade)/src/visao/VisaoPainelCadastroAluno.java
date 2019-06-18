@@ -56,7 +56,6 @@ public class VisaoPainelCadastroAluno extends JPanel{
 	private JFormattedTextField formattedTextFieldNumero		= null;
 	private JFormattedTextField formattedTextFieldComplemento	= null;
 	private JFormattedTextField formattedTextFieldBairro		= null;
-	private JFormattedTextField formattedTextFieldCidade		= null;
 	private JFormattedTextField formattedTextFieldCelular		= null;
 	private JComboBox<String>   comboBoxCurso					= null;
 	private JComboBox<String>   comboBoxHistoricoDisciplinas	= null;
@@ -112,7 +111,6 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		this.add(getFormattedTextFieldNumero());
 		this.add(getFormattedTextFieldComplemento());
 		this.add(getFormattedTextFieldBairro());
-		this.add(getFormattedTextFieldCidade());
 		this.add(getFormattedTextFieldCelular());
 		this.add(getComboBoxCurso());
 		this.add(getComboBoxHistoricoDisciplinas());
@@ -310,7 +308,7 @@ public class VisaoPainelCadastroAluno extends JPanel{
 			labelCidade = new JLabel("Cidade:");
 			labelCidade.setForeground(Color.BLACK);
 			labelCidade.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelCidade.setBounds(285, 479, 130, 25);
+			labelCidade.setBounds(421, 479, 130, 25);
 		}
 		return labelCidade;
 	}
@@ -320,7 +318,7 @@ public class VisaoPainelCadastroAluno extends JPanel{
 			labelEstadoEndereco = new JLabel("Estado:");
 			labelEstadoEndereco.setForeground(Color.BLACK);
 			labelEstadoEndereco.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelEstadoEndereco.setBounds(571, 479, 123, 25);
+			labelEstadoEndereco.setBounds(284, 481, 123, 25);
 		}
 		return labelEstadoEndereco;
 	}
@@ -493,16 +491,6 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		return formattedTextFieldBairro;
 	}
 
-	public JFormattedTextField getFormattedTextFieldCidade() {
-		if (formattedTextFieldCidade == null) {
-			formattedTextFieldCidade = new JFormattedTextField();
-			formattedTextFieldCidade.setForeground(Color.BLACK);
-			formattedTextFieldCidade.setFont(new Font("Arial", Font.PLAIN, 14));
-			formattedTextFieldCidade.setBounds(285, 504, 257, 22);
-		}
-		return formattedTextFieldCidade;
-	}
-
 	public JTextField getTextFieldEmail() {
 		if (textFieldEmail == null) {
 			textFieldEmail = new JTextField();
@@ -595,7 +583,7 @@ public class VisaoPainelCadastroAluno extends JPanel{
 			comboBoxEstadoEndereco.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "AC", "AL", "AM", "AP", 
 					"BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", 
 					"RO", "RR", "RS", "SC", "SE", "SP", "TO"}));
-			comboBoxEstadoEndereco.setBounds(571, 504, 115, 22);
+			comboBoxEstadoEndereco.setBounds(284, 506, 115, 22);
 		}
 		return comboBoxEstadoEndereco;
 	}
@@ -662,8 +650,11 @@ public class VisaoPainelCadastroAluno extends JPanel{
 	}
 	public JComboBox<String> getComboBoxCidades() {
 		if (comboBoxCidades == null) {
-			comboBoxCidades = new JComboBox();
-			comboBoxCidades.setBounds(879, 423, 130, 20);
+			comboBoxCidades = new JComboBox<String>();
+			comboBoxCidades.setBackground(Color.WHITE);
+			comboBoxCidades.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE"}));
+			comboBoxCidades.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxCidades.setBounds(421, 508, 269, 20);
 		}
 		return comboBoxCidades;
 	}

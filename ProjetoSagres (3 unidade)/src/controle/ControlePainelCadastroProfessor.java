@@ -8,6 +8,7 @@ package controle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -54,6 +55,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 	private String matricula;
 	private String area;
 	private String carga_Horaria;
+	private Arquivo arquivo = new Arquivo(0);
 	
 	public ControlePainelCadastroProfessor(VisaoPainelCadastroProfessor telaCadProfessor, int volta) {
 		this.telaCadProfessor = telaCadProfessor;
@@ -99,7 +101,22 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		
+		if(e.getSource() == telaCadProfessor.getComboBoxEstadoEndereco()) {
+			if(!telaCadProfessor.getComboBoxEstadoEndereco().getSelectedItem().equals("SELECIONE")) {
+				ArrayList<String> cidade = null;
+				try {
+					cidade = arquivo.EscreveCidades(telaCadProfessor.getComboBoxEstadoEndereco().getSelectedItem().toString());
+					telaCadProfessor.getComboBoxCidades().removeAllItems();
+					telaCadProfessor.getComboBoxCidades().addItem("SELECIONE");
+					for(int i = 0; i < cidade.size(); i++) {
+						telaCadProfessor.getComboBoxCidades().addItem(cidade.get(i));
+					}
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
 		if(e.getSource() == telaCadProfessor.getButtonCancelar()){
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadProfessor, 
@@ -251,8 +268,8 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Bairro não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 			
 				}
-				if(!(telaCadProfessor.getFormattedTextFieldCidade().getText().equals("                              "))) {
-					cidade = arquivo.TiraEspaços(telaCadProfessor.getFormattedTextFieldCidade().getText().toUpperCase());
+				if(!(telaCadProfessor.getComboBoxCidades().getSelectedItem().equals("SELECIONE"))) {
+					cidade = telaCadProfessor.getComboBoxCidades().getSelectedItem().toString();
 					contador++;
 				}else {
 					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Cidade não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
