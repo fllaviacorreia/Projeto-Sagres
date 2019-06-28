@@ -7,7 +7,7 @@ import controle.Main;
  * 
  * */
 
-public class Professor extends Endereco{
+public class Professor{
 	
 
 	/**
@@ -27,11 +27,10 @@ public class Professor extends Endereco{
 	private String uf;
 	private String dataExpedicao;
 	private String orgaoExp;
+	private int id;
 	
-	public Professor(String cep, String rua, String numero, String complemento, String bairro, String cidade,
-			String estado, String tipo, String nome, String dataNascimento, String matricula, String area, String carga_Horaria, String email, 
+	public Professor(String nome, String dataNascimento, String matricula, String area, String carga_Horaria, String email, 
 			String telefone, String celular,String cpf, String rg, String uf, String dataExpedicao, String orgaoExp) {
-		super(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.matricula = matricula;
@@ -151,4 +150,12 @@ public class Professor extends Endereco{
 	public void setOrgaoExp(String orgaoExp) {
 		this.orgaoExp = orgaoExp;
 	}
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}  
 }

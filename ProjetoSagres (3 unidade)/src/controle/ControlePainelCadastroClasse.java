@@ -128,13 +128,18 @@ public class ControlePainelCadastroClasse implements ActionListener {
 					if (!String.valueOf(matricula).equals("")) {
 						if (ValidaAluno(matricula, 1) == 1) {
 							if (ValidaAluno(matricula, 2) == 0) {
-								alunos.add(String.valueOf(matricula));
-								telaCadClasse.getComboBoxAlunos().addItem(String.valueOf(matricula));
+								if(ValidaAluno(matricula, 3) == 0) {
+									alunos.add(String.valueOf(matricula));
+									telaCadClasse.getComboBoxAlunos().addItem(String.valueOf(matricula));
+								}else {
+									JOptionPane.showMessageDialog(null,
+											"Aluno cadastrado em outra disciplina no mesmo horário.", "Aviso",
+											JOptionPane.ERROR_MESSAGE);
+								}
 							} else {
 								JOptionPane.showMessageDialog(null,
 										"Aluno não cumpriu o(s) pré-requisito(s) da disciplina.", "Aviso",
 										JOptionPane.ERROR_MESSAGE);
-
 							}
 						} else {
 							JOptionPane.showMessageDialog(null, "Número de matrícula não encontrado no banco de dados.",
@@ -166,10 +171,12 @@ public class ControlePainelCadastroClasse implements ActionListener {
 							if (ValidaProfessor(matricula, 2) == 0) {
 								professores.add(String.valueOf(matricula));
 								telaCadClasse.getComboBoxProfessores().addItem(String.valueOf(matricula));
+							}else {
+								JOptionPane.showMessageDialog(telaCadClasse, "Professor com carga horária indisponível.", "Erro",
+										JOptionPane.ERROR_MESSAGE);
 							}
 
 						} else {
-							System.out.println("la3");
 							JOptionPane.showMessageDialog(telaCadClasse, "Número de matrícula não encontrado.", "Erro",
 									JOptionPane.ERROR_MESSAGE);
 						}
@@ -292,9 +299,9 @@ public class ControlePainelCadastroClasse implements ActionListener {
 
 	public int ValidaAluno(String numero, int tipo) {
 		// 1 - verifica se o aluno está cadastrado
-		// 2 - verifica se o aluno está cadastrado em outra disciplina no mesmo horário
-		// e dia
-
+		// 2 - verifica se o aluno cumpriu os pré-requisitos
+		// 3 - verifica se o aluno está cadastrado em outra disciplina no mesmo horário e dia
+		// 4 - verifica se o aluno é de curso diferente
 		int contador = 0;
 		if (tipo == 1) {
 			for (int i = 0; i < Main.aluno.size(); i++) {
@@ -328,6 +335,18 @@ public class ControlePainelCadastroClasse implements ActionListener {
 						return 0;
 					else
 						return 1;
+				}
+			}
+		}else if(tipo == 3) {
+			
+		}else if(tipo == 4) {
+			for (int i = 0; i < Main.aluno.size(); i++) {
+				if (Main.aluno.get(i).getMatricula().equals(numero)) {
+					if(Main.aluno.get(i).getCurso().equals(telaCadClasse.getComboBoxCurso())) {
+						return 0;
+					}else {
+						return 1;
+					}
 				}
 			}
 		}

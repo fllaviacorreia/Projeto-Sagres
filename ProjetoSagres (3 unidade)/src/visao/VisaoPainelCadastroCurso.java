@@ -15,7 +15,6 @@ import modelo.FormataMascaras;
 
 @SuppressWarnings("serial")
 public class VisaoPainelCadastroCurso extends JPanel{
-	
 	private JLabel 				labelNomeCurso 					= null;
 	private JLabel 				labelCargaHorariaTotal 			= null;
 	private JLabel 				labelSemestresTotais 			= null;
@@ -143,7 +142,8 @@ public class VisaoPainelCadastroCurso extends JPanel{
 			comboBoxHorario = new JComboBox<String>();
 			comboBoxHorario.setBackground(Color.WHITE);
 			comboBoxHorario.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxHorario.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "MATUTINO", "VESPERTINO", "NOTURNO", "INTEGRAL"}));
+			comboBoxHorario.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "MATUTINO", 
+					"VESPERTINO", "NOTURNO", "INTEGRAL"}));
 			comboBoxHorario.setBounds(23, 263, 201, 25);
 		}
 		return comboBoxHorario;
@@ -166,7 +166,8 @@ public class VisaoPainelCadastroCurso extends JPanel{
 			comboBoxTipoCurso = new JComboBox<String>();
 			comboBoxTipoCurso.setBackground(Color.WHITE);
 			comboBoxTipoCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxTipoCurso.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "GRADUA\u00C7\u00C3O", "ESPECIALIZA\u00C7\u00C3O", "MESTRADO", "DOUTORADO"}));
+			comboBoxTipoCurso.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", 
+					"GRADUA\u00C7\u00C3O", "ESPECIALIZA\u00C7\u00C3O", "MESTRADO", "DOUTORADO"}));
 			comboBoxTipoCurso.setBounds(23, 334, 201, 25);
 		}
 		return comboBoxTipoCurso;
@@ -177,7 +178,8 @@ public class VisaoPainelCadastroCurso extends JPanel{
 			comboBoxTipoGraduacao.setEnabled(false);
 			comboBoxTipoGraduacao.setBackground(Color.WHITE);
 			comboBoxTipoGraduacao.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxTipoGraduacao.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "LICENCIATURA", "BACHARELADO"}));
+			comboBoxTipoGraduacao.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", 
+					"LICENCIATURA", "BACHARELADO"}));
 			comboBoxTipoGraduacao.setBounds(22, 399, 202, 25);
 		}
 		return comboBoxTipoGraduacao;

@@ -114,7 +114,7 @@ public class BancoProfessorGerenciar {
 		return true;
 	}
 	
-	public int primeiroEultimo(String tabela, String campo, int op) {
+	public int primeiroEultimo(String campo, int op) {
 		int valor = 0;
 		try {
 			conexao = BancoConexao.open();

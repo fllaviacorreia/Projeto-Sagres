@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import controle.Main;
 
 public class ModeloTabelaCurso extends AbstractTableModel {
-	String[] columnName = { "NOME", "CH TOTAL", "TIPO", "GRAU", "SEMESTRES" }; // nome das coluna
+	String[] columnName = {"ID", "NOME", "CH TOTAL", "TIPO", "GRAU", "SEMESTRES" }; // nome das coluna
 	ArrayList<Curso> arrayCurso;
 
 	public ModeloTabelaCurso() {
@@ -41,13 +41,15 @@ public class ModeloTabelaCurso extends AbstractTableModel {
 		// retorna o valor em determinada célula, dado os argumentos de posição de linha
 		// e coluna
 		switch (coluna) {
-		case 0:// coluna nome
+		case 0:// coluna id
+			return arrayCurso.get(linha).getId();
+		case 1: //coluna nome
 			return arrayCurso.get(linha).getNome();
-		case 1:// coluna carga horaria
+		case 2:// coluna carga horaria
 			return arrayCurso.get(linha).getCargaHorariaTotal();
-		case 2:// coluna tipo
+		case 3:// coluna tipo
 			return arrayCurso.get(linha).getTipo();
-		case 3: {// coluna grau
+		case 4: {// coluna grau
 			String tipoCurso = arrayCurso.get(linha).getTipoCurso();
 			if (tipoCurso.equals("GRADUAÇÃO")) {
 				String tipoGraduacao = arrayCurso.get(linha).getTipoGraduacao();
@@ -55,7 +57,7 @@ public class ModeloTabelaCurso extends AbstractTableModel {
 			} else
 				return tipoCurso;
 		}
-		case 4: // coluna semestres
+		case 5: // coluna semestres
 			return arrayCurso.get(linha).getSemestres();
 		default:
 			return arrayCurso.get(linha);
@@ -111,6 +113,7 @@ public class ModeloTabelaCurso extends AbstractTableModel {
 
 	public void setValueAt(Curso aValue, int rowIndex) { // aValue é do tipo da Classe em que guarda o array seus dados
 		Curso curso = arrayCurso.get(rowIndex);
+		curso.setId(aValue.getId());
 		curso.setNome(aValue.getNome());
 		curso.setCargaHorariaTotal(aValue.getCargaHorariaTotal());
 		curso.setTipo(aValue.getTipo());
@@ -121,6 +124,7 @@ public class ModeloTabelaCurso extends AbstractTableModel {
 		fireTableCellUpdated(rowIndex, 2);
 		fireTableCellUpdated(rowIndex, 3);
 		fireTableCellUpdated(rowIndex, 4);
+		fireTableCellUpdated(rowIndex, 5);
 
 	}
 

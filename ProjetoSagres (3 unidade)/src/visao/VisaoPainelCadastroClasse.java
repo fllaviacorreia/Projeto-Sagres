@@ -9,40 +9,37 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
-//import com.toedter.calendar.JCalendar;
 
 import javax.swing.JTextField;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class VisaoPainelCadastroClasse extends JPanel{
-
-	private JLabel 				labelDisciplina 			= null;
-	private JLabel 				labelProfessores 			= null;
-	private JLabel 				labelAlunos 				= null;
-	private JLabel 				labelAno 					= null;
-	private JLabel 				labelSemestre 				= null;
-	private JComboBox<String>   comboBoxDisciplina 			= null;
-	private JComboBox<String>   comboBoxProfessores 		= null;
-	private JComboBox<String>   comboBoxAlunos 		  		= null;
-	private JComboBox<String>   comboBoxSemestre 	 		= null;
-	private JButton 			buttonVoltar 	 			= null;
-	private JButton 			buttonCancelar 	 			= null;
-	private JButton 			buttonConfirmar   			= null;
-	private JButton 			buttonAdicionarProfessor  	= null;
-	private JButton 			buttonAdicionarAluno  		= null;
-	private JTextField 			textFieldAno				= null;
-	private Calendar 			calendario 					= Calendar.getInstance();
-	private JLabel labelCurso;
-	private JComboBox<String> comboBoxCurso;
-	private JButton btnGerarHorrio;
+	private JLabel 			  labelDisciplina 			= null;
+	private JLabel 			  labelProfessores 			= null;
+	private JLabel 			  labelAlunos 				= null;
+	private JLabel 			  labelAno 					= null;
+	private JLabel 			  labelSemestre 			= null;
+	private JLabel 			  labelCurso 				= null;
+	private JTextField 		  textFieldAno				= null;
+	private JComboBox<String> comboBoxDisciplina 		= null;
+	private JComboBox<String> comboBoxProfessores 		= null;
+	private JComboBox<String> comboBoxAlunos 		  	= null;
+	private JComboBox<String> comboBoxSemestre 	 		= null;
+	private JComboBox<String> comboBoxCurso 			= null;
+	private JButton 		  buttonVoltar 	 			= null;
+	private JButton 		  buttonCancelar 	 		= null;
+	private JButton 		  buttonConfirmar   		= null;
+	private JButton 		  buttonAdicionarProfessor  = null;
+	private JButton 		  buttonAdicionarAluno  	= null;
+	private JButton 		  buttonGerarHorrio;
+	private Calendar calendario = Calendar.getInstance();
+	
 	public VisaoPainelCadastroClasse() {
 		this.setLayout(null);
 		this.setBackground(new Color(120, 205, 194));
@@ -64,9 +61,9 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		this.add(getButtonAdicionarAluno());
 		this.add(getButtonAdicionarProfessor());
 		this.add(getTextFieldAno());
-		add(getLabelCurso());
-		add(getComboBoxCurso());
-		add(getButtonGerarHorario());
+		this.add(getLabelCurso());
+		this.add(getComboBoxCurso());
+		this.add(getButtonGerarHorario());
 	}
 	
 	
@@ -128,7 +125,35 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		}
 		return labelSemestre;
 	}
-
+	public JLabel getLabelCurso() {
+		if (labelCurso == null) {
+			labelCurso = new JLabel("Curso:");
+			labelCurso.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelCurso.setBounds(53, 37, 46, 14);
+		}
+		return labelCurso;
+	}
+	public JTextField getTextFieldAno() {
+		if (textFieldAno == null) {
+			textFieldAno = new JTextField();
+			textFieldAno.setText(String.valueOf(calendario.get(Calendar.YEAR)));
+			textFieldAno.setForeground(Color.BLACK);
+			textFieldAno.setBounds(53, 298, 69, 20);
+			textFieldAno.setColumns(10);
+			textFieldAno.setEditable(false);
+		}
+		return textFieldAno;
+	}
+	
+	public JComboBox<String> getComboBoxCurso() {
+		if (comboBoxCurso == null) {
+			comboBoxCurso = new JComboBox<String>();
+			comboBoxCurso.setBackground(Color.WHITE);
+			comboBoxCurso.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxCurso.setBounds(53, 58, 277, 20);
+		}
+		return comboBoxCurso;
+	}
 	public JComboBox<String> getComboBoxDisciplina() {
 		if(comboBoxDisciplina == null) {
 			comboBoxDisciplina = new JComboBox<String>();
@@ -233,41 +258,14 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		}
 		return buttonAdicionarAluno;
 	}
-	public JTextField getTextFieldAno() {
-		if (textFieldAno == null) {
-			textFieldAno = new JTextField();
-			textFieldAno.setText(String.valueOf(calendario.get(Calendar.YEAR)));
-			textFieldAno.setForeground(Color.BLACK);
-			textFieldAno.setBounds(53, 298, 69, 20);
-			textFieldAno.setColumns(10);
-			textFieldAno.setEditable(false);
-		}
-		return textFieldAno;
-	}
-	public JLabel getLabelCurso() {
-		if (labelCurso == null) {
-			labelCurso = new JLabel("Curso:");
-			labelCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelCurso.setBounds(53, 37, 46, 14);
-		}
-		return labelCurso;
-	}
-	public JComboBox<String> getComboBoxCurso() {
-		if (comboBoxCurso == null) {
-			comboBoxCurso = new JComboBox();
-			comboBoxCurso.setBackground(Color.WHITE);
-			comboBoxCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxCurso.setBounds(53, 58, 277, 20);
-		}
-		return comboBoxCurso;
-	}
+	
 	public JButton getButtonGerarHorario() {
-		if (btnGerarHorrio == null) {
-			btnGerarHorrio = new JButton("Gerar hor\u00E1rio");
-			btnGerarHorrio.setBackground(Color.WHITE);
-			btnGerarHorrio.setFont(new Font("Arial", Font.PLAIN, 14));
-			btnGerarHorrio.setBounds(388, 297, 161, 23);
+		if (buttonGerarHorrio == null) {
+			buttonGerarHorrio = new JButton("Gerar hor\u00E1rio");
+			buttonGerarHorrio.setBackground(Color.WHITE);
+			buttonGerarHorrio.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonGerarHorrio.setBounds(388, 297, 161, 23);
 		}
-		return btnGerarHorrio;
+		return buttonGerarHorrio;
 	}
 }

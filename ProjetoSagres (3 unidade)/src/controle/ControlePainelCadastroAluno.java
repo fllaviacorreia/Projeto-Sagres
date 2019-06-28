@@ -363,15 +363,17 @@ public class ControlePainelCadastroAluno implements ActionListener {
 				if ((contador == 16 || contador == 17)) {
 					tipo = "ALUNO";
 					matricula = String.valueOf(numMatriculaAluno);
-					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
+					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado);
 					Aluno dados = new Aluno(nome, matricula, dataNascimento, email, telefone, celular, cpf, rg, uf,
 							dataExpedicao, orgaoExp, curso, disciplinas);
-					new Arquivo(1);
+//					new Arquivo(1);
 
 					int count = 0;
 					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
 					boolean retorno2 = new BancoAlunoGerenciar().BancoAlunoInserir(dados);
 					boolean retorno3 = false;
+					endereco.setId(new BancoEnderecoGerenciar().primeiroEultimo("idEndereco", 1));
+					dados.setId(new BancoAlunoGerenciar().primeiroEultimo("idAluno", 1));
 					if (disciplinas.size() > 0) {
 						int idAluno = new BancoAlunoGerenciar().primeiroEultimo("idAluno", 1);
 						for (int i = 0; i < disciplinas.size(); i++) {

@@ -18,7 +18,7 @@ import modelo.FormataMascaras;
 
 @SuppressWarnings("serial")
 public class VisaoPainelCadastroAluno extends JPanel{
-	FormataMascaras formatacao = new FormataMascaras();
+	
 	private JLabel 				labelNomeAluno 	 				= null;
 	private JLabel 				labelMatriculaAluno 			= null;
 	private JLabel 				labelCurso 	 					= null;
@@ -62,12 +62,12 @@ public class VisaoPainelCadastroAluno extends JPanel{
 	private JComboBox<String> 	comboBoxEstadoEndereco			= null;
 	private JComboBox<String> 	comboBoxEstadoRg				= null;
 	private JComboBox<String> 	comboBoxTipoCurso				= null;
+	private JComboBox<String> 	comboBoxCidades					= null;
 	private JButton 			buttonVoltar 	 				= null;
 	private JButton 			buttonCancelar 	 				= null;
 	private JButton 			buttonConfirmar   				= null;
 	private JButton 			buttonAdicionarDisciplina  		= null;
-	private JComboBox<String> comboBoxCidades;
-
+	FormataMascaras formatacao = new FormataMascaras();
 	public VisaoPainelCadastroAluno() {
 		this.setLayout(null);
 		this.setBackground(new Color(120, 205, 194));
@@ -363,6 +363,17 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		return labelCelular;
 	}
 
+	public JTextField getTextFieldEmail() {
+		if (textFieldEmail == null) {
+			textFieldEmail = new JTextField();
+			textFieldEmail.setForeground(Color.BLACK);
+			textFieldEmail.setFont(new Font("Arial", Font.PLAIN, 14));
+			textFieldEmail.setBounds(22, 214, 309, 22);
+			textFieldEmail.setColumns(10);
+		}
+		return textFieldEmail;
+	}
+	
 	public JFormattedTextField getFormattedTextFieldNomeAluno() {
 		if(formattedTextFieldNomeAluno == null) {
 			formattedTextFieldNomeAluno = new JFormattedTextField();
@@ -491,17 +502,6 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		return formattedTextFieldBairro;
 	}
 
-	public JTextField getTextFieldEmail() {
-		if (textFieldEmail == null) {
-			textFieldEmail = new JTextField();
-			textFieldEmail.setForeground(Color.BLACK);
-			textFieldEmail.setFont(new Font("Arial", Font.PLAIN, 14));
-			textFieldEmail.setBounds(22, 214, 309, 22);
-			textFieldEmail.setColumns(10);
-		}
-		return textFieldEmail;
-	}
-	
 	public JFormattedTextField getFormattedTextFieldCep() {
 		if (formattedTextFieldCep == null) {
 			formattedTextFieldCep = new JFormattedTextField();
@@ -600,6 +600,17 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		return comboBoxTipoCurso;
 	}
 	
+	public JComboBox<String> getComboBoxCidades() {
+		if (comboBoxCidades == null) {
+			comboBoxCidades = new JComboBox<String>();
+			comboBoxCidades.setBackground(Color.WHITE);
+			comboBoxCidades.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE"}));
+			comboBoxCidades.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxCidades.setBounds(421, 508, 269, 20);
+		}
+		return comboBoxCidades;
+	}
+	
 	public JButton getButtonAdicionarDisciplina() {
 		if(buttonAdicionarDisciplina == null) {
 			buttonAdicionarDisciplina = new JButton("Adicionar disciplina");
@@ -648,14 +659,6 @@ public class VisaoPainelCadastroAluno extends JPanel{
 		}
 		return buttonConfirmar;
 	}
-	public JComboBox<String> getComboBoxCidades() {
-		if (comboBoxCidades == null) {
-			comboBoxCidades = new JComboBox<String>();
-			comboBoxCidades.setBackground(Color.WHITE);
-			comboBoxCidades.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE"}));
-			comboBoxCidades.setFont(new Font("Arial", Font.PLAIN, 14));
-			comboBoxCidades.setBounds(421, 508, 269, 20);
-		}
-		return comboBoxCidades;
-	}
+
+	
 }

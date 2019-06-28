@@ -15,7 +15,7 @@ import modelo.Aluno;
 public class BancoAlunoGerenciar{
 	Banco banco = new Banco();
 	Connection conexao = null;
-	PreparedStatement preparetedStatement = null;
+	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
 	private Statement consulta;
 	private ResultSet resultSet1;
@@ -35,10 +35,6 @@ public class BancoAlunoGerenciar{
 		try {
 			endereco = Integer.parseInt(banco.primeiroEultimo("Endereco", "idEndereco", 2));
 			curso = Integer.parseInt(banco.consultar("Curso", "nomeCurso", aluno.getCurso(), "idCurso")); 
-		
-			System.out.println("endereco id "+endereco);
-			System.out.println("curso id "+curso);
-			System.out.println("aluno curso "+ aluno.getCurso());
 		}catch(Exception e) {
 			System.err.println("Não foi possível buscar endereço e/ou curso: "+e);
 		}
@@ -48,29 +44,29 @@ public class BancoAlunoGerenciar{
 		try {
 			
 		//lincando o comando com o banco em aluno
-			preparetedStatement = conexao.prepareStatement(sqlAluno);
+			preparedStatement = conexao.prepareStatement(sqlAluno);
 			
 		//salvando na table os dados	
-			preparetedStatement.setString(1, aluno.getNome());
-			preparetedStatement.setString(2, aluno.getMatricula());
-			preparetedStatement.setString(3, aluno.getDataNascimento());
-			preparetedStatement.setString(4, aluno.getEmail());
-			preparetedStatement.setString(5, aluno.getTelefone());
-			preparetedStatement.setString(6, aluno.getCelular());
-			preparetedStatement.setString(7, aluno.getCpf());
-			preparetedStatement.setString(8, aluno.getRg());
-			preparetedStatement.setString(9, aluno.getUf());
-			preparetedStatement.setString(10, aluno.getOrgaoExp());
-			preparetedStatement.setString(11, aluno.getDataExpedicao());
+			preparedStatement.setString(1, aluno.getNome());
+			preparedStatement.setString(2, aluno.getMatricula());
+			preparedStatement.setString(3, aluno.getDataNascimento());
+			preparedStatement.setString(4, aluno.getEmail());
+			preparedStatement.setString(5, aluno.getTelefone());
+			preparedStatement.setString(6, aluno.getCelular());
+			preparedStatement.setString(7, aluno.getCpf());
+			preparedStatement.setString(8, aluno.getRg());
+			preparedStatement.setString(9, aluno.getUf());
+			preparedStatement.setString(10, aluno.getOrgaoExp());
+			preparedStatement.setString(11, aluno.getDataExpedicao());
 			
 		//primeiro o endereço é salvo e depois o id gerado de endereço é jogado aqui
 		// o mesmo acontece com curso, a diferença é que vai buscar o curso no banco
-			preparetedStatement.setInt(12, endereco);
-			preparetedStatement.setInt(13, curso);
-			int teste = preparetedStatement.executeUpdate();
+			preparedStatement.setInt(12, endereco);
+			preparedStatement.setInt(13, curso);
+			int teste = preparedStatement.executeUpdate();
 			
 			if(teste > 0) {
-				preparetedStatement.close();
+				preparedStatement.close();
 				conexao.close();
 				return true;
 			}
@@ -100,8 +96,8 @@ public class BancoAlunoGerenciar{
 		String sql = "SELECT * FROM Aluno";
 		conexao = BancoConexao.open();
 		try {
-			preparetedStatement = conexao.prepareStatement(sql);
-			resultSet = preparetedStatement.executeQuery(sql);
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
 			while (resultSet.next()) {
 				ArrayList<String> disciplinas = consultarUmaColuna("aluno_cursou_disciplina", "Disciplia_idDisciplina", 
 						"Aluno_idAluno", resultSet.getString("idAluno"));
@@ -115,6 +111,7 @@ public class BancoAlunoGerenciar{
 						resultSet.getString("ufRg"), resultSet.getString("dataExpedicaoRg"), 
 						resultSet.getString("orgaoExpeditorRg"), 
 						new BancoCursoGerenciar().consultar("idCurso", resultSet.getString("Curso_idCurso"), "nomeCurso"), disciplinas);
+				aluno.setId(resultSet.getInt("idAluno"));
 			}
 			conexao.close();
 		} catch (SQLException e) {
@@ -140,8 +137,8 @@ public class BancoAlunoGerenciar{
 		try {
 			conexao = BancoConexao.open();
 			String sql = "DELETE FROM Aluno  WHERE( numMatricula = '" + numMatricula + "')";
-			preparetedStatement = conexao.prepareStatement(sql);
-			int teste = preparetedStatement.executeUpdate(sql);
+			preparedStatement = conexao.prepareStatement(sql);
+			int teste = preparedStatement.executeUpdate(sql);
 			if(teste > 0) {
 				return true;
 			}
@@ -165,12 +162,12 @@ public class BancoAlunoGerenciar{
 			conexao = BancoConexao.open();
 			if (op <= 0) {
 				String sql = "SELECT MIN(" + campo + ") AS resultado FROM Aluno";
-				preparetedStatement = conexao.prepareStatement(sql);
-				resultSet = preparetedStatement.executeQuery(sql);
+				preparedStatement = conexao.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery(sql);
 			} else {
 				String sql = "SELECT MAX(" + campo + ") AS resultado FROM Aluno";
-				preparetedStatement = conexao.prepareStatement(sql);
-				resultSet = preparetedStatement.executeQuery(sql);
+				preparedStatement = conexao.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery(sql);
 			}
 			if (resultSet.next()) {
 				valor = this.resultSet.getInt(1);
@@ -187,8 +184,8 @@ public class BancoAlunoGerenciar{
 		sql = "SELECT " + campo + " FROM Aluno WHERE " + chave + " LIKE '%" + valorChave + "%'";
 		try {
 			conexao = BancoConexao.open();
-			preparetedStatement = conexao.prepareStatement(sql);
-			resultSet = preparetedStatement.executeQuery(sql);
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
 			if (resultSet.next()) {
 				retorno = (String) resultSet.getString(campo);
 			}
@@ -204,8 +201,8 @@ public class BancoAlunoGerenciar{
 		String sql = "SELECT * FROM " + tabela;
 		conexao = BancoConexao.open();
 		try {
-			preparetedStatement = conexao.prepareStatement(sql);
-			resultSet = preparetedStatement.executeQuery(sql);
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
 			while (resultSet.next()) {
 				lista.add(resultSet.getString(coluna));
 			}
@@ -221,8 +218,8 @@ public class BancoAlunoGerenciar{
 		String sql = "SELECT * FROM " + tabela + " WHERE " + campo + " = '" + valorCampo +"'";
 		conexao = BancoConexao.open();
 		try {
-			preparetedStatement = conexao.prepareStatement(sql);
-			resultSet1 = preparetedStatement.executeQuery(sql);
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet1 = preparedStatement.executeQuery(sql);
 			while (resultSet1.next()) {
 				lista.add(resultSet1.getString(coluna));
 			}
@@ -238,8 +235,8 @@ public class BancoAlunoGerenciar{
 			conexao = BancoConexao.open();
 			
 			String sql = "UPDATE Aluno SET " + query + " WHERE " + chave + " = '" + valor + "'";
-			preparetedStatement = conexao.prepareStatement(sql);
-			resultSet = preparetedStatement.executeQuery(sql);
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
 			
 //			System.out.println(sql);
 //			JOptionPane.showMessageDialog(null, "Alterado com sucesso!", "Atualização",
@@ -269,14 +266,14 @@ public class BancoAlunoGerenciar{
 
 		try {
 			conexao = BancoConexao.open();
-			preparetedStatement = conexao.prepareStatement(sqlTableDisciplinasCursadas);
-			preparetedStatement.setInt(1, idAluno);
-			preparetedStatement.setInt(2, idDisciplina);		
-			preparetedStatement.setString(3, media);
-			System.out.println(preparetedStatement);
-			int teste = preparetedStatement.executeUpdate();
+			preparedStatement = conexao.prepareStatement(sqlTableDisciplinasCursadas);
+			preparedStatement.setInt(1, idAluno);
+			preparedStatement.setInt(2, idDisciplina);		
+			preparedStatement.setString(3, media);
+			System.out.println(preparedStatement);
+			int teste = preparedStatement.executeUpdate();
 			if(teste > 0) {
-				preparetedStatement.close();
+				preparedStatement.close();
 				conexao.close();
 				return true;
 			}

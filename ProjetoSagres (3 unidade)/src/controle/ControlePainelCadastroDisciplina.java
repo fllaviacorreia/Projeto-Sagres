@@ -62,7 +62,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 		telaCadDisciplina.getRadioButtonPratica().setEnabled(false);
 		telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(false);
 		telaCadDisciplina.getButtonAdicionarAreaDisciplina().setEnabled(false);
-		telaCadDisciplina.getTextFieldNomeDisciplina().setEnabled(false);
+		telaCadDisciplina.getFormattedTextFieldNomeDisciplina().setEnabled(false);
 		telaCadDisciplina.getRadioButtonPreRequisitos().addActionListener(this);
 		telaCadDisciplina.getRadioButtonTeorica().addActionListener(this);
 		telaCadDisciplina.getRadioButtonPratica().addActionListener(this);
@@ -211,7 +211,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					telaCadDisciplina.getRadioButtonPratica().setEnabled(true);
 					telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(true);
 					telaCadDisciplina.getButtonAdicionarAreaDisciplina().setEnabled(true);
-					telaCadDisciplina.getTextFieldNomeDisciplina().setEnabled(true);
+					telaCadDisciplina.getFormattedTextFieldNomeDisciplina().setEnabled(true);
 				}
 			}catch (Exception e1) {
 				System.out.println(e1.getMessage());
@@ -316,10 +316,10 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					JOptionPane.showMessageDialog(telaCadDisciplina,  "Campo Semestre não selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros ++;
 				}	
-				if(!telaCadDisciplina.getTextFieldNomeDisciplina().getText().equals("")) {
+				if(!telaCadDisciplina.getFormattedTextFieldNomeDisciplina().getText().equals("")) {
 					Arquivo dado = new Arquivo(0); 
 					if(!telaCadDisciplina.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
-						nome_Disciplina = dado.TiraEspaços(telaCadDisciplina.getTextFieldNomeDisciplina().getText().toString());
+						nome_Disciplina = dado.TiraEspaços(telaCadDisciplina.getFormattedTextFieldNomeDisciplina().getText().toString());
 						nome_Disciplina = nome_Disciplina.toUpperCase();
 						if(ValidaNomeDisciplina(nome_Disciplina,  nomeCurso) == 0) {
 							contador++;
@@ -376,6 +376,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 					
 					boolean retorno = new BancoDisciplinaGerenciar().BancoDisciplinaInserir(dados);
 					boolean retorno1 = false;
+					dados.setId(new BancoDisciplinaGerenciar().primeiroEultimo("idDisciplina", 1));
 					int count = 0;
 					if(preRequisitos.size() > 0) {
 						int idDisciplina = Integer.parseInt(new Banco().primeiroEultimo("Disciplina", "idDisciplina", 2));
@@ -496,7 +497,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 		telaCadDisciplina.getComboBoxSemestre().removeAllItems();
 		telaCadDisciplina.getComboBoxSemestre().addItem("SELECIONE");
 		telaCadDisciplina.getComboBoxSemestre().setSelectedIndex(0);
-		telaCadDisciplina.getTextFieldNomeDisciplina().setText(null);
+		telaCadDisciplina.getFormattedTextFieldNomeDisciplina().setText(null);
 		telaCadDisciplina.getRadioButtonPratica().setSelected(false);
 		telaCadDisciplina.getRadioButtonEstagio().setSelected(false);
 		telaCadDisciplina.getRadioButtonEPreRequisito().setSelected(false);
@@ -513,7 +514,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener{
 		telaCadDisciplina.getRadioButtonPratica().setEnabled(false);
 		telaCadDisciplina.getRadioButtonPreRequisitos().setEnabled(false);
 		telaCadDisciplina.getButtonAdicionarAreaDisciplina().setEnabled(false);
-		telaCadDisciplina.getTextFieldNomeDisciplina().setEnabled(false);
+		telaCadDisciplina.getFormattedTextFieldNomeDisciplina().setEnabled(false);
 		telaCadDisciplina.getComboBoxCurso().setEnabled(true);
 	}
 }

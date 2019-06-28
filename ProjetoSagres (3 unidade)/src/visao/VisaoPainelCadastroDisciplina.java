@@ -11,6 +11,7 @@ import javax.swing.*;
 import modelo.FormataMascaras;
 
 
+@SuppressWarnings("serial")
 public class VisaoPainelCadastroDisciplina extends JPanel{
 
 	private JLabel 			 	labelAreaDisciplina 		  	= null;
@@ -24,26 +25,20 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 	private JComboBox<String>   comboBoxPreRequisitos 		  	= null;
 	private JComboBox<String>   comboBoxSemestre 		  		= null;
 	private JComboBox<String>   comboBoxCurso 		  			= null;
-	private JFormattedTextField textFieldNomeDisciplina 	    = null;
+	private JFormattedTextField formattedTextFieldNomeDisciplina 	    = null;	
+	private JButton 	 		buttonVoltar 	 		  		= null;
+	private JButton 	 		buttonCancelar 	 		  		= null;
+	private JButton 			buttonConfirmar   		  		= null;
+	private JButton 			buttonAdicionarAreaDisciplina	= null;
+	private JButton 			buttonAdicionarPreRequisitos	= null;
 	private JRadioButton 		radioButtonPreRequisitos 		= null;
 	private JRadioButton 		radioButtonTeorica 				= null;
 	private JRadioButton 		radioButtonPratica 				= null;
 	private JRadioButton 		radioButtonEstagio 				= null;
 	private JRadioButton 		radioButtonOptativa 			= null;
 	private JRadioButton 		radioButtonEPreRequisito		= null;
-//	private ButtonGroup  		radioButtonTipoDisciplina 		= null;
-	private JButton 	 		buttonVoltar 	 		  		= null;
-	private JButton 	 		buttonCancelar 	 		  		= null;
-	private JButton 			buttonConfirmar   		  		= null;
-//	private JButton 			buttonAdicionarSemestre		  	= null;
-	private JButton 			buttonAdicionarAreaDisciplina	= null;
-//	private JButton 			buttonAdicionarCurso		  	= null;
-	private JButton 			buttonAdicionarPreRequisitos	= null;
-	
-	VisaoFramePrincipal frame;
-	FormataMascaras fm = new FormataMascaras();
-	private JRadioButton radioButtonObrigatoria;
-	
+	private JRadioButton 		radioButtonObrigatoria			= null;
+	FormataMascaras formatacao = new FormataMascaras();
 	
 	public VisaoPainelCadastroDisciplina() {
 		setLayout(null);
@@ -51,7 +46,6 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		this.setMinimumSize(new Dimension(1000, 730));
 		this.setMaximumSize(new Dimension(1000, 730));
 		this.setVisible(true);
-		
 		this.add(getLabelAreaDisciplina());
 		this.add(getLabelNomeDisciplina());
 		this.add(getLabelCargaHorariaDisciplina());
@@ -63,7 +57,7 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		this.add(getComboBoxSemestre());
 		this.add(getComboBoxCurso());
 		this.add(getComboBoxPreRequisitos());
-		this.add(getTextFieldNomeDisciplina());
+		this.add(getFormattedTextFieldNomeDisciplina());
 		this.add(getRadioButtonTeorica());
 		this.add(getRadioButtonPratica());
 		this.add(getRadioButtonEstagio());
@@ -71,13 +65,11 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		this.add(getButtonVoltar());
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
-//		this.add(getButtonAdicionarSemestre());
 		this.add(getButtonAdicionarAreaDisciplina());
-//		this.add(getButtonAdicionarCurso());
 		this.add(getButtonAdicionarPreRequisitos());
 		this.add(getRadioButtonEPreRequisito());
 		this.add(getRadioButtonOptativa());
-		add(getRadioButtonObrigatoria());
+		this.add(getRadioButtonObrigatoria());
 	}
 	
 	public JLabel getLabelAreaDisciplina() {
@@ -142,7 +134,18 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		}
 		return labelPreRequisitos;
 	}
-
+	public JFormattedTextField getFormattedTextFieldNomeDisciplina() {
+		if(formattedTextFieldNomeDisciplina == null) {
+			formattedTextFieldNomeDisciplina = new JFormattedTextField();
+			formattedTextFieldNomeDisciplina.setFormatterFactory(formatacao.getNome());
+			formattedTextFieldNomeDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
+			formattedTextFieldNomeDisciplina.setBounds(47, 147, 310, 25);
+			formattedTextFieldNomeDisciplina.setVisible(true);
+			formattedTextFieldNomeDisciplina.setVisible(true);
+		}
+		
+		return formattedTextFieldNomeDisciplina;
+	}
 	public JComboBox<String> getComboBoxAreaDisciplina() {
 		if(comboBoxAreaDisciplina == null) {
 			comboBoxAreaDisciplina = new JComboBox<String>();
@@ -213,17 +216,62 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		return comboBoxCurso;
 	}
 	
-	public JFormattedTextField getTextFieldNomeDisciplina() {
-		if(textFieldNomeDisciplina == null) {
-			textFieldNomeDisciplina = new JFormattedTextField();
-			textFieldNomeDisciplina.setFormatterFactory(fm.getNome());
-			textFieldNomeDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
-			textFieldNomeDisciplina.setBounds(47, 147, 310, 25);
-			textFieldNomeDisciplina.setVisible(true);
-			textFieldNomeDisciplina.setVisible(true);
+	public JButton getButtonVoltar() {
+		if(buttonVoltar == null) {
+			buttonVoltar = new JButton("VOLTAR");
+			buttonVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonVoltar.setBounds(54, 631, 130, 33);
+			buttonVoltar.setBackground(Color.WHITE);
+			buttonVoltar.setVisible(true);
 		}
-		
-		return textFieldNomeDisciplina;
+		return buttonVoltar;
+	}
+
+	public JButton getButtonCancelar() {
+		if(buttonCancelar == null) {
+			buttonCancelar = new JButton("CANCELAR");
+			buttonCancelar.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonCancelar.setBounds(227, 631, 117, 33);
+			buttonCancelar.setBackground(Color.WHITE);
+			buttonCancelar.setVisible(true);
+		}
+		return buttonCancelar;
+	}
+
+	public JButton getButtonConfirmar() {
+		if(buttonConfirmar == null) {
+			buttonConfirmar = new JButton("CONFIRMAR");
+			buttonConfirmar.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonConfirmar.setBounds(387, 631, 117, 33);
+			buttonConfirmar.setBackground(Color.WHITE);
+			buttonConfirmar.setVisible(true);
+		}
+		return buttonConfirmar;
+	}
+	
+	public JButton getButtonAdicionarAreaDisciplina() {
+		if(buttonAdicionarAreaDisciplina == null) {
+			buttonAdicionarAreaDisciplina = new JButton("Adicionar área");
+			buttonAdicionarAreaDisciplina.setHorizontalAlignment(SwingConstants.LEFT);
+			buttonAdicionarAreaDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonAdicionarAreaDisciplina.setBounds(775, 147, 141, 20);
+			buttonAdicionarAreaDisciplina.setBackground(Color.WHITE);
+			buttonAdicionarAreaDisciplina.setVisible(true);
+		}
+		return buttonAdicionarAreaDisciplina;
+	}
+
+	public JButton getButtonAdicionarPreRequisitos() {
+		if(buttonAdicionarPreRequisitos == null) {
+			buttonAdicionarPreRequisitos = new JButton("Adicionar pré-requisito");
+			buttonAdicionarPreRequisitos.setHorizontalAlignment(SwingConstants.LEFT);
+			buttonAdicionarPreRequisitos.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonAdicionarPreRequisitos.setBounds(267, 231, 183, 20);
+			buttonAdicionarPreRequisitos.setBackground(Color.WHITE);
+			buttonAdicionarPreRequisitos.setEnabled(false);
+			buttonAdicionarPreRequisitos.setVisible(true);
+		}
+		return buttonAdicionarPreRequisitos;
 	}
 	
 	public JRadioButton getRadioButtonPreRequisitos() {
@@ -274,84 +322,6 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		return radioButtonEstagio;
 	}
 	
-	public JButton getButtonVoltar() {
-		if(buttonVoltar == null) {
-			buttonVoltar = new JButton("VOLTAR");
-			buttonVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonVoltar.setBounds(54, 631, 130, 33);
-			buttonVoltar.setBackground(Color.WHITE);
-			buttonVoltar.setVisible(true);
-		}
-		return buttonVoltar;
-	}
-
-	public JButton getButtonCancelar() {
-		if(buttonCancelar == null) {
-			buttonCancelar = new JButton("CANCELAR");
-			buttonCancelar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonCancelar.setBounds(227, 631, 117, 33);
-			buttonCancelar.setBackground(Color.WHITE);
-			buttonCancelar.setVisible(true);
-		}
-		return buttonCancelar;
-	}
-
-	public JButton getButtonConfirmar() {
-		if(buttonConfirmar == null) {
-			buttonConfirmar = new JButton("CONFIRMAR");
-			buttonConfirmar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonConfirmar.setBounds(387, 631, 117, 33);
-			buttonConfirmar.setBackground(Color.WHITE);
-			buttonConfirmar.setVisible(true);
-		}
-		return buttonConfirmar;
-	}
-//	public JButton getButtonAdicionarSemestre() {
-//		if(buttonAdicionarSemestre == null) {
-//			buttonAdicionarSemestre = new JButton("Adicionar semestre");
-//			buttonAdicionarSemestre.setHorizontalAlignment(SwingConstants.LEFT);
-//			buttonAdicionarSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
-//			buttonAdicionarSemestre.setBounds(703, 63, 162, 20);
-//			buttonAdicionarSemestre.setBackground(Color.WHITE);
-//			buttonAdicionarSemestre.setVisible(true);
-//		}
-//		return buttonAdicionarSemestre;
-//	}
-	
-	public JButton getButtonAdicionarAreaDisciplina() {
-		if(buttonAdicionarAreaDisciplina == null) {
-			buttonAdicionarAreaDisciplina = new JButton("Adicionar área");
-			buttonAdicionarAreaDisciplina.setHorizontalAlignment(SwingConstants.LEFT);
-			buttonAdicionarAreaDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonAdicionarAreaDisciplina.setBounds(775, 147, 141, 20);
-			buttonAdicionarAreaDisciplina.setBackground(Color.WHITE);
-			buttonAdicionarAreaDisciplina.setVisible(true);
-		}
-		return buttonAdicionarAreaDisciplina;
-	}
-//	public JButton getButtonAdicionarCurso() {
-//		if(buttonAdicionarCurso == null) {
-//			buttonAdicionarCurso = new JButton("Adicionar curso");
-//			buttonAdicionarCurso.setHorizontalAlignment(SwingConstants.LEFT);
-//			buttonAdicionarCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-//			buttonAdicionarCurso.setBounds(363, 63, 141, 20);
-//			buttonAdicionarCurso.setBackground(Color.WHITE);
-//			buttonAdicionarCurso.setVisible(true);
-//		}
-//		return buttonAdicionarCurso;
-//	}
-	public JButton getButtonAdicionarPreRequisitos() {
-		if(buttonAdicionarPreRequisitos == null) {
-			buttonAdicionarPreRequisitos = new JButton("Adicionar pré-requisito");
-			buttonAdicionarPreRequisitos.setHorizontalAlignment(SwingConstants.LEFT);
-			buttonAdicionarPreRequisitos.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonAdicionarPreRequisitos.setBounds(267, 231, 183, 20);
-			buttonAdicionarPreRequisitos.setBackground(Color.WHITE);
-			buttonAdicionarPreRequisitos.setEnabled(false);
-			buttonAdicionarPreRequisitos.setVisible(true);
-		}
-		return buttonAdicionarPreRequisitos;
-	}
 	public JRadioButton getRadioButtonEPreRequisito() {
 		if (radioButtonEPreRequisito == null) {
 			radioButtonEPreRequisito = new JRadioButton("\u00C9 pr\u00E9-requisito");
@@ -363,16 +333,6 @@ public class VisaoPainelCadastroDisciplina extends JPanel{
 		return radioButtonEPreRequisito;
 	}
 
-//	public ButtonGroup getButtonGroupTipoDisciplina() {
-//		if(radioButtonTipoDisciplina  == null) {
-//			radioButtonTipoDisciplina = new ButtonGroup();
-//			radioButtonTipoDisciplina.add(getRadioButtonObrigatoria());
-//			radioButtonTipoDisciplina.add(getRadioButtonOptativa());
-//		}
-//		return radioButtonTipoDisciplina;
-//	}
-
-	
 	public JRadioButton getRadioButtonOptativa() {
 		if(radioButtonOptativa  == null) {
 			radioButtonOptativa = new JRadioButton("Optativa");

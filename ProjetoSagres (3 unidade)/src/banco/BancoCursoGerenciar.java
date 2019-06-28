@@ -92,7 +92,28 @@ public class BancoCursoGerenciar {
 		}
 		return retorno;
 	}
-	
+	public int primeiroEultimo(String campo, int op) {
+		int valor = 0;
+		try {
+			conexao = BancoConexao.open();
+			if (op <= 0) {
+				String sql = "SELECT MIN(" + campo + ") AS resultado FROM Curso";
+				preparedStatement = conexao.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery(sql);
+			} else {
+				String sql = "SELECT MAX(" + campo + ") AS resultado FROM Curso";
+				preparedStatement = conexao.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery(sql);
+			}
+			if (resultSet.next()) {
+				valor = this.resultSet.getInt(1);
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println("Não foi possivel realizar a pesquisar Firts/Last!\n" + e.getMessage());
+		}
+		return valor;
+	}
 	public ArrayList<String> consultarUmaColuna(String tabela, String coluna) {
 		ArrayList<String> lista = new ArrayList<String>();
 		String sql = "SELECT * FROM " + tabela;
@@ -121,6 +142,7 @@ public class BancoCursoGerenciar {
 				Curso curso = new Curso(resultSet.getString("cargaHorariaTotal"), resultSet.getString("nomeCurso"), 
 						resultSet.getString("tipo"), resultSet.getString("quantidadeSemestres"), resultSet.getString("tipoCurso"), 
 						resultSet.getString("tipoGraduacao"));
+				curso.setId(resultSet.getInt("idCurso"));
 			}
 			conexao.close();
 		} catch (SQLException e) {

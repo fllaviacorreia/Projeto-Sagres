@@ -20,8 +20,8 @@ public class BancoDisciplinaGerenciar {
 	public boolean BancoDisciplinaInserir(Disciplina disciplina) {
 		//aqui é o comando em sql que é necessário para inserir no banco de dados
 		String sqlDisciplina = "INSERT INTO Disciplina(nomeDisciplina, areaDisciplina, semestre, cargaHoraria," + 
-				" optativaObrigatoria, teorica, estagio, pratica, preRequisito, Curso_idCurso ) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				" optativa, obrigatoria, teorica, estagio, pratica, preRequisito, Curso_idCurso ) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		/*
 		 * String nome_Disciplina, String semestre, String area_Disciplina, String curso,
 		 *	String tipoDisciplina, ArrayList<String> preRequisitos, String carga_Horaria, boolean ePreRequisito,
@@ -37,16 +37,13 @@ public class BancoDisciplinaGerenciar {
 			preparedStatement.setString(2, disciplina.getArea_Disciplina());
 			preparedStatement.setString(3, disciplina.getSemestre());
 			preparedStatement.setString(4, disciplina.getCarga_Horaria());
-			if(disciplina.getOptativa())
-				preparedStatement.setString(5, "OPTATIVA");
-			else
-				preparedStatement.setString(5, "OBRIGATORIA");
-
-			preparedStatement.setBoolean(6, disciplina.getTeorica());
-			preparedStatement.setBoolean(7, disciplina.getEstagio());
-			preparedStatement.setBoolean(8, disciplina.getPratica());
-			preparedStatement.setBoolean(9, disciplina.getEPreRequisito());
-			preparedStatement.setInt(10, curso);
+			preparedStatement.setBoolean(5, disciplina.getOptativa());
+			preparedStatement.setBoolean(6, disciplina.getObrigatoria());
+			preparedStatement.setBoolean(7, disciplina.getTeorica());
+			preparedStatement.setBoolean(8, disciplina.getEstagio());
+			preparedStatement.setBoolean(9, disciplina.getPratica());
+			preparedStatement.setBoolean(10, disciplina.getEPreRequisito());
+			preparedStatement.setInt(11, curso);
 			
 			int teste = preparedStatement.executeUpdate();
 
@@ -170,7 +167,28 @@ public class BancoDisciplinaGerenciar {
 		}								
 		return false;
 	}
-	
+	public int primeiroEultimo(String campo, int op) {
+		int valor = 0;
+		try {
+			conexao = BancoConexao.open();
+			if (op <= 0) {
+				String sql = "SELECT MIN(" + campo + ") AS resultado FROM Disciplina";
+				preparedStatement = conexao.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery(sql);
+			} else {
+				String sql = "SELECT MAX(" + campo + ") AS resultado FROM Disciplina";
+				preparedStatement = conexao.prepareStatement(sql);
+				resultSet = preparedStatement.executeQuery(sql);
+			}
+			if (resultSet.next()) {
+				valor = this.resultSet.getInt(1);
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println("Não foi possivel realizar a pesquisar Firts/Last!\n" + e.getMessage());
+		}
+		return valor;
+	}
 	public void insereDisciplinasNoArray() {
 		String sql = "SELECT * FROM Disciplina";
 		conexao = BancoConexao.open();
@@ -180,20 +198,13 @@ public class BancoDisciplinaGerenciar {
 			while (resultSet.next()) {
 				String curso = new BancoCursoGerenciar().consultar("idCurso", 
 						String.valueOf(resultSet.getInt("Curso_idCurso")), "nomeCurso");
-				boolean optativa, obrigatoria;
-				if(resultSet.getString("optativaObrigatoria").equals("OPTATIVA")) {
-					optativa = true;
-					obrigatoria = false;
-				}else {
-					optativa = false;
-					obrigatoria = true;
-				}
 				ArrayList<String> preRequisitos = consultarUmaColuna("disciplina_tem_prerequisito", "nomePreRequisito", "idDisciplina", String.valueOf(resultSet.getInt("idDisciplina")));
+				
 				Disciplina disciplina = new Disciplina(resultSet.getString("nomeDisciplina"), resultSet.getString("SEMESTRE"), 
 						resultSet.getString("areaDisciplina"), curso, preRequisitos, resultSet.getString("cargaHoraria"), 
-						resultSet.getBoolean("preRequisito"), optativa, obrigatoria, 
+						resultSet.getBoolean("preRequisito"), resultSet.getBoolean("optativa"), resultSet.getBoolean("obrigatoria"), 
 						resultSet.getBoolean("teorica"), resultSet.getBoolean("pratica"), resultSet.getBoolean("estagio"));
-				
+				disciplina.setId(resultSet.getInt("idDisciplina"));
 			}
 			conexao.close();
 		} catch (SQLException e) {

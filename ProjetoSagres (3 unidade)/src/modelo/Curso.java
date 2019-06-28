@@ -16,6 +16,7 @@ public class Curso {
 	private String semestres;
 	private String tipoCurso;
 	private String tipoGraduacao;
+	private int id;
 	
 	public Curso(String cargaHorariaTotal, String nome, String tipo, String semestres, String tipoCurso,
 			String tipoGraduacao) {
@@ -64,6 +65,12 @@ public class Curso {
 	public void setTipoCurso(String tipoCurso) {
 		this.tipoCurso = tipoCurso;
 	}
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}  
 	
 }

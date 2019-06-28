@@ -139,9 +139,8 @@ public class ControlePainelCadastroCurso implements ActionListener {
 				if (contador == 5) {
 					dados = new Curso(cargaHorariaTotal, nome, tipoHorario, semestres, tipoCurso, tipoGraduacao);
 					// new ControleArquivo(3);
-					BancoCursoGerenciar bancoCurso = new BancoCursoGerenciar();
-					boolean retorno1 = bancoCurso.BancoCursoInserir(dados);
-
+					boolean retorno1 = new BancoCursoGerenciar().BancoCursoInserir(dados);
+					dados.setId(new BancoCursoGerenciar().primeiroEultimo("idCurso", 1));
 					if (retorno1)
 						JOptionPane.showMessageDialog(telaCadCurso, "Cadastro realizado com sucesso.");
 

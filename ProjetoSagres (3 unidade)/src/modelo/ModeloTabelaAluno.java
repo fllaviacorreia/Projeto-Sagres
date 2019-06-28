@@ -8,7 +8,7 @@ import controle.Main;
 
 @SuppressWarnings("serial")
 public class ModeloTabelaAluno extends AbstractTableModel{
-	String [] columnName = {"Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", "CURSO"};		//nome das coluna 
+	String [] columnName = {"ID", "Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", "CURSO"};		//nome das coluna 
 	ArrayList<Aluno> arrayAluno = null;
 	
 	public ModeloTabelaAluno() {
@@ -40,13 +40,15 @@ public class ModeloTabelaAluno extends AbstractTableModel{
 	public Object getValueAt(int linha, int coluna) {
 		// retorna o valor em determinada célula, dado os argumentos de posição de linha e coluna
 		switch (coluna) {
-		case 0://coluna matricula
+		case 0://coluna id
+			return arrayAluno.get(linha).getId();
+		case 1: //coluna matricula
 			return arrayAluno.get(linha).getMatricula();
-		case 1://coluna cpf
+		case 2://coluna cpf
 			return arrayAluno.get(linha).getCpf();		
-		case 2://coluna nome
+		case 3://coluna nome
 			return arrayAluno.get(linha).getNome();
-		case 3:{//coluna telefone
+		case 4:{//coluna telefone
 			String telefone = arrayAluno.get(linha).getTelefone();
 			String celular = arrayAluno.get(linha).getCelular();
 			if(telefone != null &&  celular != null)
@@ -60,9 +62,9 @@ public class ModeloTabelaAluno extends AbstractTableModel{
 		}
 			
 			
-		case 4: // coluna data de nascimento
+		case 5: // coluna data de nascimento
 			return arrayAluno.get(linha).getDataNascimento();
-		case 5: // coluna curso
+		case 6: // coluna curso
 			return arrayAluno.get(linha).getCurso();
 		default:
 			return arrayAluno.get(linha);
@@ -113,6 +115,7 @@ public class ModeloTabelaAluno extends AbstractTableModel{
 	
 	public void setValueAt(Aluno aValue, int rowIndex) {  //aValue é do tipo da Classe em que guarda o array seus dados
 		Aluno aluno = arrayAluno.get(rowIndex);
+		aluno.setId(aValue.getId());
 		aluno.setMatricula(aValue.getMatricula());
 		aluno.setCpf(aValue.getCpf());
 		aluno.setNome(aValue.getNome());
@@ -126,7 +129,8 @@ public class ModeloTabelaAluno extends AbstractTableModel{
 		fireTableCellUpdated(rowIndex, 3);  
 		fireTableCellUpdated(rowIndex, 4);   
 		fireTableCellUpdated(rowIndex, 5);   
-		fireTableCellUpdated(rowIndex, 6);  
+		fireTableCellUpdated(rowIndex, 6);   
+		fireTableCellUpdated(rowIndex, 7);  
 
 	}
 

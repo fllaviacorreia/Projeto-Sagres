@@ -52,12 +52,12 @@ public class ControlePainelConsulta implements ActionListener {
 	}
 
 	public void AddEvento() {
-		painelConsultas.getBtnConsultarAlunos().addActionListener(this);
-		painelConsultas.getBtnConsultarClasses().addActionListener(this);
-		painelConsultas.getBtnConsultarCursos().addActionListener(this);
-		painelConsultas.getBtnConsultarDisciplinas().addActionListener(this);
-		painelConsultas.getBtnConsultarProfessores().addActionListener(this);
-		painelConsultas.getBtnVoltar().addActionListener(this);
+		painelConsultas.getButtonConsultarAlunos().addActionListener(this);
+		painelConsultas.getButtonConsultarClasses().addActionListener(this);
+		painelConsultas.getButtonConsultarCursos().addActionListener(this);
+		painelConsultas.getButtonConsultarDisciplinas().addActionListener(this);
+		painelConsultas.getButtonConsultarProfessores().addActionListener(this);
+		painelConsultas.getButtonVoltar().addActionListener(this);
 		painelConsultas.getMenuItemCadastroAluno().addActionListener(this);
 		painelConsultas.getMenuItemCadastroClasse().addActionListener(this);
 		painelConsultas.getMenuItemCadastroCurso().addActionListener(this);
@@ -73,7 +73,7 @@ public class ControlePainelConsulta implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(painelConsultas.getBtnVoltar())) {
+		if (e.getSource().equals(painelConsultas.getButtonVoltar())) {
 			ControlePainelTelaInicial.troca();
 		}
 
@@ -150,7 +150,7 @@ public class ControlePainelConsulta implements ActionListener {
 
 		}
 		if (e.getSource() == painelConsultas.getMenuItemConsultaAluno()
-				|| e.getSource() == painelConsultas.getBtnConsultarAlunos()) {
+				|| e.getSource() == painelConsultas.getButtonConsultarAlunos()) {
 			try {
 				if (telaConsAluno == null) {
 					telaConsAluno = new VisaoPainelConsultaAluno();
@@ -167,7 +167,7 @@ public class ControlePainelConsulta implements ActionListener {
 		}
 
 		if (e.getSource() == painelConsultas.getMenuItemConsultaClasse()
-				|| e.getSource() == painelConsultas.getBtnConsultarClasses()) {
+				|| e.getSource() == painelConsultas.getButtonConsultarClasses()) {
 			try {
 				if (telaConsClasse == null) {
 					telaConsClasse = new VisaoPainelConsultaClasse();
@@ -182,7 +182,7 @@ public class ControlePainelConsulta implements ActionListener {
 
 		}
 		if (e.getSource() == painelConsultas.getMenuItemConsultaCurso()
-				|| e.getSource() == painelConsultas.getBtnConsultarCursos()) {
+				|| e.getSource() == painelConsultas.getButtonConsultarCursos()) {
 			try {
 				if (telaCadCurso == null) {
 					telaConsCurso = new VisaoPainelConsultaCurso();
@@ -197,7 +197,7 @@ public class ControlePainelConsulta implements ActionListener {
 
 		}
 		if (e.getSource() == painelConsultas.getMenuItemConsultaDisciplina()
-				|| e.getSource() == painelConsultas.getBtnConsultarDisciplinas()) {
+				|| e.getSource() == painelConsultas.getButtonConsultarDisciplinas()) {
 			try {
 				if (telaConsDisciplina == null) {
 					telaConsDisciplina = new VisaoPainelConsultaDisciplina();
@@ -212,7 +212,7 @@ public class ControlePainelConsulta implements ActionListener {
 		}
 
 		if (e.getSource() == painelConsultas.getMenuItemConsultaProfessor()
-				|| e.getSource() == painelConsultas.getBtnConsultarProfessores()) {
+				|| e.getSource() == painelConsultas.getButtonConsultarProfessores()) {
 			try {
 				if (telaConsProfessor == null) {
 					telaConsProfessor = new VisaoPainelConsultaProfessor();

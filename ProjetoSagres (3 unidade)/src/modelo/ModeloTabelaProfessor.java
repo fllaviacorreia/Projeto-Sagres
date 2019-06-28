@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import controle.Main;
 
 public class ModeloTabelaProfessor  extends AbstractTableModel{
-	String [] columnName = {"Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", };		//nome das coluna 
+	String [] columnName = {"ID","Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", };		//nome das coluna 
 	ArrayList<Professor> arrayProfessor = null;
 	public ModeloTabelaProfessor() {
 		arrayProfessor = Main.professor;
@@ -27,13 +27,15 @@ public class ModeloTabelaProfessor  extends AbstractTableModel{
 	public Object getValueAt(int linha, int coluna) {
 		// retorna o valor em determinada célula, dado os argumentos de posição de linha e coluna
 		switch (coluna) {
-		case 0://coluna matricula
+		case 0://coluna id
+			return arrayProfessor.get(linha).getId();
+		case 1: //coluna matricula
 			return arrayProfessor.get(linha).getMatricula();
-		case 1://coluna cpf
+		case 2://coluna cpf
 			return arrayProfessor.get(linha).getCpf();		
-		case 2://coluna nome
+		case 3://coluna nome
 			return arrayProfessor.get(linha).getNome();
-		case 3:{//coluna telefone
+		case 4:{//coluna telefone
 			String telefone = arrayProfessor.get(linha).getTelefone();
 			String celular = arrayProfessor.get(linha).getCelular();
 			if(telefone != null &&  celular != null)
@@ -47,7 +49,7 @@ public class ModeloTabelaProfessor  extends AbstractTableModel{
 		}
 			
 			
-		case 4: // coluna data de nascimento
+		case 5: // coluna data de nascimento
 			return arrayProfessor.get(linha).getDataNascimento();
 		
 		default:
@@ -98,6 +100,7 @@ public class ModeloTabelaProfessor  extends AbstractTableModel{
 	
 	public void setValueAt(Professor aValue, int rowIndex) {  //aValue é do tipo da Classe em que guarda o array seus dados
 		Professor professor = arrayProfessor.get(rowIndex);
+		professor.setId(aValue.getId());
 		professor.setMatricula(aValue.getMatricula());
 		professor.setCpf(aValue.getCpf());
 		professor.setNome(aValue.getNome());
@@ -109,7 +112,8 @@ public class ModeloTabelaProfessor  extends AbstractTableModel{
 		fireTableCellUpdated(rowIndex, 2);  
 		fireTableCellUpdated(rowIndex, 3);  
 		fireTableCellUpdated(rowIndex, 4);   
-		fireTableCellUpdated(rowIndex, 5);   
+		fireTableCellUpdated(rowIndex, 5);    
+		fireTableCellUpdated(rowIndex, 6);   
 
 	}
 

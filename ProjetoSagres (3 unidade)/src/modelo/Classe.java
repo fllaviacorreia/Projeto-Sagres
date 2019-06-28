@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * */
 
 public class Classe {
+	private int id;
 	private String curso;
 	private String disciplina;
 	private ArrayList<String> professores;
@@ -63,5 +64,11 @@ public class Classe {
 		this.diaHora = diaHora;
 	}
 
-	   
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}     
 }

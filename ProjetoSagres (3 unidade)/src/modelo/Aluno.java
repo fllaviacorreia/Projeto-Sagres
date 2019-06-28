@@ -13,7 +13,7 @@ import org.w3c.dom.views.AbstractView;
 
 import controle.Main;
 
-public class Aluno extends Endereco {
+public class Aluno{
 
 /*
  * Em aluno, na parte da visão falta pegar os nomes de cada disciplina e 
@@ -21,6 +21,7 @@ public class Aluno extends Endereco {
  * jogar no histórico de disciplinas do aluno	
  * 
  */
+	private int id;
 	private String nome;
 	private String matricula;
 	private String dataNascimento;
@@ -38,7 +39,6 @@ public class Aluno extends Endereco {
 	public Aluno(String nome, String matricula, String dataNascimento, String email, String telefone, String celular, 
 			String cpf, String rg, String uf, String dataExpedicao, String orgaoExp, String curso, 
 			ArrayList<String> historicoDisciplinas) {
-		
 		this.nome = nome;
 		this.matricula = matricula;
 		this.dataNascimento = dataNascimento;
@@ -157,5 +157,15 @@ public class Aluno extends Endereco {
 
 	public void setCurso(String curso) {
 		this.curso = curso;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}  
 }

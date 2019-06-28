@@ -59,12 +59,13 @@ public class VisaoPainelConsultaAluno extends JPanel{
 	        //selecionar somente uma linha
 			//jtableDadosAluno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jtableDadosAluno.setBounds(10, 89, 1200, 400);
-			jtableDadosAluno.getColumnModel().getColumn(0).setPreferredWidth(120);
-			jtableDadosAluno.getColumnModel().getColumn(1).setPreferredWidth(150);
-			jtableDadosAluno.getColumnModel().getColumn(2).setPreferredWidth(400);
-			jtableDadosAluno.getColumnModel().getColumn(3).setPreferredWidth(250);
-			jtableDadosAluno.getColumnModel().getColumn(4).setPreferredWidth(180);
-			jtableDadosAluno.getColumnModel().getColumn(5).setPreferredWidth(400);
+			jtableDadosAluno.getColumnModel().getColumn(0).setPreferredWidth(70);
+			jtableDadosAluno.getColumnModel().getColumn(1).setPreferredWidth(120);
+			jtableDadosAluno.getColumnModel().getColumn(2).setPreferredWidth(150);
+			jtableDadosAluno.getColumnModel().getColumn(3).setPreferredWidth(400);
+			jtableDadosAluno.getColumnModel().getColumn(4).setPreferredWidth(250);
+			jtableDadosAluno.getColumnModel().getColumn(5).setPreferredWidth(180);
+			jtableDadosAluno.getColumnModel().getColumn(6).setPreferredWidth(400);
 			jtableDadosAluno.setVisible(true);
 		}
 		return jtableDadosAluno;

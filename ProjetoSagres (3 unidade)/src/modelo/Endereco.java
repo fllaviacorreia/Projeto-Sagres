@@ -3,18 +3,16 @@ package modelo;
 import controle.Main;
 
 public class Endereco {
-	String cep;
-	String rua;
-	String numero;
-	String complemento;
-	String bairro;
-	String cidade;
-	String estado;
-	String tipo;
+	private String cep;
+	private String rua;
+	private String numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	private int id;
 	
-	
-	
-	public Endereco(String cep, String rua, String numero, String complemento, String bairro, String cidade, String estado, String tipo) {
+	public Endereco(String cep, String rua, String numero, String complemento, String bairro, String cidade, String estado) {
 		super();
 		this.cep = cep;
 		this.rua = rua;
@@ -23,16 +21,10 @@ public class Endereco {
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;
-		this.tipo = tipo;
 		Main.endereco.add(this);
-		System.out.println(cep +"  " + rua +"  " + numero +"  " + complemento +"  " + bairro +"  " + cidade +"  " + estado +"  " + tipo);
 	
 	}
 	
-	public Endereco() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public String getCep() {
 		return cep;
 	}
@@ -78,13 +70,12 @@ public class Endereco {
 		this.estado = estado;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public int getId() {
+		return id;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	
+	public void setId(int id) {
+		this.id = id;
+	}  
 
 }

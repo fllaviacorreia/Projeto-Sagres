@@ -76,6 +76,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 		telaCadProfessor.getComboBoxAreaAtuacaoProfessor().addActionListener(this);
 		telaCadProfessor.getComboBoxCargaHorariaProfessor().addActionListener(this);
 		telaCadProfessor.getButtonAdicionarAreaAtuacao().addActionListener(this);
+		telaCadProfessor.getComboBoxEstadoEndereco().addActionListener(this);
 	}
 
 	@Override
@@ -321,12 +322,12 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 				if((contador == 17 || contador == 18)){
 					tipo = "PROFESSOR";
 					matricula = String.valueOf(numMatriculaProfessor);
-					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado, tipo);
-					Professor professor = new Professor(cep, rua, numero, complemento, bairro, cidade, estado, tipo, nome, dataNascimento, matricula, area, carga_Horaria, email, telefone, celular, cpf, rg, uf, dataExpedicao, orgaoExp);
+					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado);
+					Professor professor = new Professor(nome, dataNascimento, matricula, area, carga_Horaria, email, telefone, celular, cpf, rg, uf, dataExpedicao, orgaoExp);
 					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
 					boolean retorno2 = new BancoProfessorGerenciar().BancoProfessorInserir(professor);
-					
-					
+					endereco.setId(new BancoEnderecoGerenciar().primeiroEultimo("idEndereco", 1));
+					professor.setId(new BancoProfessorGerenciar().primeiroEultimo("idProfessor", 1));
 					if (retorno1 && retorno2) {
 						JOptionPane.showMessageDialog(telaCadProfessor, "Cadastro realizado com sucesso.");
 						LimpaDados();

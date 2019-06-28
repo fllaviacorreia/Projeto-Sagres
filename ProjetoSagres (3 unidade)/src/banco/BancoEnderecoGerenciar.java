@@ -17,8 +17,8 @@ public class BancoEnderecoGerenciar {
 	private Statement consulta;
 	
 	public boolean inserirEndereco(Endereco endereco) {
-		String sqlEndereco = "INSERT INTO Endereco(cep, rua, numero, complemento, bairro, cidade, uf, tipo) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sqlEndereco = "INSERT INTO Endereco(cep, rua, numero, complemento, bairro, cidade, uf) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
 		conexao = BancoConexao.open();
 		try {
 			preparedStatement = conexao.prepareStatement(sqlEndereco);
@@ -29,7 +29,6 @@ public class BancoEnderecoGerenciar {
 			preparedStatement.setString(5, endereco.getBairro());
 			preparedStatement.setString(6, endereco.getCidade());
 			preparedStatement.setString(7, endereco.getEstado());
-			preparedStatement.setString(8, endereco.getTipo());
 				
 			//	System.out.println(preparetedStatement);
 				int teste = preparedStatement.executeUpdate();
@@ -47,7 +46,7 @@ public class BancoEnderecoGerenciar {
 		
 	}
 	
-	public int primeiroEultimo(String tabela, String campo, int op) {
+	public int primeiroEultimo(String campo, int op) {
 		int valor = 0;
 		try {
 			conexao = BancoConexao.open();
@@ -131,5 +130,26 @@ public class BancoEnderecoGerenciar {
 			return false;
 		}
 		return true;
+	}
+	
+	public void insereEnderecoNoArray() {
+		String sql = "SELECT * FROM Endereco";
+		conexao = BancoConexao.open();
+		try {
+			preparedStatement = conexao.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery(sql);
+			while (resultSet.next()) {
+				//cep, rua, numero, complemento, bairro, cidade, uf, tipo
+				Endereco endereco = new Endereco(resultSet.getString("cep"), resultSet.getString("rua"), 
+						resultSet.getString("numero"), resultSet.getString("complemento"), 
+						resultSet.getString("bairro"), resultSet.getString("cidade"), 
+						resultSet.getString("uf"));
+				endereco.setId(resultSet.getInt("idEndereco"));
+			}
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

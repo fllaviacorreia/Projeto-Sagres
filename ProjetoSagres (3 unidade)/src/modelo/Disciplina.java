@@ -23,6 +23,7 @@ public class Disciplina {
     private boolean teorica;
     private boolean pratica;
     private boolean estagio;
+	private int id;
     
     
 
@@ -140,5 +141,13 @@ public class Disciplina {
 	public void setObrigatoria(boolean obrigatoria) {
 		this.obrigatoria = obrigatoria;
 	}
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}  
     
 }

@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class BancoClasseGerenciar {
 	Banco banco = new Banco();
 	Connection conexao = null;
-	PreparedStatement preparetedStatement = null;
+	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
 	private Statement consulta;
 	
