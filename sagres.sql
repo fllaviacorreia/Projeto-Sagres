@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Jun-2019 às 17:44
--- Versão do servidor: 10.1.36-MariaDB
--- versão do PHP: 5.6.38
+-- Generation Time: 28-Jun-2019 às 12:11
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,7 +50,7 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`idAluno`, `nomeAluno`, `numMatricula`, `dataNascimento`, `email`, `telefone`, `celular`, `cpf`, `rg`, `ufRg`, `orgaoExpeditorRg`, `dataExpedicaoRg`, `Endereco_idEndereco`, `Curso_idCurso`) VALUES
-(1, 'FLÁVIA DE JESUS CORREIA', '20190000', '21/01/1999', 'fjc@hotmail.com', NULL, '(73) 98899-5505', '08167944565', '2125050412', 'BA', 'SSP', '21/09/2013', 2, 2);
+(2, 'FLÁVIA CORREIA', '20190000', '22/05/1978', 'fjc@email.com', NULL, '(73) 98899-5505', '08167944565', '2125050412', 'BA', 'SSP', '21/05/1999', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,8 @@ CREATE TABLE `disciplina` (
   `areaDisciplina` varchar(45) NOT NULL,
   `semestre` varchar(2) NOT NULL,
   `cargaHoraria` varchar(5) NOT NULL,
-  `optativaObrigatoria` varchar(12) NOT NULL,
+  `optativa` tinyint(4) NOT NULL,
+  `obrigatoria` tinyint(4) NOT NULL,
   `teorica` tinyint(4) NOT NULL,
   `estagio` tinyint(4) NOT NULL,
   `pratica` tinyint(4) NOT NULL,
@@ -138,16 +139,16 @@ CREATE TABLE `disciplina` (
 -- Extraindo dados da tabela `disciplina`
 --
 
-INSERT INTO `disciplina` (`idDisciplina`, `nomeDisciplina`, `areaDisciplina`, `semestre`, `cargaHoraria`, `optativaObrigatoria`, `teorica`, `estagio`, `pratica`, `preRequisito`, `Curso_idCurso`) VALUES
-(1, 'INTRODUÇÃO A ALGORITMOS E ESTRUTURA DE DADOS', 'LÓGICA E PROGRAMAÇÃO', '1', '75', 'OBRIGATORIA', 1, 0, 1, 1, 2),
-(2, 'TEORIA GERAL DOS SISTEMAS', 'ADMINISTRAÇÃO', '4', '60', 'OBRIGATORIA', 1, 0, 0, 0, 2),
-(3, 'EMPREENDEDORISMO', 'ADMINISTRAÇÃO', '8', '75', 'OBRIGATORIA', 1, 0, 0, 0, 2),
-(4, 'BANCO DE DADOS I', 'LÓGICA', '4', '75', 'OBRIGATORIA', 1, 0, 1, 1, 2),
-(5, 'PSICOLOGIA APLCADA A SISTEMAS DE INFORMAÇÃO', 'PSICOLOGIA', '2', '75', 'OBRIGATORIA', 1, 0, 0, 0, 2),
-(6, 'ENGENHARIA DE SOFTWARE I', 'GERÊNCIAMENTO DE SOFTWARE', '4', '75', 'OBRIGATORIA', 1, 0, 1, 1, 2),
-(8, 'ENGENHARIA DE SOFTWARE II', 'GERÊNCIAMENTO DE SOFTWARE', '5', '75', 'OBRIGATORIA', 1, 0, 1, 1, 2),
-(9, 'INTRODUÇÃO À SOCIOLOGIA', 'CIÊNCIAS HUMANAS', '1', '60', 'OBRIGATORIA', 1, 0, 0, 1, 3),
-(10, 'ENGENHARIA DESOFTWARE II', 'GERÊNCIAMENTO DE SOFTWARE', '5', '75', 'OBRIGATORIA', 1, 0, 1, 1, 2);
+INSERT INTO `disciplina` (`idDisciplina`, `nomeDisciplina`, `areaDisciplina`, `semestre`, `cargaHoraria`, `optativa`, `obrigatoria`, `teorica`, `estagio`, `pratica`, `preRequisito`, `Curso_idCurso`) VALUES
+(1, 'INTRODUÇÃO A ALGORITMOS E ESTRUTURA DE DADOS', 'LÓGICA E PROGRAMAÇÃO', '1', '75', 0, 1, 1, 0, 1, 1, 2),
+(2, 'TEORIA GERAL DOS SISTEMAS', 'ADMINISTRAÇÃO', '4', '60', 0, 1, 1, 0, 0, 0, 2),
+(3, 'EMPREENDEDORISMO', 'ADMINISTRAÇÃO', '8', '75', 0, 1, 1, 0, 0, 0, 2),
+(4, 'BANCO DE DADOS I', 'LÓGICA', '4', '75', 0, 1, 1, 0, 1, 1, 2),
+(5, 'PSICOLOGIA APLCADA A SISTEMAS DE INFORMAÇÃO', 'PSICOLOGIA', '2', '75', 0, 1, 1, 0, 0, 0, 2),
+(6, 'ENGENHARIA DE SOFTWARE I', 'GERÊNCIAMENTO DE SOFTWARE', '4', '75', 0, 1, 1, 0, 1, 1, 2),
+(8, 'ENGENHARIA DE SOFTWARE II', 'GERÊNCIAMENTO DE SOFTWARE', '5', '75', 0, 1, 1, 0, 1, 1, 2),
+(9, 'INTRODUÇÃO À SOCIOLOGIA', 'CIÊNCIAS HUMANAS', '1', '60', 0, 1, 1, 0, 0, 1, 3),
+(10, 'ENGENHARIA DESOFTWARE II', 'GERÊNCIAMENTO DE SOFTWARE', '5', '75', 0, 1, 1, 0, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -194,17 +195,16 @@ CREATE TABLE `endereco` (
   `complemento` varchar(30) DEFAULT NULL,
   `bairro` varchar(30) NOT NULL,
   `cidade` varchar(30) NOT NULL,
-  `uf` char(2) NOT NULL,
-  `tipo` varchar(9) NOT NULL
+  `uf` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `endereco`
 --
 
-INSERT INTO `endereco` (`idEndereco`, `cep`, `rua`, `numero`, `complemento`, `bairro`, `cidade`, `uf`, `tipo`) VALUES
-(1, '45.203-728', 'RUA MARCOS VIEIRA', '36', NULL, 'CAIXA DÁGUA', 'JEQUIÉ', 'BA', 'ALUNO'),
-(2, '45.203-728', 'MARCOS VIEIRA', '36', NULL, 'JOAQUIM ROMÃO', 'JEQUIÉ', 'BA', 'ALUNO');
+INSERT INTO `endereco` (`idEndereco`, `cep`, `rua`, `numero`, `complemento`, `bairro`, `cidade`, `uf`) VALUES
+(1, '45.203-728', 'RUA MARCOS VIEIRA', '36', NULL, 'CAIXA DÁGUA', 'JEQUIÉ', 'BA'),
+(3, '45.203-728', 'MARCOS VIEIRA', '36', NULL, 'CAIXA DÁGUA', 'JEQUIÉ', 'BA');
 
 -- --------------------------------------------------------
 
@@ -324,7 +324,7 @@ ALTER TABLE `professor_da_aulas_classe`
 -- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `classe`
@@ -348,7 +348,7 @@ ALTER TABLE `disciplina`
 -- AUTO_INCREMENT for table `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `professor`
