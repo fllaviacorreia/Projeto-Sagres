@@ -26,7 +26,19 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	private JLabel 			  labelAno 					= null;
 	private JLabel 			  labelSemestre 			= null;
 	private JLabel 			  labelCurso 				= null;
+	private JLabel 			  labelDia1					= null;
+	private JLabel 			  labelDia2					= null;
+	private JLabel 			  labelDia3					= null;
+	private JLabel 			  labelHora1				= null;
+	private JLabel 			  labelHora2				= null;
+	private JLabel 			  labelHora3				= null;
 	private JTextField 		  textFieldAno				= null;
+	private JTextField 		  textFieldDia1				= null;
+	private JTextField 		  textFieldDia2				= null;
+	private JTextField 		  textFieldDia3				= null;
+	private JTextField 		  textFieldHora1			= null;
+	private JTextField 		  textFieldHora2			= null;
+	private JTextField 		  textFieldHora3			= null;
 	private JComboBox<String> comboBoxDisciplina 		= null;
 	private JComboBox<String> comboBoxProfessores 		= null;
 	private JComboBox<String> comboBoxAlunos 		  	= null;
@@ -37,7 +49,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	private JButton 		  buttonConfirmar   		= null;
 	private JButton 		  buttonAdicionarProfessor  = null;
 	private JButton 		  buttonAdicionarAluno  	= null;
-	private JButton 		  buttonGerarHorrio;
+//	private JButton 		  buttonGerarHorrio;
 	private Calendar calendario = Calendar.getInstance();
 	
 	public VisaoPainelCadastroClasse() {
@@ -49,21 +61,33 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		this.add(getLabelDisciplina());
 		this.add(getLabelProfessores());
 		this.add(getLabelAlunos());
+		this.add(getLabelCurso());
 		this.add(getLabelAno());
+		this.add(getLabelDia1());
+		this.add(getLabelDia2());
+		this.add(getLabelDia3());
+		this.add(getLabelHora1());
+		this.add(getLabelHora2());
+		this.add(getLabelHora3());
 		this.add(getLabelSemestre());
+		this.add(getTextFieldAno());
+		this.add(getTextFieldDia1());
+		this.add(getTextFieldDia2());
+		this.add(getTextFieldDia3());
+		this.add(getTextFieldHora1());
+		this.add(getTextFieldHora2());
+		this.add(getTextFieldHora3());
 		this.add(getComboBoxDisciplina());
 		this.add(getComboBoxProfessores());
 		this.add(getComboBoxAlunos());
 		this.add(getComboBoxSemestre());
+		this.add(getComboBoxCurso());
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
 		this.add(getButtonVoltar());
 		this.add(getButtonAdicionarAluno());
 		this.add(getButtonAdicionarProfessor());
-		this.add(getTextFieldAno());
-		this.add(getLabelCurso());
-		this.add(getComboBoxCurso());
-		this.add(getButtonGerarHorario());
+//		this.add(getButtonGerarHorario());
 	}
 	
 	
@@ -133,6 +157,60 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		}
 		return labelCurso;
 	}
+	public JLabel getLabelDia1() {
+		if (labelDia1 == null) {
+			labelDia1 = new JLabel("Dia 1:");
+			labelDia1.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelDia1.setBounds(53, 350, 60, 14);
+		}
+		return labelDia1;
+	}
+
+	public JLabel getLabelDia2() {
+		if (labelDia2 == null) {
+			labelDia2 = new JLabel("Dia 2:");
+			labelDia2.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelDia2.setBounds(180, 350, 60, 14);
+		}
+		return labelDia2;
+	}
+
+	public JLabel getLabelDia3() {
+		if (labelDia3 == null) {
+			labelDia3 = new JLabel("Dia 3:");
+			labelDia3.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelDia3.setBounds(290, 350, 60, 14);
+		}
+		return labelDia3;
+	}
+
+	public JLabel getLabelHora1() {
+		if (labelHora1 == null) {
+			labelHora1 = new JLabel("Hora 1:");
+			labelHora1.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelHora1.setBounds(53, 400, 60, 14);
+		}
+		return labelHora1;
+	}
+
+	public JLabel getLabelHora2() {
+		if (labelHora2 == null) {
+			labelHora2 = new JLabel("Hora 2:");
+			labelHora2.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelHora2.setBounds(180, 400, 60, 14);
+		}
+		return labelHora2;
+	}
+
+	public JLabel getLabelHora3() {
+		if (labelHora3 == null) {
+			labelHora3 = new JLabel("Hora 3:");
+			labelHora3.setFont(new Font("Arial", Font.PLAIN, 14));
+			labelHora3.setBounds(290, 400, 60, 14);
+		}
+		return labelHora3;
+	}
+
 	public JTextField getTextFieldAno() {
 		if (textFieldAno == null) {
 			textFieldAno = new JTextField();
@@ -145,11 +223,79 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		return textFieldAno;
 	}
 	
+	public JTextField getTextFieldDia1() {
+		if (textFieldDia1 == null) {
+			textFieldDia1 = new JTextField();
+			textFieldDia1.setForeground(Color.BLACK);
+			textFieldDia1.setBounds(53, 370, 100, 20);
+			textFieldDia1.setColumns(10);
+			textFieldDia1.setEditable(false);
+		}
+		return textFieldDia1;
+	}
+
+	public JTextField getTextFieldDia2() {
+		if (textFieldDia2 == null) {
+			textFieldDia2 = new JTextField();
+			textFieldDia2.setForeground(Color.BLACK);
+			textFieldDia2.setBounds(180, 370, 100, 20);
+			textFieldDia2.setColumns(10);
+			textFieldDia2.setEditable(false);
+		}
+		return textFieldDia2;
+	}
+
+	public JTextField getTextFieldDia3() {
+		if (textFieldDia3 == null) {
+			textFieldDia3 = new JTextField();
+			textFieldDia3.setForeground(Color.BLACK);
+			textFieldDia3.setBounds(290, 370, 100, 20);
+			textFieldDia3.setColumns(10);
+			textFieldDia3.setEditable(false);
+		}
+		return textFieldDia3;
+	}
+
+	public JTextField getTextFieldHora1() {
+		if (textFieldHora1 == null) {
+			textFieldHora1 = new JTextField();
+			textFieldHora1.setForeground(Color.BLACK);
+			textFieldHora1.setBounds(53, 430, 100, 20);
+			textFieldHora1.setColumns(10);
+			textFieldHora1.setEditable(false);
+		}
+		return textFieldHora1;
+	}
+
+	public JTextField getTextFieldHora2() {
+		if (textFieldHora2 == null) {
+			textFieldHora2 = new JTextField();
+			textFieldHora2.setForeground(Color.BLACK);
+			textFieldHora2.setBounds(180, 430, 100, 20);
+			textFieldHora2.setColumns(10);
+			textFieldHora2.setEditable(false);
+		}
+		return textFieldHora2;
+	}
+
+	public JTextField getTextFieldHora3() {
+		if (textFieldHora3 == null) {
+			textFieldHora3 = new JTextField();
+			textFieldHora3.setForeground(Color.BLACK);
+			textFieldHora3.setBounds(290, 430, 100, 20);
+			textFieldHora3.setColumns(10);
+			textFieldHora3.setEditable(false);
+		}
+		return textFieldHora3;
+	}
+
 	public JComboBox<String> getComboBoxCurso() {
 		if (comboBoxCurso == null) {
 			comboBoxCurso = new JComboBox<String>();
 			comboBoxCurso.setBackground(Color.WHITE);
 			comboBoxCurso.setFont(new Font("Arial", Font.PLAIN, 14));
+			comboBoxCurso.addItem("SELECIONE");
+			comboBoxCurso.setEnabled(true);
 			comboBoxCurso.setBounds(53, 58, 277, 20);
 		}
 		return comboBoxCurso;
@@ -160,7 +306,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 			comboBoxDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxDisciplina.setBackground(new Color(255, 255, 255));
 			comboBoxDisciplina.setBounds(382, 58, 372, 20);
-			comboBoxDisciplina.addItem("SELECIONE");
+//			comboBoxDisciplina.addItem("SELECIONE");
 			comboBoxDisciplina.setVisible(true);
 		}
 		return comboBoxDisciplina;
@@ -259,13 +405,13 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		return buttonAdicionarAluno;
 	}
 	
-	public JButton getButtonGerarHorario() {
-		if (buttonGerarHorrio == null) {
-			buttonGerarHorrio = new JButton("Gerar hor\u00E1rio");
-			buttonGerarHorrio.setBackground(Color.WHITE);
-			buttonGerarHorrio.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonGerarHorrio.setBounds(388, 297, 161, 23);
-		}
-		return buttonGerarHorrio;
-	}
+//	public JButton getButtonGerarHorario() {
+//		if (buttonGerarHorrio == null) {
+//			buttonGerarHorrio = new JButton("Gerar hor\u00E1rio");
+//			buttonGerarHorrio.setBackground(Color.WHITE);
+//			buttonGerarHorrio.setFont(new Font("Arial", Font.PLAIN, 14));
+//			buttonGerarHorrio.setBounds(388, 297, 161, 23);
+//		}
+//		return buttonGerarHorrio;
+//	}
 }

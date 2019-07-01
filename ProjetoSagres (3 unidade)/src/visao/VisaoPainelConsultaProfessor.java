@@ -55,12 +55,13 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 			jtableDadosProfessor = new JTable();
 			jtableDadosProfessor.setBorder(new LineBorder(new Color(0, 0, 0)));
 			jtableDadosProfessor.setFont(new Font("Arial", Font.BOLD, 18));
-			jtableDadosProfessor.setModel(getTabelaProfessor());
-			jtableDadosProfessor.getColumnModel().getColumn(0).setPreferredWidth(150);
+			jtableDadosProfessor.setModel(getTabela());
+			jtableDadosProfessor.getColumnModel().getColumn(0).setPreferredWidth(100);
 			jtableDadosProfessor.getColumnModel().getColumn(1).setPreferredWidth(150);
-			jtableDadosProfessor.getColumnModel().getColumn(2).setPreferredWidth(300);
-			jtableDadosProfessor.getColumnModel().getColumn(3).setPreferredWidth(300);
-			jtableDadosProfessor.getColumnModel().getColumn(4).setPreferredWidth(180);
+			jtableDadosProfessor.getColumnModel().getColumn(2).setPreferredWidth(150);
+			jtableDadosProfessor.getColumnModel().getColumn(3).setPreferredWidth(400);
+			jtableDadosProfessor.getColumnModel().getColumn(4).setPreferredWidth(300);
+			jtableDadosProfessor.getColumnModel().getColumn(5).setPreferredWidth(180);
 			jtableDadosProfessor.setBounds(10, 89, 1200, 400);
 		}
 		return jtableDadosProfessor;
@@ -107,7 +108,7 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 		return btnBuscar;
 	}
 
-	public ModeloTabelaProfessor getTabelaProfessor() {
+	public ModeloTabelaProfessor getTabela() {
 		if(tabelaProfessor == null)
 			tabelaProfessor = new ModeloTabelaProfessor();
 		return tabelaProfessor;

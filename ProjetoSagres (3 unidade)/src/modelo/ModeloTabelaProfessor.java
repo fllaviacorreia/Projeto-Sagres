@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import controle.Main;
 
 public class ModeloTabelaProfessor  extends AbstractTableModel{
-	String [] columnName = {"ID","Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", };		//nome das coluna 
+	String [] columnName = {"ID","Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", }; //nome das coluna 
 	ArrayList<Professor> arrayProfessor = null;
 	public ModeloTabelaProfessor() {
 		arrayProfessor = Main.professor;
@@ -20,7 +20,7 @@ public class ModeloTabelaProfessor  extends AbstractTableModel{
 	@Override
 	public int getRowCount() {
 		//retorna a quantidade de linhas da tabela
-		return Main.aluno.size();
+		return Main.professor.size();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class ModeloTabelaProfessor  extends AbstractTableModel{
 			return arrayProfessor.get(linha).getCpf();		
 		case 3://coluna nome
 			return arrayProfessor.get(linha).getNome();
-		case 4:{//coluna telefone
+		case 4:{//coluna contato
 			String telefone = arrayProfessor.get(linha).getTelefone();
 			String celular = arrayProfessor.get(linha).getCelular();
 			if(telefone != null &&  celular != null)

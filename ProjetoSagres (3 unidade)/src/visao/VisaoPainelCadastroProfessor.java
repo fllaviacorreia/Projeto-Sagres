@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 
 import modelo.FormataMascaras;
 
+@SuppressWarnings("serial")
 public class VisaoPainelCadastroProfessor extends JPanel{
 
 	private JLabel 				labelMatriculaProfessor 		= null;

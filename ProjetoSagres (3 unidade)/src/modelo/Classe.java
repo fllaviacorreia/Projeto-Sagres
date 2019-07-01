@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import controle.Main;
+
 /**
  *  @author Flávia de Jesus Correia
  * 
@@ -14,8 +16,24 @@ public class Classe {
 	private ArrayList<String> professores;
 	private ArrayList<String> alunos;
 	private String anoSemestre;
-	private String diaHora;
+	private String dia;
+	private String hora;
 	
+	
+	
+	public Classe(String curso, String disciplina, ArrayList<String> professores, ArrayList<String> alunos,
+			String anoSemestre, String dia, String hora) {
+		super();
+		this.curso = curso;
+		this.disciplina = disciplina;
+		this.professores = professores;
+		this.alunos = alunos;
+		this.anoSemestre = anoSemestre;
+		this.dia = dia;
+		this.hora = hora;
+		Main.classe.add(this);
+	}
+
 	public String getCurso() {
 		return curso;
 	}
@@ -56,12 +74,12 @@ public class Classe {
 		this.anoSemestre = semestre;
 	}
 
-	public String getDiaHora() {
-		return diaHora;
+	public String getDia() {
+		return dia;
 	}
 
-	public void setDiaHora(String diaHora) {
-		this.diaHora = diaHora;
+	public void setDia(String diaHora) {
+		this.dia = diaHora;
 	}
 
 	public int getId() {
@@ -70,5 +88,13 @@ public class Classe {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
 	}     
 }

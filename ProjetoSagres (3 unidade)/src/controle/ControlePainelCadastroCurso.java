@@ -34,7 +34,7 @@ public class ControlePainelCadastroCurso implements ActionListener {
 	private String tipoGraduacao = "";
 	
 	public ControlePainelCadastroCurso(VisaoFramePrincipal framePrincipal, VisaoPainelCadastroCurso telaCadCurso, int volta) {
-		this.framePrincipal = framePrincipal;
+		ControlePainelCadastroCurso.framePrincipal = framePrincipal;
 		ControlePainelCadastroCurso.telaCadCurso = telaCadCurso;
 		this.volta = volta;
 		telaCadCurso.setVisible(true);
@@ -78,7 +78,6 @@ public class ControlePainelCadastroCurso implements ActionListener {
 						"Confirmação de saída", JOptionPane.YES_NO_OPTION);
 				if (saida == 0) {
 					LimpaDados();
-				//	ControlePainelCadastro.troca();
 				}
 			} catch (Exception e1) {
 				System.out.println(e1.getMessage());

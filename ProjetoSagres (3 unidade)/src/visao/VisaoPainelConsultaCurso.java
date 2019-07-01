@@ -82,11 +82,12 @@ public class VisaoPainelConsultaCurso extends JPanel{
 			//jtableDadosCurso.setFillsViewportHeight(true);
 	        //selecionar somente uma linha
 			//jtableDadosCurso.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jtableDadosCurso.getColumnModel().getColumn(0).setPreferredWidth(400);
-			jtableDadosCurso.getColumnModel().getColumn(1).setPreferredWidth(130);
-			jtableDadosCurso.getColumnModel().getColumn(2).setPreferredWidth(150);
-			jtableDadosCurso.getColumnModel().getColumn(3).setPreferredWidth(350);
-			jtableDadosCurso.getColumnModel().getColumn(4).setPreferredWidth(150);
+			jtableDadosCurso.getColumnModel().getColumn(0).setPreferredWidth(100);
+			jtableDadosCurso.getColumnModel().getColumn(1).setPreferredWidth(400);
+			jtableDadosCurso.getColumnModel().getColumn(2).setPreferredWidth(120);
+			jtableDadosCurso.getColumnModel().getColumn(3).setPreferredWidth(200);
+			jtableDadosCurso.getColumnModel().getColumn(4).setPreferredWidth(400);
+			jtableDadosCurso.getColumnModel().getColumn(5).setPreferredWidth(150);
 			jtableDadosCurso.setBounds(10, 89, 1200, 400);
 			jtableDadosCurso.setVisible(true);
 		}

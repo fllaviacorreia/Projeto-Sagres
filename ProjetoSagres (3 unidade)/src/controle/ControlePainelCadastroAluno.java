@@ -81,26 +81,27 @@ public class ControlePainelCadastroAluno implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == telaCadAluno.getComboBoxTipoCurso()) {
-			if(!telaCadAluno.getComboBoxTipoCurso().getSelectedItem().equals("SELECIONE")) {
+		if (e.getSource() == telaCadAluno.getComboBoxTipoCurso()) {
+			if (!telaCadAluno.getComboBoxTipoCurso().getSelectedItem().equals("SELECIONE")) {
 				telaCadAluno.getComboBoxCurso().removeAllItems();
 				preencheComboBox(telaCadAluno.getComboBoxTipoCurso().getSelectedIndex());
 				telaCadAluno.getComboBoxCurso().setEnabled(true);
 				telaCadAluno.getLabelCurso().setEnabled(true);
-			}else {
+			} else {
 				telaCadAluno.getComboBoxCurso().setSelectedIndex(0);
 				telaCadAluno.getComboBoxCurso().setEnabled(false);
 				telaCadAluno.getLabelCurso().setEnabled(false);
 			}
 		}
-		if(e.getSource() == telaCadAluno.getComboBoxEstadoEndereco()) {
-			if(!telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().equals("SELECIONE")) {
+		if (e.getSource() == telaCadAluno.getComboBoxEstadoEndereco()) {
+			if (!telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().equals("SELECIONE")) {
 				ArrayList<String> cidade = null;
 				try {
-					cidade = arquivo.EscreveCidades(telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().toString());
+					cidade = arquivo
+							.EscreveCidades(telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().toString());
 					telaCadAluno.getComboBoxCidades().removeAllItems();
 					telaCadAluno.getComboBoxCidades().addItem("SELECIONE");
-					for(int i = 0; i < cidade.size(); i++) {
+					for (int i = 0; i < cidade.size(); i++) {
 						telaCadAluno.getComboBoxCidades().addItem(cidade.get(i));
 					}
 				} catch (IOException e1) {
@@ -148,21 +149,39 @@ public class ControlePainelCadastroAluno implements ActionListener {
 				disciplinas = new ArrayList<String>();
 			}
 			try {
-				System.out.println("button Add Disc");
-				disciplina = JOptionPane.showInputDialog(telaCadAluno, "Insira o nome da disciplina:", "Inserir",
-						JOptionPane.OK_CANCEL_OPTION);
+				if (!telaCadAluno.getComboBoxTipoCurso().getSelectedItem().equals("SELECIONE")) {
+					if (!telaCadAluno.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
+						System.out.println("button Add Disc");
+						disciplina = JOptionPane.showInputDialog(telaCadAluno, "Insira o nome da disciplina:",
+								"Inserir", JOptionPane.OK_CANCEL_OPTION);
 
-				if (!disciplina.equals("")) {
-					disciplina = disciplina.toUpperCase();
-					System.out.println("size array disciplinas = " + disciplinas.size());
-					if (Validacoes(disciplina, 1) == 0) {
-						telaCadAluno.getComboBoxHistoricoDisciplinas().addItem(disciplina);
-						disciplinas.add(disciplina);
+						if (!disciplina.equals("")) {
+							disciplina = disciplina.toUpperCase();
+							System.out.println("size array disciplinas = " + disciplinas.size());
+							if (Validacoes(disciplina, 4) == 0) {
+								if (Validacoes(disciplina, 1) == 0) {
+									telaCadAluno.getComboBoxHistoricoDisciplinas().addItem(disciplina);
+									disciplinas.add(disciplina);
+								} else {
+									JOptionPane.showMessageDialog(telaCadAluno, "Nome já incluso.", "Erro",
+											JOptionPane.ERROR_MESSAGE);
+								}
+							} else {
+								JOptionPane.showMessageDialog(telaCadAluno,
+										"Disciplina não cadastrada ou cadastrada em outro curso.", "Erro",
+										JOptionPane.ERROR_MESSAGE);
+							}
+
+						}
 					} else {
-						JOptionPane.showMessageDialog(telaCadAluno, "Nome já incluso.", "Erro",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadAluno, "Selecione o curso.", "Aviso",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
+				} else {
+					JOptionPane.showMessageDialog(telaCadAluno, "Selecione o tipo de curso.", "Aviso",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
+
 			} catch (Exception e1) {
 				System.out.println(e1.getMessage());
 				e1.printStackTrace();
@@ -366,7 +385,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado);
 					Aluno dados = new Aluno(nome, matricula, dataNascimento, email, telefone, celular, cpf, rg, uf,
 							dataExpedicao, orgaoExp, curso, disciplinas);
-//					new Arquivo(1);
+					// new Arquivo(1);
 
 					int count = 0;
 					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
@@ -379,8 +398,8 @@ public class ControlePainelCadastroAluno implements ActionListener {
 						for (int i = 0; i < disciplinas.size(); i++) {
 
 							try {
-								int idDisciplina = Integer.parseInt(new BancoDisciplinaGerenciar().consultar(
-										 "nomeDisciplina", disciplinas.get(i).toString(), "idDisciplina"));
+								int idDisciplina = Integer.parseInt(new BancoDisciplinaGerenciar()
+										.consultar("nomeDisciplina", disciplinas.get(i).toString(), "idDisciplina"));
 								double media = Double.parseDouble(JOptionPane.showInputDialog(telaCadAluno,
 										"Insira a média na disciplina " + disciplinas.get(i).toString(), "Solicitação",
 										JOptionPane.OK_CANCEL_OPTION));
@@ -423,24 +442,27 @@ public class ControlePainelCadastroAluno implements ActionListener {
 	public void preencheComboBox(int tipo) {
 		telaCadAluno.getComboBoxCurso().addItem("SELECIONE");
 		try {
-			if(tipo == 1) {
+			if (tipo == 1) {
 				for (int i = 0; i < Main.curso.size(); i++) {
-					if(Main.curso.get(i).getTipoCurso().equals("GRADUAÇÃO"))
+					if (Main.curso.get(i).getTipoCurso().equals("GRADUAÇÃO"))
 						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
 				}
-			}if(tipo == 2) {
+			}
+			if (tipo == 2) {
 				for (int i = 0; i < Main.curso.size(); i++) {
-					if(Main.curso.get(i).getTipoCurso().equals("ESPECIALIZAÇÃO"))
+					if (Main.curso.get(i).getTipoCurso().equals("ESPECIALIZAÇÃO"))
 						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
 				}
-			}if(tipo == 3) {
+			}
+			if (tipo == 3) {
 				for (int i = 0; i < Main.curso.size(); i++) {
-					if(Main.curso.get(i).getTipoCurso().equals("MESTRADO"))
+					if (Main.curso.get(i).getTipoCurso().equals("MESTRADO"))
 						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
 				}
-			}if(tipo == 4) {
+			}
+			if (tipo == 4) {
 				for (int i = 0; i < Main.curso.size(); i++) {
-					if(Main.curso.get(i).getTipoCurso().equals("DOUTORADO"))
+					if (Main.curso.get(i).getTipoCurso().equals("DOUTORADO"))
 						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
 				}
 			}
@@ -452,9 +474,10 @@ public class ControlePainelCadastroAluno implements ActionListener {
 
 	public int Validacoes(String dado, int tipo) {
 		int contador = 0;
-		// 1 - busca disciplina
-		// 2 - busca CPF
-		// 3 - busca RG
+		// 1 - busca disciplina no arrayList de disciplinas inseridas
+		// 2 - busca CPF no array de Aluno
+		// 3 - busca RG nno array de Aluno
+		// 4 - busca se a disciplina está cadastrada no curso
 		try {
 			if (tipo == 1) {
 				for (int i = 0; i < disciplinas.size(); i++) {
@@ -474,6 +497,16 @@ public class ControlePainelCadastroAluno implements ActionListener {
 				for (int i = 0; i < Main.aluno.size(); i++) {
 					if (Main.aluno.get(i).getRg().equals(dado)) {
 						contador++;
+					}
+				}
+			} else if (tipo == 4) {
+				for (int i = 0; i < Main.disciplina.size(); i++) {
+					if(Main.disciplina.get(i).getCurso().equals(telaCadAluno.getComboBoxCurso().getSelectedItem().toString())) {
+						if(Main.disciplina.get(i).getNome_Disciplina().equals(dado)) {
+							return 0;
+						}else {
+							contador = 2;
+						}
 					}
 				}
 			}

@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class VisaoFramePrincipal extends JFrame {
 	Dimension display = Toolkit.getDefaultToolkit().getScreenSize();
 	public VisaoFramePrincipal() {
