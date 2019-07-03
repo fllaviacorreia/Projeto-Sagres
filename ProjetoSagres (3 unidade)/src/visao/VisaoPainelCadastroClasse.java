@@ -131,7 +131,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	public JLabel getLabelAno() {
 		if(labelAno == null) {
 			labelAno = new JLabel("Ano:");
-			labelAno.setBounds(53, 271, 47, 20);
+			labelAno.setBounds(53, 271, 47, 25);
 			labelAno.setForeground(Color.BLACK);
 			labelAno.setFont(new Font("Arial", Font.PLAIN, 14));
 			labelAno.setVisible(true);
@@ -142,7 +142,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	public JLabel getLabelSemestre() {
 		if(labelSemestre == null) {
 			labelSemestre = new JLabel("Semestre:");
-			labelSemestre.setBounds(158, 271, 83, 20);
+			labelSemestre.setBounds(158, 271, 83, 25);
 			labelSemestre.setForeground(Color.BLACK);
 			labelSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
 			labelSemestre.setVisible(true);
@@ -153,7 +153,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (labelCurso == null) {
 			labelCurso = new JLabel("Curso:");
 			labelCurso.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelCurso.setBounds(53, 37, 46, 14);
+			labelCurso.setBounds(53, 32, 46, 25);
 		}
 		return labelCurso;
 	}
@@ -161,7 +161,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (labelDia1 == null) {
 			labelDia1 = new JLabel("Dia 1:");
 			labelDia1.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelDia1.setBounds(53, 350, 60, 14);
+			labelDia1.setBounds(53, 350, 60, 25);
 		}
 		return labelDia1;
 	}
@@ -170,7 +170,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (labelDia2 == null) {
 			labelDia2 = new JLabel("Dia 2:");
 			labelDia2.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelDia2.setBounds(180, 350, 60, 14);
+			labelDia2.setBounds(225, 350, 83, 25);
 		}
 		return labelDia2;
 	}
@@ -179,7 +179,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (labelDia3 == null) {
 			labelDia3 = new JLabel("Dia 3:");
 			labelDia3.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelDia3.setBounds(290, 350, 60, 14);
+			labelDia3.setBounds(397, 350, 60, 25);
 		}
 		return labelDia3;
 	}
@@ -188,7 +188,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (labelHora1 == null) {
 			labelHora1 = new JLabel("Hora 1:");
 			labelHora1.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelHora1.setBounds(53, 400, 60, 14);
+			labelHora1.setBounds(53, 410, 60, 25);
 		}
 		return labelHora1;
 	}
@@ -197,7 +197,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (labelHora2 == null) {
 			labelHora2 = new JLabel("Hora 2:");
 			labelHora2.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelHora2.setBounds(180, 400, 60, 14);
+			labelHora2.setBounds(226, 410, 60, 25);
 		}
 		return labelHora2;
 	}
@@ -206,7 +206,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (labelHora3 == null) {
 			labelHora3 = new JLabel("Hora 3:");
 			labelHora3.setFont(new Font("Arial", Font.PLAIN, 14));
-			labelHora3.setBounds(290, 400, 60, 14);
+			labelHora3.setBounds(397, 410, 162, 25);
 		}
 		return labelHora3;
 	}
@@ -214,9 +214,10 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	public JTextField getTextFieldAno() {
 		if (textFieldAno == null) {
 			textFieldAno = new JTextField();
+			textFieldAno.setFont(new Font("Arial", Font.PLAIN, 14));
 			textFieldAno.setText(String.valueOf(calendario.get(Calendar.YEAR)));
 			textFieldAno.setForeground(Color.BLACK);
-			textFieldAno.setBounds(53, 298, 69, 20);
+			textFieldAno.setBounds(53, 298, 69, 25);
 			textFieldAno.setColumns(10);
 			textFieldAno.setEditable(false);
 		}
@@ -227,7 +228,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (textFieldDia1 == null) {
 			textFieldDia1 = new JTextField();
 			textFieldDia1.setForeground(Color.BLACK);
-			textFieldDia1.setBounds(53, 370, 100, 20);
+			textFieldDia1.setBounds(53, 370, 162, 25);
 			textFieldDia1.setColumns(10);
 			textFieldDia1.setEditable(false);
 		}
@@ -238,7 +239,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (textFieldDia2 == null) {
 			textFieldDia2 = new JTextField();
 			textFieldDia2.setForeground(Color.BLACK);
-			textFieldDia2.setBounds(180, 370, 100, 20);
+			textFieldDia2.setBounds(225, 370, 162, 25);
 			textFieldDia2.setColumns(10);
 			textFieldDia2.setEditable(false);
 		}
@@ -249,7 +250,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (textFieldDia3 == null) {
 			textFieldDia3 = new JTextField();
 			textFieldDia3.setForeground(Color.BLACK);
-			textFieldDia3.setBounds(290, 370, 100, 20);
+			textFieldDia3.setBounds(397, 370, 162, 25);
 			textFieldDia3.setColumns(10);
 			textFieldDia3.setEditable(false);
 		}
@@ -260,7 +261,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (textFieldHora1 == null) {
 			textFieldHora1 = new JTextField();
 			textFieldHora1.setForeground(Color.BLACK);
-			textFieldHora1.setBounds(53, 430, 100, 20);
+			textFieldHora1.setBounds(53, 430, 162, 25);
 			textFieldHora1.setColumns(10);
 			textFieldHora1.setEditable(false);
 		}
@@ -271,7 +272,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (textFieldHora2 == null) {
 			textFieldHora2 = new JTextField();
 			textFieldHora2.setForeground(Color.BLACK);
-			textFieldHora2.setBounds(180, 430, 100, 20);
+			textFieldHora2.setBounds(225, 430, 162, 25);
 			textFieldHora2.setColumns(10);
 			textFieldHora2.setEditable(false);
 		}
@@ -282,7 +283,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 		if (textFieldHora3 == null) {
 			textFieldHora3 = new JTextField();
 			textFieldHora3.setForeground(Color.BLACK);
-			textFieldHora3.setBounds(290, 430, 100, 20);
+			textFieldHora3.setBounds(397, 430, 162, 25);
 			textFieldHora3.setColumns(10);
 			textFieldHora3.setEditable(false);
 		}
@@ -296,7 +297,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 			comboBoxCurso.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxCurso.addItem("SELECIONE");
 			comboBoxCurso.setEnabled(true);
-			comboBoxCurso.setBounds(53, 58, 277, 20);
+			comboBoxCurso.setBounds(53, 58, 277, 25);
 		}
 		return comboBoxCurso;
 	}
@@ -305,7 +306,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 			comboBoxDisciplina = new JComboBox<String>();
 			comboBoxDisciplina.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxDisciplina.setBackground(new Color(255, 255, 255));
-			comboBoxDisciplina.setBounds(382, 58, 372, 20);
+			comboBoxDisciplina.setBounds(382, 58, 372, 25);
 //			comboBoxDisciplina.addItem("SELECIONE");
 			comboBoxDisciplina.setVisible(true);
 		}
@@ -317,7 +318,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 			comboBoxProfessores = new JComboBox<String>();
 			comboBoxProfessores.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxProfessores.setBackground(new Color(255, 255, 255));
-			comboBoxProfessores.setBounds(53, 139, 372, 20);
+			comboBoxProfessores.setBounds(53, 139, 372, 25);
 			comboBoxProfessores.setVisible(true);
 		}
 		return comboBoxProfessores;
@@ -328,7 +329,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 			comboBoxAlunos = new JComboBox<String>();
 			comboBoxAlunos.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxAlunos.setBackground(new Color(255, 255, 255));
-			comboBoxAlunos.setBounds(53, 218, 372, 20);
+			comboBoxAlunos.setBounds(53, 218, 372, 25);
 			comboBoxAlunos.setVisible(true);
 		}
 		return comboBoxAlunos;
@@ -339,7 +340,7 @@ public class VisaoPainelCadastroClasse extends JPanel{
 			comboBoxSemestre = new JComboBox<String>();
 			comboBoxSemestre.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxSemestre.setBackground(new Color(255, 255, 255));
-			comboBoxSemestre.setBounds(158, 297, 136, 20);
+			comboBoxSemestre.setBounds(158, 297, 136, 25);
 			comboBoxSemestre.addItem("SELECIONE");
 			comboBoxSemestre.addItem("1");
 			comboBoxSemestre.addItem("2");
@@ -384,9 +385,8 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	public JButton getButtonAdicionarProfessor() {
 		if(buttonAdicionarProfessor == null) {
 			buttonAdicionarProfessor = new JButton("Adicionar professor");
-			buttonAdicionarProfessor.setHorizontalAlignment(SwingConstants.LEFT);
-			buttonAdicionarProfessor.setFont(new Font("Arial", Font.PLAIN, 11));
-			buttonAdicionarProfessor.setBounds(435, 139, 132, 20);
+			buttonAdicionarProfessor.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonAdicionarProfessor.setBounds(435, 139, 167, 25);
 			buttonAdicionarProfessor.setBackground(Color.WHITE);
 			buttonAdicionarProfessor.setVisible(true);
 		}
@@ -396,9 +396,8 @@ public class VisaoPainelCadastroClasse extends JPanel{
 	public JButton getButtonAdicionarAluno() {
 		if(buttonAdicionarAluno == null) {
 			buttonAdicionarAluno = new JButton("Adicionar aluno");
-			buttonAdicionarAluno.setHorizontalAlignment(SwingConstants.LEFT);
-			buttonAdicionarAluno.setFont(new Font("Arial", Font.PLAIN, 11));
-			buttonAdicionarAluno.setBounds(435, 218, 132, 20);
+			buttonAdicionarAluno.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonAdicionarAluno.setBounds(435, 218, 167, 25);
 			buttonAdicionarAluno.setBackground(Color.WHITE);
 			buttonAdicionarAluno.setVisible(true);
 		}
