@@ -7,10 +7,6 @@ import java.util.ArrayList;
  * 
  * */
 
-import javax.swing.JComboBox;
-
-import org.w3c.dom.views.AbstractView;
-
 import controle.Main;
 
 public class Aluno{

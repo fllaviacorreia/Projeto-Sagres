@@ -2,19 +2,15 @@ package visao;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.LayoutManager;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import java.awt.SystemColor;
 import javax.swing.UIManager;
 
+@SuppressWarnings("serial")
 public class VisaoPainelHorarios extends JPanel {
 	
 	private JTable tableHorario;

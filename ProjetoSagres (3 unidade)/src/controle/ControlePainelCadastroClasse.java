@@ -1001,7 +1001,7 @@ public class ControlePainelCadastroClasse implements ActionListener {
 				for (int j = 0; j < Main.classe.get(i).getAluno().size(); j++) {
 					if (Main.classe.get(i).getAluno().get(j).equals(numero)) {
 
-						String[] dias = Main.classe.get(i).getDia().split("/");
+					//	String[] dias = Main.classe.get(i).getDia().split("/");
 
 					}
 				}

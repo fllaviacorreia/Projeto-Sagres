@@ -41,7 +41,6 @@ public class ControlePainelCadastroAluno implements ActionListener {
 	private String bairro;
 	private String cidade;
 	private String estado;
-	private String tipo;
 	private String nome;
 	private String matricula;
 	private String dataNascimento;
@@ -380,7 +379,6 @@ public class ControlePainelCadastroAluno implements ActionListener {
 				}
 				System.out.println("contador = " + contador);
 				if ((contador == 16 || contador == 17)) {
-					tipo = "ALUNO";
 					matricula = String.valueOf(numMatriculaAluno);
 					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado);
 					Aluno dados = new Aluno(nome, matricula, dataNascimento, email, telefone, celular, cpf, rg, uf,
@@ -394,7 +392,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 					endereco.setId(new BancoEnderecoGerenciar().primeiroEultimo("idEndereco", 1));
 					dados.setId(new BancoAlunoGerenciar().primeiroEultimo("idAluno", 1));
 					if (disciplinas.size() > 0) {
-						int idAluno = new BancoAlunoGerenciar().primeiroEultimo("idAluno", 1);
+						
 						for (int i = 0; i < disciplinas.size(); i++) {
 
 							try {
@@ -405,7 +403,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 										JOptionPane.OK_CANCEL_OPTION));
 
 								retorno3 = new BancoAlunoGerenciar().inserirHistoricoDisciplinas(
-										disciplinas.get(i).toString(), idAluno, idDisciplina, String.valueOf(media));
+										disciplinas.get(i).toString(), dados.getId(), idDisciplina, String.valueOf(media));
 								if (retorno3)
 									count++;
 

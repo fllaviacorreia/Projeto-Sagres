@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import modelo.Aluno;
 import modelo.Curso;
 
 public class BancoCursoGerenciar {

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.Curso;
 import modelo.Disciplina;
 
 public class BancoDisciplinaGerenciar {

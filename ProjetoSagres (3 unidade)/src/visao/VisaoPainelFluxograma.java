@@ -1,20 +1,13 @@
 package visao;
 
-import java.awt.LayoutManager;
-
 import javax.swing.JPanel;
 
-import controle.Main;
-import modelo.Curso;
-
-import java.awt.SystemColor;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
-import javax.swing.Box;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
@@ -38,7 +31,7 @@ public class VisaoPainelFluxograma extends JPanel {
 	
 	
 	public VisaoPainelFluxograma(String nomeCurso, String tipoCurso, String cargaTotalCurso) {
-		this.setBackground(SystemColor.controlHighlight);
+		this.setBackground(Color.WHITE);
 		this.setLayout(null);
 		this.add(getLabelNomeDoCurso(nomeCurso));
 		this.add(getLabelCargaHorariaTotal(cargaTotalCurso));
@@ -155,7 +148,7 @@ public class VisaoPainelFluxograma extends JPanel {
 			buttonVoltar = new JButton("VOLTAR");
 			buttonVoltar.setForeground(Color.BLACK);
 			buttonVoltar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonVoltar.setBounds(10, 660, 130, 44);
+			buttonVoltar.setBounds(10, 660, 114, 44);
 			buttonVoltar.setBackground(Color.WHITE);
 			buttonVoltar.setVisible(true);
 		}
@@ -163,48 +156,48 @@ public class VisaoPainelFluxograma extends JPanel {
 	}
 	public JLabel getLabelDisciplinasLivres() {
 		if (labelDisciplinasLivres == null) {
-			labelDisciplinasLivres = new JLabel("Disciplinas livres");
+			labelDisciplinasLivres = new JLabel("Livre");
 			labelDisciplinasLivres.setForeground(new Color(51, 204, 0));
-			labelDisciplinasLivres.setFont(new Font("Arial", Font.BOLD, 16));
-			labelDisciplinasLivres.setBounds(914, 123, 236, 30);
+			labelDisciplinasLivres.setFont(new Font("Calibri", Font.BOLD, 20));
+			labelDisciplinasLivres.setBounds(889, 660, 120, 30);
 		}
 		return labelDisciplinasLivres;
 	}
 	public JLabel getLblDisciplinasQueSo() {
 		if (lblDisciplinasQueSo == null) {
-			lblDisciplinasQueSo = new JLabel("Disciplinas que s\u00E3o pr\u00E9-requisito");
+			lblDisciplinasQueSo = new JLabel("\u00C9 Pr\u00E9-Requisito");
 			lblDisciplinasQueSo.setBackground(new Color(255, 204, 0));
 			lblDisciplinasQueSo.setForeground(new Color(255, 215, 0));
-			lblDisciplinasQueSo.setFont(new Font("Arial", Font.BOLD, 16));
-			lblDisciplinasQueSo.setBounds(914, 32, 319, 30);
+			lblDisciplinasQueSo.setFont(new Font("Calibri", Font.BOLD, 20));
+			lblDisciplinasQueSo.setBounds(411, 660, 161, 30);
 		}
 		return lblDisciplinasQueSo;
 	}
 	public JLabel getLblDisciplinasQueTm() {
 		if (lblDisciplinasQueTm == null) {
-			lblDisciplinasQueTm = new JLabel("Disciplinas que t\u00EAm pr\u00E9-requisito(s)");
+			lblDisciplinasQueTm = new JLabel("Tem Pr\u00E9-Requisito");
 			lblDisciplinasQueTm.setBackground(new Color(255, 255, 0));
 			lblDisciplinasQueTm.setForeground(new Color(255, 255, 102));
-			lblDisciplinasQueTm.setFont(new Font("Arial", Font.BOLD, 16));
-			lblDisciplinasQueTm.setBounds(914, 63, 298, 30);
+			lblDisciplinasQueTm.setFont(new Font("Calibri", Font.BOLD, 20));
+			lblDisciplinasQueTm.setBounds(574, 660, 173, 30);
 		}
 		return lblDisciplinasQueTm;
 	}
 	public JLabel getLblDisciplinasOptativas() {
 		if (lblDisciplinasOptativas == null) {
-			lblDisciplinasOptativas = new JLabel("Disciplinas optativas");
+			lblDisciplinasOptativas = new JLabel("Optativa");
 			lblDisciplinasOptativas.setForeground(new Color(186, 85, 211));
-			lblDisciplinasOptativas.setFont(new Font("Arial", Font.BOLD, 16));
-			lblDisciplinasOptativas.setBounds(914, 93, 288, 30);
+			lblDisciplinasOptativas.setFont(new Font("Calibri", Font.BOLD, 20));
+			lblDisciplinasOptativas.setBounds(765, 660, 143, 30);
 		}
 		return lblDisciplinasOptativas;
 	}
 	public JLabel getLblDisciplinasQueSo_1() {
 		if (lblDisciplinasQueSo_1 == null) {
-			lblDisciplinasQueSo_1 = new JLabel("Disciplinas que s\u00E3o e t\u00EAm pr\u00E9-requisito(s)");
+			lblDisciplinasQueSo_1 = new JLabel("Tem e \u00C9 Pr\u00E9-Requisito");
 			lblDisciplinasQueSo_1.setForeground(new Color(255, 0, 51));
-			lblDisciplinasQueSo_1.setFont(new Font("Arial", Font.BOLD, 16));
-			lblDisciplinasQueSo_1.setBounds(914, 0, 319, 30);
+			lblDisciplinasQueSo_1.setFont(new Font("Calibri", Font.BOLD, 20));
+			lblDisciplinasQueSo_1.setBounds(192, 660, 194, 30);
 		}
 		return lblDisciplinasQueSo_1;
 	}
@@ -212,7 +205,7 @@ public class VisaoPainelFluxograma extends JPanel {
 		if (separator == null) {
 			separator = new JSeparator();
 			separator.setBackground(Color.WHITE);
-			separator.setBounds(182, 622, 1400, 76);
+			separator.setBounds(182, 662, 1400, 76);
 		}
 		return separator;
 	}
@@ -220,7 +213,7 @@ public class VisaoPainelFluxograma extends JPanel {
 		if (separator_1 == null) {
 			separator_1 = new JSeparator();
 			separator_1.setBackground(Color.WHITE);
-			separator_1.setBounds(182, 608, 1400, 76);
+			separator_1.setBounds(182, 648, 1400, 76);
 		}
 		return separator_1;
 	}
@@ -229,7 +222,7 @@ public class VisaoPainelFluxograma extends JPanel {
 			separator_2 = new JSeparator();
 			separator_2.setBackground(Color.WHITE);
 			separator_2.setOrientation(SwingConstants.VERTICAL);
-			separator_2.setBounds(182, 608, 24, 159);
+			separator_2.setBounds(182, 648, 24, 119);
 		}
 		return separator_2;
 	}

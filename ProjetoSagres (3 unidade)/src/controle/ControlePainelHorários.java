@@ -8,13 +8,13 @@ import visao.VisaoPainelHorarios;
 public class ControlePainelHorários implements ActionListener {
 	static VisaoPainelHorarios visaoHorarios;
 	private String tipoCurso;
-	private String nomeDisciplina;
+//	private String nomeDisciplina;
 	private Object[][] dados;
 
 	public ControlePainelHorários(VisaoPainelHorarios visaoHorarios, String tipoCurso, String nomeDisciplina) {
 		ControlePainelHorários.visaoHorarios = visaoHorarios;
 		this.tipoCurso = tipoCurso;
-		this.nomeDisciplina = nomeDisciplina;
+//		this.nomeDisciplina = nomeDisciplina;
 		visaoHorarios.setVisible(true);
 
 	}

@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class VisaoPainelConsultaDisciplina extends JPanel{
 	private JButton 			buttonVoltar 	 				= null;
 	public VisaoPainelConsultaDisciplina() {
