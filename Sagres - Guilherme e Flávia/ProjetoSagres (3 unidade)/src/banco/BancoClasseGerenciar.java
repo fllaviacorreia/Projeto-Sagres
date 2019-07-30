@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import modelo.Aluno;
 import modelo.Classe;
 
 public class BancoClasseGerenciar {

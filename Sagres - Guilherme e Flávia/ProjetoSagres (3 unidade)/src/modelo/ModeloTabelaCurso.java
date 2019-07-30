@@ -6,13 +6,12 @@ import javax.swing.table.AbstractTableModel;
 
 import controle.Main;
 
-@SuppressWarnings("serial")
 public class ModeloTabelaCurso extends AbstractTableModel {
 	String[] columnName = {"ID", "NOME", "CH TOTAL", "TIPO", "GRAU", "SEMESTRES" }; // nome das coluna
 	ArrayList<Curso> arrayCurso;
 
 	public ModeloTabelaCurso() {
-		arrayCurso = Main.curso;
+		arrayCurso = Main.curso;//arrayClasse = Main.classe
 	}
 
 	public String[] getColumnName() {
@@ -34,7 +33,7 @@ public class ModeloTabelaCurso extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		// retorna a quantidade de linhas da tabela
-		return Main.curso.size();
+		return Main.curso.size();//main.classe.size()
 	}
 
 	@Override
@@ -107,7 +106,7 @@ public class ModeloTabelaCurso extends AbstractTableModel {
 	// --------------------------- FIM DOS MÉTODOS OBRIGATÓRIOS DO ABSTRACT TABLE
 	// MODEL ------------------------------------ \\
 
-	public void AddCurso(Curso curso) {
+	public void AddCurso(Curso curso) {//add classe
 		arrayCurso.add(curso);
 		fireTableDataChanged();
 	}

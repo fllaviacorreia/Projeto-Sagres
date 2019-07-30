@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 import controle.Main;
 
 /**

@@ -110,7 +110,9 @@ public class BancoEnderecoGerenciar {
 		}
 		return retorno;
 	}
-
+	
+	
+	//
 	public boolean atualizar(String tabela, String chave, String valor, String query) {//sugestão mudar para boolean
 		try {
 			conexao = BancoConexao.open();
@@ -130,6 +132,30 @@ public class BancoEnderecoGerenciar {
 			return false;
 		}
 		return true;
+	}
+	
+	public Endereco consultar_endereco(String chave, String valorChave, String campo) {
+		String sql;
+		Endereco retorno = null;
+		sql = "SELECT " + campo + " FROM Endereco WHERE " + chave + " LIKE '%" + valorChave + "%'";
+		try {
+			conexao = BancoConexao.open();
+			consulta = conexao.createStatement();
+			resultSet = consulta.executeQuery(sql);
+			if (resultSet.next()) {
+				System.out.println("cons "+resultSet.getString(campo));
+				retorno = new Endereco(resultSet.getString("cep"), resultSet.getString("rua"), 
+						resultSet.getString("numero"), resultSet.getString("complemento"), 
+						resultSet.getString("bairro"), resultSet.getString("cidade"), 
+						resultSet.getString("uf"));
+				retorno.setId(resultSet.getInt("idEndereco"));
+			}
+			consulta.close();
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println("Erro: Não foi possível consultar!\n" + e.getMessage());
+		}
+		return retorno;
 	}
 	
 	public void insereEnderecoNoArray() {

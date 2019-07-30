@@ -51,6 +51,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 	private String telefone;
 	private VisaoPainelCadastroProfessor telaCadAluno;
 	private String celular;
+	private String tipo;
 	private String matricula;
 	private String area;
 	private String carga_Horaria;
@@ -319,6 +320,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 				}
 				System.out.println("contador = "+contador);
 				if((contador == 17 || contador == 18)){
+					tipo = "PROFESSOR";
 					matricula = String.valueOf(numMatriculaProfessor);
 					Endereco endereco = new Endereco(cep, rua, numero, complemento, bairro, cidade, estado);
 					Professor professor = new Professor(nome, dataNascimento, matricula, area, carga_Horaria, email, telefone, celular, cpf, rg, uf, dataExpedicao, orgaoExp);

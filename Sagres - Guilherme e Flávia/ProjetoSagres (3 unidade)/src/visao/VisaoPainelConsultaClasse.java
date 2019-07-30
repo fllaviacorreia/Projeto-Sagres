@@ -14,27 +14,27 @@ import javax.swing.JTextField;
 
 import controle.Main;
 import modelo.ModeloTabelaAluno;
+import modelo.ModeloTabelaClasse;
 
-@SuppressWarnings("serial")
-public class VisaoPainelConsultaAluno extends JPanel{
+public class VisaoPainelConsultaClasse extends JPanel{
 	private JButton 			buttonVoltar 	 				= null;
-	private JTable jtableDadosAluno;
-	private JScrollPane dadosAlunoJScrollPane;
+	private JTable jtableDados;
+	private JScrollPane dadosJScrollPane;
 	private JComboBox<String> comboBoxTipoBusca;
 	private JTextField textFieldBusca;
 	private JButton btnBuscar;
-	private ModeloTabelaAluno tabelaAluno;
-	public VisaoPainelConsultaAluno() {
+	private ModeloTabelaClasse tabelaClasse;
+	public VisaoPainelConsultaClasse() {
 		this.setLayout(null);
 		this.setBackground(new Color(120, 205, 194));
-		this.setMinimumSize(new Dimension(1400, 720));
-		this.setMaximumSize(new Dimension(1400, 720));
+		this.setMinimumSize(new Dimension(1200, 720));
+		this.setMaximumSize(new Dimension(1200, 720));
 		this.setVisible(true);
 		this.add(getButtonVoltar());
-		this.add(getDadosAlunoJScrollPane());
+		this.add(getDadosJScrollPane());
 		this.add(getComboBoxTipoBusca());
 		this.add(getTextFieldBusca());
-		this.add(getBtnBuscar());
+		this.add(getButtonBuscar());
 	}
 	
 	public JButton getButtonVoltar() {
@@ -48,35 +48,34 @@ public class VisaoPainelConsultaAluno extends JPanel{
 		}
 		return buttonVoltar;
 	}
-	
-	public JTable getJTableDadosAluno() {
-		if (jtableDadosAluno == null) {
-			jtableDadosAluno = new JTable();
-			jtableDadosAluno.setFont(new Font("Arial Narrow", Font.BOLD, 20));
-			jtableDadosAluno.setModel(getTabela());
+	public JTable getJTableDados() {
+		if (jtableDados == null) {
+			jtableDados = new JTable();
+			jtableDados.setFont(new Font("Arial Narrow", Font.BOLD, 20));
+			jtableDados.setModel(getTabela());
 			//auto ajuste na altura da tabela
 			//jtableDadosAluno.setFillsViewportHeight(true);
 	        //selecionar somente uma linha
 			//jtableDadosAluno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jtableDadosAluno.setBounds(10, 89, 1200, 400);
-			jtableDadosAluno.getColumnModel().getColumn(0).setPreferredWidth(70);
-			jtableDadosAluno.getColumnModel().getColumn(1).setPreferredWidth(120);
-			jtableDadosAluno.getColumnModel().getColumn(2).setPreferredWidth(150);
-			jtableDadosAluno.getColumnModel().getColumn(3).setPreferredWidth(400);
-			jtableDadosAluno.getColumnModel().getColumn(4).setPreferredWidth(250);
-			jtableDadosAluno.getColumnModel().getColumn(5).setPreferredWidth(180);
-			jtableDadosAluno.getColumnModel().getColumn(6).setPreferredWidth(400);
-			jtableDadosAluno.setVisible(true);
+			jtableDados.setBounds(10, 89, 1200, 400);
+			jtableDados.getColumnModel().getColumn(0).setPreferredWidth(70);
+			jtableDados.getColumnModel().getColumn(1).setPreferredWidth(120);
+			jtableDados.getColumnModel().getColumn(2).setPreferredWidth(150);
+			jtableDados.getColumnModel().getColumn(3).setPreferredWidth(400);
+			jtableDados.getColumnModel().getColumn(4).setPreferredWidth(250);
+			jtableDados.getColumnModel().getColumn(5).setPreferredWidth(180);
+			jtableDados.getColumnModel().getColumn(6).setPreferredWidth(400);
+			jtableDados.setVisible(true);
 		}
-		return jtableDadosAluno;
+		return jtableDados;
 	}
 	
-	public JScrollPane getDadosAlunoJScrollPane() {
-		if(dadosAlunoJScrollPane == null) {
-			dadosAlunoJScrollPane = new JScrollPane(getJTableDadosAluno());
-			dadosAlunoJScrollPane.setBounds(48, 116, 1200, 400);
+	public JScrollPane getDadosJScrollPane() {
+		if(dadosJScrollPane == null) {
+			dadosJScrollPane = new JScrollPane(getJTableDados());
+			dadosJScrollPane.setBounds(48, 116, 1200, 400);
 		}
-		return dadosAlunoJScrollPane;
+		return dadosJScrollPane;
 	}	
 	public JComboBox<String> getComboBoxTipoBusca() {
 		if (comboBoxTipoBusca == null) {
@@ -100,7 +99,7 @@ public class VisaoPainelConsultaAluno extends JPanel{
 		}
 		return textFieldBusca;
 	}
-	public JButton getBtnBuscar() {
+	public JButton getButtonBuscar() {
 		if (btnBuscar == null) {
 			btnBuscar = new JButton("Buscar");
 			btnBuscar.setForeground(Color.BLACK);
@@ -111,16 +110,17 @@ public class VisaoPainelConsultaAluno extends JPanel{
 		return btnBuscar;
 	}
 
-	public ModeloTabelaAluno getTabela() {
-		if(tabelaAluno == null) {
-			tabelaAluno = new ModeloTabelaAluno();
+	public ModeloTabelaClasse getTabela() {
+		if(tabelaClasse == null) {
+			tabelaClasse = new ModeloTabelaClasse();
 			for(int i = 0; i < Main.aluno.size(); i++)
-				tabelaAluno.setValueAt(Main.aluno.get(i), i);
+				tabelaClasse.setValueAt(Main.classe.get(i), i);
 		}
-		return tabelaAluno;
+		return tabelaClasse;
 	}
 
-	public void setTabela(ModeloTabelaAluno tabela) {
-		this.tabelaAluno = tabela;
+	public void setTabela(ModeloTabelaClasse tabela) {
+		this.tabelaClasse = tabela;
 	}
+
 }

@@ -6,7 +6,6 @@ import javax.swing.table.AbstractTableModel;
 
 import controle.Main;
 
-@SuppressWarnings("serial")
 public class ModeloTabelaProfessor  extends AbstractTableModel{
 	String [] columnName = {"ID","Nº MATRICULA","CPF","NOME","CONTATO","DATA NASCIMENTO", }; //nome das coluna 
 	ArrayList<Professor> arrayProfessor = null;

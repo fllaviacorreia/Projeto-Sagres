@@ -2,11 +2,15 @@ package banco;
 
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import modelo.Aluno;
 import modelo.Curso;
 
 public class BancoCursoGerenciar {
@@ -75,6 +79,7 @@ public class BancoCursoGerenciar {
 		}
 		return qtd;
 	}
+	//vai consultar alguma coisa especifica 
 	public String consultar(String chave, String valorChave, String campo) {
 		String sql, retorno = "";
 		sql = "SELECT " + campo + " FROM Curso WHERE " + chave + " = '" + valorChave + "'";
@@ -91,6 +96,7 @@ public class BancoCursoGerenciar {
 		}
 		return retorno;
 	}
+	//usa para verificar o ultimo id 
 	public int primeiroEultimo(String campo, int op) {
 		int valor = 0;
 		try {
@@ -149,5 +155,60 @@ public class BancoCursoGerenciar {
 			e.printStackTrace();
 		}
 	}
+	
+	//ver se está funcionando dps
+	/*public void BancoCursoDeletar(String nome) {
+		
+		String sqlCurso = "DELETE From Curso WHERE idCurso = ?";
+		
+		conexao = BancoConexao.open();
+		
+		try {
+			preparedStatement = conexao.prepareStatement(sqlCurso);
+			sqlCurso.setString(1, );
+			sqlCurso.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Excluido com sucesso");
+			sqlCurso.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Falha em  excluir " + e);
+
+			e.printStackTrace();
+		}
+		
+	}*/
+	
+	public boolean BancoCursoAlterar(Curso curso) {
+		//aqui é o comando em sql que é necessário para inserir no banco de dados
+		//chave primária de curso? 
+		String sqlCurso = "UPDATE Curso SET nomeCurso = ?, cargaHorariaTotal = ?, tipo = ?, quantidadeSemestres = ?, tipoCurso = ?, tipoGraduacao = ? WHERE nomeCurso = ?";
+		
+		conexao = BancoConexao.open();
+		
+		try {
+			preparedStatement = conexao.prepareStatement(sqlCurso);
+			preparedStatement.setString(1, curso.getNome());
+			preparedStatement.setString(2, curso.getCargaHorariaTotal());
+			preparedStatement.setString(3, curso.getTipo());
+			preparedStatement.setString(4, curso.getSemestres());
+			preparedStatement.setString(5, curso.getTipoCurso());
+			preparedStatement.setString(6, curso.getTipoGraduacao());
+			preparedStatement.setString(7, curso.getNome());
+			int teste = preparedStatement.executeUpdate();
+
+			if(teste > 0) {
+//					System.out.println("Inserir1");
+				preparedStatement.close();
+				conexao.close();
+				return true;
+			}
+			
+			
+		} catch (Exception e) {
+			
+			System.err.println("Erro inserir curso "+e);	
+		}								
+	
+		return false;
+}
 }
 	

@@ -4,21 +4,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
+import controle.Main;
+import modelo.ModeloTabelaAluno;
 import modelo.ModeloTabelaCurso;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
-@SuppressWarnings("serial")
 public class VisaoPainelConsultaCurso extends JPanel{
 	private JButton 			buttonVoltar 	 				= null;
 	private JButton 			buttonGerarFluxograma			= null;
-	private JComboBox<String> comboBoxCursos;
+	private JComboBox comboBoxCursos;
 	private ModeloTabelaCurso tabelaCurso;
 	private JTable jtableDadosCurso;
 	private JScrollPane dadosCursoJScrollPane;
@@ -57,9 +62,9 @@ public class VisaoPainelConsultaCurso extends JPanel{
 		}
 		return buttonGerarFluxograma;
 	}
-	public JComboBox<String> getComboBoxCursos() {
+	public JComboBox getComboBoxCursos() {
 		if (comboBoxCursos == null) {
-			comboBoxCursos = new JComboBox<String>();
+			comboBoxCursos = new JComboBox();
 			comboBoxCursos.setFont(new Font("Arial", Font.PLAIN, 20));
 			comboBoxCursos.setBackground(Color.WHITE);
 			comboBoxCursos.setBounds(43, 52, 675, 25);

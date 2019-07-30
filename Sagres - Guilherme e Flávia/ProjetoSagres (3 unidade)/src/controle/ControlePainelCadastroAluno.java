@@ -14,6 +14,7 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
+import banco.Banco;
 import banco.BancoAlunoGerenciar;
 import banco.BancoDisciplinaGerenciar;
 import banco.BancoEnderecoGerenciar;
@@ -389,10 +390,10 @@ public class ControlePainelCadastroAluno implements ActionListener {
 					boolean retorno1 = new BancoEnderecoGerenciar().inserirEndereco(endereco);
 					boolean retorno2 = new BancoAlunoGerenciar().BancoAlunoInserir(dados);
 					boolean retorno3 = false;
-					endereco.setId(new BancoEnderecoGerenciar().primeiroEultimo("idEndereco", 1));
+					endereco.setId(Integer.parseInt(new Banco().primeiroEultimo("Endereco","idEndereco", 1)));
 					dados.setId(new BancoAlunoGerenciar().primeiroEultimo("idAluno", 1));
 					if (disciplinas.size() > 0) {
-						
+						int idAluno = new BancoAlunoGerenciar().primeiroEultimo("idAluno", 1);
 						for (int i = 0; i < disciplinas.size(); i++) {
 
 							try {
@@ -403,7 +404,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 										JOptionPane.OK_CANCEL_OPTION));
 
 								retorno3 = new BancoAlunoGerenciar().inserirHistoricoDisciplinas(
-										disciplinas.get(i).toString(), dados.getId(), idDisciplina, String.valueOf(media));
+										disciplinas.get(i).toString(), idAluno, idDisciplina, String.valueOf(media));
 								if (retorno3)
 									count++;
 
