@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import banco.BancoAlunoGerenciar;
 import banco.BancoCursoGerenciar;
 import banco.BancoDisciplinaGerenciar;
+import banco.BancoEnderecoGerenciar;
 import modelo.Aluno;
 //import modelo.Arquivo;
 import modelo.Classe;
@@ -28,6 +29,7 @@ public class Main {
 		new BancoAlunoGerenciar().insereAlunosNoArray();
 		new BancoCursoGerenciar().insereCursosNoArray();
 		new BancoDisciplinaGerenciar().insereDisciplinasNoArray();
+		new BancoEnderecoGerenciar().insereEnderecoNoArray();
 		new ControlePainelTelaLogin();
 		System.out.println("Main");
 	}

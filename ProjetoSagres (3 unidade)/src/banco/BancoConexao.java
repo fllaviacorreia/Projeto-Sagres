@@ -15,7 +15,7 @@ public class BancoConexao {
 		try {
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/sagres?useTimezone=true&serverTimezone=UTC";
+		String url = "jdbc:mysql://localhost:3306/sge?useTimezone=true&serverTimezone=UTC";
 		conexao = DriverManager.getConnection(url, "root", "");
 		
 		} catch (HeadlessException  e) {

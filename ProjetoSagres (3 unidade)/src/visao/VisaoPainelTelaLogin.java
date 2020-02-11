@@ -38,7 +38,7 @@ public class VisaoPainelTelaLogin extends JPanel {
 		labelSenha.setFont(new Font("Arial", Font.PLAIN, 16));
 		labelSenha.setForeground(new Color(255, 255, 224));
 
-		imagemSistema = new ImageIcon("logoTipoSoftware.png");
+		imagemSistema = new ImageIcon("imagens/logoTipoSoftware.png");
 		imagemSistema.setImage(imagemSistema.getImage().getScaledInstance(300, 250, 200));
 		labelLogoSistema = new JLabel(imagemSistema);
 		labelLogoSistema.setFont(new Font("Arial", Font.PLAIN, 13));

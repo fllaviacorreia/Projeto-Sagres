@@ -134,20 +134,17 @@ public class BancoEnderecoGerenciar {
 		return true;
 	}
 	
-	public Endereco consultar_endereco(String chave, String valorChave, String campo) {
+	public Endereco consultar_endereco(String chave, String valorChave) {
 		String sql;
 		Endereco retorno = null;
-		sql = "SELECT " + campo + " FROM Endereco WHERE " + chave + " LIKE '%" + valorChave + "%'";
+		sql = "SELECT cep FROM Endereco WHERE " + chave + " = '" + valorChave + "'";
 		try {
 			conexao = BancoConexao.open();
 			consulta = conexao.createStatement();
 			resultSet = consulta.executeQuery(sql);
 			if (resultSet.next()) {
-				System.out.println("cons "+resultSet.getString(campo));
-				retorno = new Endereco(resultSet.getString("cep"), resultSet.getString("rua"), 
-						resultSet.getString("numero"), resultSet.getString("complemento"), 
-						resultSet.getString("bairro"), resultSet.getString("cidade"), 
-						resultSet.getString("uf"));
+				retorno = new Endereco(resultSet.getNString(1), resultSet.getNString(2), resultSet.getNString(3), 
+						resultSet.getNString(4), resultSet.getNString(5), resultSet.getNString(6), resultSet.getNString(7));
 				retorno.setId(resultSet.getInt("idEndereco"));
 			}
 			consulta.close();

@@ -84,19 +84,19 @@ public class VisaoPainelEditaAluno extends JPanel {
 		this.add(getLabelDataDeExpedicao());
 		this.add(getLabelDataDeNascimento());
 		this.add(getLabelDadosPessoais());
-//		this.add(getLabelEndereco());
-//		this.add(getLabelRua());
-//		this.add(getLabelNumero());
-//		this.add(getLabelComplemento());
-//		this.add(getLabelBairro());
-//		this.add(getLabelCidade());
-//		this.add(getLblEstado());
+		this.add(getLabelEndereco());
+		this.add(getLabelRua());
+		this.add(getLabelNumero());
+		this.add(getLabelComplemento());
+		this.add(getLabelBairro());
+		this.add(getLabelCidade());
+		this.add(getLblEstado());
 		this.add(getLabelEmail());
-//		this.add(getLabelCep());
+		this.add(getLabelCep());
 		this.add(getLabelTelefone());
 		this.add(getLabelCelular());
 		this.add(getTextFieldEmail());
-	//	this.add(getFormattedTextFieldCep());
+		this.add(getFormattedTextFieldCep());
 		this.add(getFormattedTextFieldTelefone());
 		this.add(getFormattedTextFieldMatriculaAluno());
 		this.add(getFormattedTextFieldNomeAluno());
@@ -105,19 +105,19 @@ public class VisaoPainelEditaAluno extends JPanel {
 		this.add(getFormattedTextFieldDataRg());
 		this.add(getFormattedTextFieldDataNascimento());
 		this.add(getFormattedTextFieldOrgaoExpeditor());
-//		this.add(getFormattedTextFieldRua());
-//		this.add(getFormattedTextFieldNumero());
-//		this.add(getFormattedTextFieldComplemento());
-//		this.add(getFormattedTextFieldBairro());
+		this.add(getFormattedTextFieldRua());
+		this.add(getFormattedTextFieldNumero());
+		this.add(getFormattedTextFieldComplemento());
+		this.add(getFormattedTextFieldBairro());
 		this.add(getFormattedTextFieldCelular());
 		this.add(getComboBoxCurso());
 		this.add(getComboBoxHistoricoDisciplinas());
 		this.add(getComboBoxEstadoRg());
-//		this.add(getComboBoxEstadoEndereco());
+		this.add(getComboBoxEstadoEndereco());
 		this.add(getButtonCancelar());
 		this.add(getButtonConfirmar());
-//		this.add(getButtonAdicionarDisciplina());
-//		add(getComboBoxCidades());
+		this.add(getButtonAdicionarDisciplina());
+		this.add(getComboBoxCidades());
 		
 	}
 	
@@ -607,7 +607,7 @@ public class VisaoPainelEditaAluno extends JPanel {
 			buttonCancelar = new JButton("CANCELAR");
 			buttonCancelar.setForeground(Color.BLACK);
 			buttonCancelar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonCancelar.setBounds(22, 307, 130, 33);
+			buttonCancelar.setBounds(21, 476, 130, 33);
 			buttonCancelar.setBackground(Color.WHITE);
 			buttonCancelar.setVisible(true);
 		}
@@ -619,7 +619,7 @@ public class VisaoPainelEditaAluno extends JPanel {
 			buttonConfirmar = new JButton("CONFIRMAR");
 			buttonConfirmar.setForeground(Color.BLACK);
 			buttonConfirmar.setFont(new Font("Arial", Font.PLAIN, 14));
-			buttonConfirmar.setBounds(182, 307, 130, 33);
+			buttonConfirmar.setBounds(181, 476, 130, 33);
 			buttonConfirmar.setBackground(Color.WHITE);
 			buttonConfirmar.setVisible(true);
 		}
