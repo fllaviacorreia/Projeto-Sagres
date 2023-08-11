@@ -13,11 +13,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import controle.Main;
-import modelo.ModeloTabelaAluno;
 import modelo.ModeloTabelaProfessor;
 
 public class VisaoPainelConsultaProfessor extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton 			buttonVoltar 	 				= null;
 	private JTable jtableDadosProfessor;
 	private JScrollPane jScrollPaneDadosProfessor;
@@ -78,7 +80,7 @@ public class VisaoPainelConsultaProfessor extends JPanel{
 	public JComboBox<String> getComboBoxTipoBusca() {
 		if (comboBoxTipoBusca == null) {
 			comboBoxTipoBusca = new JComboBox<String>();
-			comboBoxTipoBusca.setModel(new DefaultComboBoxModel(new String[] {"SELECIONE", "Nome", "CPF"}));
+			comboBoxTipoBusca.setModel(new DefaultComboBoxModel<String>(new String[] {"SELECIONE", "Nome", "CPF"}));
 			comboBoxTipoBusca.setForeground(Color.BLACK);
 			comboBoxTipoBusca.setFont(new Font("Arial", Font.PLAIN, 14));
 			comboBoxTipoBusca.setBackground(Color.WHITE);

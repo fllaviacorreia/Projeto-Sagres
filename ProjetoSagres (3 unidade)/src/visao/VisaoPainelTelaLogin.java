@@ -14,6 +14,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import assets.Fonts;
+import assets.Strings;
+
 @SuppressWarnings("serial")
 public class VisaoPainelTelaLogin extends JPanel {
 	private JLabel 			labelLogoSistema    = null;
@@ -23,7 +26,9 @@ public class VisaoPainelTelaLogin extends JPanel {
 	private JTextField 		textFieldLogin   	= null;
 	private JPasswordField  passWordFieldfSenha = null;
 	private JButton 		buttonEntrar   	 	= null;
-
+	Fonts fonts =  new Fonts();
+	Strings strings = new Strings();
+	
 	public VisaoPainelTelaLogin() {
 		this.setBackground(new Color(17, 109, 112));
 		this.setMinimumSize(new Dimension(1200, 720));
@@ -31,17 +36,17 @@ public class VisaoPainelTelaLogin extends JPanel {
 		this.setVisible(true);
 
 		labelLogin = new JLabel("Login: ");
-		labelLogin.setFont(new Font("Arial", Font.PLAIN, 16));
+		labelLogin.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		labelLogin.setForeground(new Color(255, 255, 224));
 
 		labelSenha = new JLabel("Senha: ");
-		labelSenha.setFont(new Font("Arial", Font.PLAIN, 16));
+		labelSenha.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		labelSenha.setForeground(new Color(255, 255, 224));
 
-		imagemSistema = new ImageIcon("imagens/logoTipoSoftware.png");
+		imagemSistema = new ImageIcon("assets/imagens/logoTipoSoftware.png");
 		imagemSistema.setImage(imagemSistema.getImage().getScaledInstance(300, 250, 200));
 		labelLogoSistema = new JLabel(imagemSistema);
-		labelLogoSistema.setFont(new Font("Arial", Font.PLAIN, 13));
+		labelLogoSistema.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMaximun()));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(27)
@@ -94,7 +99,7 @@ public class VisaoPainelTelaLogin extends JPanel {
 	public JTextField getTextFieldLogin() {
 		if (textFieldLogin == null) {
 			textFieldLogin = new JTextField();
-			textFieldLogin.setFont(new Font("Arial", Font.PLAIN, 15));
+			textFieldLogin.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			textFieldLogin.setColumns(10);
 			textFieldLogin.setForeground(Color.BLACK);
 		}
@@ -104,7 +109,7 @@ public class VisaoPainelTelaLogin extends JPanel {
 	public JPasswordField getPassWordFieldSenha() {
 		if (passWordFieldfSenha == null) {
 			passWordFieldfSenha = new JPasswordField();
-			passWordFieldfSenha.setFont(new Font("Arial", Font.PLAIN, 15));
+			passWordFieldfSenha.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			passWordFieldfSenha.setForeground(Color.BLACK);
 		}
 		return passWordFieldfSenha;
@@ -113,7 +118,7 @@ public class VisaoPainelTelaLogin extends JPanel {
 	public JButton getButtonEntrar() {
 		if (buttonEntrar == null) {
 			buttonEntrar = new JButton("Entrar");
-			buttonEntrar.setFont(new Font("Arial", Font.PLAIN, 15));
+			buttonEntrar.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			buttonEntrar.setBackground(Color.WHITE);
 			buttonEntrar.setForeground(Color.BLACK);
 		}

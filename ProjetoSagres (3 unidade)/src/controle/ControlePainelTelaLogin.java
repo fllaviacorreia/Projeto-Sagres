@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
 
+import assets.Strings;
 import visao.VisaoFramePrincipal;
 import visao.VisaoPainelTelaInicial;
 import visao.VisaoPainelTelaLogin;
@@ -15,6 +16,9 @@ public class ControlePainelTelaLogin implements ActionListener {
 	static VisaoPainelTelaLogin telaLogin;
 	static VisaoFramePrincipal framePrincipal;
 	static VisaoPainelTelaInicial telaInicial;
+	
+	private static Strings strings = new Strings();
+	
 	KeyListener acao = new KeyListener() {
 
 		@Override
@@ -39,7 +43,7 @@ public class ControlePainelTelaLogin implements ActionListener {
 					}
 					telaLogin.getTextFieldLogin().setText("");
 					telaLogin.getPassWordFieldSenha().setText("");
-					framePrincipal.trocarPainel(telaInicial, "Página Inicial");
+					framePrincipal.trocarPainel(telaInicial, strings.getTitleFrameHome());
 					new ControlePainelTelaInicial(framePrincipal, telaInicial);
 
 				} else if (telaLogin.getTextFieldLogin().getText().equals("")
@@ -47,7 +51,7 @@ public class ControlePainelTelaLogin implements ActionListener {
 					JOptionPane.showMessageDialog(telaLogin, "Campos de login e senha devem ser preenchidos.", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(telaLogin, "Login e/ou senha não coincidem com o banco de dados.",
+					JOptionPane.showMessageDialog(telaLogin, "Login e/ou senha nï¿½o coincidem com o banco de dados.",
 							"Aviso", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -69,7 +73,7 @@ public class ControlePainelTelaLogin implements ActionListener {
 
 	public static void troca() {
 		telaLogin.setVisible(true);
-		framePrincipal.trocarPainel(telaLogin, "Login");
+		framePrincipal.trocarPainel(telaLogin, strings.getTitleFrameLogin());
 		telaInicial = null;
 
 	}
@@ -90,7 +94,7 @@ public class ControlePainelTelaLogin implements ActionListener {
 				}
 				telaLogin.getTextFieldLogin().setText("");
 				telaLogin.getPassWordFieldSenha().setText("");
-				framePrincipal.trocarPainel(telaInicial, "Página Inicial");
+				framePrincipal.trocarPainel(telaInicial,  new Strings().getTitleFrameHome());
 				new ControlePainelTelaInicial(framePrincipal, telaInicial);
 
 			} else if (telaLogin.getTextFieldLogin().getText().equals("")
@@ -98,7 +102,7 @@ public class ControlePainelTelaLogin implements ActionListener {
 				JOptionPane.showMessageDialog(telaLogin, "Campos de login e senha devem ser preenchidos.", "Aviso",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(telaLogin, "Login e/ou senha não coincidem com o banco de dados.",
+				JOptionPane.showMessageDialog(telaLogin, "Login e/ou senha nï¿½o coincidem com o banco de dados.",
 						"Aviso", JOptionPane.ERROR_MESSAGE);
 			}
 		}

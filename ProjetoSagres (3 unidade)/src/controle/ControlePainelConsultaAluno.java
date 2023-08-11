@@ -7,22 +7,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 import banco.Banco;
 import banco.BancoAlunoGerenciar;
-import banco.BancoDisciplinaGerenciar;
 import banco.BancoEnderecoGerenciar;
 import modelo.Aluno;
 import modelo.Arquivo;
 import modelo.Endereco;
 import modelo.Lists;
-import modelo.ModeloTabelaAluno;
 import visao.VisaoFramePrincipal;
 import visao.VisaoPainelConsultaAluno;
 import visao.VisaoPainelEditaAluno;
@@ -32,7 +27,6 @@ public class ControlePainelConsultaAluno implements ActionListener {
 	static VisaoPainelConsultaAluno telaConsAluno;
 	static VisaoPainelEditaAluno editaAluno;
 	static VisaoFramePrincipal frame;
-	private String disciplina = "";
 	private String cep;
 	private String rua;
 	private String numero;
@@ -71,7 +65,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 				if (e.getSource() == telaConsAluno.getJTableDados()) {
 					Object[] Vetor = { "Atualizar", "Excluir", "Cancelar" };
 
-					int op = JOptionPane.showOptionDialog(null, "O que deseja fazer?", "Opções:", JOptionPane.DEFAULT_OPTION,
+					int op = JOptionPane.showOptionDialog(null, "O que deseja fazer?", "Opï¿½ï¿½es:", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.INFORMATION_MESSAGE, null, Vetor, Vetor[0]);
 					System.out.println(op);
 					if (op == 0) {
@@ -86,7 +80,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							Main.aluno.remove(telaConsAluno.getJTableDados().getSelectedRow());
 							telaConsAluno.getTabela().fireTableRowsDeleted(telaConsAluno.getJTableDados().getSelectedRow(),
 								telaConsAluno.getJTableDados().getSelectedRow());
-							JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso.");
+							JOptionPane.showMessageDialog(null, "Aluno excluï¿½do com sucesso.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Erro ao excluir aluno.");
 						}
@@ -129,7 +123,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 		// 1 - busca disciplina no arrayList de disciplinas inseridas
 		// 2 - busca CPF no array de Aluno
 		// 3 - busca RG nno array de Aluno
-		// 4 - busca se a disciplina está cadastrada no curso
+		// 4 - busca se a disciplina estï¿½ cadastrada no curso
 		try {
 			if (tipo == 1) {
 				for (int i = 0; i < disciplinas.size(); i++) {
@@ -214,7 +208,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == editaAluno.getButtonCancelar()) {
 					int saida = JOptionPane.showConfirmDialog(null,
-							"Deseja realmente cancelar a atualização dos dados?", "Confirmação de saída",
+							"Deseja realmente cancelar a atualizaï¿½ï¿½o dos dados?", "Confirmaï¿½ï¿½o de saï¿½da",
 							JOptionPane.YES_NO_OPTION);
 					if (saida == 0) {
 						frame.dispose();
@@ -261,14 +255,14 @@ public class ControlePainelConsultaAluno implements ActionListener {
 					try {
 						contador = 0;
 
-						// tem essa quantidade de espaços por conta da máscara
+						// tem essa quantidade de espaï¿½os por conta da mï¿½scara
 						if (!editaAluno.getFormattedTextFieldNomeAluno().getText()
 								.equals("                                                       ")) {
-							nome = arquivo.TiraEspaços(editaAluno.getFormattedTextFieldNomeAluno().getText()
+							nome = arquivo.TiraEspacos(editaAluno.getFormattedTextFieldNomeAluno().getText()
 									.toString().toUpperCase());
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Nome não preenchido!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Nome nï¿½o preenchido!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -279,13 +273,13 @@ public class ControlePainelConsultaAluno implements ActionListener {
 								dataNascimento = editaAluno.getFormattedTextFieldDataNascimento().getText();
 								contador++;
 							} else {
-								JOptionPane.showMessageDialog(editaAluno, "Data de nascimento inválida!",
+								JOptionPane.showMessageDialog(editaAluno, "Data de nascimento invï¿½lida!",
 										"Aviso", JOptionPane.ERROR_MESSAGE);
 
 							}
 						} else {
 							JOptionPane.showMessageDialog(editaAluno,
-									"Campo Data de nascimento não preenchido!", "Aviso",
+									"Campo Data de nascimento nï¿½o preenchido!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -293,11 +287,11 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							cpf = editaAluno.getFormattedTextFieldCpf().getText();
 							if (!cpf.equals(aluno.getCpf())){
 								if (!Lists.isCPF(editaAluno.getFormattedTextFieldCpf().getText())) {
-									JOptionPane.showMessageDialog(editaAluno, "CPF inválido!", "Aviso",
+									JOptionPane.showMessageDialog(editaAluno, "CPF invï¿½lido!", "Aviso",
 											JOptionPane.ERROR_MESSAGE);
 								}if (Validacoes(editaAluno.getFormattedTextFieldCpf().getText(), 2) > 0) { // mudar
 									// depois
-									JOptionPane.showMessageDialog(editaAluno, "CPF já cadastrado!", "Aviso",
+									JOptionPane.showMessageDialog(editaAluno, "CPF jï¿½ cadastrado!", "Aviso",
 											JOptionPane.ERROR_MESSAGE);
 
 								}else {
@@ -308,7 +302,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 								contador++;
 							}
 						}
-						// tem essa quantidade de espaços por conta da máscara
+						// tem essa quantidade de espaï¿½os por conta da mï¿½scara
 						if (!editaAluno.getFormattedTextFieldRg().getText().equals("")
 								&& !(editaAluno.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))) {
 
@@ -316,7 +310,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							uf = editaAluno.getComboBoxEstadoRg().getSelectedItem().toString();
 							if (!(rg.equals(aluno.getRg()) && uf.equals(aluno.getUf()))) {
 								if (Validacoes(rg, 3) > 0) { // mudar depois
-									JOptionPane.showMessageDialog(editaAluno, "RG e UF já cadastrados!",
+									JOptionPane.showMessageDialog(editaAluno, "RG e UF jï¿½ cadastrados!",
 											"Aviso", JOptionPane.ERROR_MESSAGE);
 
 								} else {
@@ -327,7 +321,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							}
 
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campos RG e UF não preenchidos!",
+							JOptionPane.showMessageDialog(editaAluno, "Campos RG e UF nï¿½o preenchidos!",
 									"Aviso", JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -338,22 +332,22 @@ public class ControlePainelConsultaAluno implements ActionListener {
 								dataExpedicao = editaAluno.getFormattedTextFieldDataRg().getText();
 								contador++;
 							} else {
-								JOptionPane.showMessageDialog(editaAluno, "Data de expedição inválida!",
+								JOptionPane.showMessageDialog(editaAluno, "Data de expediï¿½ï¿½o invï¿½lida!",
 										"Aviso", JOptionPane.ERROR_MESSAGE);
 
 							}
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Data de Expedição não preenchido!",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Data de Expediï¿½ï¿½o nï¿½o preenchido!",
 									"Aviso", JOptionPane.ERROR_MESSAGE);
 
 						}
 						if (!(editaAluno.getFormattedTextFieldOrgaoExpeditor().getText()
 								.equals("                                                       "))) {
-							orgaoExp = arquivo.TiraEspaços(
+							orgaoExp = arquivo.TiraEspacos(
 									editaAluno.getFormattedTextFieldOrgaoExpeditor().getText().toUpperCase());
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Órgão Expeditor não preenchido!",
+							JOptionPane.showMessageDialog(editaAluno, "Campo ï¿½rgï¿½o Expeditor nï¿½o preenchido!",
 									"Aviso", JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -362,7 +356,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							curso = editaAluno.getComboBoxCurso().getSelectedItem().toString();
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Curso não selecionado!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Curso nï¿½o selecionado!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -370,44 +364,44 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							cep = editaAluno.getFormattedTextFieldCep().getText();
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo CEP não preenchido!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo CEP nï¿½o preenchido!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
 						if (!(editaAluno.getFormattedTextFieldRua().getText()
 								.equals("                              "))) {
 							rua = arquivo
-									.TiraEspaços(editaAluno.getFormattedTextFieldRua().getText().toUpperCase());
+									.TiraEspacos(editaAluno.getFormattedTextFieldRua().getText().toUpperCase());
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Rua não preenchido!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Rua nï¿½o preenchido!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
 						if (!(editaAluno.getFormattedTextFieldComplemento().getText()
 								.equals("                              "))) {
-							complemento = arquivo.TiraEspaços(
+							complemento = arquivo.TiraEspacos(
 									editaAluno.getFormattedTextFieldComplemento().getText().toUpperCase());
 						} else {
 							complemento = null;
 						}
 						if (!(editaAluno.getFormattedTextFieldNumero().getText()
 								.equals("                              "))) {
-							numero = arquivo.TiraEspaços(
+							numero = arquivo.TiraEspacos(
 									editaAluno.getFormattedTextFieldNumero().getText().toUpperCase());
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Número não preenchido!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Nï¿½mero nï¿½o preenchido!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
 						if (!(editaAluno.getFormattedTextFieldBairro().getText()
 								.equals("                              "))) {
-							bairro = arquivo.TiraEspaços(
+							bairro = arquivo.TiraEspacos(
 									editaAluno.getFormattedTextFieldBairro().getText().toUpperCase());
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Bairro não preenchido!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Bairro nï¿½o preenchido!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -415,7 +409,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							cidade = editaAluno.getComboBoxCidades().getSelectedItem().toString();
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Cidade não selecionado!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Cidade nï¿½o selecionado!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -423,7 +417,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 							estado = editaAluno.getComboBoxEstadoEndereco().getSelectedItem().toString();
 							contador++;
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo Estado não selecionado!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo Estado nï¿½o selecionado!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -432,12 +426,12 @@ public class ControlePainelConsultaAluno implements ActionListener {
 								email = editaAluno.getTextFieldEmail().getText();
 								contador++;
 							} else {
-								JOptionPane.showMessageDialog(editaAluno, "E-mail inválido!", "Aviso",
+								JOptionPane.showMessageDialog(editaAluno, "E-mail invï¿½lido!", "Aviso",
 										JOptionPane.ERROR_MESSAGE);
 
 							}
 						} else {
-							JOptionPane.showMessageDialog(editaAluno, "Campo E-mail não preenchido!", "Aviso",
+							JOptionPane.showMessageDialog(editaAluno, "Campo E-mail nï¿½o preenchido!", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 
 						}
@@ -503,9 +497,9 @@ public class ControlePainelConsultaAluno implements ActionListener {
 //														disciplinas.get(i).toString(), "idDisciplina"));
 //										double media = Double
 //												.parseDouble(JOptionPane.showInputDialog(editaAluno,
-//														"Insira a média na disciplina "
+//														"Insira a mï¿½dia na disciplina "
 //																+ disciplinas.get(i).toString(),
-//																"Solicitação", JOptionPane.OK_CANCEL_OPTION));
+//																"Solicitaï¿½ï¿½o", JOptionPane.OK_CANCEL_OPTION));
 //
 //										retorno3 = new BancoAlunoGerenciar().inserirHistoricoDisciplinas(
 //												disciplinas.get(i).toString(), idAluno, idDisciplina,
@@ -514,7 +508,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 //											count++;
 //
 //									} catch (Exception e1) {
-//										JOptionPane.showMessageDialog(editaAluno, "Valor inserido não aceito.",
+//										JOptionPane.showMessageDialog(editaAluno, "Valor inserido nï¿½o aceito.",
 //												"Erro", JOptionPane.ERROR_MESSAGE);
 //										i--;
 //									}
@@ -523,7 +517,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 //
 //							}
 							if ((retorno2) && count == disciplinas.size()) {
-								JOptionPane.showMessageDialog(editaAluno, "Atualização de cadastro realizado com sucesso.");
+								JOptionPane.showMessageDialog(editaAluno, "Atualizaï¿½ï¿½o de cadastro realizado com sucesso.");
 								frame.dispose();
 							} else {
 								JOptionPane.showMessageDialog(editaAluno, "Ocorreu algum erro ao tentar atualizar o cadastro.");
@@ -563,7 +557,7 @@ public class ControlePainelConsultaAluno implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == telaConsAluno.getButtonVoltar()) {
-			int saida = JOptionPane.showConfirmDialog(telaConsAluno, "Deseja realmente voltar?", "Confirmação de saída",
+			int saida = JOptionPane.showConfirmDialog(telaConsAluno, "Deseja realmente voltar?", "Confirmaï¿½ï¿½o de saï¿½da",
 					JOptionPane.YES_NO_OPTION);
 			if (saida == 0) {
 				if (volta == 1)

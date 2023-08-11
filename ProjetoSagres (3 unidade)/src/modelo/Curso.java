@@ -1,11 +1,9 @@
 package modelo;
 
-import java.util.ArrayList;
-
 import controle.Main;
 
 /**
- *  @author Flávia de Jesus Correia
+ *  @author Flï¿½via de Jesus Correia
  * 
  * */
 

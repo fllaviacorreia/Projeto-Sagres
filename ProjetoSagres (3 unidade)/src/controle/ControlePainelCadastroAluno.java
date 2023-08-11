@@ -1,7 +1,7 @@
 package controle;
 
 /**
- *  @author Flávia de Jesus Correia
+ *  @author Flï¿½via de Jesus Correia
  *  @author Ian Farias 
  *  
  * */
@@ -19,7 +19,6 @@ import banco.BancoAlunoGerenciar;
 import banco.BancoDisciplinaGerenciar;
 import banco.BancoEnderecoGerenciar;
 import visao.VisaoPainelCadastroAluno;
-import controle.ControlePainelCadastro;
 import modelo.Aluno;
 import modelo.Arquivo;
 import modelo.Endereco;
@@ -112,7 +111,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 		}
 		if (e.getSource() == telaCadAluno.getButtonVoltar()) {
 			try {
-				saida = JOptionPane.showConfirmDialog(telaCadAluno, "Deseja realmente voltar?", "Confirmação de saída",
+				saida = JOptionPane.showConfirmDialog(telaCadAluno, "Deseja realmente voltar?", "Confirmaï¿½ï¿½o de saï¿½da",
 						JOptionPane.YES_NO_OPTION);
 				if (saida == 0) {
 					LimpaDados();
@@ -133,7 +132,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 		if (e.getSource() == telaCadAluno.getButtonCancelar()) {
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadAluno, "Deseja realmente cancelar o cadastro?",
-						"Confirmação de saída", JOptionPane.YES_NO_OPTION);
+						"Confirmaï¿½ï¿½o de saï¿½da", JOptionPane.YES_NO_OPTION);
 				if (saida == 0) {
 					LimpaDados();
 					ControlePainelCadastro.troca();
@@ -163,12 +162,12 @@ public class ControlePainelCadastroAluno implements ActionListener {
 									telaCadAluno.getComboBoxHistoricoDisciplinas().addItem(disciplina);
 									disciplinas.add(disciplina);
 								} else {
-									JOptionPane.showMessageDialog(telaCadAluno, "Nome já incluso.", "Erro",
+									JOptionPane.showMessageDialog(telaCadAluno, "Nome jï¿½ incluso.", "Erro",
 											JOptionPane.ERROR_MESSAGE);
 								}
 							} else {
 								JOptionPane.showMessageDialog(telaCadAluno,
-										"Disciplina não cadastrada ou cadastrada em outro curso.", "Erro",
+										"Disciplina nï¿½o cadastrada ou cadastrada em outro curso.", "Erro",
 										JOptionPane.ERROR_MESSAGE);
 							}
 
@@ -192,14 +191,14 @@ public class ControlePainelCadastroAluno implements ActionListener {
 				numMatriculaAluno = (calendario.get(Calendar.YEAR) * 10000) + Main.aluno.size(); // mudar depois
 				contador = 0;
 
-				// tem essa quantidade de espaços por conta da máscara
+				// tem essa quantidade de espaï¿½os por conta da mï¿½scara
 				if (!telaCadAluno.getFormattedTextFieldNomeAluno().getText()
 						.equals("                                                       ")) {
-					nome = arquivo.TiraEspaços(
+					nome = arquivo.TiraEspacos(
 							telaCadAluno.getFormattedTextFieldNomeAluno().getText().toString().toUpperCase());
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Nome não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Nome nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -208,23 +207,23 @@ public class ControlePainelCadastroAluno implements ActionListener {
 						dataNascimento = telaCadAluno.getFormattedTextFieldDataNascimento().getText();
 						contador++;
 					} else {
-						JOptionPane.showMessageDialog(telaCadAluno, "Data de nascimento inválida!", "Aviso",
+						JOptionPane.showMessageDialog(telaCadAluno, "Data de nascimento invï¿½lida!", "Aviso",
 								JOptionPane.ERROR_MESSAGE);
 
 					}
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Data de nascimento não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Data de nascimento nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
 				if (!(telaCadAluno.getFormattedTextFieldCpf().getText().equals("           "))) {
 					if (!Lists.isCPF(telaCadAluno.getFormattedTextFieldCpf().getText())) {
-						JOptionPane.showMessageDialog(telaCadAluno, "CPF inválido!", "Aviso",
+						JOptionPane.showMessageDialog(telaCadAluno, "CPF invï¿½lido!", "Aviso",
 								JOptionPane.ERROR_MESSAGE);
 
 					}
 					if (Validacoes(telaCadAluno.getFormattedTextFieldCpf().getText(), 2) > 0) { // mudar depois
-						JOptionPane.showMessageDialog(telaCadAluno, "CPF já cadastrado!", "Aviso",
+						JOptionPane.showMessageDialog(telaCadAluno, "CPF jï¿½ cadastrado!", "Aviso",
 								JOptionPane.ERROR_MESSAGE);
 
 					} else {
@@ -232,21 +231,21 @@ public class ControlePainelCadastroAluno implements ActionListener {
 						contador++;
 					}
 				}
-				// tem essa quantidade de espaços por conta da máscara
+				// tem essa quantidade de espaï¿½os por conta da mï¿½scara
 				if (!telaCadAluno.getFormattedTextFieldRg().getText().equals("")
 						&& !(telaCadAluno.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))) {
 
 					rg = telaCadAluno.getFormattedTextFieldRg().getText();
 					uf = telaCadAluno.getComboBoxEstadoRg().getSelectedItem().toString();
 					if (Validacoes(rg, 3) > 0) { // mudar depois
-						JOptionPane.showMessageDialog(telaCadAluno, "RG e UF já cadastrados!", "Aviso",
+						JOptionPane.showMessageDialog(telaCadAluno, "RG e UF jï¿½ cadastrados!", "Aviso",
 								JOptionPane.ERROR_MESSAGE);
 
 					} else {
 						contador = contador + 2;
 					}
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campos RG e UF não preenchidos!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campos RG e UF nï¿½o preenchidos!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -256,22 +255,22 @@ public class ControlePainelCadastroAluno implements ActionListener {
 						dataExpedicao = telaCadAluno.getFormattedTextFieldDataRg().getText();
 						contador++;
 					} else {
-						JOptionPane.showMessageDialog(telaCadAluno, "Data de expedição inválida!", "Aviso",
+						JOptionPane.showMessageDialog(telaCadAluno, "Data de expediï¿½ï¿½o invï¿½lida!", "Aviso",
 								JOptionPane.ERROR_MESSAGE);
 
 					}
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Data de Expedição não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Data de Expediï¿½ï¿½o nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
 				if (!(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText()
 						.equals("                                                       "))) {
 					orgaoExp = arquivo
-							.TiraEspaços(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText().toUpperCase());
+							.TiraEspacos(telaCadAluno.getFormattedTextFieldOrgaoExpeditor().getText().toUpperCase());
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Órgão Expeditor não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo ï¿½rgï¿½o Expeditor nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -280,7 +279,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 					curso = telaCadAluno.getComboBoxCurso().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Curso não selecionado!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Curso nï¿½o selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -288,38 +287,38 @@ public class ControlePainelCadastroAluno implements ActionListener {
 					cep = telaCadAluno.getFormattedTextFieldCep().getText();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo CEP não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo CEP nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
 				if (!(telaCadAluno.getFormattedTextFieldRua().getText().equals("                              "))) {
-					rua = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldRua().getText().toUpperCase());
+					rua = arquivo.TiraEspacos(telaCadAluno.getFormattedTextFieldRua().getText().toUpperCase());
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Rua não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Rua nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
 				if (!(telaCadAluno.getFormattedTextFieldComplemento().getText()
 						.equals("                              "))) {
 					complemento = arquivo
-							.TiraEspaços(telaCadAluno.getFormattedTextFieldComplemento().getText().toUpperCase());
+							.TiraEspacos(telaCadAluno.getFormattedTextFieldComplemento().getText().toUpperCase());
 				} else {
 					complemento = null;
 				}
 				if (!(telaCadAluno.getFormattedTextFieldNumero().getText().equals("                              "))) {
-					numero = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldNumero().getText().toUpperCase());
+					numero = arquivo.TiraEspacos(telaCadAluno.getFormattedTextFieldNumero().getText().toUpperCase());
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Número não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Nï¿½mero nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
 				if (!(telaCadAluno.getFormattedTextFieldBairro().getText().equals("                              "))) {
-					bairro = arquivo.TiraEspaços(telaCadAluno.getFormattedTextFieldBairro().getText().toUpperCase());
+					bairro = arquivo.TiraEspacos(telaCadAluno.getFormattedTextFieldBairro().getText().toUpperCase());
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Bairro não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Bairro nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -327,7 +326,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 					cidade = telaCadAluno.getComboBoxCidades().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Cidade não selecionado!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Cidade nï¿½o selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -335,7 +334,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 					estado = telaCadAluno.getComboBoxEstadoEndereco().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo Estado não selecionado!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo Estado nï¿½o selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -344,12 +343,12 @@ public class ControlePainelCadastroAluno implements ActionListener {
 						email = telaCadAluno.getTextFieldEmail().getText();
 						contador++;
 					} else {
-						JOptionPane.showMessageDialog(telaCadAluno, "E-mail inválido!", "Aviso",
+						JOptionPane.showMessageDialog(telaCadAluno, "E-mail invï¿½lido!", "Aviso",
 								JOptionPane.ERROR_MESSAGE);
 
 					}
 				} else {
-					JOptionPane.showMessageDialog(telaCadAluno, "Campo E-mail não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadAluno, "Campo E-mail nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -400,7 +399,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 								int idDisciplina = Integer.parseInt(new BancoDisciplinaGerenciar()
 										.consultar("nomeDisciplina", disciplinas.get(i).toString(), "idDisciplina"));
 								double media = Double.parseDouble(JOptionPane.showInputDialog(telaCadAluno,
-										"Insira a média na disciplina " + disciplinas.get(i).toString(), "Solicitação",
+										"Insira a mï¿½dia na disciplina " + disciplinas.get(i).toString(), "Solicitaï¿½ï¿½o",
 										JOptionPane.OK_CANCEL_OPTION));
 
 								retorno3 = new BancoAlunoGerenciar().inserirHistoricoDisciplinas(
@@ -409,7 +408,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 									count++;
 
 							} catch (Exception e1) {
-								JOptionPane.showMessageDialog(telaCadAluno, "Valor inserido não aceito.", "Erro",
+								JOptionPane.showMessageDialog(telaCadAluno, "Valor inserido nï¿½o aceito.", "Erro",
 										JOptionPane.ERROR_MESSAGE);
 								i--;
 							}
@@ -443,13 +442,13 @@ public class ControlePainelCadastroAluno implements ActionListener {
 		try {
 			if (tipo == 1) {
 				for (int i = 0; i < Main.curso.size(); i++) {
-					if (Main.curso.get(i).getTipoCurso().equals("GRADUAÇÃO"))
+					if (Main.curso.get(i).getTipoCurso().equals("GRADUAï¿½ï¿½O"))
 						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
 				}
 			}
 			if (tipo == 2) {
 				for (int i = 0; i < Main.curso.size(); i++) {
-					if (Main.curso.get(i).getTipoCurso().equals("ESPECIALIZAÇÃO"))
+					if (Main.curso.get(i).getTipoCurso().equals("ESPECIALIZAï¿½ï¿½O"))
 						telaCadAluno.getComboBoxCurso().addItem(Main.curso.get(i).getNome().toString());
 				}
 			}
@@ -476,7 +475,7 @@ public class ControlePainelCadastroAluno implements ActionListener {
 		// 1 - busca disciplina no arrayList de disciplinas inseridas
 		// 2 - busca CPF no array de Aluno
 		// 3 - busca RG nno array de Aluno
-		// 4 - busca se a disciplina está cadastrada no curso
+		// 4 - busca se a disciplina estï¿½ cadastrada no curso
 		try {
 			if (tipo == 1) {
 				for (int i = 0; i < disciplinas.size(); i++) {

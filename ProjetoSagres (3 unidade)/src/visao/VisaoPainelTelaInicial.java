@@ -6,6 +6,10 @@ import java.awt.Font;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import assets.Fonts;
+import assets.Strings;
+
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -37,6 +41,9 @@ public class VisaoPainelTelaInicial extends JPanel {
 	private JMenuItem menuItemConsultaDisciplina= null;
 	private JMenuItem menuItemConsultaProfessor = null;
 
+	Fonts fonts =  new Fonts();
+	Strings strings = new Strings();
+	
 	public VisaoPainelTelaInicial() {
 		this.setBackground(new Color(66, 179, 165));
 		this.setMinimumSize(new Dimension(1000, 730));
@@ -85,7 +92,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			buttonCadastros = new JButton("CADASTROS");
 			buttonCadastros.setForeground(Color.BLACK);
 			buttonCadastros.setBackground(Color.WHITE);
-			buttonCadastros.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonCadastros.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			;
 		}
 		return buttonCadastros;
@@ -96,7 +103,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			buttonOpcoes = new JButton("OP\u00C7\u00D5ES");
 			buttonOpcoes.setForeground(Color.BLACK);
 			buttonOpcoes.setBackground(Color.WHITE);
-			buttonOpcoes.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonOpcoes.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return buttonOpcoes;
 	}
@@ -106,7 +113,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			buttonSobre = new JButton("SOBRE");
 			buttonSobre.setForeground(Color.BLACK);
 			buttonSobre.setBackground(Color.WHITE);
-			buttonSobre.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonSobre.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return buttonSobre;
 	}
@@ -116,7 +123,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			buttonConsultas = new JButton("CONSULTAS");
 			buttonConsultas.setForeground(Color.BLACK);
 			buttonConsultas.setBackground(Color.WHITE);
-			buttonConsultas.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonConsultas.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return buttonConsultas;
 	}
@@ -124,7 +131,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JButton getButtonSair() {
 		if (buttonSair == null) {
 			buttonSair = new JButton("SAIR");
-			buttonSair.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonSair.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			buttonSair.setBackground(Color.WHITE);
 			buttonSair.setVisible(true);
 		}
@@ -134,7 +141,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JButton getButtonFechar() {
 		if (buttonFechar == null) {
 			buttonFechar = new JButton("FECHAR");
-			buttonFechar.setFont(new Font("Arial", Font.PLAIN, 14));
+			buttonFechar.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			buttonFechar.setBackground(Color.WHITE);
 			buttonFechar.setVisible(true);
 		}
@@ -158,7 +165,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 			menuCadastros = new JMenu("CADASTROS");
 			menuCadastros.setLayout(null);
 			menuCadastros.setHorizontalAlignment(SwingConstants.CENTER);
-			menuCadastros.setFont(new Font("Arial", Font.PLAIN, 12));
+			menuCadastros.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			menuCadastros.setBackground(Color.LIGHT_GRAY);
 			menuCadastros.setForeground(Color.BLACK);
 			menuCadastros.setBounds(1, 1, 90, 40);
@@ -173,9 +180,9 @@ public class VisaoPainelTelaInicial extends JPanel {
 
 	public JMenu getMenuOpcoes() {
 		if (menuOpcoes == null) {
-			menuOpcoes = new JMenu("OPÇÕES");
+			menuOpcoes = new JMenu("OPÃ‡Ã•ES");
 			menuOpcoes.setHorizontalAlignment(SwingConstants.CENTER);
-			menuOpcoes.setFont(new Font("Arial", Font.PLAIN, 12));
+			menuOpcoes.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			menuOpcoes.setBackground(Color.LIGHT_GRAY);
 			menuOpcoes.setForeground(Color.BLACK);
 			menuOpcoes.setBounds(242, 1, 90, 40);
@@ -187,7 +194,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 		if (menuConsultas == null) {
 			menuConsultas = new JMenu("CONSULTAS");
 			menuConsultas.setHorizontalAlignment(SwingConstants.CENTER);
-			menuConsultas.setFont(new Font("Arial", Font.PLAIN, 12));
+			menuConsultas.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			menuConsultas.setBackground(Color.LIGHT_GRAY);
 			menuConsultas.setForeground(Color.BLACK);
 			menuConsultas.setBounds(121, 1, 90, 40);
@@ -204,7 +211,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 		if (menuSobre == null) {
 			menuSobre = new JMenu("SOBRE");
 			menuSobre.setHorizontalAlignment(SwingConstants.CENTER);
-			menuSobre.setFont(new Font("Arial", Font.PLAIN, 12));
+			menuSobre.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			menuSobre.setBackground(Color.LIGHT_GRAY);
 			menuSobre.setForeground(Color.BLACK);
 			menuSobre.setBounds(363, 1, 90, 40);
@@ -215,6 +222,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemCadastroAluno() {
 		if (menuItemCadastroAluno == null) {
 			menuItemCadastroAluno = new JMenuItem("Aluno");
+			menuItemCadastroAluno.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			
 		}
 		return menuItemCadastroAluno;
@@ -223,6 +231,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemCadastroClasse() {
 		if (menuItemCadastroClasse == null) {
 			menuItemCadastroClasse = new JMenuItem("Classe");
+			menuItemCadastroClasse.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			
 		}
 		return menuItemCadastroClasse;
@@ -231,6 +240,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemCadastroCurso() {
 		if (menuItemCadastroCurso == null) {
 			menuItemCadastroCurso = new JMenuItem("Curso");
+			menuItemCadastroCurso.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			
 		}
 		return menuItemCadastroCurso;
@@ -239,6 +249,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemCadastroDisciplina() {
 		if (menuItemCadastroDisciplina == null) {
 			menuItemCadastroDisciplina = new JMenuItem("Disciplina");
+			menuItemCadastroDisciplina.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			
 		}
 		return menuItemCadastroDisciplina;
@@ -247,6 +258,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemCadastroProfessor() {
 		if (menuItemCadastroProfessor == null) {
 			menuItemCadastroProfessor = new JMenuItem("Professor");
+			menuItemCadastroProfessor.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 			
 		}
 		return menuItemCadastroProfessor;
@@ -255,6 +267,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemConsultaAluno() {
 		if (menuItemConsultaAluno == null) {
 			menuItemConsultaAluno = new JMenuItem("Aluno");
+			menuItemConsultaAluno.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return menuItemConsultaAluno;
 	}
@@ -262,6 +275,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemConsultaClasse() {
 		if (menuItemConsultaClasse == null) {
 			menuItemConsultaClasse = new JMenuItem("Classe");
+			menuItemConsultaClasse.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return menuItemConsultaClasse;
 	}
@@ -269,6 +283,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemConsultaCurso() {
 		if (menuItemConsultaCurso == null) {
 			menuItemConsultaCurso = new JMenuItem("Curso");
+			menuItemConsultaCurso.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return menuItemConsultaCurso;
 	}
@@ -276,6 +291,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemConsultaDisciplina() {
 		if (menuItemConsultaDisciplina == null) {
 			menuItemConsultaDisciplina = new JMenuItem("Disciplina");
+			menuItemConsultaDisciplina.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return menuItemConsultaDisciplina;
 	}
@@ -283,6 +299,7 @@ public class VisaoPainelTelaInicial extends JPanel {
 	public JMenuItem getMenuItemConsultaProfessor() {
 		if (menuItemConsultaProfessor == null) {
 			menuItemConsultaProfessor = new JMenuItem("Professor");
+			menuItemConsultaProfessor.setFont(fonts.setFont(strings.getSrcFontOpenSansRegular(), strings.getSizeMedium()));
 		}
 		return menuItemConsultaProfessor;
 	}

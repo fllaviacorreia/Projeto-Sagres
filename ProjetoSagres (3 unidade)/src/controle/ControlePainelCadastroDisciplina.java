@@ -1,7 +1,7 @@
 package controle;
 
 /**
- *  @author Flávia de Jesus Correia
+ *  @author Flï¿½via de Jesus Correia
  *  @author Ian Farias
  *  
  * */
@@ -85,7 +85,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 		if (e.getSource() == telaCadDisciplina.getButtonVoltar()) {
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadDisciplina, "Deseja realmente voltar?",
-						"Confirmação de saída", JOptionPane.YES_NO_OPTION);
+						"Confirmaï¿½ï¿½o de saï¿½da", JOptionPane.YES_NO_OPTION);
 				if (saida == 0) {
 					LimpaDados();
 					if (volta == 1)
@@ -104,7 +104,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 		if (e.getSource() == telaCadDisciplina.getButtonCancelar()) {
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadDisciplina, "Deseja realmente cancelar o cadastro?",
-						"Confirmação de saída", JOptionPane.YES_NO_OPTION);
+						"Confirmaï¿½ï¿½o de saï¿½da", JOptionPane.YES_NO_OPTION);
 				if (saida == 0) {
 					LimpaDados();
 					ControlePainelCadastro.troca();
@@ -168,7 +168,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 		}
 		if (e.getSource() == telaCadDisciplina.getButtonAdicionarAreaDisciplina()) {
 			try {
-				areaDisciplina = JOptionPane.showInputDialog(telaCadDisciplina, "Insira o nome da área:", "Inserir",
+				areaDisciplina = JOptionPane.showInputDialog(telaCadDisciplina, "Insira o nome da ï¿½rea:", "Inserir",
 						JOptionPane.OK_CANCEL_OPTION);
 				if (!areaDisciplina.equals("")) {
 					areaDisciplina = areaDisciplina.toUpperCase();
@@ -177,7 +177,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 						telaCadDisciplina.getComboBoxAreaDisciplina().addItem(areaDisciplina);
 						telaCadDisciplina.getComboBoxAreaDisciplina().setSelectedItem(areaDisciplina);
 					} else {
-						JOptionPane.showMessageDialog(telaCadDisciplina, "Nome já incluso.", "Erro",
+						JOptionPane.showMessageDialog(telaCadDisciplina, "Nome jï¿½ incluso.", "Erro",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -262,7 +262,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 
 		if (e.getSource() == telaCadDisciplina.getButtonAdicionarPreRequisitos()) {
 			try {
-				preRequisito = JOptionPane.showInputDialog(telaCadDisciplina, "Insira o pré-requisito:", "Inserir",
+				preRequisito = JOptionPane.showInputDialog(telaCadDisciplina, "Insira o prï¿½-requisito:", "Inserir",
 						JOptionPane.OK_CANCEL_OPTION);
 				if (!preRequisito.isEmpty()) {
 					preRequisito = preRequisito.toUpperCase();
@@ -276,12 +276,12 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 							preRequisitos.add(preRequisito);
 							telaCadDisciplina.getComboBoxPreRequisitos().addItem(preRequisito);
 						} else {
-							JOptionPane.showMessageDialog(telaCadDisciplina, "Nome já incluso.", "Erro",
+							JOptionPane.showMessageDialog(telaCadDisciplina, "Nome jï¿½ incluso.", "Erro",
 									JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
 						JOptionPane.showMessageDialog(telaCadDisciplina,
-								"Disciplina cadastrada em outro curso, não no curso escolhido. "
+								"Disciplina cadastrada em outro curso, nï¿½o no curso escolhido. "
 										+ "\nInsira somente disciplinas do curso escolhido.",
 								"Erro", JOptionPane.ERROR_MESSAGE);
 					}
@@ -303,7 +303,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 		// telaCadDisciplina.getComboBoxSemestre().addItem(String.valueOf(semestreInserido));
 		// }
 		// }catch (Exception e1) {
-		// JOptionPane.showMessageDialog(telaCadDisciplina, "Valor inserido não
+		// JOptionPane.showMessageDialog(telaCadDisciplina, "Valor inserido nï¿½o
 		// aceito.",
 		// "Erro", JOptionPane.ERROR_MESSAGE);
 		// System.out.println(e1.getMessage());
@@ -321,7 +321,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 					areaDisciplina = telaCadDisciplina.getComboBoxAreaDisciplina().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Área não selecionado!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo ï¿½rea nï¿½o selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
@@ -329,7 +329,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 					carga_Horaria = telaCadDisciplina.getComboBoxCargaHoraria().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Carga Horária não selecionado!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Carga Horï¿½ria nï¿½o selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
@@ -337,7 +337,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 					nomeCurso = telaCadDisciplina.getComboBoxCurso().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Curso não selecionado!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Curso nï¿½o selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
@@ -345,21 +345,21 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 					semestre = telaCadDisciplina.getComboBoxSemestre().getSelectedItem().toString();
 					contador++;
 				} else {
-					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Semestre não selecionado!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Semestre nï¿½o selecionado!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
 				if (!telaCadDisciplina.getFormattedTextFieldNomeDisciplina().getText().equals("")) {
 					Arquivo dado = new Arquivo(0);
 					if (!telaCadDisciplina.getComboBoxCurso().getSelectedItem().equals("SELECIONE")) {
-						nome_Disciplina = dado.TiraEspaços(
+						nome_Disciplina = dado.TiraEspacos(
 								telaCadDisciplina.getFormattedTextFieldNomeDisciplina().getText().toString());
 						nome_Disciplina = nome_Disciplina.toUpperCase();
 						if (ValidaNomeDisciplina(nome_Disciplina, nomeCurso) == 0) {
 							contador++;
 						} else {
 							JOptionPane.showMessageDialog(telaCadDisciplina,
-									"Disciplina com mesmo nome e curso já cadastrados.", "Aviso",
+									"Disciplina com mesmo nome e curso jï¿½ cadastrados.", "Aviso",
 									JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
@@ -370,7 +370,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 					}
 
 				} else {
-					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Nome não preenchido!", "Aviso",
+					JOptionPane.showMessageDialog(telaCadDisciplina, "Campo Nome nï¿½o preenchido!", "Aviso",
 							JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
@@ -384,7 +384,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 					contador++;
 				} else {
 					JOptionPane.showMessageDialog(telaCadDisciplina,
-							"Indique se a disciplina é optativa ou obrigatória.", "Aviso", JOptionPane.ERROR_MESSAGE);
+							"Indique se a disciplina ï¿½ optativa ou obrigatï¿½ria.", "Aviso", JOptionPane.ERROR_MESSAGE);
 					erros++;
 				}
 
@@ -480,7 +480,7 @@ public class ControlePainelCadastroDisciplina implements ActionListener {
 				"nomeDisciplina");
 		for (int i = 0; i < disciplinas.size(); i++) {
 			if (disciplinas.get(i).equals(nome)) {
-				// selecionando o id do curso em que a disciplina está cadastrada
+				// selecionando o id do curso em que a disciplina estï¿½ cadastrada
 				int idCursoDisciplina = Integer
 						.parseInt(new Banco().consultar("Disciplina", "nomeDisciplina", nome, "Curso_idCurso"));
 				int idCurso = Integer.parseInt(new BancoCursoGerenciar().consultar("nomeCurso", curso, "idCurso"));

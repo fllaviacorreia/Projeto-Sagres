@@ -3,7 +3,7 @@ package modelo;
 import java.io.BufferedReader;
 
 /**
- *  @author Flávia de Jesus Correia
+ *  @author Flï¿½via de Jesus Correia
  * 
  * */
 
@@ -27,7 +27,7 @@ public class Arquivo{
 	 * 4 - disciplina
 	 * 
 	 * 5 - professor
-	 * 6 - realiza a verificação de todos os arquivos e preenche os arraylist's
+	 * 6 - realiza a verificaï¿½ï¿½o de todos os arquivos e preenche os arraylist's
 	 * 
 	 */
 
@@ -85,7 +85,7 @@ public class Arquivo{
 //				escreveArquivoAluno.write(Main.aluno.get(i).getCidade());
 //				escreveArquivoAluno.write(Main.aluno.get(i).getEstado());
 //				escreveArquivoAluno.write(Main.aluno.get(i).getTipo());
-//				escreveArquivoAluno.write(TiraEspaços(Main.aluno.get(i).getNome())+";");
+//				escreveArquivoAluno.write(TiraEspaï¿½os(Main.aluno.get(i).getNome())+";");
 //				escreveArquivoAluno.write(Main.aluno.get(i).getMatricula()+";");
 //				escreveArquivoAluno.write(Main.aluno.get(i).getDataNascimento()+";");
 //				escreveArquivoAluno.write(Main.aluno.get(i).getEmail()+";");
@@ -95,7 +95,7 @@ public class Arquivo{
 //				escreveArquivoAluno.write(Main.aluno.get(i).getRg()+";");
 //				escreveArquivoAluno.write(Main.aluno.get(i).getUf()+";");
 //				escreveArquivoAluno.write(Main.aluno.get(i).getDataExpedicao()+";");
-//				escreveArquivoAluno.write(TiraEspaços(Main.aluno.get(i).getOrgaoExp()+";"));
+//				escreveArquivoAluno.write(TiraEspaï¿½os(Main.aluno.get(i).getOrgaoExp()+";"));
 //				escreveArquivoAluno.write(Main.aluno.get(i).getCurso()+";");
 //				
 //				if(Main.aluno.get(i).getHistoricoDisciplinas().equals(null)) {
@@ -122,7 +122,7 @@ public class Arquivo{
 //			for(int i=0; i< Main.classe.size(); i++)
 //			{
 //				//NOME_DISCIPLINA;PROFESSOR;ALUNO;ANO_SEMESTRE;DIA_HORA
-//				dado = TiraEspaços(Main.classe.get(i).getDisciplina());
+//				dado = TiraEspaï¿½os(Main.classe.get(i).getDisciplina());
 //				escreveArquivoClasse.write(dado+";");
 //				for(int j = 0; j < Main.classe.get(i).getProfessor().size(); j++) {
 //					escreveArquivoClasse.write(Main.classe.get(i).getProfessor().get(j).toString()+",");
@@ -173,10 +173,10 @@ public class Arquivo{
 //			BufferedWriter escreveArquivoDisciplina = new BufferedWriter(new FileWriter(arquivoDisciplina));
 //			for(int i=0; i< Main.disciplina.size(); i++)
 //			{
-//	//CURSO;NOME;CARGA;AREA;PRE-REQUISITOS;SEMESTRE;É_PRÉ-REQUISITO;É_OPTATIVA;TIPO_DISCIPLINA;TEORICA;PRATICA;ESTAGIO
+//	//CURSO;NOME;CARGA;AREA;PRE-REQUISITOS;SEMESTRE;ï¿½_PRï¿½-REQUISITO;ï¿½_OPTATIVA;TIPO_DISCIPLINA;TEORICA;PRATICA;ESTAGIO
 //
 //				escreveArquivoDisciplina.write(Main.disciplina.get(i).getCurso()+";");
-//				dado = TiraEspaços(Main.disciplina.get(i).getNome_Disciplina());
+//				dado = TiraEspaï¿½os(Main.disciplina.get(i).getNome_Disciplina());
 //				escreveArquivoDisciplina.write(dado+";");
 //				escreveArquivoDisciplina.write(Main.disciplina.get(i).getCarga_Horaria()+";");
 //				escreveArquivoDisciplina.write(Main.disciplina.get(i).getArea_Disciplina()+";");
@@ -221,7 +221,7 @@ public class Arquivo{
 //				escreveArquivoProfessor.write(Main.professor.get(i).getCidade());
 //				escreveArquivoProfessor.write(Main.professor.get(i).getEstado());
 //				escreveArquivoProfessor.write(Main.professor.get(i).getTipo());
-//				escreveArquivoProfessor.write(TiraEspaços(Main.professor.get(i).getNome())+";");
+//				escreveArquivoProfessor.write(TiraEspaï¿½os(Main.professor.get(i).getNome())+";");
 //				escreveArquivoProfessor.write(Main.professor.get(i).getDataNascimento()+";");
 //				escreveArquivoProfessor.write(Main.professor.get(i).getMatricula()+";");
 //				escreveArquivoProfessor.write(Main.professor.get(i).getArea()+";");
@@ -233,7 +233,7 @@ public class Arquivo{
 //				escreveArquivoProfessor.write(Main.professor.get(i).getRg()+";");
 //				escreveArquivoProfessor.write(Main.professor.get(i).getUf()+";");
 //				escreveArquivoProfessor.write(Main.professor.get(i).getDataExpedicao()+";");
-//				escreveArquivoProfessor.write(TiraEspaços(Main.professor.get(i).getOrgaoExp()));
+//				escreveArquivoProfessor.write(TiraEspaï¿½os(Main.professor.get(i).getOrgaoExp()));
 //				escreveArquivoProfessor.newLine();
 //			}
 //			escreveArquivoProfessor.close();
@@ -259,7 +259,7 @@ public class Arquivo{
 //							dados[9], dados[10], dados[11], dados[12], dados[13], dados[14],  dados[15], dados[16], 
 //							dados[17], dados[18], dados[19],Dados(dados[20]));
 //					
-//					linha = lerArquivoAluno.readLine(); // lê da segunda até a última linha
+//					linha = lerArquivoAluno.readLine(); // lï¿½ da segunda atï¿½ a ï¿½ltima linha
 //				}
 //				arquivoAluno.close();
 //			}else {
@@ -289,7 +289,7 @@ public class Arquivo{
 //					dado.setAnoSemestre(dados[3]);
 //					dado.setDiaHora(dados[4]);
 //					Main.classe.add(dado);
-//					linha = lerArquivoClasse.readLine(); // lê da segunda até a última linha
+//					linha = lerArquivoClasse.readLine(); // lï¿½ da segunda atï¿½ a ï¿½ltima linha
 //				}
 //				arquivoClasse.close();
 //			}else {
@@ -320,7 +320,7 @@ public class Arquivo{
 //					dado.setDisciplinas(Dados(dados[3]));
 //					dado.setTipoCurso(dados[4]);
 //					Main.curso.add(dado);
-//					linha = lerArquivoCurso.readLine(); // lê da segunda até a última linha
+//					linha = lerArquivoCurso.readLine(); // lï¿½ da segunda atï¿½ a ï¿½ltima linha
 //				}
 //				arquivoCurso.close();
 //			}else {
@@ -340,7 +340,7 @@ public class Arquivo{
 //				FileReader arquivoDisciplina = new FileReader("relatorios\\listaDisciplinas.txt");
 //				BufferedReader lerArquivoDisciplina = new BufferedReader(arquivoDisciplina);
 //
-////CURSO;NOME;CARGA;AREA;PRE-REQUISITOS;SEMESTRE;É_PRÉ-REQUISITO;É_OPTATIVA;TIPO_DISCIPLINA;TEORICA;PRATICA;ESTAGIO;
+////CURSO;NOME;CARGA;AREA;PRE-REQUISITOS;SEMESTRE;ï¿½_PRï¿½-REQUISITO;ï¿½_OPTATIVA;TIPO_DISCIPLINA;TEORICA;PRATICA;ESTAGIO;
 //
 //				String linha = lerArquivoDisciplina.readLine();
 //				while (linha != null) {
@@ -359,7 +359,7 @@ public class Arquivo{
 //					dado.setPratica(Boolean.parseBoolean((String.valueOf(dados[10]))));
 //					dado.setEstagio(Boolean.parseBoolean((String.valueOf(dados[11]))));
 //					Main.disciplina.add(dado);
-//					linha = lerArquivoDisciplina.readLine(); // lê da segunda até a última linha
+//					linha = lerArquivoDisciplina.readLine(); // lï¿½ da segunda atï¿½ a ï¿½ltima linha
 //				}
 //				arquivoDisciplina.close();
 //			}else {
@@ -388,7 +388,7 @@ public class Arquivo{
 //							dados[7],dados[8], dados[9], dados[10], dados[11], dados[12], dados[13], 
 //							dados[14], dados[15], dados[16], dados[17],dados[18],dados[19],dados[20]);
 //					
-//					linha = lerArquivoProfessor.readLine(); // lê da segunda até a última linha
+//					linha = lerArquivoProfessor.readLine(); // lï¿½ da segunda atï¿½ a ï¿½ltima linha
 //				}
 //				arquivoProfessor.close();
 //			}else {
@@ -446,12 +446,12 @@ public class Arquivo{
 			}
 			
 		}else {
-			System.out.println("Arquivo das cidades do estado de" + estado + "não encontrado.");
+			System.out.println("Arquivo das cidades do estado de" + estado + "nï¿½o encontrado.");
 		}
 		
 		return cidades;
 	}
-	public String TiraEspaços(String dado) {
+	public String TiraEspacos(String dado) {
 		entrada = dado;
 		pedacos = entrada.split(" ");
 		junta 	= "";

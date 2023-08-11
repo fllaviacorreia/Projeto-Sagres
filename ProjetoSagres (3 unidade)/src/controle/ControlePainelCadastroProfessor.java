@@ -1,7 +1,7 @@
 package controle;
 
 /**
- *  @author Flávia de Jesus Correia
+ *  @author Flï¿½via de Jesus Correia
  *  @author Ian Farias
  *  
  * */
@@ -85,7 +85,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadProfessor, 
 														"Deseja realmente voltar?",
-														"Confirmação de saída", 
+														"Confirmaï¿½ï¿½o de saï¿½da", 
 														JOptionPane.YES_NO_OPTION);
 				if(saida == 0) {
 					LimpaDados();
@@ -122,7 +122,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 			try {
 				saida = JOptionPane.showConfirmDialog(telaCadProfessor, 
 														"Deseja realmente cancelar o cadastro?",
-														"Confirmação de saída", 
+														"Confirmaï¿½ï¿½o de saï¿½da", 
 														JOptionPane.YES_NO_OPTION);
 				if(saida == 0) {
 					LimpaDados();
@@ -136,7 +136,7 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 		}
 		if(e.getSource() == telaCadProfessor.getButtonAdicionarAreaAtuacao()) {
 			try {
-				areaAtuacao = JOptionPane.showInputDialog(telaCadProfessor,  "Insira o nome da área:", 
+				areaAtuacao = JOptionPane.showInputDialog(telaCadProfessor,  "Insira o nome da ï¿½rea:", 
 						 								  "Inserir", JOptionPane.OK_CANCEL_OPTION);
 				if(!areaAtuacao.isEmpty()) {
 					if(Validacoes(areaAtuacao, areasAtuacao) == 0) {
@@ -155,22 +155,22 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 				contador = 0;
 				Arquivo arquivo = new Arquivo(0);
 				if(!telaCadProfessor.getTextFieldNomeProfessor().getText().equals("                                                       ")) { 
-					nome = arquivo.TiraEspaços(telaCadProfessor.getTextFieldNomeProfessor().getText().toString().toUpperCase());
+					nome = arquivo.TiraEspacos(telaCadProfessor.getTextFieldNomeProfessor().getText().toString().toUpperCase());
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Nome não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Nome nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 	
 				}if(!telaCadProfessor.getComboBoxAreaAtuacaoProfessor().getSelectedItem().equals("SELECIONE")) {
 					area = telaCadProfessor.getComboBoxAreaAtuacaoProfessor().getSelectedItem().toString();
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Área de Atuação não selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo ï¿½rea de Atuaï¿½ï¿½o nï¿½o selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
 		
 				}if(!telaCadProfessor.getComboBoxCargaHorariaProfessor().getSelectedItem().equals("SELECIONE")) {
 					carga_Horaria = telaCadProfessor.getComboBoxCargaHorariaProfessor().getSelectedItem().toString();
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Carga Horária não selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Carga Horï¿½ria nï¿½o selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
 			
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldDataNascimento().getText().equals("  /  /    "))) {	
@@ -178,20 +178,20 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 							dataNascimento = telaCadProfessor.getFormattedTextFieldDataNascimento().getText();
 							contador++;
 					}else {
-						JOptionPane.showMessageDialog(telaCadProfessor, "Data de nascimento inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadProfessor, "Data de nascimento invï¿½lida!", "Aviso", JOptionPane.ERROR_MESSAGE);
 			
 					}		
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Data de nascimento não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Data de nascimento nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldCpf().getText().equals("           "))) {
 					if(!Lists.isCPF(telaCadProfessor.getFormattedTextFieldCpf().getText())){
-						JOptionPane.showMessageDialog(telaCadProfessor, "CPF inválido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadProfessor, "CPF invï¿½lido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 					
 					}
 					if(Validacoes(telaCadProfessor.getFormattedTextFieldCpf().getText(), 2) > 0) { //mudar depois
-						JOptionPane.showMessageDialog(telaCadProfessor, "CPF já cadastrado!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadProfessor, "CPF jï¿½ cadastrado!", "Aviso", JOptionPane.ERROR_MESSAGE);
 				
 					}
 					else{
@@ -199,20 +199,20 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 						contador++;
 					}
 				}
-				// tem essa quantidade de espaços por conta da máscara
+				// tem essa quantidade de espaï¿½os por conta da mï¿½scara
 				if(!telaCadProfessor.getFormattedTextFieldRg().getText().equals("")
 					&& !(telaCadProfessor.getComboBoxEstadoRg().getSelectedItem().equals("SELECIONE"))) {
 					
 					rg = telaCadProfessor.getFormattedTextFieldRg().getText();
 					uf = telaCadProfessor.getComboBoxEstadoRg().getSelectedItem().toString();
 					if(Validacoes(rg, 3) > 0) { // mudar depois
-						JOptionPane.showMessageDialog(telaCadProfessor, "RG e UF já cadastrados!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadProfessor, "RG e UF jï¿½ cadastrados!", "Aviso", JOptionPane.ERROR_MESSAGE);
 
 					}else {
 						contador= contador+2;
 					}
 				}else {
-						JOptionPane.showMessageDialog(telaCadProfessor, "Campos RG e UF não preenchidos!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadProfessor, "Campos RG e UF nï¿½o preenchidos!", "Aviso", JOptionPane.ERROR_MESSAGE);
 			
 					}
 				
@@ -221,18 +221,18 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 							dataExpedicao = telaCadProfessor.getFormattedTextFieldDataRg().getText();
 							contador++;
 					}else {
-						JOptionPane.showMessageDialog(telaCadProfessor, "Data de expedição inválida!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadProfessor, "Data de expediï¿½ï¿½o invï¿½lida!", "Aviso", JOptionPane.ERROR_MESSAGE);
 	
 					}		
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Data de Expedição não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Data de Expediï¿½ï¿½o nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 				
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldOrgaoExpeditor().getText().equals("                                                       "))) {
-					orgaoExp = arquivo.TiraEspaços(telaCadProfessor.getFormattedTextFieldOrgaoExpeditor().getText().toUpperCase());
+					orgaoExp = arquivo.TiraEspacos(telaCadProfessor.getFormattedTextFieldOrgaoExpeditor().getText().toUpperCase());
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Órgão Expeditor não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo ï¿½rgï¿½o Expeditor nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 			
 				}
 				
@@ -240,47 +240,47 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 					cep = telaCadProfessor.getFormattedTextFieldCep().getText();
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo CEP não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo CEP nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 				
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldRua().getText().equals("                              "))) {
-					rua = arquivo.TiraEspaços(telaCadProfessor.getFormattedTextFieldRua().getText().toUpperCase());
+					rua = arquivo.TiraEspacos(telaCadProfessor.getFormattedTextFieldRua().getText().toUpperCase());
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Rua não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Rua nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 				
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldComplemento().getText().equals("                              "))) {
-					complemento = arquivo.TiraEspaços(telaCadProfessor.getFormattedTextFieldComplemento().getText().toUpperCase());
+					complemento = arquivo.TiraEspacos(telaCadProfessor.getFormattedTextFieldComplemento().getText().toUpperCase());
 				}else {
 					complemento = null;
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldNumero().getText().equals("                              "))) {
-					numero = arquivo.TiraEspaços(telaCadProfessor.getFormattedTextFieldNumero().getText().toUpperCase());
+					numero = arquivo.TiraEspacos(telaCadProfessor.getFormattedTextFieldNumero().getText().toUpperCase());
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Número não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Nï¿½mero nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldBairro().getText().equals("                              "))) {
-					bairro = arquivo.TiraEspaços(telaCadProfessor.getFormattedTextFieldBairro().getText().toUpperCase());
+					bairro = arquivo.TiraEspacos(telaCadProfessor.getFormattedTextFieldBairro().getText().toUpperCase());
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Bairro não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Bairro nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 			
 				}
 				if(!(telaCadProfessor.getComboBoxCidades().getSelectedItem().equals("SELECIONE"))) {
 					cidade = telaCadProfessor.getComboBoxCidades().getSelectedItem().toString();
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Cidade não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Cidade nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 		
 				}
 				if(!telaCadProfessor.getComboBoxEstadoEndereco().getSelectedItem().equals("SELECIONE")) {
 					estado = telaCadProfessor.getComboBoxEstadoEndereco().getSelectedItem().toString();
 					contador++;
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Estado não selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo Estado nï¿½o selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
 				
 				}
 				if(!telaCadProfessor.getTextFieldEmail().getText().equals("")) {
@@ -288,11 +288,11 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 						email = telaCadProfessor.getTextFieldEmail().getText();
 						contador++;
 					}else {
-						JOptionPane.showMessageDialog(telaCadProfessor, "E-mail inválido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(telaCadProfessor, "E-mail invï¿½lido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 		
 					}
 				}else {
-					JOptionPane.showMessageDialog(telaCadProfessor, "Campo E-mail não preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(telaCadProfessor, "Campo E-mail nï¿½o preenchido!", "Aviso", JOptionPane.ERROR_MESSAGE);
 
 				}
 				if(!(telaCadProfessor.getFormattedTextFieldTelefone().getText().equals("(  )     -    "))) {
@@ -398,14 +398,14 @@ public class ControlePainelCadastroProfessor implements ActionListener{
 	
 	public void preencheComboBox() {
 		
-		areasAtuacao.add("CIÊNCIAS EXATAS");
-		areasAtuacao.add("CIÊNCIAS HUMANAS");
-		areasAtuacao.add("CIÊNCIAS DA TERRA");
-		areasAtuacao.add("CIÊNCIAS BIOLÓGICAS");
-		areasAtuacao.add("CIÊNCIAS SOCIAIS");
-		areasAtuacao.add("CIÊNCIAS NATURAIS");
-		areasAtuacao.add("CIÊNCIAS POLÍTICAS");
-		areasAtuacao.add("ADMINISTRAÇÃO");
+		areasAtuacao.add("CIï¿½NCIAS EXATAS");
+		areasAtuacao.add("CIï¿½NCIAS HUMANAS");
+		areasAtuacao.add("CIï¿½NCIAS DA TERRA");
+		areasAtuacao.add("CIï¿½NCIAS BIOLï¿½GICAS");
+		areasAtuacao.add("CIï¿½NCIAS SOCIAIS");
+		areasAtuacao.add("CIï¿½NCIAS NATURAIS");
+		areasAtuacao.add("CIï¿½NCIAS POLï¿½TICAS");
+		areasAtuacao.add("ADMINISTRAï¿½ï¿½O");
 		areasAtuacao.add("PSICOLOGIA");
 		areasAtuacao.add("REDES DE COMPUTADORES");
 		ArrayList<String> areas = new BancoProfessorGerenciar().consultarUmaColuna("Professor", "areaAtuacao");
