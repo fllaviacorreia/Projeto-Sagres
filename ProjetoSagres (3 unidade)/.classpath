@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Vivaldo Junior/Downloads/flatlaf-demo-3.1.1.jar"/>
 	<classpathentry kind="lib" path="jars/mysql-connector-java-8.0.16.jar"/>
+	<classpathentry kind="lib" path="jars/flatlaf-demo-3.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

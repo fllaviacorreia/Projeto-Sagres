@@ -3,7 +3,7 @@ package visao;
 import java.awt.Color;
 
 /**
- *  @author Flávia de Jesus Correia
+ *  @author Flï¿½via de Jesus Correia
  * 
  * */
 
@@ -31,8 +31,8 @@ public class VisaoFramePrincipal extends JFrame {
 		this.setTitle(titulo);
 		this.setContentPane(painel);
 		this.setTitle(titulo);
-		this.setSize(display.width - 50, display.height - 50);
-		this.setLocation((display.width - this.getSize().width) / 2, 0);
+		this.setSize(display.width, display.height - 40);
+		this.setLocation(0, 0);
 		this.repaint();
 		this.validate();
 	}
